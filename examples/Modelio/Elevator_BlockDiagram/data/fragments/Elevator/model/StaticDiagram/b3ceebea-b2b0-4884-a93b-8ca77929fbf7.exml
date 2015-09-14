@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="MotorController" version="3">
+  <DEPS>
+    <ID name="MotorController" mc="StaticDiagram" uid="b3ceebea-b2b0-4884-a93b-8ca77929fbf7"/>
+    <FOREIGNID name="BlockDiagram" mc="Stereotype" uid="00bc42ac-0000-1016-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="MotorController" mc="StaticDiagram" uid="b3ceebea-b2b0-4884-a93b-8ca77929fbf7"/>
+    <PID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">39</ATT>
+      <ATT name="UiData"><![CDATA[eJztm21T4joUx78Kw+zbIn2QtovrjgLjddangXXv3PvGSdsDZm0bbhJW2U9/k0JdRC2xLcVx+goa6UnS/M7p/+TEg68PUdj4BZRhEn9p6q12s/H18ODS+wk+b+BANDUbfD6FL01CJ62IBBBi0gowmlAUtSDAnNAW44jjuxaEEEHM2eLaT390Eo2S6/7iutmI0E9Cbx47bTcPD64omQLl80aMItFXiOZkxvuII/G3HyicwXIQ8SwMm3uHB3vpDc9uHfF5CM0nUzCypsDk71nLJxRai3sVxtdDzEcBBGlngwc+hLFiLxfCxPLOBjzwvncqxph8lV/YnEXrU9xbTCZr2hRCxCEQo1h7YueyqfFLtsiHs7IQDc/0ATxAmmd4bc1yHEtDrulpjo9s2zXcsTe2sx92iBj/FpP7+Ax5EK71POIUx5Pm4TkRjPRIzCkJQ6AHe8mPMidDQjiNeySaEoa5WIRXLCuY6t3iMKAgLZxhxp9wYeZA2w/R798C6Z6YOiuE8lAMA8UTScFydcx9t2u23a5umV3dNt7MubV1ziXkC4/KHFvv7Gg0uhkOroaD0c35ZX+wNvVBPIs+Kw3yG8w/DWFKgYmnjyQK5+KWPzx/H173vl8PB/1teUyyzg2/7Xod8E0Ngo6tWb7d0ZzOvqeZnmcg0247thV8ZE/ZL+opVxRHiM4vksUr1Wk63XZXN+1cDtNRdRhh6mFe2GusGtJMSM8RjiUhBWG1c8AqrbIp8uEWxMpRge1F2vJX0lK9anEqi+admstMLhcEKBhkt+T+BvvPDB0T0ROKH5/LGIUMsqecmLqD+T2hQQnWOPLvbhgHCmSDNU5nKkMLX1iJt5tCHuMU+TzHDB8hXXEZN99rijE8xonT9x4vhsDwb+SFcELJbFq99+vtat9NdQzYqoDS86TRiIvOvRmHiWRQ4HmUNuwKSuVMuhwohRPUVGZR+RSIPIzuLT+yA6ueJ1WWBpOULcX3Mm3YFb7KCXKNbzWCH/gtCbbNbp7kFcdCK8VCdggN4/OZQOIkOl22jdK2QgRLaxOZVyyXVNPfznPF+WvN8waeU0KKioU8GawSsbsKvMq5bEmgfgw1WyKZ246xeTIvJWL/JXGxOJuvYlRx9vVBgN1eZJUYlIyvGtlGnsQNxzHQZGMhQVpcFC8XlaAXjDp9e19UJ2gUFAtGntTsFUB3JA+MivMyY71SVHNZqVow8mVkLyILbEcKoeLcq2b2XSmE539a6wezH+IK+yhHkUS9l+fV9dYSrg3qwVSophi50tAITeCxmppUiaS/ylZZUR3J1gUg5R4DaHc7TlfTu3lkUXWV1voEQLYTj8RUwxBzFU/+CMVW1bHlrLa+6NV5UvUpoVy+d6/E55sdd/XEXWZe/acmS6KIxEmvYn05wuJt35J9C+hkwRjHSqOg8N8MxDoEx2QWB2xjDDGdrqOrBBEKY7G4sQ/HAhgRVRVPt71lfp+WptOx/S0msmlQy9n2QG6ibBY5CsHnhWhpZibEWz1lWFq0lI+6gXwRKsFytbZrimDZ9n3N9ce2hgI/cFzd0g3klBMsxbxF6ItQHJQYKuUcip5/zdwPUAgFZZ3qy6XAzczEt3wFbq4HhRrHVbvqZ/cIxelh3g0qdcOEn0GoKH5fXchVujL3JBR8o7jIfTbs9U1iBR/JzLRLDda1e9TCtnphq7bhZGZu1mxb82an0TvWvIbV1XWrFr0b4mh1WwTbFb0dw3Cs/Y6hjT3L0SzXNjVvjEwtQB3TspHvth23hDA6mgK8N7FbNO/dqdi1Ki5Im+sv0xrDDyhyrTzF7Xcncq3t/39v7Ra1uH1X4rZIaeoMx3cso/619vPjSZ+ie7HQZ2ieKKxV18s+fJCGjGBhgLVCaULEjicWq3mZvu2u3fw7PV7nOPWw/knr7OifwfDm+Kj37WR4eX3RL7vW+aqV1bViLykrK3urpIagbAi+X15VVun+Hwxc7S8=]]></ATT>
+      <ATT name="PdeProperties"></ATT>
+      <ATT name="Name"><![CDATA[MotorController]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Extension">
+        <FOREIGNID name="BlockDiagram" mc="Stereotype" uid="00bc42ac-0000-1016-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

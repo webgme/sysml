@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SIDefinitions" version="3">
+  <DEPS>
+    <ID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+    <COMPID name="SI Base Units" mc="Package" uid="52ef1d21-df89-11e0-bddc-8000600fe800"/>
+    <COMPID name="SI Derived Units Expressed In Base Units" mc="Package" uid="078eba91-df8c-11e0-bddc-8000600fe800"/>
+    <COMPID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+    <COMPID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+    <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+    <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+    <PID name="SIDefinitions" mc="Project" uid="54204ce5-9615-460e-bee7-5507cc8560ea"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SIDefinitions]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="SI Base Units" mc="Package" uid="52ef1d21-df89-11e0-bddc-8000600fe800"/>
+        <COMPID name="SI Derived Units Expressed In Base Units" mc="Package" uid="078eba91-df8c-11e0-bddc-8000600fe800"/>
+        <COMPID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+        <COMPID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+      </LINK>
+      <COMP relation="Tag">
+        <OBJECT>
+          <ID name="" mc="TaggedValue" uid="cebdb2a4-3eef-414f-ae92-3bf6e4cbf420"/>
+          <PID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Actual">
+              <OBJECT>
+                <ID name="" mc="TagParameter" uid="d3916f4b-5305-42a1-b1e4-b36969df656f"/>
+                <PID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"><![CDATA[32a20845-ebd1-48d5-bbd3-45415a657440]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Definition">
+              <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

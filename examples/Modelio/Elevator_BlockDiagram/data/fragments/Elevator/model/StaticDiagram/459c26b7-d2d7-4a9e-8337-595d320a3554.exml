@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FloorController" version="3">
+  <DEPS>
+    <ID name="FloorController" mc="StaticDiagram" uid="459c26b7-d2d7-4a9e-8337-595d320a3554"/>
+    <FOREIGNID name="BlockDiagram" mc="Stereotype" uid="00bc42ac-0000-1016-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FloorController" mc="StaticDiagram" uid="459c26b7-d2d7-4a9e-8337-595d320a3554"/>
+    <PID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">54</ATT>
+      <ATT name="UiData"><![CDATA[eJztnG1T6jgUx78Kw+zbYtu0PCxe7yiwriM+DOid2X3DpG3AXNOGScJV/PSbFvAqKpZQQmX7ShvoSdL8TnpOzl8Pvz+GpPQLMY5p9K1sVcxy6fvR4ZX3E/mihAPZVC6J6Rh9K1M2qoQ0QATTSoDhiMGwggIsKKtwAQW+ryCCQhQJPrv2F186DfvJdXt2XS6F8Cdlg+dOzfLR4TWjY8TEtBTBUPZF4JRORBsKKD/7AckEzQcRTQgpHxwdHixueHNrX0wJKr+agr1qCjz+Pq/4lKHK7N4U42tB7sMABYvOOo+ih4Ype7mUJuZ3ltCjaHtncozJr/EvfMrD5SkezCazatoMEShQIEex9MQu4qbSr7glfjgvFqLkuA3frno1I7CDmuHABjLqANQMt+EGwDYhcF1n9cMmkIvziD5EXeghstRzXzAcjcpHfxFKWYtGglFCEDs8SL60cjKUoLOoRcMx5VjIRfjAcgpTrTtMAoZiC13MxSsugALaPoFPTxLplpw63wjlnhwGjEYxBfPVAY7ZBFWzadUaTddcG3Nn65jHjM8cauXYWt3jfn/Q61z3Ov3BxVW7szTzTjQJ/0w1yHM0/aOHxgxx+fBhTMKFvOU3zje929bNba/T3pbDJMtcAl7d8YZOYDSCwDGcum8ZEIChgfw6qtYtu+5Zwwwc5WQiBI26eHQn8ugu7qbucs1wCNn0MlnCTD3HbCp7TTWt10hTj9ONXWd5Qy1Ifc/+BcRRjMmGxNYUiI2t8jH00R2S68cku5eLlr+TFv3xS13bxl4t6ExB54yDFAb5HX0YYP+NoRMqe4LR89MZQsLR6oknpu7R9IGyIANrAvr3Ay4QQ/QTa4JN0gyNvLMe65uCHhcM+kJhhs+ovnCchtobi3M8xInrt54veojjJ+gRdMroZKx/D7BMve+pYifQEFFZKsk1FLJzbyLQKCZRQnq8aNgVmqnz62zQtJaDvILN9+y/xkKF1IP5j9WbrKWSRscGk3xuAfHVomFXEKfOnguIdSYCSNzRYNsEq2S2OJLRUyQDERnV+GIiwTgNz+Zt/UXbRhzH1kZxvjFfWMNan2rN2W1BdSqqF5xsGj6o5LepuN3VJpw6080I1/2IcjMkc9s7rUpGlorYf2m02W6rVlnSnJXtCbDb3l9jGDKGOB3ftkpCh6MIseTYIQFbXmxeXMogdrCLtC6PbCeAbBg42Cop2weY7ihUsDXna/ZyzbOgcwfxg62Wqb0LLuI7ihk052QFuTmMGd5+tNQP5j/kFfahQlElfS9vC/OVOWKfxBMgRfXFVkpPQzhCzzXYpKoUe23cGtdh+3HrDJOsFQTVetOwmiqBkr76bKEeSOPKfTlhQrBI48/7UKJNOzbFGu26OZBi1XVrsrqqOZfVVWsqAiGQOscvdHVr7jcN5DUAqLtGzYSm4dhuzWiAhmeYbuAhVPOHTu0TrtMLUNt5FaGqHBnolNUpeo3m0wOw5dODvUA1I1kdUDk+yKGuDuhTTIMtJ2F7gWehq8ssZlsylbGuDihKwfMorAOaj2OKnUBDTKVy8pA7XR3QXA0HWy4u7gWZulR1QCWLjg3mSlXnaK6PFwjnRVPnqFXCv4CmztGd2RZMa1PUOWqF8fwq6hzNZXJnP6Lbr1MRd7amXd5NddzR/fe4+wHsdnfXnenpHDWFcy71dE6RzuWP7CzUdI6aqDlPajpXc54mfaFgc8eRg5uhVnlXWjpXcy5WcJu7aOH/oKRzldLSr6ekczUWZAu9QCGky6GQ7tONpouje75iz1z6+smozeCDXM0unMpd57W7rT47WGwkwcwAr5DYhNxDXlnU885f767d/DNEvAzrwo3ap5Xu8T+d3uDkuHV+2ru6vWxn/X780MrLtfqNzUsIVh64FBBkDsHN1bW26Og/WUEolg==]]></ATT>
+      <ATT name="PdeProperties"></ATT>
+      <ATT name="Name"><![CDATA[FloorController]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Extension">
+        <FOREIGNID name="BlockDiagram" mc="Stereotype" uid="00bc42ac-0000-1016-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

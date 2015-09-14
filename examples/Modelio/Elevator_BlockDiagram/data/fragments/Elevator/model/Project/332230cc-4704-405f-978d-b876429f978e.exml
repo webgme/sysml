@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Elevator" version="3">
+  <DEPS>
+    <ID name="Elevator" mc="Project" uid="332230cc-4704-405f-978d-b876429f978e"/>
+    <COMPID name="Elevator" mc="DiagramSet" uid="3ed256da-6d01-4242-a21d-a24ec5d04f16"/>
+    <COMPID name="elevator" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Elevator" mc="Project" uid="332230cc-4704-405f-978d-b876429f978e"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[Elevator]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DiagramRoot">
+        <COMPID name="Elevator" mc="DiagramSet" uid="3ed256da-6d01-4242-a21d-a24ec5d04f16"/>
+      </COMP>
+      <COMP relation="Model">
+        <COMPID name="elevator" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="RichText" version="3">
+  <DEPS>
+    <ID name="RichText" mc="PropertyType" uid="c37f01cf-273e-11e1-b78e-00137282c51b"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="RichText" mc="PropertyType" uid="c37f01cf-273e-11e1-b78e-00137282c51b"/>
+    <PID name="Analyst Properties" mc="PropertyContainer" uid="8dca73d0-391d-4504-ba1a-7bfc6c5a0943"/>
+    <ATTRIBUTES>
+      <ATT name="BaseType">Richtext</ATT>
+      <ATT name="Name"><![CDATA[RichText]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

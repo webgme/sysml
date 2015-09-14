@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ParticipantProperty_BindableInstance" version="3">
+  <DEPS>
+    <ID name="ParticipantProperty_BindableInstance" mc="Stereotype" uid="be4f9250-fe30-11df-a577-0027103f347c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ParticipantProperty_BindableInstance" mc="Stereotype" uid="be4f9250-fe30-11df-a577-0027103f347c"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/participantproperty.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/participantproperty.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[ParticipantProperty]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[BindableInstance]]></ATT>
+      <ATT name="Name"><![CDATA[ParticipantProperty_BindableInstance]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="ParticipantProperty_BindableInstance_end" mc="TagType" uid="be4f9251-fe30-11df-a577-0027103f347c"/>
+          <PID name="ParticipantProperty_BindableInstance" mc="Stereotype" uid="be4f9250-fe30-11df-a577-0027103f347c"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[end]]></ATT>
+            <ATT name="Name"><![CDATA[ParticipantProperty_BindableInstance_end]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

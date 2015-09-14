@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Viewpoint" version="3">
+  <DEPS>
+    <ID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/viewpoint48.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/viewpoint.png]]></ATT>
+      <ATT name="IsHidden">true</ATT>
+      <ATT name="LabelKey"><![CDATA[Viewpoint]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Class]]></ATT>
+      <ATT name="Name"><![CDATA[Viewpoint]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="Viewpoint_concerns" mc="TagType" uid="00bc42a4-0000-1a40-0000-000000000000"/>
+          <PID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[concerns]]></ATT>
+            <ATT name="Name"><![CDATA[Viewpoint_concerns]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Viewpoint_languages" mc="TagType" uid="00bc42a4-0000-1a45-0000-000000000000"/>
+          <PID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[languages]]></ATT>
+            <ATT name="Name"><![CDATA[Viewpoint_languages]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Viewpoint_methods" mc="TagType" uid="00bc42a4-0000-1a4a-0000-000000000000"/>
+          <PID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[methods]]></ATT>
+            <ATT name="Name"><![CDATA[Viewpoint_methods]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Viewpoint_purpose" mc="TagType" uid="00bc42d0-0000-0395-0000-000000000000"/>
+          <PID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[purpose]]></ATT>
+            <ATT name="Name"><![CDATA[Viewpoint_purpose]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Viewpoint_stakeholders" mc="TagType" uid="00bc42a4-0000-1a4f-0000-000000000000"/>
+          <PID name="Viewpoint" mc="Stereotype" uid="00bc42a4-0000-1a33-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[stakeholders]]></ATT>
+            <ATT name="Name"><![CDATA[Viewpoint_stakeholders]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

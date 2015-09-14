@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Elevator" version="3">
+  <DEPS>
+    <ID name="Elevator" mc="PropertyContainer" uid="91f91f9c-c001-4346-9725-b6700e495794"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Elevator" mc="PropertyContainer" uid="91f91f9c-c001-4346-9725-b6700e495794"/>
+    <PID name="Elevator" mc="AnalystProject" uid="850c6a6a-0ccc-40d9-91da-3d3d9d5bf7f6"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[Elevator]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

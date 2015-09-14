@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Functional" version="3">
+  <DEPS>
+    <ID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <COMPID name="Elevator" mc="Class" uid="19dc7ecd-1ee7-4894-9109-b593b18311d9"/>
+    <COMPID name="Elevator" mc="StaticDiagram" uid="472532dc-a38a-4bf7-a384-8f858cb29476"/>
+    <COMPID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+    <COMPID name="FloorController" mc="StaticDiagram" uid="459c26b7-d2d7-4a9e-8337-595d320a3554"/>
+    <COMPID name="FloorControllerBB" mc="StaticDiagram" uid="95d8fc59-3116-40a5-9a6e-c9db34a7f6e1"/>
+    <COMPID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+    <COMPID name="MotorController" mc="StaticDiagram" uid="b3ceebea-b2b0-4884-a93b-8ca77929fbf7"/>
+    <COMPID name="MotorController" mc="Class" uid="c09b6ec3-ed67-4c76-865b-3bb2a370874d"/>
+    <COMPID name="System" mc="StaticDiagram" uid="ba61915f-0403-48bf-b6e9-7cf6d2bdfa6a"/>
+    <COMPID name="System" mc="Class" uid="4d7d28d8-661f-4ddc-a4d0-073d22f750aa"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <PID name="Elevator" mc="Project" uid="332230cc-4704-405f-978d-b876429f978e"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Functional]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Elevator" mc="Class" uid="19dc7ecd-1ee7-4894-9109-b593b18311d9"/>
+        <COMPID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+        <COMPID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+        <COMPID name="MotorController" mc="Class" uid="c09b6ec3-ed67-4c76-865b-3bb2a370874d"/>
+        <COMPID name="System" mc="Class" uid="4d7d28d8-661f-4ddc-a4d0-073d22f750aa"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="System" mc="StaticDiagram" uid="ba61915f-0403-48bf-b6e9-7cf6d2bdfa6a"/>
+        <COMPID name="Elevator" mc="StaticDiagram" uid="472532dc-a38a-4bf7-a384-8f858cb29476"/>
+        <COMPID name="FloorControllerBB" mc="StaticDiagram" uid="95d8fc59-3116-40a5-9a6e-c9db34a7f6e1"/>
+        <COMPID name="FloorController" mc="StaticDiagram" uid="459c26b7-d2d7-4a9e-8337-595d320a3554"/>
+        <COMPID name="MotorController" mc="StaticDiagram" uid="b3ceebea-b2b0-4884-a93b-8ca77929fbf7"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

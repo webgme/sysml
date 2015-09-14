@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FloorDoorController" version="3">
+  <DEPS>
+    <ID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+    <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+    <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[FloorDoorController]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Extension">
+        <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

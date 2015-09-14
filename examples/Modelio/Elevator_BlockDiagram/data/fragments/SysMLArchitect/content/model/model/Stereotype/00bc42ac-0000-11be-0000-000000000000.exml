@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ParametricDiagram" version="3">
+  <DEPS>
+    <ID name="ParametricDiagram" mc="Stereotype" uid="00bc42ac-0000-11be-0000-000000000000"/>
+    <EXTID name="InternalBlockDiagram" mc="Stereotype" uid="00bc42ac-0000-11b9-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ParametricDiagram" mc="Stereotype" uid="00bc42ac-0000-11be-0000-000000000000"/>
+    <PID name="sysml.diagrams" mc="Profile" uid="00bc42ac-0000-1013-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/parametricdiagram.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/parametricdiagram.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[ParametricDiagram]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[StaticDiagram]]></ATT>
+      <ATT name="Name"><![CDATA[ParametricDiagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Parent">
+        <ID name="InternalBlockDiagram" mc="Stereotype" uid="00bc42ac-0000-11b9-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

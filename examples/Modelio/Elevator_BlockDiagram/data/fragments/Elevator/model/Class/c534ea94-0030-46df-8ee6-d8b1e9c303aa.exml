@@ -1,0 +1,323 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FloorController" version="3">
+  <DEPS>
+    <ID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+    <COMPID name="ButtonLightController" mc="Class" uid="3b84bf4d-9dd4-48c1-a33f-ec8e68128b1f"/>
+    <COMPID name="FloorControllerComponents" mc="StaticDiagram" uid="3f978508-ff7b-4126-9b2c-4d222e305d45"/>
+    <COMPID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+    <EXTID name="ButtonLightController" mc="Class" uid="3b84bf4d-9dd4-48c1-a33f-ec8e68128b1f"/>
+    <EXTID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+    <EXTID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+    <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+    <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+    <PID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[FloorController]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedEnd">
+        <OBJECT>
+          <ID name="buttonlightcontroller" mc="AssociationEnd" uid="485f6844-3835-4890-9d8f-83fc2308f1df"/>
+          <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[buttonlightcontroller]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="ButtonLightController" mc="Class" uid="3b84bf4d-9dd4-48c1-a33f-ec8e68128b1f"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="f1112bb1-e5dd-4180-b6e3-6acd38a91ecd"/>
+                <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="buttonlightcontroller" mc="AssociationEnd" uid="485f6844-3835-4890-9d8f-83fc2308f1df"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="3003d733-2c46-4d5e-9e63-ead99c3d5162"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Association" uid="3003d733-2c46-4d5e-9e63-ead99c3d5162"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="floordoorcontroller" mc="AssociationEnd" uid="62ca4d98-b424-48af-879e-a551902a35a6"/>
+          <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[floordoorcontroller]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="AssociationEnd" uid="945a941b-abbd-46a1-a858-348edcc02865"/>
+                <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="floordoorcontroller" mc="AssociationEnd" uid="62ca4d98-b424-48af-879e-a551902a35a6"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Association" uid="31ae0485-6f63-482a-8576-8b20be670d73"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Association" uid="31ae0485-6f63-482a-8576-8b20be670d73"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="InternalStructure">
+        <OBJECT>
+          <ID name="Request" mc="Port" uid="01d7a81e-de74-4132-b877-7146edba1314"/>
+          <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">Out</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Request]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="OwnedEnd">
+              <OBJECT>
+                <ID name="floorRequest" mc="ConnectorEnd" uid="e7d4c06d-fbef-4f58-a311-3a1c8aadb75f"/>
+                <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                <ATTRIBUTES>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="Name"><![CDATA[floorRequest]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Link">
+                    <OBJECT>
+                      <ID name="" mc="Connector" uid="575c45fe-90b2-4ba8-9748-b45700fa7153"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="FloorRequest" mc="Port" uid="d2dc98f5-fa6f-46d4-b742-3d41322efb51"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                    </REFOBJ>
+                  </LINK>
+                  <COMP relation="Opposite">
+                    <OBJECT>
+                      <ID name="" mc="ConnectorEnd" uid="7fc7af1c-53f8-444f-89c1-b53d8c2bf1b9"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="IsOrdered">false</ATT>
+                        <ATT name="IsUnique">false</ATT>
+                        <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                        <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <COMP relation="Link">
+                          <COMPID name="" mc="Connector" uid="575c45fe-90b2-4ba8-9748-b45700fa7153"/>
+                        </COMP>
+                        <COMP relation="Opposite">
+                          <COMPID name="floorRequest" mc="ConnectorEnd" uid="e7d4c06d-fbef-4f58-a311-3a1c8aadb75f"/>
+                        </COMP>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="9be4e1e3-9e4a-453c-aad0-cc1749e064d9"/>
+                <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="c37d1135-8365-4494-8d19-b7d2316e0d19"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[out]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="DoorLock" mc="Port" uid="06953d13-a9d7-4801-b79d-341e6bf5b6f0"/>
+          <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">In</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[DoorLock]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="05a32a3a-3254-4322-95dc-b003d23d536f"/>
+                <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="cdaa5915-4a79-4630-bef7-e5c5d19f9039"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[in]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="OwnedElement">
+        <COMPID name="ButtonLightController" mc="Class" uid="3b84bf4d-9dd4-48c1-a33f-ec8e68128b1f"/>
+        <COMPID name="FloorDoorController" mc="Class" uid="9eb93385-70a0-4257-939b-05dbee7cf47e"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+      </LINK>
+      <COMP relation="Product">
+        <COMPID name="FloorControllerComponents" mc="StaticDiagram" uid="3f978508-ff7b-4126-9b2c-4d222e305d45"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

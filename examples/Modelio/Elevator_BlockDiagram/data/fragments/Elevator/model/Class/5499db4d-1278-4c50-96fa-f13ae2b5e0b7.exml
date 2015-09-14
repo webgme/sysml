@@ -1,0 +1,331 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="MainController" version="3">
+  <DEPS>
+    <ID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+    <EXTID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+    <EXTID name="MotorController" mc="Class" uid="c09b6ec3-ed67-4c76-865b-3bb2a370874d"/>
+    <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+    <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+    <PID name="Functional" mc="Package" uid="012130dc-3588-40fa-bfec-0effa84ab892"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[MainController]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="InternalStructure">
+        <OBJECT>
+          <ID name="FloorRequest" mc="Port" uid="d2dc98f5-fa6f-46d4-b742-3d41322efb51"/>
+          <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">In</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[FloorRequest]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="e3d4385e-66b6-4daf-a51d-2adadb7d2612"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="9a715c77-6fcc-49a6-9065-0d7f113d3f7d"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[in]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="DoorLockCmd" mc="Port" uid="1e019eb5-fc01-4fce-84e6-e467f36a2e39"/>
+          <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">Out</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[DoorLockCmd]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="OwnedEnd">
+              <OBJECT>
+                <ID name="doorLock" mc="ConnectorEnd" uid="101b0c35-4df1-4875-a204-2b64518608c8"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="Name"><![CDATA[doorLock]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Link">
+                    <OBJECT>
+                      <ID name="" mc="Connector" uid="859e5505-a0bc-48a5-8074-f8605b3e6cb4"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="DoorLock" mc="Port" uid="06953d13-a9d7-4801-b79d-341e6bf5b6f0"/>
+                      <PID name="FloorController" mc="Class" uid="c534ea94-0030-46df-8ee6-d8b1e9c303aa"/>
+                    </REFOBJ>
+                  </LINK>
+                  <COMP relation="Opposite">
+                    <OBJECT>
+                      <ID name="" mc="ConnectorEnd" uid="75aea481-4633-43c0-ae12-cef552b63003"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="IsOrdered">false</ATT>
+                        <ATT name="IsUnique">false</ATT>
+                        <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                        <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <COMP relation="Link">
+                          <COMPID name="" mc="Connector" uid="859e5505-a0bc-48a5-8074-f8605b3e6cb4"/>
+                        </COMP>
+                        <COMP relation="Opposite">
+                          <COMPID name="doorLock" mc="ConnectorEnd" uid="101b0c35-4df1-4875-a204-2b64518608c8"/>
+                        </COMP>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="ea591cc3-d02a-4acb-a514-b6fc3de8c43f"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="33e7c64d-17bf-4912-aff2-ce81787d3c49"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[out]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="MotionCommand" mc="Port" uid="3768de0e-9c02-440d-a326-f6f3c46179f4"/>
+          <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">Out</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[MotionCommand]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="OwnedEnd">
+              <OBJECT>
+                <ID name="motionCommand" mc="ConnectorEnd" uid="def43d30-9089-48c1-9d04-4c3dcad5dbbd"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                  <ATT name="Name"><![CDATA[motionCommand]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Link">
+                    <OBJECT>
+                      <ID name="" mc="Connector" uid="b4e1383d-1cf8-4fc0-8a25-5c2052b31998"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Target">
+                    <REFOBJ>
+                      <ID name="MotionCommand" mc="Port" uid="ac6ece49-0937-40cc-9cf7-adcd891412a8"/>
+                      <PID name="MotorController" mc="Class" uid="c09b6ec3-ed67-4c76-865b-3bb2a370874d"/>
+                    </REFOBJ>
+                  </LINK>
+                  <COMP relation="Opposite">
+                    <OBJECT>
+                      <ID name="" mc="ConnectorEnd" uid="2f9b3e22-2786-406f-8234-e78a93d8d6b6"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="IsOrdered">false</ATT>
+                        <ATT name="IsUnique">false</ATT>
+                        <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                        <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES>
+                        <COMP relation="Link">
+                          <COMPID name="" mc="Connector" uid="b4e1383d-1cf8-4fc0-8a25-5c2052b31998"/>
+                        </COMP>
+                        <COMP relation="Opposite">
+                          <COMPID name="motionCommand" mc="ConnectorEnd" uid="def43d30-9089-48c1-9d04-4c3dcad5dbbd"/>
+                        </COMP>
+                      </DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="33573873-3bee-4a2b-a9d6-a6a387201492"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="cb68efa4-8d43-48f0-8da8-608dd0d769ee"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[out]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="MotorSpeed" mc="Port" uid="4e79fdb6-3760-4cbc-a8d6-6ea37f2c008b"/>
+          <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+          <ATTRIBUTES>
+            <ATT name="IsBehavior">false</ATT>
+            <ATT name="IsService">true</ATT>
+            <ATT name="IsConjugated">false</ATT>
+            <ATT name="Direction">In</ATT>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[MotorSpeed]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="" mc="TaggedValue" uid="4ac1f2bf-5a25-4271-9ff2-fe65e3fde12f"/>
+                <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="1da4ce1f-6b99-4519-b2ec-0d8722e6967e"/>
+                      <PID name="MainController" mc="Class" uid="5499db4d-1278-4c50-96fa-f13ae2b5e0b7"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[in]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

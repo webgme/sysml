@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ModelElements="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_72NTsEzUEeWkLY6XHtZMQA" name="RootElement">
+    <packagedElement xmi:type="uml:Package" xmi:id="_rm8JQFqJEeW_8bf59qFHyw" name="Requirement">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_gQUcEE2gEeWlZd0_B4B4oQ" annotatedElement="_SQGNIE2hEeWlZd0_B4B4oQ">
+        <body>The requirement for a boiling function and a boiler implies that the water must be purified by distillation </body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_yNu5UE2fEeWlZd0_B4B4oQ" name="OriginalStatement"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qvFhAE2gEeWlZd0_B4B4oQ" name="DistillWater"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_v7TuQE2gEeWlZd0_B4B4oQ" client="_qvFhAE2gEeWlZd0_B4B4oQ" supplier="_QoADYE2gEeWlZd0_B4B4oQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QoADYE2gEeWlZd0_B4B4oQ" name="PurifyWater"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_PaXWIE2hEeWlZd0_B4B4oQ" name="HeatExchange"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SQGNIE2hEeWlZd0_B4B4oQ" name="Boiler"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Vb9sME2hEeWlZd0_B4B4oQ" name="Drain"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_oeceoE2hEeWlZd0_B4B4oQ" name="WaterProperties">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_q8X5oE2hEeWlZd0_B4B4oQ" name="WaterInitialTemp"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_EgmxgFqKEeW_8bf59qFHyw" name="Other">
+      <packagedElement xmi:type="uml:Activity" xmi:id="_uVH2wE2kEeWlZd0_B4B4oQ" name="DistllWater" node="_wKTPsE2kEeWlZd0_B4B4oQ">
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_5CzhcE2kEeWlZd0_B4B4oQ" name="BoilWater"/>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_5xuc8E2kEeWlZd0_B4B4oQ" name="CondenseSteam"/>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_62WisE2kEeWlZd0_B4B4oQ" name="DrainResidue"/>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_6YtH8E2lEeWlZd0_B4B4oQ" name="HeatWater"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_wKTPsE2kEeWlZd0_B4B4oQ"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-WjEEzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-ZmYEzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-cpsEzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-dQwEzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-fF8EzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-ftAEzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-ftAUzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-ftAkzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-gUEEzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-gUEUzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-gUEkzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-g7IEzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-g7IUzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-g7IkzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-g7I0zUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-hiMEzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-hiMUzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-hiMkzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-iJQEzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-iJQUzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_7-iwUEzUEeWkLY6XHtZMQA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7-iwUUzUEeWkLY6XHtZMQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_ycgVIE2fEeWlZd0_B4B4oQ" text="Describe a system for purifying dirty water.&#xD;&#xA;- Heat dirty water and condense steam are performed by a Counter Flow Heat Exchanger&#xD;&#xA;- Boil dirty water is performed by a Boiler. Drain residue is performed by a Drain.&#xD;&#xA;The water has properties: vol = 1 liter, density 1 gm/cm3, temp 20 deg C, specific heat 1cal/gm deg C, heat of vaporization 540 cal/gm.&#xD;&#xA;" id="S0.0" base_Class="_yNu5UE2fEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_QoXPwE2gEeWlZd0_B4B4oQ" text="The system shall purify dirty water." id="S1.0" base_Class="_QoADYE2gEeWlZd0_B4B4oQ"/>
+  <ModelElements:Rationale xmi:id="_gRHGQE2gEeWlZd0_B4B4oQ" base_Comment="_gQUcEE2gEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_qvXN0E2gEeWlZd0_B4B4oQ" text="The system shall purify water by boiling it." id="D1.0" base_Class="_qvFhAE2gEeWlZd0_B4B4oQ"/>
+  <Requirements:DeriveReqt xmi:id="_v9A-cE2gEeWlZd0_B4B4oQ" base_Abstraction="_v7TuQE2gEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_Pat7cE2hEeWlZd0_B4B4oQ" text="Heat dirty water and condense steam are performed by a Counter Flow Heat Exchanger" id="S2.0" base_Class="_PaXWIE2hEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_SQbkUE2hEeWlZd0_B4B4oQ" text="Boil dirty water is performed by a Boiler." id="S3.0" base_Class="_SQGNIE2hEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_VcU4kE2hEeWlZd0_B4B4oQ" text="Drain residue is performed by a Drain." id="S4.0" base_Class="_Vb9sME2hEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_oe38cE2hEeWlZd0_B4B4oQ" text="water has properties: density 1 gm/cm3, temp 20 deg C, specific heat 1cal/gm deg C, heat of vaporization 540 cal/gm." id="S5.0" base_Class="_oeceoE2hEeWlZd0_B4B4oQ"/>
+  <Requirements:Requirement xmi:id="_q81MoE2hEeWlZd0_B4B4oQ" text="water has an initial temp 20 deg C" id="S5.1" base_Class="_q8X5oE2hEeWlZd0_B4B4oQ"/>
+</xmi:XMI>
