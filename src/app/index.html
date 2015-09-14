@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script type="text/javascript">
+        var myInit = function () {
+            console.log('myInit function was called');
+
+            // you can use GME.classes.Client from this point
+            console.log(GME);
+
+            // TODO: add some client examples
+        };
+
+    </script>
+
+    <script type="text/javascript" src="/extlib/node_modules/webgme/dist/webgme.classes.build.js"></script>
+
+</head>
+
+<body on-gme-init="myInit()">
+
+Test page.
+See console for messages.
+
+
+<a href="/logout">Logout</a>
+</body>
+</html>

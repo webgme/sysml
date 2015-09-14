@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>-= Login =- Boilerplate Application powered by WebGME</title>
+
+        <!-- TODO: add any css includes -->
+
+    </head>
+
+    <body>
+        <div class="container">
+            <form id="loginForm" class="form-signin" method="post">
+                <h2 class="form-signin-heading">Boilerplate Application powered by WebGME sign in</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="username_input" name="username" autofocus="on" type="text" autocomplete="off" class="input-block-level" placeholder="Username">
+                    </div>
+                    <div class="col-md-6">
+                        <input id="password_input" name="password" type="password" autocomplete="off" class="input-block-level" placeholder="Password">
+                    </div>
+                    <div class="col-md-8" id="failed_holder"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger pull-right gPlusButton" type="button" onclick="window.location.href='/login/google'">
+                            <i class="gPlusIcon"></i> Use my Google account
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        function getParameterByName(name) {
+            var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+        var form = document.getElementById('loginForm'),
+            redirect = getParameterByName('redirect');
+        form.setAttribute('action', location.origin + '/login' + redirect ? ('?redirect=' + encodeURIComponent(redirect)) : '');
+    </script>
+    <script src="/extlib/node_modules/webgme/src/client/lib/jquery/jquery-2.1.0.js"></script>
+</html>
