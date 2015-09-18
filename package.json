@@ -1,0 +1,26 @@
+{
+  "name": "webgme-sysml",
+  "version": "0.1.0",
+  "description": "SysML implementation using WebGME as a library",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "app": "set NODE_ENV=app&& node app.js",
+    "test": "node ./node_modules/mocha/bin/mocha --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webgme/webgme-sysml.git"
+  },
+  "author": "Dana Zhang",
+  "license": "MIT",
+  "homepage": "https://github.com/webgme/webgme-sysml",
+  "dependencies": {
+    "webgme": "latest"
+  },
+  "devDependencies": {
+    "chai": "=3.0.0",
+    "mocha": "=2.2.5",
+    "rimraf": "=2.4.0"
+  }
+}
