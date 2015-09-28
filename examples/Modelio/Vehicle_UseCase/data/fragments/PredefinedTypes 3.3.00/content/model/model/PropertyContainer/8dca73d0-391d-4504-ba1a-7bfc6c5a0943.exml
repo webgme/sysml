@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Analyst Properties" version="3">
+  <DEPS>
+    <ID name="Analyst Properties" mc="PropertyContainer" uid="8dca73d0-391d-4504-ba1a-7bfc6c5a0943"/>
+    <COMPID name="Acceptance" mc="EnumeratedPropertyType" uid="01ec152c-0000-3152-0000-000000000000"/>
+    <COMPID name="Benefit" mc="EnumeratedPropertyType" uid="00080cf0-0000-00bc-0000-000000000000"/>
+    <COMPID name="Boolean" mc="PropertyType" uid="01a40888-0000-002b-0000-000000000000"/>
+    <COMPID name="BusinessRule Properties" mc="PropertyTableDefinition" uid="00bc470c-0000-0019-0000-000000000000"/>
+    <COMPID name="Date" mc="PropertyType" uid="136b356c-3951-473b-aa4a-001c0241b996"/>
+    <COMPID name="Design" mc="PropertyTableDefinition" uid="00080cf0-0000-001f-0000-000000000000"/>
+    <COMPID name="Dictionary Properties" mc="PropertyTableDefinition" uid="01ec152c-0000-144f-0000-000000000000"/>
+    <COMPID name="Element" mc="PropertyType" uid="b58969db-144e-4a1f-b946-cd6deacca9bd"/>
+    <COMPID name="Float" mc="PropertyType" uid="bc36b99e-8470-4aee-ba2a-5012c0a17525"/>
+    <COMPID name="Functionality" mc="PropertyTableDefinition" uid="00080cf0-0000-001a-0000-000000000000"/>
+    <COMPID name="Goal Properties" mc="PropertyTableDefinition" uid="00bc470c-0000-0018-0000-000000000000"/>
+    <COMPID name="Implementation" mc="PropertyTableDefinition" uid="00080cf0-0000-0020-0000-000000000000"/>
+    <COMPID name="Integer" mc="PropertyType" uid="01a40888-0000-002d-0000-000000000000"/>
+    <COMPID name="Kind" mc="EnumeratedPropertyType" uid="00bc470c-0000-002a-0000-000000000000"/>
+    <COMPID name="MultiText" mc="PropertyType" uid="00080cf0-0000-00cf-0000-000000000000"/>
+    <COMPID name="No Properties" mc="PropertyTableDefinition" uid="7649b5c8-8733-4a02-959c-a269422402b8"/>
+    <COMPID name="Performance" mc="PropertyTableDefinition" uid="00080cf0-0000-001d-0000-000000000000"/>
+    <COMPID name="Reliability" mc="PropertyTableDefinition" uid="00080cf0-0000-001c-0000-000000000000"/>
+    <COMPID name="RichText" mc="PropertyType" uid="c37f01cf-273e-11e1-b78e-00137282c51b"/>
+    <COMPID name="Risk" mc="EnumeratedPropertyType" uid="00080cf0-0000-0031-0000-000000000000"/>
+    <COMPID name="Satisfaction" mc="EnumeratedPropertyType" uid="00bc470c-0000-0035-0000-000000000000"/>
+    <COMPID name="Scope" mc="EnumeratedPropertyType" uid="00bc470c-0000-001b-0000-000000000000"/>
+    <COMPID name="Stability" mc="EnumeratedPropertyType" uid="00080cf0-0000-0032-0000-000000000000"/>
+    <COMPID name="Supportability" mc="PropertyTableDefinition" uid="00080cf0-0000-001e-0000-000000000000"/>
+    <COMPID name="Text" mc="PropertyType" uid="01a40888-0000-002a-0000-000000000000"/>
+    <COMPID name="Time" mc="PropertyType" uid="753fc9f9-c136-449c-949c-4fa467511d99"/>
+    <COMPID name="Unsigned" mc="PropertyType" uid="827950f7-671f-4db7-9374-23df864712ef"/>
+    <COMPID name="Usability" mc="PropertyTableDefinition" uid="00080cf0-0000-001b-0000-000000000000"/>
+    <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+    <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Analyst Properties" mc="PropertyContainer" uid="8dca73d0-391d-4504-ba1a-7bfc6c5a0943"/>
+    <PID name="Analyst Properties" mc="AnalystProject" uid="8bdf9b04-3ddf-4a5a-a940-674e3ceb33aa"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[Analyst Properties]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTable">
+        <COMPID name="BusinessRule Properties" mc="PropertyTableDefinition" uid="00bc470c-0000-0019-0000-000000000000"/>
+        <COMPID name="Design" mc="PropertyTableDefinition" uid="00080cf0-0000-001f-0000-000000000000"/>
+        <COMPID name="Dictionary Properties" mc="PropertyTableDefinition" uid="01ec152c-0000-144f-0000-000000000000"/>
+        <COMPID name="Functionality" mc="PropertyTableDefinition" uid="00080cf0-0000-001a-0000-000000000000"/>
+        <COMPID name="Goal Properties" mc="PropertyTableDefinition" uid="00bc470c-0000-0018-0000-000000000000"/>
+        <COMPID name="Implementation" mc="PropertyTableDefinition" uid="00080cf0-0000-0020-0000-000000000000"/>
+        <COMPID name="Performance" mc="PropertyTableDefinition" uid="00080cf0-0000-001d-0000-000000000000"/>
+        <COMPID name="Reliability" mc="PropertyTableDefinition" uid="00080cf0-0000-001c-0000-000000000000"/>
+        <COMPID name="Supportability" mc="PropertyTableDefinition" uid="00080cf0-0000-001e-0000-000000000000"/>
+        <COMPID name="Usability" mc="PropertyTableDefinition" uid="00080cf0-0000-001b-0000-000000000000"/>
+        <COMPID name="No Properties" mc="PropertyTableDefinition" uid="7649b5c8-8733-4a02-959c-a269422402b8"/>
+      </COMP>
+      <COMP relation="DefinedType">
+        <COMPID name="Benefit" mc="EnumeratedPropertyType" uid="00080cf0-0000-00bc-0000-000000000000"/>
+        <COMPID name="Risk" mc="EnumeratedPropertyType" uid="00080cf0-0000-0031-0000-000000000000"/>
+        <COMPID name="Satisfaction" mc="EnumeratedPropertyType" uid="00bc470c-0000-0035-0000-000000000000"/>
+        <COMPID name="Scope" mc="EnumeratedPropertyType" uid="00bc470c-0000-001b-0000-000000000000"/>
+        <COMPID name="Stability" mc="EnumeratedPropertyType" uid="00080cf0-0000-0032-0000-000000000000"/>
+        <COMPID name="Boolean" mc="PropertyType" uid="01a40888-0000-002b-0000-000000000000"/>
+        <COMPID name="Date" mc="PropertyType" uid="136b356c-3951-473b-aa4a-001c0241b996"/>
+        <COMPID name="Element" mc="PropertyType" uid="b58969db-144e-4a1f-b946-cd6deacca9bd"/>
+        <COMPID name="Float" mc="PropertyType" uid="bc36b99e-8470-4aee-ba2a-5012c0a17525"/>
+        <COMPID name="Integer" mc="PropertyType" uid="01a40888-0000-002d-0000-000000000000"/>
+        <COMPID name="MultiText" mc="PropertyType" uid="00080cf0-0000-00cf-0000-000000000000"/>
+        <COMPID name="RichText" mc="PropertyType" uid="c37f01cf-273e-11e1-b78e-00137282c51b"/>
+        <COMPID name="Text" mc="PropertyType" uid="01a40888-0000-002a-0000-000000000000"/>
+        <COMPID name="Time" mc="PropertyType" uid="753fc9f9-c136-449c-949c-4fa467511d99"/>
+        <COMPID name="Unsigned" mc="PropertyType" uid="827950f7-671f-4db7-9374-23df864712ef"/>
+        <COMPID name="Acceptance" mc="EnumeratedPropertyType" uid="01ec152c-0000-3152-0000-000000000000"/>
+        <COMPID name="Kind" mc="EnumeratedPropertyType" uid="00bc470c-0000-002a-0000-000000000000"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+      </LINK>
+      <COMP relation="Tag">
+        <OBJECT>
+          <ID name="" mc="TaggedValue" uid="50931efa-b72e-40c3-a748-7bf2e5e2d282"/>
+          <PID name="Analyst Properties" mc="PropertyContainer" uid="8dca73d0-391d-4504-ba1a-7bfc6c5a0943"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Actual">
+              <OBJECT>
+                <ID name="" mc="TagParameter" uid="ec6cf9e0-9bbf-4a1a-8d9a-0b962fc2bf0e"/>
+                <PID name="Analyst Properties" mc="PropertyContainer" uid="8dca73d0-391d-4504-ba1a-7bfc6c5a0943"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"><![CDATA[a47918cf-d74f-421a-b4c5-d0a1f77c288e]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Definition">
+              <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

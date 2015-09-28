@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="vehicle" version="3">
+  <DEPS>
+    <ID name="vehicle" mc="Package" uid="f8a103a8-ccfb-485a-a4aa-c2181a972866"/>
+    <COMPID name="Accelerate" mc="UseCase" uid="440dbe66-fc27-4f48-af06-5d2b84e6d91d"/>
+    <COMPID name="Brake" mc="UseCase" uid="fbb65e0f-b189-4515-89ed-886fd53e9636"/>
+    <COMPID name="Drive the vehicle" mc="UseCase" uid="168b7544-3ac7-44bc-9837-4f83406013d0"/>
+    <COMPID name="Driver" mc="Actor" uid="d9eba560-dbcb-4c0f-91d4-5a778dcb3eda"/>
+    <COMPID name="Park" mc="UseCase" uid="6a43d760-cd1f-4b16-99bf-c324f500495d"/>
+    <COMPID name="Start the vehicle" mc="UseCase" uid="66fd7d01-f3f2-4029-8bdb-b9b0662ffe96"/>
+    <COMPID name="Steer" mc="UseCase" uid="0026e481-ac36-41d5-812c-237dfa4667c7"/>
+    <COMPID name="Usecase diagram" mc="UseCaseDiagram" uid="bda2ca02-bc20-4502-8245-646a8a51d06f"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="972197b8-0ad9-4092-8ef0-007678edf825"/>
+    <COMPID name="vehicle Use Case diagram" mc="UseCaseDiagram" uid="4d2c0a46-0171-4485-8172-89030e4015bc"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="vehicle" mc="Package" uid="f8a103a8-ccfb-485a-a4aa-c2181a972866"/>
+    <PID name="Vehicle" mc="Project" uid="17f6ff4d-aae6-4180-b9aa-3ba17cb49fec"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[vehicle]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Driver" mc="Actor" uid="d9eba560-dbcb-4c0f-91d4-5a778dcb3eda"/>
+        <COMPID name="Drive the vehicle" mc="UseCase" uid="168b7544-3ac7-44bc-9837-4f83406013d0"/>
+        <COMPID name="Park" mc="UseCase" uid="6a43d760-cd1f-4b16-99bf-c324f500495d"/>
+        <COMPID name="Start the vehicle" mc="UseCase" uid="66fd7d01-f3f2-4029-8bdb-b9b0662ffe96"/>
+        <COMPID name="Accelerate" mc="UseCase" uid="440dbe66-fc27-4f48-af06-5d2b84e6d91d"/>
+        <COMPID name="Steer" mc="UseCase" uid="0026e481-ac36-41d5-812c-237dfa4667c7"/>
+        <COMPID name="Brake" mc="UseCase" uid="fbb65e0f-b189-4515-89ed-886fd53e9636"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="972197b8-0ad9-4092-8ef0-007678edf825"/>
+        <COMPID name="vehicle Use Case diagram" mc="UseCaseDiagram" uid="4d2c0a46-0171-4485-8172-89030e4015bc"/>
+        <COMPID name="Usecase diagram" mc="UseCaseDiagram" uid="bda2ca02-bc20-4502-8245-646a8a51d06f"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

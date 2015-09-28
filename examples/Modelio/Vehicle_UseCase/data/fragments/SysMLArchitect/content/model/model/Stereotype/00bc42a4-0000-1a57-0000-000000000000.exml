@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FlowPort" version="3">
+  <DEPS>
+    <ID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/flowport_inoutdiagram.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/flowport_inout.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[FlowPort]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Port]]></ATT>
+      <ATT name="Name"><![CDATA[FlowPort]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="FlowPort_direction" mc="TagType" uid="00bc42a4-0000-1a5f-0000-000000000000"/>
+          <PID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[direction]]></ATT>
+            <ATT name="Name"><![CDATA[FlowPort_direction]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="FlowPort_isAtomic" mc="TagType" uid="00bc42a4-0000-1a64-0000-000000000000"/>
+          <PID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[0]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[isAtomic]]></ATT>
+            <ATT name="Name"><![CDATA[FlowPort_isAtomic]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

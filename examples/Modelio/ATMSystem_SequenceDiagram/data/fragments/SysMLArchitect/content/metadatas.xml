@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ram-component manifest-version="2.0"
+               name="SysMLArchitect" version="0" release="0" clevel="0" metamodel="9023">
+    <description>
+        <![CDATA[]]>
+    </description>
+    <dependencies>
+    </dependencies>
+    <contributors>
+    </contributors>
+    <roots>
+      <root metaclass="ModuleComponent" name="SysMLArchitect" uuid="00bc42d0-0000-19fb-0000-000000000000"></root>
+    </roots>
+</ram-component>

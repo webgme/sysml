@@ -1,0 +1,184 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="default" version="3">
+  <DEPS>
+    <ID name="default" mc="Profile" uid="007004e8-0000-0282-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="deb348a5-2653-11e1-9161-002564c97630"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-0258-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-02a9-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-037a-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-092f-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-0e0b-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc2f68-0000-0fd8-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="00bc3924-0000-189d-0000-000000000000"/>
+    <COMPID name="" mc="MetaclassReference" uid="01ec2468-0000-0894-0000-000000000000"/>
+    <COMPID name="AutoDiagram" mc="Stereotype" uid="8fb43b1c-7819-11e1-a4f1-002564c97630"/>
+    <COMPID name="ExternalDocument" mc="Stereotype" uid="c2e23680-96f0-11de-a322-001fe2c988b8"/>
+    <COMPID name="ModelComponent" mc="Stereotype" uid="00d0052c-0000-0143-0000-000000000000"/>
+    <COMPID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+    <COMPID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+    <COMPID name="access" mc="Stereotype" uid="00700680-0000-01cc-0000-000000000000"/>
+    <COMPID name="catch" mc="Stereotype" uid="0054070c-0000-005f-0000-000000000000"/>
+    <COMPID name="class" mc="Stereotype" uid="002005c0-0001-0007-0000-000000000000"/>
+    <COMPID name="collaboration" mc="Stereotype" uid="00bc3ac0-0000-0d9a-0000-000000000000"/>
+    <COMPID name="communication" mc="Stereotype" uid="00bc4480-0000-06a8-0000-000000000000"/>
+    <COMPID name="complete" mc="Stereotype" uid="00700680-0000-01f1-0000-000000000000"/>
+    <COMPID name="create" mc="Stereotype" uid="00700680-0000-0202-0000-000000000000"/>
+    <COMPID name="create" mc="Stereotype" uid="00700680-0000-0204-0000-000000000000"/>
+    <COMPID name="deployment" mc="Stereotype" uid="002005c0-0001-000f-0000-000000000000"/>
+    <COMPID name="design pattern" mc="Stereotype" uid="007006dc-0000-0139-0000-000000000000"/>
+    <COMPID name="destroy" mc="Stereotype" uid="00700680-0000-0206-0000-000000000000"/>
+    <COMPID name="destroyed" mc="Stereotype" uid="00700680-0000-01f3-0000-000000000000"/>
+    <COMPID name="directory" mc="Stereotype" uid="6432b987-256f-4121-9428-a89d364c2cef"/>
+    <COMPID name="disjoin" mc="Stereotype" uid="00700680-0000-01f5-0000-000000000000"/>
+    <COMPID name="exception" mc="Stereotype" uid="00700680-0000-01d1-0000-000000000000"/>
+    <COMPID name="executable" mc="Stereotype" uid="00700680-0000-01c3-0000-000000000000"/>
+    <COMPID name="extend" mc="Stereotype" uid="00000000-0000-9c48-0000-000000000000"/>
+    <COMPID name="facade" mc="Stereotype" uid="00700680-0000-01d5-0000-000000000000"/>
+    <COMPID name="file" mc="Stereotype" uid="0226fd5c-caf5-4cb4-b25c-06e493b37b2d"/>
+    <COMPID name="flow" mc="Stereotype" uid="01ec1228-0000-0964-0000-000000000000"/>
+    <COMPID name="frameWork" mc="Stereotype" uid="00700680-0000-01db-0000-000000000000"/>
+    <COMPID name="friend" mc="Stereotype" uid="00700680-0000-01ca-0000-000000000000"/>
+    <COMPID name="impact" mc="Stereotype" uid="01ec2468-0000-0acb-0000-000000000000"/>
+    <COMPID name="impact_root" mc="Stereotype" uid="01ec2468-0000-0ac1-0000-000000000000"/>
+    <COMPID name="impact_subroot" mc="Stereotype" uid="01ec2468-0000-0ac6-0000-000000000000"/>
+    <COMPID name="implementation" mc="Stereotype" uid="00700680-0000-01c7-0000-000000000000"/>
+    <COMPID name="implementationClass" mc="Stereotype" uid="00bc0050-0000-006b-0000-000000000000"/>
+    <COMPID name="implicit" mc="Stereotype" uid="00700680-0000-01b8-0000-000000000000"/>
+    <COMPID name="import" mc="Stereotype" uid="00700680-0000-01ce-0000-000000000000"/>
+    <COMPID name="include" mc="Stereotype" uid="00000000-0000-9c49-0000-000000000000"/>
+    <COMPID name="incomplete" mc="Stereotype" uid="00700680-0000-01f7-0000-000000000000"/>
+    <COMPID name="instantiate" mc="Stereotype" uid="00700680-0000-01e5-0000-000000000000"/>
+    <COMPID name="invariant" mc="Stereotype" uid="00000000-0000-9c44-0000-000000000000"/>
+    <COMPID name="library" mc="Stereotype" uid="00700680-0000-01c5-0000-000000000000"/>
+    <COMPID name="mail" mc="Stereotype" uid="74d7cf69-58eb-48e4-b71a-e5bb0f7570f7"/>
+    <COMPID name="metaclass" mc="Stereotype" uid="00700680-0000-01bd-0000-000000000000"/>
+    <COMPID name="metamodel" mc="Stereotype" uid="00700680-0000-01e7-0000-000000000000"/>
+    <COMPID name="new" mc="Stereotype" uid="00700680-0000-01f9-0000-000000000000"/>
+    <COMPID name="object" mc="Stereotype" uid="002005c0-0001-000d-0000-000000000000"/>
+    <COMPID name="ordered" mc="Stereotype" uid="00540a84-0000-0003-0000-000000000000"/>
+    <COMPID name="overlapping" mc="Stereotype" uid="00700680-0000-01fb-0000-000000000000"/>
+    <COMPID name="postcondition" mc="Stereotype" uid="00000000-0000-9c46-0000-000000000000"/>
+    <COMPID name="precondition" mc="Stereotype" uid="00000000-0000-9c45-0000-000000000000"/>
+    <COMPID name="primary" mc="Stereotype" uid="01ec1ac4-0000-2ef9-0000-000000000000"/>
+    <COMPID name="process" mc="Stereotype" uid="00700680-0000-01ef-0000-000000000000"/>
+    <COMPID name="related_diagram" mc="Stereotype" uid="2961d57b-5120-11de-bbaf-00218648fa3d"/>
+    <COMPID name="scenario" mc="Stereotype" uid="01ec1ac4-0000-2eff-0000-000000000000"/>
+    <COMPID name="secondary" mc="Stereotype" uid="01ec1ac4-0000-2f04-0000-000000000000"/>
+    <COMPID name="see_also" mc="Stereotype" uid="0ac7e50f-50c6-4eb6-9107-3d9df92a2b75"/>
+    <COMPID name="state" mc="Stereotype" uid="002005c0-0001-0011-0000-000000000000"/>
+    <COMPID name="stub" mc="Stereotype" uid="00700680-0000-01d7-0000-000000000000"/>
+    <COMPID name="subset" mc="Stereotype" uid="00540a84-0000-0005-0000-000000000000"/>
+    <COMPID name="subsystem" mc="Stereotype" uid="00700680-0000-01d3-0000-000000000000"/>
+    <COMPID name="system" mc="Stereotype" uid="007006dc-0000-0137-0000-000000000000"/>
+    <COMPID name="system" mc="Stereotype" uid="01ec1ac4-0000-2f09-0000-000000000000"/>
+    <COMPID name="throw" mc="Stereotype" uid="0054070c-0000-005d-0000-000000000000"/>
+    <COMPID name="topLevel" mc="Stereotype" uid="00700680-0000-01d9-0000-000000000000"/>
+    <COMPID name="trace" mc="Stereotype" uid="01280500-0000-0b37-0000-000000000000"/>
+    <COMPID name="transient" mc="Stereotype" uid="00700680-0000-01fe-0000-000000000000"/>
+    <COMPID name="type" mc="Stereotype" uid="00700680-0000-01ba-0000-000000000000"/>
+    <COMPID name="url" mc="Stereotype" uid="c7ba7024-eff5-4039-a4d4-c9ddcd0a3aed"/>
+    <COMPID name="usecase" mc="Stereotype" uid="002005c0-0001-0009-0000-000000000000"/>
+    <COMPID name="utility" mc="Stereotype" uid="00700680-0000-01bf-0000-000000000000"/>
+    <COMPID name="xor" mc="Stereotype" uid="00700680-0000-0200-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="default" mc="Profile" uid="007004e8-0000-0282-0000-000000000000"/>
+    <PID name="ModelerModule" mc="ModuleComponent" uid="00000000-0000-2710-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="JCode"></ATT>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[default]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedStereotype">
+        <COMPID name="ExternalDocument" mc="Stereotype" uid="c2e23680-96f0-11de-a322-001fe2c988b8"/>
+        <COMPID name="ModelComponent" mc="Stereotype" uid="00d0052c-0000-0143-0000-000000000000"/>
+        <COMPID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+        <COMPID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+        <COMPID name="access" mc="Stereotype" uid="00700680-0000-01cc-0000-000000000000"/>
+        <COMPID name="catch" mc="Stereotype" uid="0054070c-0000-005f-0000-000000000000"/>
+        <COMPID name="complete" mc="Stereotype" uid="00700680-0000-01f1-0000-000000000000"/>
+        <COMPID name="create" mc="Stereotype" uid="00700680-0000-0202-0000-000000000000"/>
+        <COMPID name="create" mc="Stereotype" uid="00700680-0000-0204-0000-000000000000"/>
+        <COMPID name="design pattern" mc="Stereotype" uid="007006dc-0000-0139-0000-000000000000"/>
+        <COMPID name="destroy" mc="Stereotype" uid="00700680-0000-0206-0000-000000000000"/>
+        <COMPID name="destroyed" mc="Stereotype" uid="00700680-0000-01f3-0000-000000000000"/>
+        <COMPID name="disjoin" mc="Stereotype" uid="00700680-0000-01f5-0000-000000000000"/>
+        <COMPID name="exception" mc="Stereotype" uid="00700680-0000-01d1-0000-000000000000"/>
+        <COMPID name="executable" mc="Stereotype" uid="00700680-0000-01c3-0000-000000000000"/>
+        <COMPID name="extend" mc="Stereotype" uid="00000000-0000-9c48-0000-000000000000"/>
+        <COMPID name="facade" mc="Stereotype" uid="00700680-0000-01d5-0000-000000000000"/>
+        <COMPID name="flow" mc="Stereotype" uid="01ec1228-0000-0964-0000-000000000000"/>
+        <COMPID name="frameWork" mc="Stereotype" uid="00700680-0000-01db-0000-000000000000"/>
+        <COMPID name="friend" mc="Stereotype" uid="00700680-0000-01ca-0000-000000000000"/>
+        <COMPID name="impact_root" mc="Stereotype" uid="01ec2468-0000-0ac1-0000-000000000000"/>
+        <COMPID name="impact_subroot" mc="Stereotype" uid="01ec2468-0000-0ac6-0000-000000000000"/>
+        <COMPID name="implementation" mc="Stereotype" uid="00700680-0000-01c7-0000-000000000000"/>
+        <COMPID name="implementationClass" mc="Stereotype" uid="00bc0050-0000-006b-0000-000000000000"/>
+        <COMPID name="implicit" mc="Stereotype" uid="00700680-0000-01b8-0000-000000000000"/>
+        <COMPID name="import" mc="Stereotype" uid="00700680-0000-01ce-0000-000000000000"/>
+        <COMPID name="include" mc="Stereotype" uid="00000000-0000-9c49-0000-000000000000"/>
+        <COMPID name="incomplete" mc="Stereotype" uid="00700680-0000-01f7-0000-000000000000"/>
+        <COMPID name="instantiate" mc="Stereotype" uid="00700680-0000-01e5-0000-000000000000"/>
+        <COMPID name="invariant" mc="Stereotype" uid="00000000-0000-9c44-0000-000000000000"/>
+        <COMPID name="library" mc="Stereotype" uid="00700680-0000-01c5-0000-000000000000"/>
+        <COMPID name="metaclass" mc="Stereotype" uid="00700680-0000-01bd-0000-000000000000"/>
+        <COMPID name="metamodel" mc="Stereotype" uid="00700680-0000-01e7-0000-000000000000"/>
+        <COMPID name="new" mc="Stereotype" uid="00700680-0000-01f9-0000-000000000000"/>
+        <COMPID name="ordered" mc="Stereotype" uid="00540a84-0000-0003-0000-000000000000"/>
+        <COMPID name="overlapping" mc="Stereotype" uid="00700680-0000-01fb-0000-000000000000"/>
+        <COMPID name="postcondition" mc="Stereotype" uid="00000000-0000-9c46-0000-000000000000"/>
+        <COMPID name="precondition" mc="Stereotype" uid="00000000-0000-9c45-0000-000000000000"/>
+        <COMPID name="primary" mc="Stereotype" uid="01ec1ac4-0000-2ef9-0000-000000000000"/>
+        <COMPID name="process" mc="Stereotype" uid="00700680-0000-01ef-0000-000000000000"/>
+        <COMPID name="scenario" mc="Stereotype" uid="01ec1ac4-0000-2eff-0000-000000000000"/>
+        <COMPID name="secondary" mc="Stereotype" uid="01ec1ac4-0000-2f04-0000-000000000000"/>
+        <COMPID name="stub" mc="Stereotype" uid="00700680-0000-01d7-0000-000000000000"/>
+        <COMPID name="subset" mc="Stereotype" uid="00540a84-0000-0005-0000-000000000000"/>
+        <COMPID name="subsystem" mc="Stereotype" uid="00700680-0000-01d3-0000-000000000000"/>
+        <COMPID name="system" mc="Stereotype" uid="01ec1ac4-0000-2f09-0000-000000000000"/>
+        <COMPID name="system" mc="Stereotype" uid="007006dc-0000-0137-0000-000000000000"/>
+        <COMPID name="throw" mc="Stereotype" uid="0054070c-0000-005d-0000-000000000000"/>
+        <COMPID name="topLevel" mc="Stereotype" uid="00700680-0000-01d9-0000-000000000000"/>
+        <COMPID name="trace" mc="Stereotype" uid="01280500-0000-0b37-0000-000000000000"/>
+        <COMPID name="transient" mc="Stereotype" uid="00700680-0000-01fe-0000-000000000000"/>
+        <COMPID name="type" mc="Stereotype" uid="00700680-0000-01ba-0000-000000000000"/>
+        <COMPID name="utility" mc="Stereotype" uid="00700680-0000-01bf-0000-000000000000"/>
+        <COMPID name="xor" mc="Stereotype" uid="00700680-0000-0200-0000-000000000000"/>
+        <COMPID name="class" mc="Stereotype" uid="002005c0-0001-0007-0000-000000000000"/>
+        <COMPID name="collaboration" mc="Stereotype" uid="00bc3ac0-0000-0d9a-0000-000000000000"/>
+        <COMPID name="communication" mc="Stereotype" uid="00bc4480-0000-06a8-0000-000000000000"/>
+        <COMPID name="deployment" mc="Stereotype" uid="002005c0-0001-000f-0000-000000000000"/>
+        <COMPID name="impact" mc="Stereotype" uid="01ec2468-0000-0acb-0000-000000000000"/>
+        <COMPID name="object" mc="Stereotype" uid="002005c0-0001-000d-0000-000000000000"/>
+        <COMPID name="state" mc="Stereotype" uid="002005c0-0001-0011-0000-000000000000"/>
+        <COMPID name="usecase" mc="Stereotype" uid="002005c0-0001-0009-0000-000000000000"/>
+        <COMPID name="related_diagram" mc="Stereotype" uid="2961d57b-5120-11de-bbaf-00218648fa3d"/>
+        <COMPID name="AutoDiagram" mc="Stereotype" uid="8fb43b1c-7819-11e1-a4f1-002564c97630"/>
+        <COMPID name="directory" mc="Stereotype" uid="6432b987-256f-4121-9428-a89d364c2cef"/>
+        <COMPID name="file" mc="Stereotype" uid="0226fd5c-caf5-4cb4-b25c-06e493b37b2d"/>
+        <COMPID name="url" mc="Stereotype" uid="c7ba7024-eff5-4039-a4d4-c9ddcd0a3aed"/>
+        <COMPID name="mail" mc="Stereotype" uid="74d7cf69-58eb-48e4-b71a-e5bb0f7570f7"/>
+        <COMPID name="see_also" mc="Stereotype" uid="0ac7e50f-50c6-4eb6-9107-3d9df92a2b75"/>
+      </COMP>
+      <COMP relation="OwnedReference">
+        <COMPID name="" mc="MetaclassReference" uid="00bc3924-0000-189d-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-0258-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-02a9-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-037a-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="01ec2468-0000-0894-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-092f-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="deb348a5-2653-11e1-9161-002564c97630"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc27b8-0000-0e0b-0000-000000000000"/>
+        <COMPID name="" mc="MetaclassReference" uid="00bc2f68-0000-0fd8-0000-000000000000"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

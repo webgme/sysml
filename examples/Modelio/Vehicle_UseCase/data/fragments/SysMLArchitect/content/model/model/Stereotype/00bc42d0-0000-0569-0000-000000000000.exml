@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="TestCase_Operation" version="3">
+  <DEPS>
+    <ID name="TestCase_Operation" mc="Stereotype" uid="00bc42d0-0000-0569-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="TestCase_Operation" mc="Stereotype" uid="00bc42d0-0000-0569-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/testcase.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/testcase.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[TestCase]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Operation]]></ATT>
+      <ATT name="Name"><![CDATA[TestCase_Operation]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

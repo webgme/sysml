@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ATMSystem" version="3">
+  <DEPS>
+    <ID name="ATMSystem" mc="AnalystProject" uid="18626d27-3502-428b-b949-dc07ccabe15d"/>
+    <COMPID name="ATMSystem" mc="PropertyContainer" uid="029df13f-4477-49a7-86bf-f719e0193d87"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ATMSystem" mc="AnalystProject" uid="18626d27-3502-428b-b949-dc07ccabe15d"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[ATMSystem]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="PropertyRoot">
+        <COMPID name="ATMSystem" mc="PropertyContainer" uid="029df13f-4477-49a7-86bf-f719e0193d87"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,1853 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SI Derived Units With Special Names" version="3">
+  <DEPS>
+    <ID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+    <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+    <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+    <PID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SI Derived Units With Special Names]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Declared">
+        <OBJECT>
+          <ID name="AbsorbedDose" mc="Instance" uid="bc84e953-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[AbsorbedDose]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ActivityOfRadionuclide" mc="Instance" uid="bc84e952-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[ActivityOfRadionuclide]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Capacitance" mc="Instance" uid="b6f56b41-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Capacitance]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="CatalyticActivity" mc="Instance" uid="bc84e955-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[CatalyticActivity]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="CelsiusTemperature" mc="Instance" uid="b6f56b47-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[CelsiusTemperature]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="DoseEquivalent" mc="Instance" uid="bc84e954-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[DoseEquivalent]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ElectricCharge" mc="Instance" uid="b45aea44-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[ElectricCharge]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ElectricConductance" mc="Instance" uid="b6f56b43-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[ElectricConductance]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ElectricPotentialDifference" mc="Instance" uid="b6f54431-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[ElectricPotentialDifference]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ElectricResistance" mc="Instance" uid="b6f56b42-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[ElectricResistance]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Energy" mc="Instance" uid="b45aea42-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Energy]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Force" mc="Instance" uid="b25fdd92-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Force]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Frequency" mc="Instance" uid="b25fdd91-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Frequency]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Illuminance" mc="Instance" uid="bc84e951-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Illuminance]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Inductance" mc="Instance" uid="b6f56b46-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Inductance]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="LuminousFlux" mc="Instance" uid="bc84c241-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[LuminousFlux]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="MagneticFlux" mc="Instance" uid="b6f56b44-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[MagneticFlux]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="MagneticFluxDensity" mc="Instance" uid="b6f56b45-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[MagneticFluxDensity]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="PlaneAngle" mc="Instance" uid="a9abee01-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[PlaneAngle]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Power" mc="Instance" uid="b45aea43-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Power]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Pressure" mc="Instance" uid="b45aea41-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Pressure]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="SolidAngle" mc="Instance" uid="b0b93271-df8d-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[SolidAngle]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="QuantityKind" mc="Stereotype" uid="d0c2eab1-c19f-11df-b3ac-001302895b2b"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Bequerel" mc="Instance" uid="ecc7baf3-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Bequerel]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="dbd871c1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="ActivityOfRadionuclide" mc="Instance" uid="bc84e952-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="dbd823a1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d08821-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[ActivityOfRadionuclide]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Coulomb" mc="Instance" uid="e508b2b1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Coulomb]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="7b34c261-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="ElectricCharge" mc="Instance" uid="b45aea44-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="7b344d31-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d012f2-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[ElectricCharge]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Degree Celsius" mc="Instance" uid="e7e286a7-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Degree Celsius]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="c5d38ae1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="CelsiusTemperature" mc="Instance" uid="b6f56b47-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="c5d33cc1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d06111-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[CelsiusTemperature]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Farad" mc="Instance" uid="e7e286a1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Farad]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="8b93e411-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Capacitance" mc="Instance" uid="b6f56b41-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="8b9395f1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d03a02-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Capacitance]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Gray" mc="Instance" uid="ecc7baf4-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Gray]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="df49a3b1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="AbsorbedDose" mc="Instance" uid="bc84e953-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="df495591-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d08822-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[AbsorbedDose]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Henry" mc="Instance" uid="e7e286a6-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Henry]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="bf1e9fa1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Inductance" mc="Instance" uid="b6f56b46-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="bf1ddc51-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf2892-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Inductance]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Hertz" mc="Instance" uid="e2c5eea1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Hertz]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="51f3b191-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Frequency" mc="Instance" uid="b25fdd91-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="51f36371-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf9dc1-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Frequency]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Joule" mc="Instance" uid="e5088ba2-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Joule]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="6d487571-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Energy" mc="Instance" uid="b45aea42-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="6d462b81-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cfc4d2-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Energy]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Katal" mc="Instance" uid="ecc7baf6-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Katal]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="e6bb9d61-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="CatalyticActivity" mc="Instance" uid="bc84e955-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="e6bb2831-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf4fa1-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[CatalyticActivity]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Lumen" mc="Instance" uid="ecc7baf1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Lumen]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="ce8382d1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="LuminousFlux" mc="Instance" uid="bc84c241-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="ce8334b1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d06112-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[LuminousFlux]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Lux" mc="Instance" uid="ecc7baf2-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Lux]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="d45d5051-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Illuminance" mc="Instance" uid="bc84e951-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="d45d0231-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d06113-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Illuminance]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Newton" mc="Instance" uid="e2c615b1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Newton]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="617878d1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Force" mc="Instance" uid="b25fdd92-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="61782ab1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf9dc2-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Force]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Ohm" mc="Instance" uid="e7e286a2-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Ohm]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="92dafd31-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="ElectricResistance" mc="Instance" uid="b6f56b42-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="92daaf11-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57ceda71-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[ElectricResistance]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Pascal" mc="Instance" uid="e5088ba1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Pascal]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="6627f721-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Pressure" mc="Instance" uid="b45aea41-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="6627d011-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cfc4d1-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Pressure]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Radian" mc="Instance" uid="dc12ff31-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Radian]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="4813c521-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="PlaneAngle" mc="Instance" uid="a9abee01-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="48137701-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf76b1-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[PlaneAngle]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Siemens" mc="Instance" uid="e7e286a3-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Siemens]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="985a4ea1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="ElectricConductance" mc="Instance" uid="b6f56b43-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="985a0081-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf0181-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[ElectricConductance]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Sievert" mc="Instance" uid="ecc7baf5-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Sievert]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="e266c231-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="DoseEquivalent" mc="Instance" uid="bc84e954-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="e2667411-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf2893-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[DoseEquivalent]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Steradian" mc="Instance" uid="e0aa88b1-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Steradian]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="4dc3ea91-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="SolidAngle" mc="Instance" uid="b0b93271-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="4dc39c71-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf76b2-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[SolidAngle]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Tesla" mc="Instance" uid="e7e286a5-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Tesla]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="b1813601-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="MagneticFluxDensity" mc="Instance" uid="b6f56b45-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="b180e7e1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf2891-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[MagneticFluxDensity]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Volt" mc="Instance" uid="e7e25f91-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Volt]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="837f41c1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="ElectricPotentialDifference" mc="Instance" uid="b6f54431-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="837ef3a1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d03a01-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[ElectricPotentialDifference]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Watt" mc="Instance" uid="e5088ba3-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Watt]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="71cbdab1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="Power" mc="Instance" uid="b45aea43-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="71cbb3a1-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57d012f1-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[Power]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Weber" mc="Instance" uid="e7e286a4-df8f-11e0-bddc-8000600fe800"/>
+          <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="IsConstant">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="Name"><![CDATA[Weber]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Extension">
+              <FOREIGNID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+            </LINK>
+            <COMP relation="DependsOnDependency">
+              <OBJECT>
+                <ID name="Dependency" mc="Dependency" uid="aa0fd891-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="DependsOnId"></ATT>
+                  <ATT name="DependsOnName"></ATT>
+                  <ATT name="Name"><![CDATA[Dependency]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="DependsOn">
+                    <REFOBJ>
+                      <ID name="MagneticFlux" mc="Instance" uid="b6f56b44-df8d-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                    </REFOBJ>
+                  </LINK>
+                  <LINK relation="Extension">
+                    <FOREIGNID name="UnitQuantityKind" mc="Stereotype" uid="e002f3a2-c234-11df-83b7-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Tag">
+              <OBJECT>
+                <ID name="TaggedValue" mc="TaggedValue" uid="aa0f8a71-df90-11e0-bddc-8000600fe800"/>
+                <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Actual">
+                    <OBJECT>
+                      <ID name="" mc="TagParameter" uid="57cf0182-df97-11e0-bddc-8000600fe800"/>
+                      <PID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+                      <ATTRIBUTES>
+                        <ATT name="Value"><![CDATA[MagneticFlux]]></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                  <LINK relation="Definition">
+                    <FOREIGNID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

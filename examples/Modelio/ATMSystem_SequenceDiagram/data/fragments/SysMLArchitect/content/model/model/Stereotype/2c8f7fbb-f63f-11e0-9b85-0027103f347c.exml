@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="FlowPort_In" version="3">
+  <DEPS>
+    <ID name="FlowPort_In" mc="Stereotype" uid="2c8f7fbb-f63f-11e0-9b85-0027103f347c"/>
+    <EXTID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="FlowPort_In" mc="Stereotype" uid="2c8f7fbb-f63f-11e0-9b85-0027103f347c"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"></ATT>
+      <ATT name="Icon"></ATT>
+      <ATT name="IsHidden">true</ATT>
+      <ATT name="LabelKey"><![CDATA[FlowPort]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Port]]></ATT>
+      <ATT name="Name"><![CDATA[FlowPort_In]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Parent">
+        <ID name="FlowPort" mc="Stereotype" uid="00bc42a4-0000-1a57-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

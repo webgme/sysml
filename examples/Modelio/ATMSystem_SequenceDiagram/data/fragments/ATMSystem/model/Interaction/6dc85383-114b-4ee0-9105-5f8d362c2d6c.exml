@@ -1,0 +1,1183 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ATMSystem" version="3">
+  <DEPS>
+    <ID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+    <COMPID name="Sequence diagram" mc="SequenceDiagram" uid="1d7dd22c-f55d-4e22-a8aa-2b28b0269970"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+    <PID name="atmsystem" mc="Package" uid="dca0be6b-1ae2-4439-b879-987ee0819b8d"/>
+    <ATTRIBUTES>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[ATMSystem]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Fragment">
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="945814d9-bd93-4341-ba85-4a61b078cf98"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">74</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="92ba2480-e85a-4fe6-b206-1a70bf100cd5"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="f6e815c6-1406-4399-8403-7232f68a75bd"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">481</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="92ba2480-e85a-4fe6-b206-1a70bf100cd5"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">74</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="f6e815c6-1406-4399-8403-7232f68a75bd"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="49d84fec-3c06-4b93-922b-47b971c2d926"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">100</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="f7e844af-9779-48c2-abe0-2758c613cbc5"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="9375cdb1-2872-49ef-beaf-35d927e336f5"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">241</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="f7e844af-9779-48c2-abe0-2758c613cbc5"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">100</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="9375cdb1-2872-49ef-beaf-35d927e336f5"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="6c427581-7014-41a2-8f59-f646b70cd5e6"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">88</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="insert ATM card" mc="Message" uid="77870488-7089-471a-abb1-30567d3f2a82"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[insert ATM card]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="49d84fec-3c06-4b93-922b-47b971c2d926"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="c90a2560-e5c9-42d3-81e2-c64118542042"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">100</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="97f6033b-7e2a-44e0-8f10-541462c2ade2"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="2bb2bd47-e573-4b11-a04c-8b6877c398b3"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">150</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="97f6033b-7e2a-44e0-8f10-541462c2ade2"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">100</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="2bb2bd47-e573-4b11-a04c-8b6877c398b3"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="7a024913-2b9e-47af-99d9-cbb19c163b24"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">122</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="validate card information" mc="Message" uid="658bc111-3af6-45bd-8872-36b371b54ad8"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[validate card information]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="c66b5dd9-39f6-46f1-9b69-5bb15c560adf"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="c66b5dd9-39f6-46f1-9b69-5bb15c560adf"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">125</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="0259b93d-3b39-4e9c-b2e0-859634c62eeb"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">139</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="card validated" mc="Message" uid="55cae361-a209-4cbb-8523-12eaed93000c"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">ReturnMessage</ATT>
+                  <ATT name="Name"><![CDATA[card validated]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="20d10eff-fbda-4b10-af65-c8dca32635e4"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="20d10eff-fbda-4b10-af65-c8dca32635e4"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">141</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="8d6e8a22-ece0-4cb3-a085-b3734d4ec825"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">200</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="cef4ae99-86a7-42c8-9385-2180d2b80d05"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="d91cdd4b-0ad6-4c26-abca-2c423b9185f7"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">250</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="cef4ae99-86a7-42c8-9385-2180d2b80d05"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">200</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="d91cdd4b-0ad6-4c26-abca-2c423b9185f7"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="7a7a09be-ca23-4ab9-abf3-8cefd60b3074"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">218</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="ask for password" mc="Message" uid="266f6a59-6f5f-4789-9186-a0068be7cbc9"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[ask for password]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="9a619112-43bc-4449-8eb0-185261371cb0"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="9a619112-43bc-4449-8eb0-185261371cb0"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">218</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="835f7d8c-1af4-4218-b93b-c626f01b23ff"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">246</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="prompt user to input password" mc="Message" uid="6aee20fe-c065-442d-bf40-3752c4c52762"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[prompt user to input password]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="eef62ac5-3525-4d32-8368-63f945e2c773"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="eef62ac5-3525-4d32-8368-63f945e2c773"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">251</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="dbac6069-aac5-4975-973d-edf665be3d72"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">280</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="9a6c1dcf-2cc8-4bbf-8694-59b7bf3a8c01"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="9a23ce5b-882b-4130-b757-7cd8a4dd34fe"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">381</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="9a6c1dcf-2cc8-4bbf-8694-59b7bf3a8c01"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">280</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="9a23ce5b-882b-4130-b757-7cd8a4dd34fe"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="15baf7aa-d549-4622-ac13-c7a1d8b708a6"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">295</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="input password" mc="Message" uid="cdc7b60e-951b-4a51-9f58-c268834d915b"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[input password]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="713c3360-c155-4d0b-a28b-9708ddf8a9a5"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="713c3360-c155-4d0b-a28b-9708ddf8a9a5"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">295</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="c7e0368a-d6de-41bd-a27d-527bc8384d5e"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">300</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="7f13fd89-e258-4fe7-bcad-170601ad820f"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="995dbb7a-f1a2-4552-86b9-ddd2f2916d28"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">350</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="7f13fd89-e258-4fe7-bcad-170601ad820f"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">300</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="995dbb7a-f1a2-4552-86b9-ddd2f2916d28"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="9c7a2fa1-848b-43a2-907a-6bc7d8641cc4"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">318</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="verify password" mc="Message" uid="5271dbbd-ce18-400c-98f3-7633cf964e26"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[verify password]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="2190f5f6-0fc2-4931-af8e-0b09279f0c86"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="2190f5f6-0fc2-4931-af8e-0b09279f0c86"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">318</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="c332e482-bb4c-491c-bef2-e26e54e63a4c"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">329</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="password verified" mc="Message" uid="58f12701-65cb-4f91-b3cf-d4608ef162e9"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">ReturnMessage</ATT>
+                  <ATT name="Name"><![CDATA[password verified]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="d6d3f8fa-13ca-4874-acc5-96ee5a3569d8"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="d6d3f8fa-13ca-4874-acc5-96ee5a3569d8"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">329</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="04bf9974-4737-4931-894f-7b683dcfb0ca"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">360</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="a2e2496f-e721-42a7-8afd-5d34e77b3f52"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="c78dddc1-ac83-4645-9b96-d870b6abf720"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">410</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="a2e2496f-e721-42a7-8afd-5d34e77b3f52"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">360</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="c78dddc1-ac83-4645-9b96-d870b6abf720"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="4ab33309-d924-4e0d-af74-4433b7b75cbc"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">368</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="show main menu" mc="Message" uid="23d020d9-abbb-414a-96e3-272e19f67f19"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[show main menu]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="a8cfa22c-0aaf-4660-96cc-0e3cd756804e"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="a8cfa22c-0aaf-4660-96cc-0e3cd756804e"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">368</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="331cc074-4976-4649-b046-7240f5ba8b2c"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">420</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Started">
+              <REFOBJ>
+                <ID name="" mc="ExecutionSpecification" uid="64eed4e3-26a7-4fc9-9d86-b3ad1be283e3"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="629b3692-01e1-4d0e-bfbe-8aa55fc2f7ca"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">470</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionSpecification" uid="64eed4e3-26a7-4fc9-9d86-b3ad1be283e3"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">420</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Finish">
+              <REFOBJ>
+                <ID name="" mc="ExecutionOccurenceSpecification" uid="629b3692-01e1-4d0e-bfbe-8aa55fc2f7ca"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="8bcee5d2-55db-4584-8151-83e175da7c1f"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">443</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="select to withdraw money" mc="Message" uid="63f63b27-11aa-48bc-9342-109abcf13a1e"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[select to withdraw money]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="6a2e6771-30a1-4162-870d-cece34a5c2e6"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="6a2e6771-30a1-4162-870d-cece34a5c2e6"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">443</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="4cdb4027-b3c8-4f5d-be64-ec4f385de80e"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">466</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="SentMessage">
+              <OBJECT>
+                <ID name="input the amount" mc="Message" uid="78b76e0e-b3e5-41c4-b84a-42e3496d4db2"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                <ATTRIBUTES>
+                  <ATT name="Argument"></ATT>
+                  <ATT name="KindOfMessage">CompleteKind</ATT>
+                  <ATT name="SortOfMessage">SyncCall</ATT>
+                  <ATT name="Name"><![CDATA[input the amount]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="ReceiveEvent">
+                    <REFOBJ>
+                      <ID name="" mc="ExecutionOccurenceSpecification" uid="85ea66c0-07de-414b-9e6c-52a2dea4306f"/>
+                      <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="ExecutionOccurenceSpecification" uid="85ea66c0-07de-414b-9e6c-52a2dea4306f"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="LineNumber">466</ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Covered">
+              <REFOBJ>
+                <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+                <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+              </REFOBJ>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="OwnedLine">
+        <OBJECT>
+          <ID name="User" mc="Lifeline" uid="17948cc1-4988-4677-943a-8d6903a3fe06"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="Selector"></ATT>
+            <ATT name="Name"><![CDATA[User]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="CardReader" mc="Lifeline" uid="66dd2778-ec19-4f0a-b435-ea49e4e3a07f"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="Selector"></ATT>
+            <ATT name="Name"><![CDATA[CardReader]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="BankConsortium" mc="Lifeline" uid="024e32d1-639a-41be-b53d-a05b32b44261"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="Selector"></ATT>
+            <ATT name="Name"><![CDATA[BankConsortium]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Display" mc="Lifeline" uid="114913c0-30e7-4826-9bbc-7544761d60cc"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="Selector"></ATT>
+            <ATT name="Name"><![CDATA[Display]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="KeyPad" mc="Lifeline" uid="bd60c082-720f-4dc8-ae2c-6295450e7bba"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="Selector"></ATT>
+            <ATT name="Name"><![CDATA[KeyPad]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Collaboration" uid="12ab510f-e5ba-419e-9797-ca29162cfe0e"/>
+          <PID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Sequence diagram" mc="SequenceDiagram" uid="1d7dd22c-f55d-4e22-a8aa-2b28b0269970"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

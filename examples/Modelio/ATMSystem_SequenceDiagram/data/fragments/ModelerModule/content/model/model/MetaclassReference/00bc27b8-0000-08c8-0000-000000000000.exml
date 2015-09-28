@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="" version="3">
+  <DEPS>
+    <ID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+    <PID name="default" mc="Profile" uid="007004e8-0000-0282-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="ReferencedClassName"><![CDATA[ModelElement]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedNoteType">
+        <OBJECT>
+          <ID name="description" mc="NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+          <PID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="IsHidden">false</ATT>
+            <ATT name="LabelKey"><![CDATA[%description]]></ATT>
+            <ATT name="MimeType"><![CDATA[text/html]]></ATT>
+            <ATT name="Name"><![CDATA[description]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="undefined" mc="NoteType" uid="00000000-0000-3e83-0000-000000000000"/>
+          <PID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="IsHidden">false</ATT>
+            <ATT name="LabelKey"><![CDATA[%undefined]]></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"><![CDATA[undefined]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="comment" mc="NoteType" uid="00000000-0000-3e80-0000-000000000000"/>
+          <PID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="IsHidden">false</ATT>
+            <ATT name="LabelKey"><![CDATA[%comment]]></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"><![CDATA[comment]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="DefinedExternDocumentType">
+        <OBJECT>
+          <ID name="description" mc="ExternDocumentType" uid="9ccf914f-2175-11e1-a46e-002564c97630"/>
+          <PID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="IsHidden">false</ATT>
+            <ATT name="LabelKey"><![CDATA[%description]]></ATT>
+            <ATT name="Icon"></ATT>
+            <ATT name="Image"></ATT>
+            <ATT name="Name"><![CDATA[description]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="nodoc" mc="TagType" uid="c40494de-2182-11e1-85ce-002564c97630"/>
+          <PID name="" mc="MetaclassReference" uid="00bc27b8-0000-08c8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[0]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">false</ATT>
+            <ATT name="LabelKey"><![CDATA[%nodoc]]></ATT>
+            <ATT name="Name"><![CDATA[nodoc]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

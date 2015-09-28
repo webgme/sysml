@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Block" version="3">
+  <DEPS>
+    <ID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/block48.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/block.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[Block]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Class]]></ATT>
+      <ATT name="Name"><![CDATA[Block]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="Block_isEncapsulated" mc="TagType" uid="00bc42a4-0000-19d1-0000-000000000000"/>
+          <PID name="Block" mc="Stereotype" uid="00bc42a4-0000-19c9-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[0]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[isEncapsulated]]></ATT>
+            <ATT name="Name"><![CDATA[Block_isEncapsulated]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

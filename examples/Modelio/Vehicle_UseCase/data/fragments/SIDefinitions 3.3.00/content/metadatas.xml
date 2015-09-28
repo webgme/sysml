@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ram-component manifest-version="2.0"
+               name="SIDefinitions" version="3" release="3" clevel="0" metamodel="9023">
+    <description>
+        <![CDATA[Model Library for Quantity Kinds and Units (SysML 1.2)]]>
+    </description>
+    <dependencies>
+    </dependencies>
+    <contributors>
+      <contributor name="SysMLArchitect" version="3.2.00.9022"></contributor>
+    </contributors>
+    <roots>
+      <root metaclass="Project" name="SIDefinitions" uuid="54204ce5-9615-460e-bee7-5507cc8560ea"></root>
+    </roots>
+</ram-component>

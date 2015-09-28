@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SIDefinitions" version="3">
+  <DEPS>
+    <ID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+    <EXTID name="SI Base Units" mc="Package" uid="52ef1d21-df89-11e0-bddc-8000600fe800"/>
+    <EXTID name="SI Derived Units Expressed In Base Units" mc="Package" uid="078eba91-df8c-11e0-bddc-8000600fe800"/>
+    <EXTID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+    <FOREIGNID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+    <FOREIGNID name="ModelComponentContributors" mc="TagType" uid="9834df4e-84a3-4ec8-b216-fd2adda71578"/>
+    <FOREIGNID name="ModelComponentFiles" mc="TagType" uid="00140d80-0000-0112-0000-000000000000"/>
+    <FOREIGNID name="ModelComponentVersion" mc="TagType" uid="00140d80-0000-020c-0000-000000000000"/>
+    <FOREIGNID name="description" mc="NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+    <PID name="SIDefinitions" mc="Package" uid="92056569-c77c-443b-877d-399b24733fb8"/>
+    <ATTRIBUTES>
+      <ATT name="FileName"><![CDATA[M:\workspace\SysML_Library\SIDefinitions.ramc]]></ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[SIDefinitions]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Utilized">
+        <OBJECT>
+          <ID name="" mc="Manifestation" uid="f9c0eb38-97ab-4683-b19f-e6f42e7677c2"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="UtilizedElement">
+              <ID name="SI Derived Units With Special Names" mc="Package" uid="b233b9f1-df8c-11e0-bddc-8000600fe800"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Manifestation" uid="4c24e70f-2b96-4949-bf72-1ddab28dd78d"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="UtilizedElement">
+              <ID name="SI Derived Units Expressed In Base Units" mc="Package" uid="078eba91-df8c-11e0-bddc-8000600fe800"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Manifestation" uid="0122ed27-01e9-4fb5-bed8-e0703a3ccae6"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="UtilizedElement">
+              <ID name="SI Base Units" mc="Package" uid="52ef1d21-df89-11e0-bddc-8000600fe800"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+      </LINK>
+      <COMP relation="Tag">
+        <OBJECT>
+          <ID name="TaggedValue" mc="TaggedValue" uid="5a902c11-df91-11e0-bddc-8000600fe800"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[TaggedValue]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Actual">
+              <OBJECT>
+                <ID name="" mc="TagParameter" uid="5a902c12-df91-11e0-bddc-8000600fe800"/>
+                <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"><![CDATA[3.3.00.9023]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Definition">
+              <FOREIGNID name="ModelComponentVersion" mc="TagType" uid="00140d80-0000-020c-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="TaggedValue" uid="91f0786b-dbbc-4ce0-8642-68e01aef43c9"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Definition">
+              <FOREIGNID name="ModelComponentFiles" mc="TagType" uid="00140d80-0000-0112-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="TaggedValue" uid="8f2e7635-41ba-451f-9db8-c071d1b876dc"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Actual">
+              <OBJECT>
+                <ID name="" mc="TagParameter" uid="e0f8f048-2cae-4050-b668-80cd33415721"/>
+                <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"><![CDATA[SysMLArchitect#3.2.00.9022]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Definition">
+              <FOREIGNID name="ModelComponentContributors" mc="TagType" uid="9834df4e-84a3-4ec8-b216-fd2adda71578"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="Note" mc="Note" uid="5a90a141-df91-11e0-bddc-8000600fe800"/>
+          <PID name="SIDefinitions" mc="Artifact" uid="2dcd95a1-df91-11e0-bddc-8000600fe800"/>
+          <ATTRIBUTES>
+            <ATT name="Content"><![CDATA[Model Library for Quantity Kinds and Units (SysML 1.2)]]></ATT>
+            <ATT name="MimeType"></ATT>
+            <ATT name="Name"><![CDATA[Note]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

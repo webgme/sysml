@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Unit" version="3">
+  <DEPS>
+    <ID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[SysMLArchitect/res/icons/unit48.png]]></ATT>
+      <ATT name="Icon"><![CDATA[SysMLArchitect/res/icons/unit.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[Unit]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Instance]]></ATT>
+      <ATT name="Name"><![CDATA[Unit]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="Unit_symbol" mc="TagType" uid="a8023330-c19c-11df-a585-001302895b2b"/>
+          <PID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[symbol]]></ATT>
+            <ATT name="Name"><![CDATA[Unit_symbol]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Unit_description" mc="TagType" uid="aec06234-c19c-11df-a585-001302895b2b"/>
+          <PID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[description]]></ATT>
+            <ATT name="Name"><![CDATA[Unit_description]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Unit_descriptionURI" mc="TagType" uid="af1afc02-c19c-11df-a585-001302895b2b"/>
+          <PID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[descriptionURI]]></ATT>
+            <ATT name="Name"><![CDATA[Unit_descriptionURI]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Unit_quantityKind" mc="TagType" uid="af86465b-c19c-11df-a585-001302895b2b"/>
+          <PID name="Unit" mc="Stereotype" uid="00bc42a4-0000-19fa-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[quantityKind]]></ATT>
+            <ATT name="Name"><![CDATA[Unit_quantityKind]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

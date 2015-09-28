@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Allocated" version="3">
+  <DEPS>
+    <ID name="Allocated" mc="Stereotype" uid="00bc42a4-0000-19b8-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Allocated" mc="Stereotype" uid="00bc42a4-0000-19b8-0000-000000000000"/>
+    <PID name="sysml" mc="Profile" uid="00bc42a4-0000-1968-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"></ATT>
+      <ATT name="Icon"></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="LabelKey"><![CDATA[Allocated]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[ModelElement]]></ATT>
+      <ATT name="Name"><![CDATA[Allocated]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="Allocated_allocatedTo" mc="TagType" uid="6e7af61c-3a73-11e0-a52b-0027103f347c"/>
+          <PID name="Allocated" mc="Stereotype" uid="00bc42a4-0000-19b8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[allocatedTo]]></ATT>
+            <ATT name="Name"><![CDATA[Allocated_allocatedTo]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="Allocated_allocatedFrom" mc="TagType" uid="7cbe081c-3a73-11e0-a52b-0027103f347c"/>
+          <PID name="Allocated" mc="Stereotype" uid="00bc42a4-0000-19b8-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[allocatedFrom]]></ATT>
+            <ATT name="Name"><![CDATA[Allocated_allocatedFrom]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

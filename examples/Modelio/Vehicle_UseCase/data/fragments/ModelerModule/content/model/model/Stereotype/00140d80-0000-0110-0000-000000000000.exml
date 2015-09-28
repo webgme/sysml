@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ModelComponentArchive" version="3">
+  <DEPS>
+    <ID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+    <PID name="default" mc="Profile" uid="007004e8-0000-0282-0000-000000000000"/>
+    <ATTRIBUTES>
+      <ATT name="Image"></ATT>
+      <ATT name="Icon"><![CDATA[res/bmp/ramcarchive.png]]></ATT>
+      <ATT name="IsHidden">true</ATT>
+      <ATT name="LabelKey"><![CDATA[%ModelComponentArchive]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Artifact]]></ATT>
+      <ATT name="Name"><![CDATA[ModelComponentArchive]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedTagType">
+        <OBJECT>
+          <ID name="ModelComponentFiles" mc="TagType" uid="00140d80-0000-0112-0000-000000000000"/>
+          <PID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[%ModelComponentFiles]]></ATT>
+            <ATT name="Name"><![CDATA[ModelComponentFiles]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ModelComponentVersion" mc="TagType" uid="00140d80-0000-020c-0000-000000000000"/>
+          <PID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[1]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[%ModelComponentVersion]]></ATT>
+            <ATT name="Name"><![CDATA[ModelComponentVersion]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="ModelComponentContributors" mc="TagType" uid="9834df4e-84a3-4ec8-b216-fd2adda71578"/>
+          <PID name="ModelComponentArchive" mc="Stereotype" uid="00140d80-0000-0110-0000-000000000000"/>
+          <ATTRIBUTES>
+            <ATT name="ParamNumber"><![CDATA[*]]></ATT>
+            <ATT name="IsQualified">false</ATT>
+            <ATT name="BelongToPrototype">false</ATT>
+            <ATT name="IsHidden">true</ATT>
+            <ATT name="LabelKey"><![CDATA[%ModelComponentContributors]]></ATT>
+            <ATT name="Name"><![CDATA[ModelComponentContributors]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

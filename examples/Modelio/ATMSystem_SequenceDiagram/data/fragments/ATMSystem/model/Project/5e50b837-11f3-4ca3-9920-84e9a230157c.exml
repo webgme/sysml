@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ATMSystem" version="3">
+  <DEPS>
+    <ID name="ATMSystem" mc="Project" uid="5e50b837-11f3-4ca3-9920-84e9a230157c"/>
+    <COMPID name="ATMSystem" mc="DiagramSet" uid="082f23b2-e3ea-4b15-a06a-a1a6f02bcd4e"/>
+    <COMPID name="atmsystem" mc="Package" uid="dca0be6b-1ae2-4439-b879-987ee0819b8d"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ATMSystem" mc="Project" uid="5e50b837-11f3-4ca3-9920-84e9a230157c"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[ATMSystem]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DiagramRoot">
+        <COMPID name="ATMSystem" mc="DiagramSet" uid="082f23b2-e3ea-4b15-a06a-a1a6f02bcd4e"/>
+      </COMP>
+      <COMP relation="Model">
+        <COMPID name="atmsystem" mc="Package" uid="dca0be6b-1ae2-4439-b879-987ee0819b8d"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

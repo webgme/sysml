@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="atmsystem" version="3">
+  <DEPS>
+    <ID name="atmsystem" mc="Package" uid="dca0be6b-1ae2-4439-b879-987ee0819b8d"/>
+    <COMPID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="3e924dc9-b021-481a-8f6c-7b2d43e40a1f"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="atmsystem" mc="Package" uid="dca0be6b-1ae2-4439-b879-987ee0819b8d"/>
+    <PID name="ATMSystem" mc="Project" uid="5e50b837-11f3-4ca3-9920-84e9a230157c"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[atmsystem]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedBehavior">
+        <COMPID name="ATMSystem" mc="Interaction" uid="6dc85383-114b-4ee0-9105-5f8d362c2d6c"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="3e924dc9-b021-481a-8f6c-7b2d43e40a1f"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

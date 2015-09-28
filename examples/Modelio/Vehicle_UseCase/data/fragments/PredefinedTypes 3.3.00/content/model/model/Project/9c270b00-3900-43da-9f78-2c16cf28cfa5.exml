@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="UML Types" version="3">
+  <DEPS>
+    <ID name="UML Types" mc="Project" uid="9c270b00-3900-43da-9f78-2c16cf28cfa5"/>
+    <COMPID name="UML Types" mc="Package" uid="00000004-0000-0004-0000-000000000000"/>
+    <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+    <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="UML Types" mc="Project" uid="9c270b00-3900-43da-9f78-2c16cf28cfa5"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[UML Types]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Model">
+        <COMPID name="UML Types" mc="Package" uid="00000004-0000-0004-0000-000000000000"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="ModelComponentElementAlias" mc="Stereotype" uid="3254be34-c7d8-4018-8a68-5de65c30b773"/>
+      </LINK>
+      <COMP relation="Tag">
+        <OBJECT>
+          <ID name="" mc="TaggedValue" uid="fec38261-ea57-4ed2-87e1-b8382820fb35"/>
+          <PID name="UML Types" mc="Project" uid="9c270b00-3900-43da-9f78-2c16cf28cfa5"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Actual">
+              <OBJECT>
+                <ID name="" mc="TagParameter" uid="0572d6d1-ee32-42ba-a473-78da87c3b6b2"/>
+                <PID name="UML Types" mc="Project" uid="9c270b00-3900-43da-9f78-2c16cf28cfa5"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"><![CDATA[2493bb74-da0b-4d8b-a0da-29b3c7493949]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Definition">
+              <FOREIGNID name="uuid" mc="TagType" uid="7ebbd53f-a5f3-433b-872c-4024615af229"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
