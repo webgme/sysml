@@ -20,7 +20,11 @@ mongod --rest
 The following starts WebGME with the default configuration.
 
 ``` bash
-node app.js // alt. npm start
+node app.js 
+```
+alternatively...
+``` bash
+npm start
 ```
 Go to (http://127.0.0.1:9091) to access the user interface.
 
@@ -28,24 +32,33 @@ The following starts WebGME with a custom configuration.
 Make sure you unset the environment variable afterwards.
 #### Windows
 ``` bash
-set NODE_ENV=app && node app.js // (alt. `npm run app`) 
+set NODE_ENV=app && node app.js 
 ```
+alternatively...
+``` bash
+set NODE_ENV=app && npm run app 
+```
+
 #### Linux
 ``` bash
-env NODE_ENV=app && node app.js // (alt. `npm run app`) 
+env NODE_ENV=app && node app.js 
+```
+alternatively...
+``` bash
+env NODE_ENV=app && npm run app 
 ```
 
 ### (optional) Run the test example for a plugin.
 
 ``` bash
-- `npm run test` - runs the test example for a plugin.
+npm run test
 ```
 
 ## Environment Special Notes
 
 ### Ubuntu
 
-The node.js packages can be installed with apt-get.
+The node.js package dependencies can be installed with apt-get.
 ```bash
 sudo apt-get install npm mongodb
 ```
