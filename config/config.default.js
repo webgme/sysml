@@ -12,9 +12,10 @@ config.server.port = 9091;
 
 if (config.client.defaultContext) {
 	config.client.defaultContext.project = "guest+SysML";
-} else {
-	config.seedProjects.defaultProject = "SysML";
 }
+config.seedProjects.defaultProject = "SysML";
+config.seedProjects.basePaths.push('./seeds');
+
 
 
 config.visualization.decoratorPaths.push('./src/decorators');
