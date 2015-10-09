@@ -7,7 +7,7 @@ var config = require('webgme/config/config.default');
 var path = require('path');
 config.server.port = 9091;
 
-// config.plugin.basePaths.push('./src/plugins/Test');
+config.plugin.basePaths.push('./src/plugins/Layout');
 // config.plugin.basePaths = ['./src/plugins/Test']; //disable exposure of core-plugins
 
 if (config.client.defaultContext) {
