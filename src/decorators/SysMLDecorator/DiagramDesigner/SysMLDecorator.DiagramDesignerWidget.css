@@ -16,7 +16,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     height: 22px;
-    width: auto; }
+    width: 150px; }
   .SysML-decorator .connector {
     background-color: #fefefe;
     height: 10px;

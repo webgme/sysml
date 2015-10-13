@@ -191,7 +191,10 @@ define(['js/Constants',
 
         // gme id of the rendered object
         var gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            META_TYPES = SysMLMETA.getMetaTypes();
+            META_TYPES = SysMLMETA.getMetaTypes(),
+            isDiagram = SysMLMETA.TYPE_INFO.isDiagram(gmeID),
+            isMetaLanguage = SysMLMETA.TYPE_INFO.isSysMLMetaLanguage(gmeID),
+            isPackage = SysMLMETA.TYPE_INFO.isPackage(gmeID);
 
         // meta type of the rendered object
         this._metaType = SysMLMETA.getMetaTypesOf(gmeID)[0];
@@ -228,8 +231,11 @@ define(['js/Constants',
             this.$el.find('.svg-container').append(this.getErrorSVG());
         }
         
-        
-        	_.extend(this, new SysMLBase());
+
+        if (!isMetaLanguage && !isDiagram && !isPackage) {
+
+            _.extend(this, new SysMLBase());
+        }
 
         // call the type specific renderer
         this._renderMetaTypeSpecificParts();
@@ -311,7 +317,7 @@ define(['js/Constants',
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
             name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name), 
-        	  META_TYPES = SysMLMETA.getMetaTypes();
+            META_TYPES = SysMLMETA.getMetaTypes();
 
         if (this.skinParts.$name) {
 

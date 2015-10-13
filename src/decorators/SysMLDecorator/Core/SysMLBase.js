@@ -41,7 +41,9 @@ define(['js/NodePropertyNames',
             META_TYPES = SysMLMETA.getMetaTypes(),
             SVGWidth = parseInt(this.skinParts.$svg.attr('width')),
             SVGHeight = parseInt(this.skinParts.$svg.attr('height')),
-            PortWidth = SysMLDecoratorConstants.PORT_WIDTH;
+            PortWidth = SysMLDecoratorConstants.PORT_WIDTH,
+            SvgWidthOffset = SVGWidth >= SysMLDecoratorConstants.DEFAULT_NAME_WIDTH ? 0
+                : parseInt((SysMLDecoratorConstants.DEFAULT_NAME_WIDTH - SVGWidth) / 2);
 
         // reinitialize the port coordinates with an empty object
         this._connectionAreas = {};    
@@ -51,24 +53,24 @@ define(['js/NodePropertyNames',
 
          // TOP
         this._connectionAreas[0] = {
-            "x1": SVGWidth / 2,
+            "x1": SVGWidth / 2 + SvgWidthOffset,
             "y1": 0
-        }
+        };
         // BOTTOM
         this._connectionAreas[1] = {
-            "x1": SVGWidth / 2,
+            "x1": SVGWidth / 2 + SvgWidthOffset,
             "y1": SVGHeight
-        }   
+        };
         // LEFT
         this._connectionAreas[2] = {
-            "x1": 0,
+            "x1": SvgWidthOffset,
             "y1": SVGHeight / 2
-        }
+        };
         // RIGHT
         this._connectionAreas[3] = {
-            "x1": SVGWidth,
+            "x1": SVGWidth + SvgWidthOffset,
             "y1": SVGHeight / 2
-        }
+        };
 
         while(len--) {
             

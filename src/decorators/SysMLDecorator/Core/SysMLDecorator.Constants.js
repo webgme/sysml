@@ -16,7 +16,7 @@ define([], function () {
         CENTER_PORT_CLASS: "center-port",
         PORT_WIDTH: 6,
         MIN_WIDTH: 80,
-        DEFAULT_NAME_WIDTH: 160,
+        DEFAULT_NAME_WIDTH: 150,
         HEIGHT: 22,
         NAME_DIV_FIXTURE: 6,
         BAR_WIDTH: "Width"

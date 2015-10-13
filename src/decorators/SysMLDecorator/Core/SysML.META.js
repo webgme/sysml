@@ -9,6 +9,7 @@ define(['underscore'], function (_underscore) {
     var _metaID = 'SysML.META.js',
         META_TYPES = {
             'Actor': 'Actor',
+            'Diagram': 'Diagram',
             'FCO': 'FCO',
             'Package': 'Package',
             'SysMLMetaLanguage': 'SysMLMetaLanguage',
@@ -52,6 +53,9 @@ define(['underscore'], function (_underscore) {
     var _isActor = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Actor]);
     };
+    var _isDiagram = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
+    };
     var _isFCO = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FCO]);
     };
@@ -75,6 +79,7 @@ define(['underscore'], function (_underscore) {
         getMetaTypesOf: _getMetaTypesOf,
         TYPE_INFO: {
             isActor: _isActor,
+            isDiagram: _isDiagram,
             isFCO: _isFCO,
             isPackage: _isPackage,
             isSysMLMetaLanguage: _isSysMLMetaLanguage,

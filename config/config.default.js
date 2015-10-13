@@ -19,6 +19,7 @@ config.seedProjects.basePaths.push('./seeds');
 
 
 config.visualization.decoratorPaths.push('./src/decorators');
+config.client.usedDecorators.push('SysMLDecorator');
 
 config.mongo.uri = 'mongodb://127.0.0.1:27017/webgme_sysml';
 
