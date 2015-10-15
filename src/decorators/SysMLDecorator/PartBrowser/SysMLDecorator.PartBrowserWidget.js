@@ -10,12 +10,10 @@ define(['js/Constants',
     'js/NodePropertyNames',
     'js/Widgets/PartBrowser/PartBrowserWidget.DecoratorBase',
     '../Core/SysMLDecorator.Core.js',
-    '../Core/SysMLDecorator.Constants',
     'css!./SysMLDecorator.PartBrowserWidget'], function (CONSTANTS,
                                                        nodePropertyNames,
                                                        PartBrowserWidgetDecoratorBase,
-                                                       SysMLDecoratorCore,
-                                                       SysMLDecoratorConstants) {
+                                                       SysMLDecoratorCore) {
 
     /**
      * A module representing PartBrowserWidget specific functionality for the SysMLModelingLanguage.
@@ -57,8 +55,6 @@ define(['js/Constants',
      */
     SysMLDecoratorPartBrowserWidget.prototype.beforeAppend = function () {
         this.$el = this.$DOMBase.clone();
-
-        this._hideName = true;
 
         this._renderContent();
     };

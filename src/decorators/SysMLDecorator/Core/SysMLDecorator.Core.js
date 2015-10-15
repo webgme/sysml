@@ -145,7 +145,7 @@ define(['js/Constants',
                 // if the META type name is invalid return with an error SVG
                 returnSVG = errorSVGBase.clone();
 
-            } else if (SysMLClassName != "Action"){
+            } else {
 
                 // META type name is valid
                 if (svgCache[SysMLClassName]) {
@@ -192,10 +192,11 @@ define(['js/Constants',
 
         // gme id of the rendered object
         var gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            META_TYPES = SysMLMETA.getMetaTypes(),
+            client = this._control._client,
             isDiagram = SysMLMETA.TYPE_INFO.isDiagram(gmeID),
             isMetaLanguage = SysMLMETA.TYPE_INFO.isSysMLMetaLanguage(gmeID),
-            isPackage = SysMLMETA.TYPE_INFO.isPackage(gmeID);
+            isPackage = SysMLMETA.TYPE_INFO.isPackage(gmeID),
+            isTypeSubject = SysMLMETA.TYPE_INFO.isSubject(gmeID);
 
         // meta type of the rendered object
         this._metaType = SysMLMETA.getMetaTypesOf(gmeID)[0];
@@ -230,7 +231,24 @@ define(['js/Constants',
             // append error svg if the svg does not exist for this element
             this.$el.find('.svg-container').append(this.getErrorSVG());
         }
-        
+
+
+        if (isTypeSubject) {
+            var nodeObj = client.getNode(gmeID),
+                parentID = nodeObj ? nodeObj.getParentId() : '',
+                isParentUseCaseDiagram = parentID ? SysMLMETA.TYPE_INFO.isUseCaseDiagram(parentID) : false;
+
+            if (parentID && isParentUseCaseDiagram) {
+                var childrenIDs = nodeObj ? nodeObj.getChildrenIds() : [],
+                    i,
+                    useCaseSVG = svgCache['UseCase'] ? svgCache['UseCase'].clone() : errorSVGBase.clone();
+                for (i = 0; i < childrenIDs.length; ++i) {
+                    this.skinParts.$svg.append(useCaseSVG);
+                    this._renderChildElement = true;
+                }
+            }
+        }
+
 
         if (!isMetaLanguage && !isDiagram && !isPackage) {
 
@@ -317,9 +335,9 @@ define(['js/Constants',
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
             name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name),
-            META_TYPES = SysMLMETA.getMetaTypes(),
             isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID);
 
+        /************************************ Requirement Diagram **************************************/
         if (this.skinParts.$name) {
             this.skinParts.$name.text(name);
             // from displayConnectors value, we can distinguish part browser from diagram widget
@@ -339,6 +357,8 @@ define(['js/Constants',
             texts[1].textContent = id ? 'id: ' + id : '';
             texts[2].textContent = text ? 'text: ' + text : '';
         }
+        /************************************ Requirement Diagram **************************************/
+
 
     };
 

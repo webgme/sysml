@@ -38,12 +38,18 @@ define(['js/NodePropertyNames',
         var portId,
             len = 4,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            META_TYPES = SysMLMETA.getMetaTypes(),
-            SVGWidth = parseInt(this.skinParts.$svg.attr('width')),
-            SVGHeight = parseInt(this.skinParts.$svg.attr('height')),
+            childSvg = this._renderChildElement ? $(this.skinParts.$svg.find('svg')[0]) : null,
+            SVGWidth = childSvg ? parseInt(childSvg.attr('width')) : parseInt(this.skinParts.$svg.attr('width')),
+            SVGHeight = childSvg ? parseInt(childSvg.attr('height')) : parseInt(this.skinParts.$svg.attr('height')),
             PortWidth = SysMLDecoratorConstants.PORT_WIDTH,
-            SvgWidthOffset = SVGWidth >= SysMLDecoratorConstants.DEFAULT_NAME_WIDTH ? 0
-                : parseInt((SysMLDecoratorConstants.DEFAULT_NAME_WIDTH - SVGWidth) / 2);
+            SvgWidthOffset = SVGWidth >= SysMLDecoratorConstants.DEFAULT_NAME_WIDTH && !childSvg ? 0
+                : parseInt((SysMLDecoratorConstants.DEFAULT_NAME_WIDTH - SVGWidth) / 2),
+            SvgChildXOffset = childSvg ? (parseInt(this.skinParts.$svg.attr('width')) - parseInt(childSvg.attr('width'))) / 2
+                : 0;
+
+        if (childSvg) {
+            childSvg.attr('x', SvgChildXOffset);
+        }
 
         // reinitialize the port coordinates with an empty object
         this._connectionAreas = {};    
