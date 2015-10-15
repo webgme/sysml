@@ -17,7 +17,7 @@ define(['js/Constants',
                                       REGISTRY_KEYS,
                                       SysMLBase,
                                       SysMLMETA,
-                                      ADConstants,
+                                      SysMLDecoratorConstants,
                                       SysMLDecoratorTemplate,
                                       DefaultSvgTemplate) {
 
@@ -83,6 +83,7 @@ define(['js/Constants',
         if (params && params.connectors) {
             this._displayConnectors = params.connectors;
         }
+
         if(Object.keys(svgCache || {}).length === 0){
             var _metaAspectTypes = SysMLMETA.getMetaTypes();
 
@@ -205,7 +206,6 @@ define(['js/Constants',
             this.$el.attr({"data-id": gmeID});
         }
 
-
         // setting the name of component
         this.skinParts.$name = this.$el.find('.name');
 
@@ -316,25 +316,30 @@ define(['js/Constants',
         // initialize local variables
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name), 
-            META_TYPES = SysMLMETA.getMetaTypes();
+            name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name),
+            META_TYPES = SysMLMETA.getMetaTypes(),
+            isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID);
 
         if (this.skinParts.$name) {
+            this.skinParts.$name.text(name);
+            // from displayConnectors value, we can distinguish part browser from diagram widget
+            if (isTypeRequirement && this._displayConnectors) {
 
-            // if name exists
-            if (name.indexOf('!') == 0) {
-
-                // if name startswith '!' that means the text has to have an overline
-                this.skinParts.$name.text(name.slice(1));
-                this.skinParts.$name.css('text-decoration', 'overline');
-
-            } else {
-
-                // normal text
-                this.skinParts.$name.text(name);
-                this.skinParts.$name.css('text-decoration', 'none');
+                // is type requirement, move up name div
+                this.skinParts.$name.css('position', 'absolute');
+                this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
             }
         }
+
+        if (this.skinParts.$svg && isTypeRequirement) {
+            var id = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
+                text = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
+            var texts = this.skinParts.$svg.find('text');
+
+            texts[1].textContent = id ? 'id: ' + id : '';
+            texts[2].textContent = text ? 'text: ' + text : '';
+        }
+
     };
 
     /* TO BE OVERRIDDEN IN META TYPE SPECIFIC CODE */

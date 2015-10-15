@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg width="132" height="62" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <g id="svg_1" class="use-case">
+    <g id="svg_1_1" class="connectors"></g>
+  </g>
+  <g id="svg_2">
+   <rect id="svg_3" fill="#f8f8f8" stroke="#050505" stroke-width="1.5" x="1" y="1" width="130" height="60"/>
+  </g>
+ </g>
+</svg>

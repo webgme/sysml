@@ -19,6 +19,9 @@ define([], function () {
         DEFAULT_NAME_WIDTH: 150,
         HEIGHT: 22,
         NAME_DIV_FIXTURE: 6,
+        NAME_DIV_TOP: 13,
+        REQ_ATTRIBUTE_ID: "id",
+        REQ_ATTRIBUTE_TEXT: "text",
         BAR_WIDTH: "Width"
     };
 });

@@ -361,6 +361,7 @@
         "ec1521a7-5545-a109-146b-4ef72aca6958": "528079572",
         "eeb5a929-ba17-12e1-c224-90e72ea86e0f": "1960359392",
         "eeed7cf7-1d35-e6ed-42f1-74b436de7ca8": "1903837420",
+        "f011ebfd-d6c1-4dda-4ac1-fa59fcce3963": "769815",
         "f02db3c6-4afd-c6fd-a5c5-aa208458bcc7": "1856421459",
         "f09a2655-5c4b-d01b-70f6-413c7b3b208b": "33792551",
         "f0afc637-14e8-9826-594d-6ac01ecc8b11": "1676750403",
@@ -814,6 +815,7 @@
             "dfd79ceb-e074-63b4-f1c9-77f5aa3f1c51": {},
             "eb0f49ce-5a98-902c-edee-5160b7b77407": {},
             "eeb5a929-ba17-12e1-c224-90e72ea86e0f": {},
+            "f011ebfd-d6c1-4dda-4ac1-fa59fcce3963": {},
             "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e": {}
         },
         "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045": {}
@@ -830,11 +832,12 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "lineEndArrow": "open-xwide-xlong",
                 "position": {
-                    "x": 178,
-                    "y": 857
+                    "x": 172,
+                    "y": 1061
                 }
             },
             "sets": {},
@@ -2651,8 +2654,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 682,
-                    "y": 111
+                    "x": 674,
+                    "y": 40
                 }
             },
             "sets": {},
@@ -3014,8 +3017,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 467,
-                    "y": 640
+                    "x": 556,
+                    "y": 705
                 }
             },
             "sets": {},
@@ -3172,6 +3175,7 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
                     "x": 147,
                     "y": 149
@@ -3375,8 +3379,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 27,
-                    "y": 809
+                    "x": 12,
+                    "y": 971
                 }
             },
             "sets": {},
@@ -3497,8 +3501,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 517,
-                    "y": 169
+                    "x": 520,
+                    "y": 160
                 }
             },
             "sets": {},
@@ -3608,9 +3612,10 @@
             },
             "registry": {
                 "DisplayFormat": "<<trace>>",
+                "decorator": "ModelDecorator",
                 "position": {
-                    "x": 1485,
-                    "y": 341
+                    "x": 1488,
+                    "y": 404
                 }
             },
             "sets": {},
@@ -3696,10 +3701,11 @@
                 "src": null
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": true,
                 "position": {
-                    "x": 1207,
-                    "y": 339
+                    "x": 1218,
+                    "y": 404
                 }
             },
             "sets": {},
@@ -3772,9 +3778,10 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
-                    "x": 148,
-                    "y": 763
+                    "x": 202,
+                    "y": 881
                 }
             },
             "sets": {},
@@ -3878,6 +3885,7 @@
             },
             "registry": {
                 "DisplayFormat": "in:$name",
+                "decorator": "DefaultDecorator",
                 "position": {
                     "x": 647,
                     "y": 279
@@ -4164,7 +4172,7 @@
         },
         "33cf140c-fafe-91d4-534f-a298dad254e7": {
             "attributes": {
-                "name": "ParametericDiagram"
+                "name": "ParametricDiagram"
             },
             "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec",
             "meta": {
@@ -4194,9 +4202,10 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
-                    "x": 149,
-                    "y": 592
+                    "x": 150,
+                    "y": 552
                 }
             },
             "sets": {},
@@ -4262,8 +4271,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 351,
-                    "y": 114
+                    "x": 352,
+                    "y": 71
                 }
             },
             "sets": {},
@@ -4305,8 +4314,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 871,
-                    "y": 287
+                    "x": 782,
+                    "y": 286
                 }
             },
             "sets": {},
@@ -4366,8 +4375,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1069,
-                    "y": 435
+                    "x": 1062,
+                    "y": 478
                 }
             },
             "sets": {},
@@ -4533,8 +4542,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 355,
-                    "y": 290
+                    "x": 351,
+                    "y": 252
                 }
             },
             "sets": {},
@@ -4564,8 +4573,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 498,
-                    "y": 290
+                    "x": 441,
+                    "y": 286
                 }
             },
             "sets": {},
@@ -4665,10 +4674,11 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 309,
-                    "y": 950
+                    "x": 302,
+                    "y": 1161
                 }
             },
             "sets": {},
@@ -4685,10 +4695,11 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 1137,
-                    "y": 509
+                    "x": 1148,
+                    "y": 574
                 }
             },
             "sets": {},
@@ -4706,8 +4717,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 607,
-                    "y": 688
+                    "x": 677,
+                    "y": 774
                 }
             },
             "sets": {},
@@ -4821,8 +4832,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 611,
-                    "y": 640
+                    "x": 676,
+                    "y": 695
                 }
             },
             "sets": {},
@@ -4839,12 +4850,13 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "lineEndArrow": "open-xwide-xlong",
                 "lineStyle": "-",
                 "position": {
-                    "x": 181,
-                    "y": 902
+                    "x": 172,
+                    "y": 1111
                 }
             },
             "sets": {},
@@ -5097,11 +5109,12 @@
             },
             "registry": {
                 "DisplayFormat": "",
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "lineEndArrow": "none",
                 "position": {
-                    "x": 881,
-                    "y": 762
+                    "x": 1282,
+                    "y": 773
                 }
             },
             "sets": {},
@@ -5317,8 +5330,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 348,
-                    "y": 479
+                    "x": 350,
+                    "y": 456
                 }
             },
             "sets": {},
@@ -5454,10 +5467,11 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 311,
-                    "y": 859
+                    "x": 302,
+                    "y": 1061
                 }
             },
             "sets": {},
@@ -5574,6 +5588,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "DefaultDecorator",
                 "position": {
                     "x": 257,
                     "y": 229
@@ -5597,7 +5612,7 @@
                 "isPort": true,
                 "position": {
                     "x": 150,
-                    "y": 689
+                    "y": 712
                 }
             },
             "sets": {},
@@ -5653,7 +5668,7 @@
                 "DisplayFormat": "$name",
                 "position": {
                     "x": 350,
-                    "y": 394
+                    "y": 335
                 }
             },
             "sets": {},
@@ -5707,6 +5722,7 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
                     "x": 837,
                     "y": 139
@@ -5882,8 +5898,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 858,
-                    "y": 441
+                    "x": 802,
+                    "y": 515
                 }
             },
             "sets": {},
@@ -5920,8 +5936,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 83,
-                    "y": 284
+                    "x": 80,
+                    "y": 220
                 }
             },
             "sets": {},
@@ -6108,6 +6124,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": true,
                 "position": {
                     "x": 137,
@@ -6223,11 +6240,12 @@
                 "base": "a482a1d8-68b6-5416-1388-35facf2cc2b8"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "isPort": false,
                 "position": {
-                    "x": 751,
-                    "y": 760
+                    "x": 1152,
+                    "y": 773
                 }
             },
             "sets": {},
@@ -6398,6 +6416,7 @@
             },
             "registry": {
                 "DisplayFormat": "out:$name",
+                "decorator": "DefaultDecorator",
                 "position": {
                     "x": 777,
                     "y": 279
@@ -6455,10 +6474,11 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 181,
-                    "y": 999
+                    "x": 172,
+                    "y": 1211
                 }
             },
             "sets": {},
@@ -6466,7 +6486,7 @@
         },
         "86131431-62f3-e8b4-33ca-e66c515c981b": {
             "attributes": {
-                "name": "Comment"
+                "name": "CommentLink"
             },
             "base": "cb177dfc-d91c-2abc-91c5-ea8fb1d32759",
             "meta": {},
@@ -6579,6 +6599,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "DefaultDecorator",
                 "position": {
                     "x": 387,
                     "y": 229
@@ -6713,11 +6734,13 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "DisplayFormat": "",
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "lineStartArrow": "oval-xwide-xlong",
                 "position": {
-                    "x": 1137,
-                    "y": 459
+                    "x": 1148,
+                    "y": 524
                 }
             },
             "sets": {},
@@ -6746,8 +6769,8 @@
             "registry": {
                 "isPort": true,
                 "position": {
-                    "x": 30,
-                    "y": 860
+                    "x": 12,
+                    "y": 1051
                 }
             },
             "sets": {},
@@ -6803,7 +6826,7 @@
                 "isPort": true,
                 "position": {
                     "x": 20,
-                    "y": 689
+                    "y": 712
                 }
             },
             "sets": {},
@@ -6896,10 +6919,11 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 1267,
-                    "y": 459
+                    "x": 1278,
+                    "y": 524
                 }
             },
             "sets": {},
@@ -7000,10 +7024,11 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 1137,
-                    "y": 399
+                    "x": 1148,
+                    "y": 464
                 }
             },
             "sets": {},
@@ -7045,10 +7070,11 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 1267,
-                    "y": 559
+                    "x": 1278,
+                    "y": 624
                 }
             },
             "sets": {},
@@ -7155,8 +7181,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 517,
-                    "y": 39
+                    "x": 523,
+                    "y": 24
                 }
             },
             "sets": {},
@@ -7279,12 +7305,13 @@
             },
             "registry": {
                 "DisplayFormat": "<<$name>>",
+                "decorator": "ModelDecorator",
                 "isAbstract": true,
                 "lineEndArrow": "open-xwide-xlong",
                 "lineStyle": "-",
                 "position": {
-                    "x": 801,
-                    "y": 640
+                    "x": 992,
+                    "y": 693
                 }
             },
             "sets": {},
@@ -7334,9 +7361,10 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
-                    "x": 652,
-                    "y": 586
+                    "x": 744,
+                    "y": 579
                 }
             },
             "sets": {},
@@ -7529,10 +7557,11 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 181,
-                    "y": 949
+                    "x": 172,
+                    "y": 1161
                 }
             },
             "sets": {},
@@ -7606,6 +7635,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "DefaultDecorator",
                 "isPort": true,
                 "position": {
                     "x": 777,
@@ -7705,11 +7735,12 @@
             },
             "registry": {
                 "DisplayFormat": "<<$name>>",
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "isPort": false,
                 "position": {
-                    "x": 751,
-                    "y": 700
+                    "x": 872,
+                    "y": 773
                 }
             },
             "sets": {},
@@ -7726,6 +7757,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "DefaultDecorator",
                 "isPort": true,
                 "position": {
                     "x": 647,
@@ -7868,10 +7900,11 @@
                 "base": "ffa5d43e-e4c5-8cd2-d95b-bfbe95980c0e"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 307,
-                    "y": 902
+                    "x": 302,
+                    "y": 1111
                 }
             },
             "sets": {},
@@ -8108,8 +8141,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 444,
-                    "y": 811
+                    "x": 422,
+                    "y": 971
                 }
             },
             "sets": {},
@@ -8303,9 +8336,10 @@
                 "base": "d2e5a28a-1717-4e09-16d9-ecfb6e79acec"
             },
             "registry": {
+                "isAbstract": false,
                 "position": {
-                    "x": 1167,
-                    "y": 139
+                    "x": 1268,
+                    "y": 121
                 }
             },
             "sets": {},
@@ -8323,13 +8357,14 @@
             },
             "registry": {
                 "DisplayFormat": "<<deriveReqt>>",
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "lineEndArrow": "open-xwide-xlong",
                 "lineStartArrow": "none",
                 "lineStyle": "-",
                 "position": {
-                    "x": 1267,
-                    "y": 399
+                    "x": 1278,
+                    "y": 464
                 }
             },
             "sets": {},
@@ -8474,10 +8509,11 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": true,
                 "position": {
-                    "x": 837,
-                    "y": 349
+                    "x": 815,
+                    "y": 351
                 }
             },
             "sets": {},
@@ -8543,8 +8579,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 351,
-                    "y": 200
+                    "x": 350,
+                    "y": 157
                 }
             },
             "sets": {},
@@ -8609,10 +8645,11 @@
                 "src": null
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "lineStyle": "-",
                 "position": {
-                    "x": 1347,
-                    "y": 339
+                    "x": 1358,
+                    "y": 404
                 }
             },
             "sets": {},
@@ -8795,8 +8832,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 701,
-                    "y": 287
+                    "x": 614,
+                    "y": 290
                 }
             },
             "sets": {},
@@ -8813,6 +8850,7 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "DefaultDecorator",
                 "position": {
                     "x": 517,
                     "y": 229
@@ -8832,9 +8870,10 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "isAbstract": true,
                 "position": {
-                    "x": 517,
-                    "y": 89
+                    "x": 519,
+                    "y": 85
                 }
             },
             "sets": {},
@@ -8893,8 +8932,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 953,
-                    "y": 637
+                    "x": 830,
+                    "y": 682
                 }
             },
             "sets": {},
@@ -8914,8 +8953,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 331,
-                    "y": 441
+                    "x": 220,
+                    "y": 448
                 }
             },
             "sets": {},
@@ -9062,7 +9101,7 @@
             "registry": {
                 "position": {
                     "x": 290,
-                    "y": 689
+                    "y": 712
                 }
             },
             "sets": {},
@@ -9225,10 +9264,11 @@
                 "base": "2651064c-817b-2e5c-38f6-dc232e24b505"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "position": {
-                    "x": 1267,
-                    "y": 509
+                    "x": 1278,
+                    "y": 574
                 }
             },
             "sets": {},
@@ -9383,8 +9423,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 341,
-                    "y": 281
+                    "x": 227,
+                    "y": 286
                 }
             },
             "sets": {},
@@ -9449,11 +9489,12 @@
                 "base": "a482a1d8-68b6-5416-1388-35facf2cc2b8"
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": false,
                 "isPort": false,
                 "position": {
-                    "x": 881,
-                    "y": 700
+                    "x": 1012,
+                    "y": 773
                 }
             },
             "sets": {},
@@ -9488,10 +9529,17 @@
         },
         "eeb5a929-ba17-12e1-c224-90e72ea86e0f": {
             "attributes": {
-                "name": "rationale"
+                "name": "Rationale",
+                "text": ""
             },
             "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
-            "meta": {},
+            "meta": {
+                "attributes": {
+                    "text": {
+                        "type": "string"
+                    }
+                }
+            },
             "parent": "22666200-2b97-808a-0671-eba8e473b647",
             "pointers": {
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
@@ -9519,6 +9567,25 @@
                 "position": {
                     "x": 113,
                     "y": 329
+                }
+            },
+            "sets": {},
+            "constraints": {}
+        },
+        "f011ebfd-d6c1-4dda-4ac1-fa59fcce3963": {
+            "attributes": {
+                "name": "Comment"
+            },
+            "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
+            "meta": {},
+            "parent": "22666200-2b97-808a-0671-eba8e473b647",
+            "pointers": {
+                "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
+            },
+            "registry": {
+                "position": {
+                    "x": 1570,
+                    "y": 263
                 }
             },
             "sets": {},
@@ -9923,10 +9990,11 @@
                 "src": null
             },
             "registry": {
+                "decorator": "ModelDecorator",
                 "isAbstract": true,
                 "position": {
-                    "x": 183,
-                    "y": 815
+                    "x": 232,
+                    "y": 1001
                 }
             },
             "sets": {},
