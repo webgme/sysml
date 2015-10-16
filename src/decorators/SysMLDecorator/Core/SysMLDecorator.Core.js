@@ -9,15 +9,21 @@ define(['js/Constants',
     'js/NodePropertyNames',
     'js/RegistryKeys',
     './SysMLBase',
+    './SysMLBlockBase',
     './SysML.META',
     './SysMLDecorator.Constants',
+    'js/Decorators/DecoratorWithPorts.Base',
+    'Decorators/ModelDecorator/Core/ModelDecorator.Core',
     'text!./SysMLDecorator.html',
     'text!../default.svg'], function (CONSTANTS,
                                       nodePropertyNames,
                                       REGISTRY_KEYS,
                                       SysMLBase,
+                                      SysMLBlockBase,
                                       SysMLMETA,
                                       SysMLDecoratorConstants,
+                                      DecoratorWithPortsBase,
+                                      ModelDecoratorCore,
                                       SysMLDecoratorTemplate,
                                       DefaultSvgTemplate) {
 
@@ -50,6 +56,10 @@ define(['js/Constants',
     SysMLDecoratorCore = function () {
     };
 
+
+    _.extend(SysMLDecoratorCore.prototype, DecoratorWithPortsBase.prototype);
+    _.extend(SysMLDecoratorCore.prototype, ModelDecoratorCore.prototype);
+
     /**
      * Represents the base element that would be inserted into the DOM.
      */
@@ -77,7 +87,10 @@ define(['js/Constants',
      * @private
      */
     SysMLDecoratorCore.prototype._initializeDecorator = function (params) {
+        this.portIDs = [];
         this.$name = undefined;
+        this.portIDs = [];
+        this.ports = {};
 
         this._displayConnectors = false;
         if (params && params.connectors) {
@@ -196,7 +209,8 @@ define(['js/Constants',
             isDiagram = SysMLMETA.TYPE_INFO.isDiagram(gmeID),
             isMetaLanguage = SysMLMETA.TYPE_INFO.isSysMLMetaLanguage(gmeID),
             isPackage = SysMLMETA.TYPE_INFO.isPackage(gmeID),
-            isTypeSubject = SysMLMETA.TYPE_INFO.isSubject(gmeID);
+            isTypeSubject = SysMLMETA.TYPE_INFO.isSubject(gmeID),
+            isTypeWithPorts = SysMLMETA.TYPE_INFO.isBlock(gmeID);
 
         // meta type of the rendered object
         this._metaType = SysMLMETA.getMetaTypesOf(gmeID)[0];
@@ -249,10 +263,16 @@ define(['js/Constants',
             }
         }
 
-
         if (!isMetaLanguage && !isDiagram && !isPackage) {
-
-            _.extend(this, new SysMLBase());
+            if (isTypeWithPorts) {
+                this.skinParts.$portsContainer = this.$el.find('.ports');
+                this.skinParts.$portsContainerLeft = this.skinParts.$portsContainer.find('.left');
+                this.skinParts.$portsContainerRight = this.skinParts.$portsContainer.find('.right');
+                this.skinParts.$portsContainerCenter = this.skinParts.$portsContainer.find('.center');
+                _.extend(this, new SysMLBlockBase());
+            } else {
+                _.extend(this, new SysMLBase());
+            }
         }
 
         // call the type specific renderer
@@ -289,42 +309,6 @@ define(['js/Constants',
         this._updatePorts();
     };
 
-
-    SysMLDecoratorCore.prototype._updateColors = function () {
-        this._getNodeColorsFromRegistry();
-
-        if (this.fillColor) {
-            this.skinParts.$svg.find('path').attr('fill', this.fillColor);
-            this.skinParts.$svg.find('ellipse').attr('fill', this.fillColor);
-            this.skinParts.$svg.find('rect').attr('fill', this.fillColor);
-        } else {
-            this.$el.css({'background-color': ''});
-        }
-
-        if (this.borderColor) {
-            this.skinParts.$svg.css({'border-color': this.borderColor,
-                          'box-shadow': '0px 0px 7px 0px ' + this.borderColor + ' inset'});
-            this.skinParts.$name.css({'border-color': this.borderColor});
-        } else {
-            this.$el.css({'border-color': '',
-                'box-shadow': ''});
-            this.skinParts.$name.css({'border-color': ''});
-        }
-
-        if (this.textColor) {
-            this.$el.css({'color': this.textColor});
-        } else {
-            this.$el.css({'color': ''});
-        }
-    };
-
-    SysMLDecoratorCore.prototype._getNodeColorsFromRegistry = function () {
-        var objID = this._metaInfo[CONSTANTS.GME_ID];
-        this.fillColor = this.preferencesHelper.getRegistry(objID, REGISTRY_KEYS.COLOR, true);
-        this.borderColor = this.preferencesHelper.getRegistry(objID, REGISTRY_KEYS.BORDER_COLOR, true);
-        this.textColor = this.preferencesHelper.getRegistry(objID, REGISTRY_KEYS.TEXT_COLOR, true);
-    };
-
     /**
      * Updates the name of the rendered object.
      * @private
@@ -335,30 +319,41 @@ define(['js/Constants',
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
             name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name),
-            isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID);
+            isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID),
+            isTypeConstraintBlock = SysMLMETA.TYPE_INFO.isConstraintBlock(gmeID);
 
-        /************************************ Requirement Diagram **************************************/
+        /************************************ Requirement & Parametric Diagram **************************************/
         if (this.skinParts.$name) {
             this.skinParts.$name.text(name);
             // from displayConnectors value, we can distinguish part browser from diagram widget
-            if (isTypeRequirement && this._displayConnectors) {
+            if ((isTypeRequirement || isTypeConstraintBlock) && this._displayConnectors) {
 
-                // is type requirement, move up name div
+                // is type requirement or constraint block, move up name div
                 this.skinParts.$name.css('position', 'absolute');
                 this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
             }
         }
 
-        if (this.skinParts.$svg && isTypeRequirement) {
-            var id = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
-                text = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
+        if (this.skinParts.$svg && (isTypeRequirement || isTypeConstraintBlock)) {
             var texts = this.skinParts.$svg.find('text');
 
-            texts[1].textContent = id ? 'id: ' + id : '';
-            texts[2].textContent = text ? 'text: ' + text : '';
-        }
-        /************************************ Requirement Diagram **************************************/
+            if (isTypeRequirement) {
+                var id = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
+                    text = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
 
+                texts[1].textContent = id ? 'id: ' + id : '';
+                texts[2].textContent = text ? 'text: ' + text : '';
+            } else {
+                var nodeObj = control._client.getNode(gmeID),
+                    parentID = nodeObj ? nodeObj.getParentId() : '',
+                    isParentParametricDiagram = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID) : false;
+                if (isParentParametricDiagram) {
+                    var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
+                    texts[1].textContent = eq ? '{' + eq + '}' : '';
+                }
+            }
+        }
+        /************************************ Requirement & Parametric Diagram **************************************/
 
     };
 
@@ -385,7 +380,7 @@ define(['js/Constants',
      * @param portId {string} GME ID for getting notification about this object.
      * @private
      */
-    SysMLDecoratorCore.prototype._registerForNotification = function(portId) {
+    SysMLDecoratorCore.prototype._registerForNotification = function (portId) {
 
     };
 
@@ -394,7 +389,7 @@ define(['js/Constants',
      * @param portId {string} GME ID for getting notification about this object.
      * @private
      */
-    SysMLDecoratorCore.prototype._unregisterForNotification = function(portId) {
+    SysMLDecoratorCore.prototype._unregisterForNotification = function (portId) {
 
     };
 

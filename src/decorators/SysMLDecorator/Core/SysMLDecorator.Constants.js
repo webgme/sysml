@@ -22,6 +22,7 @@ define([], function () {
         NAME_DIV_TOP: 13,
         REQ_ATTRIBUTE_ID: "id",
         REQ_ATTRIBUTE_TEXT: "text",
+        PAR_ATTRIBUTE_EQUATION: "Equation",
         BAR_WIDTH: "Width"
     };
 });

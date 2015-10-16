@@ -9,7 +9,9 @@ define(['underscore'], function (_underscore) {
     var _metaID = 'SysML.META.js',
         META_TYPES = {
             'Actor': 'Actor',
+            'Block': 'Block',
             'Comment': 'Comment',
+            'ConstraintBlock': 'ConstraintBlock',
             'Diagram': 'Diagram',
             'Document': 'Document',
             'FCO': 'FCO',
@@ -61,8 +63,14 @@ define(['underscore'], function (_underscore) {
     var _isActor = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Actor]);
     };
+    var _isBlock = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Block]);
+    };
     var _isComment = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Comment]);
+    };
+    var _isConstraintBlock = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintBlock]);
     };
     var _isDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
@@ -111,7 +119,9 @@ define(['underscore'], function (_underscore) {
         getMetaTypesOf: _getMetaTypesOf,
         TYPE_INFO: {
             isActor: _isActor,
+            isBlock: _isBlock,
             isComment: _isComment,
+            isConstraintBlock: _isConstraintBlock,
             isDiagram: _isDiagram,
             isDocument: _isDocument,
             isFCO: _isFCO,
