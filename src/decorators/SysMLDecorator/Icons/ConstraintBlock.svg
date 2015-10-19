@@ -1,12 +1,5 @@
-<?xml version="1.0"?>
 <svg width="150" height="124" xmlns="http://www.w3.org/2000/svg">
-
  <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
   <g id="svg_1" stroke="null">
    <g id="svg_2" stroke="null">
     <rect height="122.043795" width="148.244767" y="0.999998" x="0.877617" stroke-width="1.5" fill="#f8f8f8" id="svg_3" stroke="#050505"/>
@@ -16,4 +9,6 @@
    <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="6.983763" y="45.23337" id="svg_11" font-size="10" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000"/>
   </g>
  </g>
+ <g class="ports"></g>
+
 </svg>

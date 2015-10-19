@@ -13,7 +13,6 @@ define(['js/Constants',
     './SysML.META',
     './SysMLDecorator.Constants',
     'js/Decorators/DecoratorWithPorts.Base',
-    'Decorators/ModelDecorator/Core/ModelDecorator.Core',
     'text!./SysMLDecorator.html',
     'text!../default.svg'], function (CONSTANTS,
                                       nodePropertyNames,
@@ -23,7 +22,6 @@ define(['js/Constants',
                                       SysMLMETA,
                                       SysMLDecoratorConstants,
                                       DecoratorWithPortsBase,
-                                      ModelDecoratorCore,
                                       SysMLDecoratorTemplate,
                                       DefaultSvgTemplate) {
 
@@ -58,7 +56,6 @@ define(['js/Constants',
 
 
     _.extend(SysMLDecoratorCore.prototype, DecoratorWithPortsBase.prototype);
-    _.extend(SysMLDecoratorCore.prototype, ModelDecoratorCore.prototype);
 
     /**
      * Represents the base element that would be inserted into the DOM.
@@ -246,11 +243,12 @@ define(['js/Constants',
             this.$el.find('.svg-container').append(this.getErrorSVG());
         }
 
-
+        var nodeObj,
+            parentID;
         if (isTypeSubject) {
-            var nodeObj = client.getNode(gmeID),
-                parentID = nodeObj ? nodeObj.getParentId() : '',
-                isParentUseCaseDiagram = parentID ? SysMLMETA.TYPE_INFO.isUseCaseDiagram(parentID) : false;
+                nodeObj = client.getNode(gmeID);
+                parentID = nodeObj ? nodeObj.getParentId() : '';
+                var isParentUseCaseDiagram = parentID ? SysMLMETA.TYPE_INFO.isUseCaseDiagram(parentID) : false;
 
             if (parentID && isParentUseCaseDiagram) {
                 var childrenIDs = nodeObj ? nodeObj.getChildrenIds() : [],
@@ -264,13 +262,18 @@ define(['js/Constants',
         }
 
         if (!isMetaLanguage && !isDiagram && !isPackage) {
+            var isParentParametricDiagram;
             if (isTypeWithPorts) {
-                this.skinParts.$portsContainer = this.$el.find('.ports');
-                this.skinParts.$portsContainerLeft = this.skinParts.$portsContainer.find('.left');
-                this.skinParts.$portsContainerRight = this.skinParts.$portsContainer.find('.right');
-                this.skinParts.$portsContainerCenter = this.skinParts.$portsContainer.find('.center');
+                nodeObj = client.getNode(gmeID);
+                parentID = nodeObj ? nodeObj.getParentId() : '';
+                isParentParametricDiagram = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID) : false;
+
+            }
+
+            if (isParentParametricDiagram) {
                 _.extend(this, new SysMLBlockBase());
-            } else {
+            }
+            else {
                 _.extend(this, new SysMLBase());
             }
         }

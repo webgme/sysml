@@ -23,6 +23,7 @@ define([], function () {
         REQ_ATTRIBUTE_ID: "id",
         REQ_ATTRIBUTE_TEXT: "text",
         PAR_ATTRIBUTE_EQUATION: "Equation",
+        PORT_POSITION_DIVIDER_POINT: 300,
         BAR_WIDTH: "Width"
     };
 });
