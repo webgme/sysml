@@ -40,7 +40,6 @@
         "189e6ec7-b06c-8c33-22ec-89fb6748dd8c": "169337250",
         "19368a02-dfc9-b0a3-6128-1968937f2334": "1978282523",
         "1950f0be-f10c-ecab-5d00-7efd62cbdf53": "1602167158",
-        "19c87c55-b665-41ef-776a-b78c81575624": "1641703255",
         "1a44f44d-f37f-c03c-bea0-d039e9bfc46d": "1958526216",
         "1a4d8833-c7a8-64a1-ffac-b03a23432286": "609087975",
         "1a7e91b6-f74b-0724-a380-ce53633780cd": "1787693113",
@@ -191,9 +190,7 @@
         "7c9e1afe-cefd-a063-7439-05519b19b4f4": "869867611",
         "7ccc1bf8-83c4-5110-4bcd-aa474b091ce3": "2113379354",
         "7d57e43f-17d1-3cd5-2659-47afbd00b0fc": "337059948",
-        "7d97948c-4010-df7b-dc77-c866761e4b3e": "1790365531",
         "7e411785-ef99-3e87-64f5-454436eac7fa": "361026395",
-        "7e41e880-ac0e-631e-b66e-ef9ed671d45b": "1641703255",
         "7fb9f381-2e7d-8c42-7ff8-6c135be15563": "1955648800",
         "80130029-923f-e2ea-0970-e2b51c36e9ac": "587499751",
         "80a2f070-4e4d-4937-14ac-9d96559909e9": "1007935214",
@@ -295,7 +292,6 @@
         "bda9f19d-4c5e-44fc-1cc7-2ba3c5c9bc53": "1271663920",
         "bec4ead2-6cc2-44fb-de6e-dce9914da6c5": "2115258194",
         "c01a05e7-8317-0e5c-1969-c3ca3c9f47d6": "1367274546",
-        "c05b9f3e-e211-01df-cfc1-81bc1015d247": "1790365531",
         "c0bc6a73-7050-dbfe-ec8e-4124ec992722": "1106064513",
         "c0e3337e-aa86-d521-180c-abf93f0daee0": "976884698",
         "c2464373-a9be-15cc-05a0-87b458c56b7b": "2007871947",
@@ -337,7 +333,6 @@
         "d9a008c4-eaf2-2623-69c5-c1470a64e1c8": "64404779",
         "d9bd4cca-bfd3-9026-aff1-cd2753679d01": "749451425",
         "d9e40867-fcc8-421f-ed3a-0b69b3ee325c": "1703119131",
-        "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99": "1039498129",
         "db640d6a-b856-b653-4dd8-99ae92a2a83b": "572427190",
         "dbb849ec-b3af-b2eb-2a24-2587b4e7a6fd": "1369893952",
         "dd0943bd-533e-cf61-91f6-c208e5bad793": "1507878030",
@@ -441,7 +436,6 @@
                     "5505dd94-18c8-1990-a679-a9f9a4c3b247": {
                         "0199882a-c87f-0f58-a798-69c5f7357867": {},
                         "78789d3d-3bbb-a062-8924-009a00824bac": {},
-                        "7e41e880-ac0e-631e-b66e-ef9ed671d45b": {},
                         "8964e822-075e-c41c-83f5-2ca661f8fed7": {},
                         "d601a041-33ff-f94c-7830-8dea59bd431b": {}
                     },
@@ -451,8 +445,7 @@
                     "9a69e55d-de4a-fffd-67d7-40d74f6bd69f": {
                         "1735ffee-e886-2ced-32c6-b7247f9b7fd0": {},
                         "189e6ec7-b06c-8c33-22ec-89fb6748dd8c": {},
-                        "356093aa-cd32-af1f-006a-e3c812501b9f": {},
-                        "c05b9f3e-e211-01df-cfc1-81bc1015d247": {}
+                        "356093aa-cd32-af1f-006a-e3c812501b9f": {}
                     },
                     "a1fbff44-c1ed-7cf9-9f6b-37639df623a7": {},
                     "a31460fe-5fb6-d901-9b10-6d91e62dd099": {},
@@ -463,7 +456,6 @@
                 "c7bd4c17-6d68-619f-34c0-57f82bada014": {
                     "7fb9f381-2e7d-8c42-7ff8-6c135be15563": {},
                     "8ead17bb-02a3-3b61-677d-f1ebf3e53038": {
-                        "19c87c55-b665-41ef-776a-b78c81575624": {},
                         "1ff109e8-21d0-8293-4820-588857a4c9d3": {},
                         "66101cff-d214-2da9-669c-31d7a013fa18": {},
                         "b1883494-2994-dbbd-b934-d5f80e9bc164": {},
@@ -473,7 +465,6 @@
                     "b67dfa99-95da-8379-89a1-f1a9966818c9": {},
                     "b89e0050-81ca-33a0-13d0-40350c9bd5a2": {},
                     "ba6cd6f1-7c4b-2159-7461-090d29604fe6": {
-                        "7d97948c-4010-df7b-dc77-c866761e4b3e": {},
                         "88ac9818-6f33-71bb-13dc-aa12745b82e6": {},
                         "a5526575-126d-5297-315a-c021014344f5": {},
                         "aaf9f45c-4a87-f249-2170-fefe1990e6a9": {}
@@ -814,7 +805,6 @@
             "d204ba31-5e1f-76a9-ef47-7bfc2133dbe5": {},
             "d2e5a28a-1717-4e09-16d9-ecfb6e79acec": {},
             "d40cc06c-180b-5ed2-3246-90f6353a6965": {},
-            "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99": {},
             "db640d6a-b856-b653-4dd8-99ae92a2a83b": {},
             "dbb849ec-b3af-b2eb-2a24-2587b4e7a6fd": {},
             "dfd79ceb-e074-63b4-f1c9-77f5aa3f1c51": {},
@@ -1626,16 +1616,6 @@
                     },
                     {
                         "attributes": {},
-                        "guid": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99",
-                        "registry": {
-                            "position": {
-                                "x": 1048,
-                                "y": 324
-                            }
-                        }
-                    },
-                    {
-                        "attributes": {},
                         "guid": "db640d6a-b856-b653-4dd8-99ae92a2a83b",
                         "registry": {
                             "position": {
@@ -1855,8 +1835,8 @@
                         "guid": "33cf140c-fafe-91d4-534f-a298dad254e7",
                         "registry": {
                             "position": {
-                                "x": 663,
-                                "y": 126
+                                "x": 553,
+                                "y": 101
                             }
                         }
                     },
@@ -1917,16 +1897,6 @@
                             "position": {
                                 "x": 350,
                                 "y": 241
-                            }
-                        }
-                    },
-                    {
-                        "attributes": {},
-                        "guid": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99",
-                        "registry": {
-                            "position": {
-                                "x": 856,
-                                "y": 406
                             }
                         }
                     }
@@ -2727,6 +2697,7 @@
                 "src": null
             },
             "registry": {
+                "DisplayFormat": "",
                 "isAbstract": false,
                 "lineEndArrow": "open-xwide-xlong",
                 "lineStartArrow": "diamond-xwide-xlong",
@@ -3006,7 +2977,12 @@
             "meta": {},
             "parent": "9a69e55d-de4a-fffd-67d7-40d74f6bd69f",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": -24,
+                    "y": 197
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -3073,7 +3049,12 @@
             "meta": {},
             "parent": "9a69e55d-de4a-fffd-67d7-40d74f6bd69f",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": -24,
+                    "y": 357
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -3108,25 +3089,6 @@
                 "position": {
                     "x": 691,
                     "y": 278
-                }
-            },
-            "sets": {},
-            "constraints": {}
-        },
-        "19c87c55-b665-41ef-776a-b78c81575624": {
-            "attributes": {
-                "Specification": "f = (tf*bf)*(1-tl)"
-            },
-            "base": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99",
-            "meta": {},
-            "parent": "8ead17bb-02a3-3b61-677d-f1ebf3e53038",
-            "pointers": {
-                "base": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99"
-            },
-            "registry": {
-                "position": {
-                    "x": 502,
-                    "y": 215
                 }
             },
             "sets": {},
@@ -4240,7 +4202,12 @@
             "meta": {},
             "parent": "9a69e55d-de4a-fffd-67d7-40d74f6bd69f",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": -24,
+                    "y": 277
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -4634,8 +4601,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 446,
-                    "y": 125
+                    "x": 431,
+                    "y": 491
                 }
             },
             "sets": {},
@@ -4897,7 +4864,9 @@
             "constraints": {}
         },
         "5505dd94-18c8-1990-a679-a9f9a4c3b247": {
-            "attributes": {},
+            "attributes": {
+                "Equation": "f = (tf*bf)*(1-tl)"
+            },
             "base": "8ead17bb-02a3-3b61-677d-f1ebf3e53038",
             "meta": {},
             "parent": "2d6ad2c2-b62b-2e0e-8819-8d50e142cf68",
@@ -4906,8 +4875,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 266,
-                    "y": 204
+                    "x": 329,
+                    "y": 116
                 }
             },
             "sets": {},
@@ -5480,6 +5449,7 @@
                 "src": null
             },
             "registry": {
+                "DisplayFormat": "",
                 "isAbstract": false,
                 "lineEndArrow": "open-xwide-xlong",
                 "position": {
@@ -5622,10 +5592,10 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 257,
-                    "y": 229
+                    "x": 208,
+                    "y": 228
                 }
             },
             "sets": {},
@@ -5645,8 +5615,8 @@
                 "isAbstract": false,
                 "isPort": true,
                 "position": {
-                    "x": 150,
-                    "y": 712
+                    "x": 210,
+                    "y": 785
                 }
             },
             "sets": {},
@@ -6180,8 +6150,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1425,
-                    "y": 226
+                    "x": 1463,
+                    "y": 229
                 }
             },
             "sets": {},
@@ -6244,25 +6214,6 @@
             "sets": {},
             "constraints": {}
         },
-        "7d97948c-4010-df7b-dc77-c866761e4b3e": {
-            "attributes": {
-                "Specification": "F=m*a"
-            },
-            "base": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99",
-            "meta": {},
-            "parent": "ba6cd6f1-7c4b-2159-7461-090d29604fe6",
-            "pointers": {
-                "base": "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99"
-            },
-            "registry": {
-                "position": {
-                    "x": 537,
-                    "y": 274
-                }
-            },
-            "sets": {},
-            "constraints": {}
-        },
         "7e411785-ef99-3e87-64f5-454436eac7fa": {
             "attributes": {
                 "name": "Include"
@@ -6282,16 +6233,6 @@
                     "y": 773
                 }
             },
-            "sets": {},
-            "constraints": {}
-        },
-        "7e41e880-ac0e-631e-b66e-ef9ed671d45b": {
-            "attributes": {},
-            "base": "19c87c55-b665-41ef-776a-b78c81575624",
-            "meta": {},
-            "parent": "5505dd94-18c8-1990-a679-a9f9a4c3b247",
-            "pointers": {},
-            "registry": {},
             "sets": {},
             "constraints": {}
         },
@@ -6471,8 +6412,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 446,
-                    "y": 305
+                    "x": 430,
+                    "y": 361
                 }
             },
             "sets": {},
@@ -6702,8 +6643,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 132,
-                    "y": 259
+                    "x": 120,
+                    "y": 333
                 }
             },
             "sets": {},
@@ -6849,7 +6790,7 @@
         },
         "911cc9e4-e3d9-bc83-022a-ac7a30d47c6b": {
             "attributes": {
-                "name": "ConstraintProperty"
+                "name": "ConstraintParameter"
             },
             "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
             "meta": {},
@@ -6860,8 +6801,8 @@
             "registry": {
                 "isPort": true,
                 "position": {
-                    "x": 20,
-                    "y": 712
+                    "x": 60,
+                    "y": 785
                 }
             },
             "sets": {},
@@ -7041,8 +6982,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 546,
-                    "y": 205
+                    "x": 631,
+                    "y": 201
                 }
             },
             "sets": {},
@@ -7235,8 +7176,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 32,
-                    "y": 210
+                    "x": 17,
+                    "y": 181
                 }
             },
             "sets": {},
@@ -7273,8 +7214,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 31,
-                    "y": 149
+                    "x": 20,
+                    "y": 245
                 }
             },
             "sets": {},
@@ -8095,8 +8036,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 257,
-                    "y": 118
+                    "x": 258,
+                    "y": 88
                 }
             },
             "sets": {},
@@ -8123,6 +8064,7 @@
         },
         "ba6cd6f1-7c4b-2159-7461-090d29604fe6": {
             "attributes": {
+                "Equation": "f = m * a",
                 "name": "AccelerationEquation"
             },
             "base": "cb11e99d-481b-105e-59b9-52a94a0dc0f9",
@@ -8133,8 +8075,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 319,
-                    "y": 262
+                    "x": 395,
+                    "y": 326
                 }
             },
             "sets": {},
@@ -8222,16 +8164,6 @@
                     "y": 232
                 }
             },
-            "sets": {},
-            "constraints": {}
-        },
-        "c05b9f3e-e211-01df-cfc1-81bc1015d247": {
-            "attributes": {},
-            "base": "7d97948c-4010-df7b-dc77-c866761e4b3e",
-            "meta": {},
-            "parent": "9a69e55d-de4a-fffd-67d7-40d74f6bd69f",
-            "pointers": {},
-            "registry": {},
             "sets": {},
             "constraints": {}
         },
@@ -8360,8 +8292,8 @@
             "registry": {
                 "isAbstract": false,
                 "position": {
-                    "x": 1268,
-                    "y": 121
+                    "x": 1348,
+                    "y": 120
                 }
             },
             "sets": {},
@@ -8485,23 +8417,26 @@
         },
         "cb11e99d-481b-105e-59b9-52a94a0dc0f9": {
             "attributes": {
+                "Equation": "",
                 "name": "ConstraintBlock"
             },
             "base": "24712c4c-e6f5-822e-55d3-2e3f16cd8b92",
             "meta": {
+                "attributes": {
+                    "Equation": {
+                        "type": "string"
+                    }
+                },
                 "children": {
                     "items": [
                         "6b06606a-0c01-ee43-dfbb-e5495e0aa7b8",
-                        "911cc9e4-e3d9-bc83-022a-ac7a30d47c6b",
-                        "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99"
+                        "911cc9e4-e3d9-bc83-022a-ac7a30d47c6b"
                     ],
                     "minItems": [
-                        -1,
                         -1,
                         -1
                     ],
                     "maxItems": [
-                        -1,
                         -1,
                         -1
                     ]
@@ -8513,7 +8448,7 @@
             },
             "registry": {
                 "position": {
-                    "x": 148,
+                    "x": 151,
                     "y": 643
                 }
             },
@@ -8785,8 +8720,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1117,
-                    "y": 229
+                    "x": 1155,
+                    "y": 218
                 }
             },
             "sets": {},
@@ -8804,8 +8739,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 593,
-                    "y": 469
+                    "x": 590,
+                    "y": 448
                 }
             },
             "sets": {},
@@ -8872,10 +8807,10 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 517,
-                    "y": 229
+                    "x": 492,
+                    "y": 230
                 }
             },
             "sets": {},
@@ -9050,8 +8985,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 35,
-                    "y": 260
+                    "x": 22,
+                    "y": 118
                 }
             },
             "sets": {},
@@ -9100,33 +9035,6 @@
                 "position": {
                     "x": 100,
                     "y": 100
-                }
-            },
-            "sets": {},
-            "constraints": {}
-        },
-        "da2feee2-6e77-1eb2-1e3f-f76e4b1c7e99": {
-            "attributes": {
-                "Specification": "",
-                "name": "Constraint"
-            },
-            "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
-            "meta": {
-                "attributes": {
-                    "Specification": {
-                        "type": "string",
-                        "default": ""
-                    }
-                }
-            },
-            "parent": "22666200-2b97-808a-0671-eba8e473b647",
-            "pointers": {
-                "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
-            },
-            "registry": {
-                "position": {
-                    "x": 290,
-                    "y": 712
                 }
             },
             "sets": {},
@@ -9571,8 +9479,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1277,
-                    "y": 229
+                    "x": 1311,
+                    "y": 230
                 }
             },
             "sets": {},
@@ -9608,9 +9516,10 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 1570,
-                    "y": 263
+                    "x": 1608,
+                    "y": 264
                 }
             },
             "sets": {},

@@ -323,17 +323,30 @@ define(['js/Constants',
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
             name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name),
             isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID),
-            isTypeConstraintBlock = SysMLMETA.TYPE_INFO.isConstraintBlock(gmeID);
+            isTypeConstraintBlock = SysMLMETA.TYPE_INFO.isConstraintBlock(gmeID),
+            isTypeValue = SysMLMETA.TYPE_INFO.isValue(gmeID),
+            isTypeProperty = SysMLMETA.TYPE_INFO.isProperty(gmeID),
+            isTypeParameter = SysMLMETA.TYPE_INFO.isParameter(gmeID),
+            isTypeConstraintParameter = SysMLMETA.TYPE_INFO.isConstraintParameter(gmeID),
+            isSpecialBlock = isTypeRequirement || isTypeConstraintBlock || isTypeValue || isTypeProperty
+                || isTypeParameter || isTypeConstraintParameter;
 
         /************************************ Requirement & Parametric Diagram **************************************/
         if (this.skinParts.$name) {
             this.skinParts.$name.text(name);
             // from displayConnectors value, we can distinguish part browser from diagram widget
-            if ((isTypeRequirement || isTypeConstraintBlock) && this._displayConnectors) {
+            if (isSpecialBlock) {
+                if (this._displayConnectors) {
 
-                // is type requirement or constraint block, move up name div
-                this.skinParts.$name.css('position', 'absolute');
-                this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
+                    // is type requirement or constraint block, move up name div
+                    this.skinParts.$name.css('position', 'absolute');
+                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
+                } else {
+                    var SvgHeight = parseInt(this.skinParts.$svg.attr('height'));
+                    this.skinParts.$name.css('position', 'relative');
+                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP - SvgHeight);
+
+                }
             }
         }
 

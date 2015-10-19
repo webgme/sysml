@@ -12,11 +12,14 @@ define(['underscore'], function (_underscore) {
             'Block': 'Block',
             'Comment': 'Comment',
             'ConstraintBlock': 'ConstraintBlock',
+            'ConstraintParameter': 'ConstraintParameter',
             'Diagram': 'Diagram',
             'Document': 'Document',
             'FCO': 'FCO',
             'Package': 'Package',
+            'Parameter': 'Parameter',
             'ParametricDiagram': 'ParametricDiagram',
+            'Property': 'Property',
             'Rationale': 'Rationale',
             'Requirement': 'Requirement',
             'RequirementDiagram': 'RequirementDiagram',
@@ -24,7 +27,8 @@ define(['underscore'], function (_underscore) {
             'Subject': 'Subject',
             'SysMLMetaLanguage': 'SysMLMetaLanguage',
             'UseCase': 'UseCase',
-            'UseCaseDiagram': 'UseCaseDiagram'
+            'UseCaseDiagram': 'UseCaseDiagram',
+            'Value': 'Value'
         },
         client = WebGMEGlobal.Client;
 
@@ -72,6 +76,9 @@ define(['underscore'], function (_underscore) {
     var _isConstraintBlock = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintBlock]);
     };
+    var _isConstraintParameter = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintParameter]);
+    };
     var _isDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
     };
@@ -84,8 +91,14 @@ define(['underscore'], function (_underscore) {
     var _isPackage = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Package]);
     };
+    var _isParameter = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Parameter]);
+    };
     var _isParametricDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ParametricDiagram]);
+    };
+    var _isProperty = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Property]);
     };
     var _isRationale = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Rationale]);
@@ -111,6 +124,9 @@ define(['underscore'], function (_underscore) {
     var _isUseCaseDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.UseCaseDiagram]);
     };
+    var _isValue = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Value]);
+    };
 
 
     //return utility functions
@@ -122,11 +138,14 @@ define(['underscore'], function (_underscore) {
             isBlock: _isBlock,
             isComment: _isComment,
             isConstraintBlock: _isConstraintBlock,
+            isConstraintParameter: _isConstraintParameter,
             isDiagram: _isDiagram,
             isDocument: _isDocument,
             isFCO: _isFCO,
             isPackage: _isPackage,
+            isParameter: _isParameter,
             isParametricDiagram: _isParametricDiagram,
+            isProperty: _isProperty,
             isRationale: _isRationale,
             isRequirement: _isRequirement,
             isRequirementDiagram: _isRequirementDiagram,
@@ -134,7 +153,8 @@ define(['underscore'], function (_underscore) {
             isSubject: _isSubject,
             isSysMLMetaLanguage: _isSysMLMetaLanguage,
             isUseCase: _isUseCase,
-            isUseCaseDiagram: _isUseCaseDiagram
+            isUseCaseDiagram: _isUseCaseDiagram,
+            isValue: _isValue
         }
     };
 });

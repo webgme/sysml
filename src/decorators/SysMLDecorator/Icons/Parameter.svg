@@ -1,0 +1,12 @@
+<svg width="150" height="45" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <g id="svg_1" stroke="null">
+   <g id="svg_2" stroke="null">
+    <rect height="43" width="148.244767" y="0.999998" x="0.877617" stroke-width="1.5" fill="#f8f8f8" id="svg_3" stroke="#050505"/>
+   </g>
+   <line fill="none" stroke-width="1.5" stroke-opacity="null" fill-opacity="null" x1="1.436989" y1="31.364282" x2="148.563004" y2="31.364282" id="svg_6" stroke-linejoin="null" stroke-linecap="null" stroke="#000"/>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="40" y="10.560661" id="svg_7" font-size="10" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000">&lt;&lt;Parameter&gt;&gt;</text>
+  </g>
+ </g>
+
+</svg>
