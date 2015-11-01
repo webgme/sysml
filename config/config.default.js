@@ -8,6 +8,7 @@ var path = require('path');
 config.server.port = 9091;
 
 config.plugin.basePaths.push('./src/plugins/Layout');
+config.plugin.basePaths.push('./src/plugins/SysML');
 // config.plugin.basePaths = ['./src/plugins/Test']; //disable exposure of core-plugins
 
 if (config.client.defaultContext) {
@@ -17,7 +18,9 @@ config.seedProjects.defaultProject = "SysML";
 config.seedProjects.basePaths.push('./seeds');
 
 
-
+config.requirejsPaths = {
+	ejs: "./node_modules/webgme/src/common/util/ejs"
+};
 config.visualization.decoratorPaths.push('./src/decorators');
 config.client.usedDecorators.push('SysMLDecorator');
 
