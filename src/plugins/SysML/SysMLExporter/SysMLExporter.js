@@ -165,7 +165,6 @@ define(['plugin/PluginConfig',
             if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
                 var notationFile,
                     modelFile,
-                    modelDi,
                     projectFile,
                     modelNotationElms = [],
                     modelElms = [];
@@ -186,7 +185,8 @@ define(['plugin/PluginConfig',
                         elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'],
                             {
                                 type: childElement.type,
-                                name: childElement.name
+                                name: childElement.name,
+                                id: childElement.id
                             });
                         modelElms.push(elm);
                     }
@@ -194,13 +194,14 @@ define(['plugin/PluginConfig',
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                             {diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
-                            diagramId: '_D' + diagramId++})
+                            diagramId: '_D' + diagramId})
                                 .replace(/&lt;/g, '<')
                                 .replace(/&gt;/g, '>')
                                 .replace(/&#39;/g, "'")
                                 .replace(/&quot;/g, '"');
                     modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
                         {
+                            diagramId: '_D' + diagramId++,
                             id: h,
                             childElements: modelElms.join('\n')
                         })
