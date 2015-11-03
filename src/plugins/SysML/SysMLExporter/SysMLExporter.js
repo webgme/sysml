@@ -11,9 +11,8 @@ define(['plugin/PluginConfig',
     './UseCaseDiagramExporter',
     './RequirementDiagramExporter',
     'ejs',
-    'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
-    'text!./Templates/model.di'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, ejs, TEMPLATES, modelDiFile) {
+    'plugin/SysMLExporter/SysMLExporter/Templates/Templates'
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, ejs, TEMPLATES) {
 
     'use strict';
 
@@ -231,14 +230,14 @@ define(['plugin/PluginConfig',
                     //self.diagram.usecasediagram.link = self.usecaseDiagrams[diagramPath].links;
                 output = {
                     project: projectFile,
-                    modelDi: modelDiFile,
+                    modelDi: TEMPLATES['model.di.ejs'],
                     notation: notationFile,
                     modelUml: modelFile
                 };
-                self.outputFiles['.project'] = projectFile;
-                self.outputFiles['model.di'] = modelDiFile;
-                self.outputFiles['model.notation'] = notationFile;
-                self.outputFiles['model.uml'] = modelFile;
+                self.outputFiles['.project'] = output.project;
+                self.outputFiles['model.di'] = output.modelDi;
+                self.outputFiles['model.notation'] = output.notation;
+                self.outputFiles['model.uml'] = output.modelUml;
             }
             ++h;
         }
