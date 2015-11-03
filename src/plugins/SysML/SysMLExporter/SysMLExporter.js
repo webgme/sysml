@@ -8,10 +8,12 @@
 
 define(['plugin/PluginConfig',
     'plugin/PluginBase',
+    './UseCaseDiagramExporter',
+    './RequirementDiagramExporter',
     'ejs',
     'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
     'text!./Templates/model.di'
-    ], function (PluginConfig, PluginBase, ejs, TEMPLATES, modelDiFile) {
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, ejs, TEMPLATES, modelDiFile) {
 
     'use strict';
 
@@ -21,8 +23,8 @@ define(['plugin/PluginConfig',
         this.usecaseDiagrams = {};
         this.diagrams = [];
         this.diagram = {};
-        this.idLUT = {};
         this.outputFiles = {};
+        this.idLUT = {};
         this.error = '';
     };
 
@@ -118,18 +120,25 @@ define(['plugin/PluginConfig',
             core = self.core,
             gmeID = core.getPath(node),
             baseClass = self.getMetaType(node),
+            parentBaseClass = self.getMetaType(node.parent),
+            isPackage = self.isMetaTypeOf(parentBaseClass, self.META.Package),
+            /** use case diagram **/
             isActor = self.isMetaTypeOf(baseClass, self.META.Actor),
             isUseCase = self.isMetaTypeOf(baseClass, self.META.UseCase),
             //isSubject = self.isMetaTypeOf(baseClass, self.META.Subject),
             isUseCaseLink = self.isMetaTypeOf(baseClass, self.META.UseCaseLinks),
-            parentBaseClass = self.getMetaType(node.parent),
-            isParentValid = self.isMetaTypeOf(parentBaseClass, self.META.Package) ||
-                            self.isMetaTypeOf(parentBaseClass, self.META.Block) ||
+            isUseCaseParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.Block) ||
                             self.isMetaTypeOf(parentBaseClass, self.META.UseCaseDiagram),
-            validType = isParentValid && (isActor || isUseCase || isUseCaseLink),
+            isUseCaseDiagram = isUseCaseParent && (isActor || isUseCase || isUseCaseLink),
+
+            /** requirement diagram **/
+            isRequirement = self.isMetaTypeOf(parentBaseClass, self.META.Requirement),
+            isRqtParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
+            isRqtDiagram = isRqtParent && (isRequirement),
             afterConnAdded;
 
-        if (validType) {
+        if (isUseCaseDiagram) {
+            _.extend(self, new UseCaseExporter());
             if (isUseCaseLink) {
                 afterConnAdded = function (err) {
                     if (err) {
@@ -147,6 +156,9 @@ define(['plugin/PluginConfig',
                 }
                 callback(null, node);
             }
+        } else if (isRqtDiagram) {
+            _.extend(self, new RequirementExporter());
+            // todo: add object
         } else {
             callback(null, node);
         }
@@ -251,137 +263,9 @@ define(['plugin/PluginConfig',
 
     SysMLExporterPlugin.prototype.addComponent = function (nodeObj) {
 
-        var self = this,
-            core = self.core,
-            gmeID = core.getPath(nodeObj),
-            baseClass = self.getMetaType(nodeObj),
-            type = core.getAttribute(baseClass, 'name'),
-            name = core.getAttribute(nodeObj, 'name'),
-            xPos = core.getRegistry(nodeObj, 'position').x,
-            yPos = core.getRegistry(nodeObj, 'position').y,
-            element,
-            parentPath = core.getPath(core.getParent(nodeObj)),
-            diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
-
-        if (self.isMetaTypeOf(baseClass, self.META.Actor) || self.isMetaTypeOf(baseClass, self.META.UseCase)) {
-
-            self.idLUT[gmeID] = self.modelID;
-
-            element = {
-                name: name,
-                id: self.modelID,
-                x: xPos,
-                y: yPos,
-                type: type
-            };
-            //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
-
-            if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                self.usecaseDiagrams[diagramKey] = {};
-            }
-            if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.usecaseDiagrams[diagramKey].elements = [];
-            }
-            self.usecaseDiagrams[diagramKey].elements.push(element);
-            self.modelID += 1;
-        }
     };
 
     SysMLExporterPlugin.prototype.addConnection = function (nodeObj, callback) {
-
-        var self = this,
-            core = self.core,
-            parentPath = core.getPath(core.getParent(nodeObj)),
-            diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name'),
-            src = core.getPointerPath(nodeObj, "src"),
-            dst = core.getPointerPath(nodeObj, "dst"),
-            counter = 2,
-            error = '',
-            pushUseCaseLink,
-            afterSrcLoaded,
-            afterDstLoaded,
-            srcMetaType,
-            dstMetaType,
-            srcX,
-            srcY,
-            dstX,
-            dstY;
-
-        pushUseCaseLink = function (err, shouldPush) {
-            var link;
-            if (err) {
-                error += err;
-                shouldPush = false;
-            }
-            counter -= 1;
-            if (counter === 0) {
-                if (error) {
-                    callback(error);
-                    return;
-                }
-                if (shouldPush) {
-
-                    link = {
-                        "@id": self.modelID,
-                        "@source": self.idLUT[src],
-                        "@target": self.idLUT[dst],
-                        "points": {
-                            "point": [
-                                {
-                                    "@x": srcX,
-                                    "@y": srcY
-                                },
-                                {
-                                    "@x": dstX,
-                                    "@y": dstY
-                                }
-                            ]
-                        }
-                    };
-                    if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                        self.usecaseDiagrams[diagramKey] = {};
-                    }
-                    if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.usecaseDiagrams[diagramKey].links = [];
-                    }
-                    //self.usecaseDiagrams[diagramKey].links.push(link);
-                }
-                self.modelID += 1;
-                callback(null);
-            }
-        };
-
-        afterSrcLoaded = function (err, nodeObj) {
-            if (err) {
-                pushUseCaseLink(err, false);
-                return;
-            }
-            if (!self.idLUT.hasOwnProperty(src)) {
-                srcMetaType = core.getAttribute(self.getMetaType(nodeObj), 'name');
-                self.addComponent(nodeObj, srcMetaType);
-                self.modelID += 1;
-            }
-            srcX = core.getRegistry(nodeObj, 'position').x;
-            srcY = core.getRegistry(nodeObj, 'position').y;
-            pushUseCaseLink(null, true);
-        };
-        core.loadByPath(self.rootNode, src, afterSrcLoaded);
-
-        afterDstLoaded = function (err, nodeObj) {
-            if (err) {
-                pushUseCaseLink(err, false);
-                return;
-            }
-            if (!self.idLUT.hasOwnProperty(dst)) {
-                srcMetaType = core.getAttribute(self.getMetaType(nodeObj), 'name');
-                self.addComponent(nodeObj, dstMetaType);
-                self.modelID += 1;
-            }
-            dstX = core.getRegistry(nodeObj, 'position').x;
-            dstY = core.getRegistry(nodeObj, 'position').y;
-            pushUseCaseLink(null, true);
-        };
-        core.loadByPath(self.rootNode, dst, afterDstLoaded);
 
     };
 
