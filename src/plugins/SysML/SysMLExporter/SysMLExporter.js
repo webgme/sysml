@@ -9,10 +9,8 @@
 define(['plugin/PluginConfig',
     'plugin/PluginBase',
     './UseCaseDiagramExporter',
-    './RequirementDiagramExporter',
-    'ejs',
-    'plugin/SysMLExporter/SysMLExporter/Templates/Templates'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, ejs, TEMPLATES) {
+    './RequirementDiagramExporter'
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter) {
 
     'use strict';
 
@@ -24,6 +22,7 @@ define(['plugin/PluginConfig',
         this.diagram = {};
         this.outputFiles = {};
         this.idLUT = {};
+        this.reverseIdLUT = {};
         this.error = '';
     };
 
@@ -164,100 +163,7 @@ define(['plugin/PluginConfig',
     };
 
     SysMLExporterPlugin.prototype.saveResults = function (callback) {
-        var self = this,
-            diagramPath,
-            i,
-            h = 0,
-            diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
 
-        for (diagramPath in self.usecaseDiagrams) {
-            if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
-                var notationFile,
-                    modelFile,
-                    projectFile,
-                    modelNotationElms = [],
-                    modelElms = [];
-
-                    for (i = 0; i < self.usecaseDiagrams[diagramPath].elements.length; ++i) {
-                        var childElement = self.usecaseDiagrams[diagramPath].elements[i],
-                            template = TEMPLATES[childElement.type + '.ejs'],
-                            elm;
-                            if (template) {
-                                elm = ejs.render(template,
-                                    {
-                                        id: childElement.id,
-                                        x: childElement.x,
-                                        y: childElement.y
-                                    });
-                                modelNotationElms.push(elm);
-                            }
-                        elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'],
-                            {
-                                type: childElement.type,
-                                name: childElement.name,
-                                id: childElement.id
-                            });
-                        modelElms.push(elm);
-                    }
-
-                    notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
-                            {diagramName: diagramPath.split('+')[1],
-                            childrenElements: modelNotationElms.join('\n'),
-                            diagramId: '_D' + diagramId})
-                                .replace(/&lt;/g, '<')
-                                .replace(/&gt;/g, '>')
-                                .replace(/&#39;/g, "'")
-                                .replace(/&quot;/g, '"');
-                    modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
-                        {
-                            diagramId: '_D' + diagramId++,
-                            id: h,
-                            childElements: modelElms.join('\n')
-                        })
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-
-                    projectFile = ejs.render(TEMPLATES['.project.ejs'],
-                        {
-                            name: diagramPath.split('+')[1]
-                        });
-
-                    //self.diagram.usecasediagram.subject = self.usecaseDiagrams[diagramPath].subjects;
-                    //self.diagram.usecasediagram.link = self.usecaseDiagrams[diagramPath].links;
-                output = {
-                    project: projectFile,
-                    modelDi: TEMPLATES['model.di.ejs'],
-                    notation: notationFile,
-                    modelUml: modelFile
-                };
-                self.outputFiles['.project'] = output.project;
-                self.outputFiles['model.di'] = output.modelDi;
-                self.outputFiles['model.notation'] = output.notation;
-                self.outputFiles['model.uml'] = output.modelUml;
-            }
-            ++h;
-        }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
     SysMLExporterPlugin.prototype.addComponent = function (nodeObj) {
