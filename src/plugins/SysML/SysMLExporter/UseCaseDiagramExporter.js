@@ -301,6 +301,7 @@ define(['ejs',
 
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
+                            diagramType: 'UseCase',
                             diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
                             diagramId: '_D' + diagramId
@@ -314,7 +315,8 @@ define(['ejs',
                         {
                             diagramId: '_D' + diagramId++,
                             id: h,
-                            childElements: modelElms.join('\n')
+                            childElements: modelElms.join('\n'),
+                            xmiElements: ''
                         })
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')

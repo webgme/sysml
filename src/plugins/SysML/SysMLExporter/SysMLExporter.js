@@ -17,13 +17,14 @@ define(['plugin/PluginConfig',
     var SysMLExporterPlugin = function () {
         PluginBase.call(this);
         this.modelID = 0;
-        this.usecaseDiagrams = {};
         this.diagrams = [];
         this.diagram = {};
         this.outputFiles = {};
         this.idLUT = {};
         this.reverseIdLUT = {};
         this.error = '';
+        this.requirementDiagrams = {};
+        this.usecaseDiagrams = {};
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -130,22 +131,24 @@ define(['plugin/PluginConfig',
             isUseCaseDiagram = isUseCaseParent && (isActor || isUseCase || isUseCaseLink),
 
             /** requirement diagram **/
-            isRequirement = self.isMetaTypeOf(parentBaseClass, self.META.Requirement),
+            isRequirement = self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
             isRqtParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
             isRqtDiagram = isRqtParent && (isRequirement),
             afterConnAdded;
 
+
+        afterConnAdded = function (err) {
+            if (err) {
+                self.error += err;
+                callback(err, node);
+                return;
+            }
+            callback(null, node);
+        };
+
         if (isUseCaseDiagram) {
             _.extend(self, new UseCaseExporter());
             if (isUseCaseLink) {
-                afterConnAdded = function (err) {
-                    if (err) {
-                        self.error += err;
-                        callback(err, node);
-                        return;
-                    }
-                    callback(null, node);
-                };
                 self.addConnection(node, afterConnAdded);
             } else {
                 // if key not exist already, add key; otherwise ignore
@@ -156,6 +159,16 @@ define(['plugin/PluginConfig',
             }
         } else if (isRqtDiagram) {
             _.extend(self, new RequirementExporter());
+            if (isRequirement) {
+                // if key not exist already, add key; otherwise ignore
+                if (!self.idLUT.hasOwnProperty(gmeID)) {
+                    self.addComponent(node);
+                }
+                callback(null, node);
+
+            } else {
+                self.addConnection(node, afterConnAdded);
+            }
             // todo: add object
         } else {
             callback(null, node);
