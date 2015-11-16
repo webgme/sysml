@@ -134,6 +134,7 @@ define(['plugin/PluginConfig',
             isRequirement = self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
             isRqtParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
             isRqtDiagram = isRqtParent && (isRequirement),
+            isReq2Req = self.isMetaTypeOf(baseClass, self.META.Req2Req),
             afterConnAdded;
 
 
@@ -159,15 +160,14 @@ define(['plugin/PluginConfig',
             }
         } else if (isRqtDiagram) {
             _.extend(self, new RequirementExporter());
-            if (isRequirement) {
+            if (isReq2Req) {
+                self.addConnection(node, afterConnAdded);
+            } else {
                 // if key not exist already, add key; otherwise ignore
                 if (!self.idLUT.hasOwnProperty(gmeID)) {
                     self.addComponent(node);
                 }
                 callback(null, node);
-
-            } else {
-                self.addConnection(node, afterConnAdded);
             }
             // todo: add object
         } else {

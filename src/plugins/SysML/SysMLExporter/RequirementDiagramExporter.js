@@ -8,7 +8,8 @@
 
 define(['ejs',
     'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
-    './SysMLExporterConstants'], function (ejs, TEMPLATES, CONSTANTS) {
+    './SysMLExporterConstants',
+    'xmljsonconverter'], function (ejs, TEMPLATES, CONSTANTS, Converter) {
 
     'use strict';
 
@@ -31,7 +32,8 @@ define(['ejs',
 
         if (self.isMetaTypeOf(baseClass, self.META.Requirement)) {
 
-            self.idLUT[gmeID] = self.modelID;
+            self.idLUT[gmeID] = {id: self.modelID};
+            self.reverseIdLUT[self.modelID] = gmeID;
 
             element = {
                 name: name,
@@ -57,9 +59,13 @@ define(['ejs',
         var self = this,
             core = self.core,
             parentPath = core.getPath(core.getParent(nodeObj)),
+
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name'),
+            isTypeDecompose = self.isMetaTypeOf(self.getMetaType(nodeObj), self.META.Decompose),
+            type = core.getAttribute(self.getMetaType(nodeObj), 'name'),
             src = core.getPointerPath(nodeObj, "src"),
             dst = core.getPointerPath(nodeObj, "dst"),
+            name = core.getAttribute(nodeObj, 'name'),
             counter = 2,
             error = '',
             pushUseCaseLink,
@@ -70,7 +76,8 @@ define(['ejs',
             srcX,
             srcY,
             dstX,
-            dstY;
+            dstY,
+            dstName;
 
         pushUseCaseLink = function (err, shouldPush) {
             var link;
@@ -85,32 +92,60 @@ define(['ejs',
                     return;
                 }
                 if (shouldPush) {
-
                     link = {
-                        "@id": self.modelID,
-                        "@source": self.idLUT[src],
-                        "@target": self.idLUT[dst],
-                        "points": {
-                            "point": [
-                                {
-                                    "@x": srcX,
-                                    "@y": srcY
-                                },
-                                {
-                                    "@x": dstX,
-                                    "@y": dstY
-                                }
-                            ]
+                        id: self.modelID,
+                        src: self.idLUT[src].id,
+                        dst: self.idLUT[dst].id,
+                        type: type,
+                        name: name,
+                        points: {
+                            src: {
+                                x: 1, //srcX,
+                                y: 0.5 //srcY
+                            },
+                            dst: {
+                                x: 0, //dstX,
+                                y: 0.5 //dstY
+                            }
                         }
                     };
-                    if (!self.requirementDiagrams.hasOwnProperty(diagramKey)) {
-                        self.requirementDiagrams[diagramKey] = {};
+
+                    if (isTypeDecompose) {
+                        if (!self.idLUT[src].hasOwnProperty('subreqs')) {
+                            self.idLUT[src].subreqs = [];
+                        }
+                        link.dstName = dstName;
+                        self.idLUT[src].subreqs.push(link);
+                        self.idLUT[dst].ignore = true;
+                        link.ignore = true;
+
                     }
-                    if (!self.requirementDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.requirementDiagrams[diagramKey].links = [];
+                    // todo: do not push decompose children again into links
+                        if (!self.requirementDiagrams.hasOwnProperty(diagramKey)) {
+                            self.requirementDiagrams[diagramKey] = {};
+                        }
+                        if (!self.requirementDiagrams[diagramKey].hasOwnProperty('links')) {
+                            self.requirementDiagrams[diagramKey].links = [];
+                        }
+                        self.requirementDiagrams[diagramKey].links.push(link);
+                        if (!self.idLUT[src].hasOwnProperty('dst')) {
+                            self.idLUT[src].dst = [];
+                        }
+                        self.idLUT[src].dst.push({
+                            type: type,
+                            dstId: link.dst,
+                            connId: link.id
+                        });
+                        if (!self.idLUT[dst].hasOwnProperty('src')) {
+                            self.idLUT[dst].src = [];
+                        }
+                        self.idLUT[dst].src.push({
+                            type: type,
+                            srcId: link.src,
+                            connId: link.id
+                        });
                     }
-                    //self.requirementDiagrams[diagramKey].links.push(link);
-                }
+
                 self.modelID += 1;
                 callback(null);
             }
@@ -144,6 +179,7 @@ define(['ejs',
             }
             dstX = core.getRegistry(nodeObj, 'position').x;
             dstY = core.getRegistry(nodeObj, 'position').y;
+            dstName = core.getAttribute(nodeObj, 'name');
             pushUseCaseLink(null, true);
         };
         core.loadByPath(self.rootNode, dst, afterDstLoaded);
@@ -155,15 +191,15 @@ define(['ejs',
             diagramPath,
             i,
             h = 0,
-            obj,
+            obj = {},
             diagramId = 1,
             output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            artifact = self.blobClient.createArtifact('SysMLExporterOutput'),
+            json2XML = new Converter.Json2xml({xmlDeclaration: ' '});
 
         for (diagramPath in self.requirementDiagrams) {
             if (self.requirementDiagrams.hasOwnProperty(diagramPath)) {
-                var template,
-                    notationFile,
+                var notationFile,
                     modelFile,
                     projectFile,
                     modelNotationElms = [],
@@ -172,113 +208,52 @@ define(['ejs',
 
 
                 for (i = 0; i < self.requirementDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.requirementDiagrams[diagramPath].elements[i],
-                        elm,
-                        j;
+                    var childElement = self.requirementDiagrams[diagramPath].elements[i];
+                    self._saveComponent(childElement, modelNotationElms, modelElms, reqElms);
 
-                    template = TEMPLATES[childElement.type + '.ejs'];
-
-                    if (template) {
-                        elm = ejs.render(template,
-                            {
-                                id: childElement.id,
-                                x: childElement.x,
-                                y: childElement.y
-                            });
-                        modelNotationElms.push(elm);
-                    }
-
-                    template = TEMPLATES['packagedElement.uml.ejs'];
-                    obj = {
-                        type: childElement.type,
-                        name: childElement.name,
-                        id: childElement.id,
-                        relations: ''
-                    };
-
-                    //
-                    //if (childElement.type === 'UseCase') {
-                    //    var connType,
-                    //        connId,
-                    //        srcId,
-                    //        dstId;
-                    //
-                    //    if (self.idLUT[self.reverseIdLUT[childElement.id]].src) {
-                    //
-                    //        for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].src.length; ++j) {
-                    //            connType = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].type;
-                    //            srcId = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].srcId;
-                    //            if (connType == "Extend") {
-                    //                obj.relations += '\n<extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="ext_' + srcId
-                    //                    + '" name="ExtensionPoint' + j + '"/>'
-                    //            }
-                    //        }
-                    //    }
-                    //    if (self.idLUT[self.reverseIdLUT[childElement.id]].dst) {
-                    //
-                    //        for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].dst.length; ++j) {
-                    //            connType = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].type;
-                    //            dstId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].dstId;
-                    //            connId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].connId;
-                    //            if (connType == "Include") {
-                    //                obj.relations += '\n<include xmi:type="uml:Include" xmi:id="' + connId
-                    //                    + '" addition="' + dstId + '"/>';
-                    //            } else if (connType == "Extend") {
-                    //                obj.relations += '\n<extend xmi:type="uml:Extend" xmi:id="' + connId
-                    //                    + '" extendedCase="' + dstId + '" extensionLocation="ext_' + obj.id + '"/>'
-                    //            }
-                    //        }
-                    //    }
-                    //}
-
-                    elm = ejs.render(template, obj)
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-
-                    modelElms.push(elm);
-
-                    template = TEMPLATES['requirement.uml.ejs'];
-                    elm = ejs.render(template, {
-                        id: childElement.id
-                    })
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-                    reqElms.push(elm);
                 }
 
-                //for (i = 0; i < self.requirementDiagrams[diagramPath].links.length; ++i) {
-                //    var link = self.requirementDiagrams[diagramPath].links[i],
-                //        edge;
-                //
-                //    obj = CONSTANTS[link.type];
-                //    obj.srcId = link.src;
-                //    obj.dstId = link.dst;
-                //    obj.id = link.id;
-                //    obj.srcX = link.points.src.x;
-                //    obj.srcY = link.points.src.y;
-                //    obj.dstX = link.points.dst.x;
-                //    obj.dstY = link.points.dst.y;
-                //
-                //    edge = ejs.render(TEMPLATES['edges.ejs'], obj);
-                //    modelNotationElms.push(edge);
-                //
-                //    if (link.type === "CommunicationPath") {
-                //
-                //        edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
-                //            {
-                //                connId: link.id,
-                //                srcId: link.src,
-                //                dstId: link.dst,
-                //                srcName: link.srcName,
-                //                dstName: link.dstName
-                //            });
-                //        modelElms.push(edge);
-                //    }
-                //}
+                for (i = 0; i < self.requirementDiagrams[diagramPath].links.length; ++i) {
+                    var link = self.requirementDiagrams[diagramPath].links[i],
+                        edge,
+                        template;
+                    if (link.ignore) continue;
+
+                    obj = CONSTANTS[link.type] || {};
+
+                    obj.srcId = link.src;
+                    obj.dstId = link.dst;
+                    obj.srcX = link.points.src.x;
+                    obj.srcY = link.points.src.y;
+                    obj.dstX = link.points.dst.x;
+                    obj.dstY = link.points.dst.y;
+                    obj.id = link.id;
+
+
+                    template = TEMPLATES[CONSTANTS.templates[link.type] || CONSTANTS.templates.DefaultEdges];
+                    edge = ejs.render(template, obj);
+
+                    modelNotationElms.push(edge);
+
+                    edge = json2XML.convertToString({
+                        'packagedElement': {
+                            '@xmi:type': 'uml:Abstraction',
+                            '@xmi:id': link.id,
+                            '@name': link.name,
+                            '@client': link.src,
+                            '@supplier': link.dst
+                        }
+                    });
+                    modelElms.push(edge);
+                    edge = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
+                        {
+                            id: link.id,
+                            className: link.type,
+                            baseName: 'Abstraction'
+                        }
+                    );
+                    reqElms.push(edge);
+                }
 
                 notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                     {
@@ -297,7 +272,7 @@ define(['ejs',
                         diagramId: '_D' + diagramId++,
                         id: h,
                         childElements: modelElms.join('\n'),
-                        xmiElements: reqElms
+                        xmiElements: reqElms.join('\n')
                     })
                     .replace(/&lt;/g, '<')
                     .replace(/&gt;/g, '>')
@@ -309,8 +284,6 @@ define(['ejs',
                         name: diagramPath.split('+')[1]
                     });
 
-                //self.diagram.usecasediagram.subject = self.requirementDiagrams[diagramPath].subjects;
-                //self.diagram.usecasediagram.link = self.requirementDiagrams[diagramPath].links;
                 output = {
                     project: projectFile,
                     modelDi: TEMPLATES['model.di.ejs'],
@@ -323,7 +296,6 @@ define(['ejs',
                 self.outputFiles['model.uml'] = output.modelUml;
             }
             ++h;
-
         }
 
         artifact.addFiles(self.outputFiles, function (err, hashes) {
@@ -343,6 +315,111 @@ define(['ejs',
             });
         });
     };
+
+    RequirementDiagramExporter.prototype._saveComponent = function (childElement, modelNotationElms, modelElms, reqElms) {
+
+        // TODO: this is implemented assuming Requirement is the only type
+
+        var self = this,
+            elm,
+            j,
+            umlObject,
+            json2XML = new Converter.Json2xml({xmlDeclaration: ' '});
+
+        umlObject = {
+            'packagedElement': {
+                '@xmi:type': 'uml:' + childElement.type,
+                '@xmi:id': childElement.id,
+                '@name': childElement.name
+            }
+        };
+
+        // if node has decomposed subreqs, it is type Requirement
+        if (self.idLUT[self.reverseIdLUT[childElement.id]].subreqs) {
+
+            umlObject.packagedElement['nestedClassifier'] = [];
+
+            for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].subreqs.length; ++j) {
+                self._buildDecomposition(umlObject.packagedElement, self.idLUT[self.reverseIdLUT[childElement.id]].subreqs[j], modelNotationElms);
+            }
+
+            elm = json2XML.convertToString(umlObject);
+            modelElms.push(elm);
+
+        } else if (!self.idLUT[self.reverseIdLUT[childElement.id]].ignore || self.idLUT[self.reverseIdLUT[childElement.id]].dst) {
+
+        // (self.idLUT[self.reverseIdLUT[childElement.id]].dst ||
+        //   (!self.idLUT[self.reverseIdLUT[childElement.id]].src && !self.idLUT[self.reverseIdLUT[childElement.id]].dst)) {
+
+            // if node isn't connected to any other objects or is a src obj
+
+            elm = json2XML.convertToString(umlObject);
+            modelElms.push(elm);
+        }   // otherwise, don't create a "packagedElement" for node
+
+
+        // for each Requirement type, create a Requirement element for it
+        elm = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
+            {
+                id: childElement.id,
+                className: 'Requirement',
+                baseName: 'Class'
+            }
+        );
+        reqElms.push(elm);
+
+        // for each node, create notation elements
+        elm = ejs.render(TEMPLATES[childElement.type + '.ejs'],
+            {
+                id: childElement.id,
+                x: childElement.x,
+                y: childElement.y
+            });
+        modelNotationElms.push(elm);
+    };
+
+    RequirementDiagramExporter.prototype._buildDecomposition = function (compChain, currentChild, modelNotationElms) {
+        var self = this,
+            id = currentChild.dst,
+            type = 'Class',
+            name = currentChild.dstName,
+            obj = {},
+            elm,
+            j;
+
+        // create notation elements for Decompose type connections
+        obj.srcId = currentChild.src;
+        obj.dstId = currentChild.dst;
+        obj.srcX = currentChild.points.src.x;
+        obj.srcY = currentChild.points.src.y;
+        obj.dstX = currentChild.points.dst.x;
+        obj.dstY = currentChild.points.dst.y;
+
+        elm = ejs.render(TEMPLATES[CONSTANTS.templates.Decompose], obj);
+
+        modelNotationElms.push(elm);
+
+
+        // create uml elements for the decomposition chain
+        obj = {
+                '@xmi:type': 'uml:' + type,
+                '@xmi:id': id,
+                '@name': name
+        };
+
+        // currentChild.dst stores the dst end of Decompose connection
+        if (self.idLUT[self.reverseIdLUT[id]].subreqs) {
+
+            obj.nestedClassifier = [];
+            for (j = 0; j < self.idLUT[self.reverseIdLUT[id]].subreqs.length; ++j) {
+                self._buildDecomposition(obj, self.idLUT[self.reverseIdLUT[id]].subreqs[j]);
+            }
+        }
+
+        compChain.nestedClassifier.push(obj);
+
+    };
+
 
 
     return RequirementDiagramExporter;

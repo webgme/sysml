@@ -90,22 +90,6 @@ define([
             return;
         }
 
-        if ( !self.activeNode ) {
-            self.createMessage( null,
-                'Active node not found! Try selecting another model and re-opening the desired model', 'error' );
-            callback( 'Active node not found!', self.result );
-            return;
-        }
-
-        if ( !self.isMetaTypeOf( self.activeNode, self.META.Package ) ) {
-            var msg = "SysMLImporter must be called from a Package!";
-            self.logger.error( msg );
-            self.createMessage( self.activeNode, msg, 'error' );
-            self.result.setSuccess( false );
-            callback( null, self.result );
-            return;
-        }
-
         self.blobClient.getObject( currentConfig.file, function ( err, xmlArrayBuffer ) {
             var xmlToJson = new Converter.Xml2json( {
                 skipWSText: true

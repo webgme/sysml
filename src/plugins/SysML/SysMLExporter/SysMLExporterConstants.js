@@ -33,6 +33,13 @@ define([], function () {
             y1: 20,
             y2: -20,
             connType: "Include"
+        },
+        templates: {
+            Decompose: 'decompose.ejs',
+            Satisfy: 'abstraction.ejs',
+            DeriveReqt: 'abstraction.ejs',
+            RequirementUml: 'requirement.uml.ejs',
+            DefaultEdges: 'edges.ejs'
         }
     };
 });

@@ -20,8 +20,7 @@ config.seedProjects.basePaths.push('./seeds');
 
 config.requirejsPaths = {
 	ejs: "./node_modules/webgme/src/common/util/ejs",
-	"xmljsonconverter": "./utils/xmljsonconverter",
-	"sax": "./vendor/sax/sax"
+	xmljsonconverter: "./node_modules/webgme/src/common/util/xmljsonconverter"
 };
 config.visualization.decoratorPaths.push('./src/decorators');
 config.client.usedDecorators.push('SysMLDecorator');

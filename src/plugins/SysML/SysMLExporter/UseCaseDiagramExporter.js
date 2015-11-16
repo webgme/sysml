@@ -119,7 +119,7 @@ define(['ejs',
                         self.usecaseDiagrams[diagramKey].links = [];
                     }
                     self.usecaseDiagrams[diagramKey].links.push(link);
-                    if (type == "Extend" || type == "Include") {
+                    if (type === "Extend" || type === "Include") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
                             self.idLUT[src].dst = [];
