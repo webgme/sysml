@@ -116,11 +116,8 @@ define(['ejs',
                         }
                         link.dstName = dstName;
                         self.idLUT[src].subreqs.push(link);
-                        self.idLUT[dst].ignore = true;
-                        link.ignore = true;
-
-                    }
-                    // todo: do not push decompose children again into links
+                        self.idLUT[dst].ignored = true;
+                    } else {
                         if (!self.requirementDiagrams.hasOwnProperty(diagramKey)) {
                             self.requirementDiagrams[diagramKey] = {};
                         }
@@ -146,8 +143,10 @@ define(['ejs',
                         });
                     }
 
-                self.modelID += 1;
-                callback(null);
+
+                    self.modelID += 1;
+                    callback(null);
+                }
             }
         };
 
@@ -213,46 +212,49 @@ define(['ejs',
 
                 }
 
-                for (i = 0; i < self.requirementDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.requirementDiagrams[diagramPath].links[i],
-                        edge,
-                        template;
-                    if (link.ignore) continue;
-
-                    obj = CONSTANTS[link.type] || {};
-
-                    obj.srcId = link.src;
-                    obj.dstId = link.dst;
-                    obj.srcX = link.points.src.x;
-                    obj.srcY = link.points.src.y;
-                    obj.dstX = link.points.dst.x;
-                    obj.dstY = link.points.dst.y;
-                    obj.id = link.id;
+                if (self.requirementDiagrams[diagramPath].links) {
 
 
-                    template = TEMPLATES[CONSTANTS.templates[link.type] || CONSTANTS.templates.DefaultEdges];
-                    edge = ejs.render(template, obj);
+                    for (i = 0; i < self.requirementDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.requirementDiagrams[diagramPath].links[i],
+                            edge,
+                            template;
 
-                    modelNotationElms.push(edge);
+                        obj = CONSTANTS[link.type] || {};
 
-                    edge = json2XML.convertToString({
-                        'packagedElement': {
-                            '@xmi:type': 'uml:Abstraction',
-                            '@xmi:id': link.id,
-                            '@name': link.name,
-                            '@client': link.src,
-                            '@supplier': link.dst
-                        }
-                    });
-                    modelElms.push(edge);
-                    edge = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
-                        {
-                            id: link.id,
-                            className: link.type,
-                            baseName: 'Abstraction'
-                        }
-                    );
-                    reqElms.push(edge);
+                        obj.srcId = link.src;
+                        obj.dstId = link.dst;
+                        obj.srcX = link.points.src.x;
+                        obj.srcY = link.points.src.y;
+                        obj.dstX = link.points.dst.x;
+                        obj.dstY = link.points.dst.y;
+                        obj.id = link.id;
+
+
+                        template = TEMPLATES[CONSTANTS.templates[link.type] || CONSTANTS.templates.DefaultEdges];
+                        edge = ejs.render(template, obj);
+
+                        modelNotationElms.push(edge);
+
+                        edge = json2XML.convertToString({
+                            'packagedElement': {
+                                '@xmi:type': 'uml:Abstraction',
+                                '@xmi:id': link.id,
+                                '@name': link.name,
+                                '@client': link.src,
+                                '@supplier': link.dst
+                            }
+                        });
+                        modelElms.push(edge);
+                        edge = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
+                            {
+                                id: link.id,
+                                className: link.type,
+                                baseName: 'Abstraction'
+                            }
+                        );
+                        reqElms.push(edge);
+                    }
                 }
 
                 notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
@@ -335,7 +337,7 @@ define(['ejs',
         };
 
         // if node has decomposed subreqs, it is type Requirement
-        if (self.idLUT[self.reverseIdLUT[childElement.id]].subreqs) {
+        if (self.idLUT[self.reverseIdLUT[childElement.id]].subreqs && !self.idLUT[self.reverseIdLUT[childElement.id]].ignored) {
 
             umlObject.packagedElement['nestedClassifier'] = [];
 
@@ -346,12 +348,10 @@ define(['ejs',
             elm = json2XML.convertToString(umlObject);
             modelElms.push(elm);
 
-        } else if (!self.idLUT[self.reverseIdLUT[childElement.id]].ignore || self.idLUT[self.reverseIdLUT[childElement.id]].dst) {
+        } else if (self.idLUT[self.reverseIdLUT[childElement.id]].dst
+            || (!self.idLUT[self.reverseIdLUT[childElement.id]].ignored)) {
 
-        // (self.idLUT[self.reverseIdLUT[childElement.id]].dst ||
-        //   (!self.idLUT[self.reverseIdLUT[childElement.id]].src && !self.idLUT[self.reverseIdLUT[childElement.id]].dst)) {
-
-            // if node isn't connected to any other objects or is a src obj
+            // if node isn't nested in any other objects or is a src obj
 
             elm = json2XML.convertToString(umlObject);
             modelElms.push(elm);
@@ -412,7 +412,7 @@ define(['ejs',
 
             obj.nestedClassifier = [];
             for (j = 0; j < self.idLUT[self.reverseIdLUT[id]].subreqs.length; ++j) {
-                self._buildDecomposition(obj, self.idLUT[self.reverseIdLUT[id]].subreqs[j]);
+                self._buildDecomposition(obj, self.idLUT[self.reverseIdLUT[id]].subreqs[j], modelNotationElms);
             }
         }
 
