@@ -8,10 +8,16 @@
 define([
     'plugin/PluginConfig',
     'plugin/PluginBase',
+    './RequirementDiagramImporter',
+    './UseCaseDiagramImporter',
+    'jszip',
     'xmljsonconverter'
 ], function (
     PluginConfig,
     PluginBase,
+    RequirementDiagramImporter,
+    UseCaseDiagramImporter,
+    JSZip,
     Converter) {
     'use strict';
 
@@ -83,7 +89,8 @@ define([
         // Use self to access core, project, result, logger etc from PluginBase.
         // These are all instantiated at this point.
         var self = this,
-            currentConfig = self.getCurrentConfig();
+            currentConfig = self.getCurrentConfig(),
+            getSysMLDataCallback;
 
         if (!currentConfig.file) {
             callback(new Error('No file provided.'), self.result);
@@ -106,155 +113,254 @@ define([
             return;
         }
 
-        self.blobClient.getObject( currentConfig.file, function ( err, xmlArrayBuffer ) {
-            var xmlToJson = new Converter.Xml2json( {
-                skipWSText: true
-                //arrayElements: arrayElementsInXml
-            } );
+        getSysMLDataCallback = function ( err, hash2acmJsonMap ) {
+            var numUploaded,
+                sysmlJson,
+                numCreated = 0;
+
             if ( err ) {
-                self.logger.error( 'Retrieving uml failed with err:' + err.toString() );
-                self.createMessage( null, 'Could not retrieve content of uml-file.', 'error' );
-                callback( 'Retrieving uml file failed with err:' + err.toString(), self.result );
-                return;
-            }
-            var sysmlData = xmlToJson.convertFromBuffer( xmlArrayBuffer );
-            if (sysmlData instanceof Error ) {
-                self.createMessage( null, 'Given atm not valid xml: ' + sysmlData.message, 'error' );
-                callback( null, self.result );
+                mainCallback( err, self.result );
                 return;
             }
 
-            self.logger.debug( JSON.stringify( sysmlData, null, 4 ) );
-            self.buildUpSysMLModel(sysmlData, function (err) {
+            numUploaded = Object.keys( hash2acmJsonMap )
+                .length;
+
+
+            for ( var hash in hash2acmJsonMap ) {
+                sysmlJson = hash2acmJsonMap[ hash ];
+                self.buildUpSysMLModel(sysmlJson.modelUml, sysmlJson.notation);
+                numCreated += 1;
+            }
+
+            ////var propertyString = JSON.stringify(self.propertyJson, null, 4);
+            //
+            //self.save( 'added obj', function ( err ) {
+            //    if ( err ) {
+            //        callback( err, self.result );
+            //        return;
+            //    }
+            //    //if ( numUploaded > 1 ) {
+            //    //    self.createMessage( acmFolderNode, numCreated + ' ACMs created out of ' +
+            //    //        numUploaded + ' uploaded.', 'info' );
+            //    //}
+            //    if ( self.cleanImport === true ) {
+            //        self.result.setSuccess( true );
+            //    } else {
+            //        self.result.setSuccess( false );
+            //    }
+            //
+            //    callback( null, self.result );
+            //} );
+
+            self.save('SysML Importer created new model.', function (err) {
                 if (err) {
                     callback(err, self.result);
                     return;
                 }
 
-                self.save('SysML Importer created new model.', function (err) {
-                    if (err) {
-                        callback(err, self.result);
-                        return;
-                    }
-
-                    self.result.setSuccess(true);
-                    callback(null, self.result);
-                });
+                self.result.setSuccess(true);
+                callback(null, self.result);
             });
-            //self.createTestBench( self.activeNode );
-            //finnishPlugin( null );
-        } );
+        };
+
+
+        self.getSysMLData(currentConfig.file, getSysMLDataCallback);
+
 
     };
 
-    SysMLImporter.prototype.buildUpSysMLModel = function(dataModel, callback) {
+    SysMLImporter.prototype.buildUpSysMLModel = function(dataModel, notationData) {
         var self = this,
-            sysmlData = dataModel['http://www.eclipse.org/uml2/5.0.0/UML:Model'],
-            PREFIX ='@http://www.omg.org/spec/XMI/20131001:',
-            i, j,
-            idToNode = {},
-            node,
-            linkNode,
-            nodeId,
-            nodeType,
-            links = [],
-            smNode;
+            sysmlData = dataModel['http://www.eclipse.org/uml2/5.0.0/UML:Model']
+                || dataModel['http://www.omg.org/spec/XMI/20131001:XMI']['http://www.eclipse.org/uml2/5.0.0/UML:Model'],
+            notationObj = notationData['http://www.eclipse.org/gmf/runtime/1.0.2/notation:Diagram']
+                || notationData['http://www.omg.org/XMI:XMI']['http://www.eclipse.org/gmf/runtime/1.0.2/notation:Diagram'],
+            _buildDiagram,
+            i;
+
+        _buildDiagram = function(notation) {
+            switch (notation['@type']) {
+                case 'RequirementDiagram':
+                    _.extend(self, new RequirementDiagramImporter());
+                    break;
+                case 'UseCase':
+                    _.extend(self, new UseCaseDiagramImporter());
+                    break;
+            }
+            self.buildDiagram(sysmlData, notation);
+        };
 
         if (!sysmlData) {
-            callback('!!Oops something went wrong with the model format!!');
+            //callback('!!Oops something went wrong with the model format!!');
             return;
         }
 
-        // Create the use case diagram
-        smNode = self.core.createNode({
-            parent: self.activeNode,
-            base: self.META.UseCaseDiagram
-        });
-
-        self.core.setAttribute(smNode, 'name', sysmlData['@name']);
-        self.core.setRegistry(smNode, 'position', {x: 200, y: 200});
-
-        // Create the states and gather data about the actor and use case
-        for (i = 0; i < sysmlData.packagedElement.length; i += 1) {
-            nodeId = sysmlData.packagedElement[i][PREFIX + 'id'];
-            nodeType = sysmlData.packagedElement[i][PREFIX + 'type'].replace('uml:', '');
-
-
-
-            if (nodeType === 'Association') {
-
-                links.push({
-                    src: sysmlData.packagedElement[i]['ownedEnd'][1]['@type'].replace('src_', ''),
-                    dst: sysmlData.packagedElement[i]['ownedEnd'][0]['@type'].replace('dst_', ''),
-                    type: 'Association'
-                });
-
+        if (notationObj) {
+            if (notationObj.length) {
+                //todo: handle multiple diagrams
+                for (i = 0; i < notationObj.length; ++i) {
+                    _buildDiagram(notationObj[i]);
+                }
             } else {
-                node = self.core.createNode({
-                    parent: smNode,
-                    base: self.META[nodeType]
-                });
-
-                self.core.setAttribute(node, 'name', sysmlData.packagedElement[i]['@name']);
-                self.core.setRegistry(node, 'position', {x: 50 + (100 * i), y: 200}); // This could be more fancy.
-
-                // Add the node with its old id to the map (will be used when creating the transitions)
-                idToNode[nodeId] = node;
-
-                // Gather the outgoing extend links from the current use case and store the info.
-                if (sysmlData.packagedElement[i].extend) {
-                    if (sysmlData.packagedElement[i].extend.length) {
-
-                        for (j = 0; j < sysmlData.packagedElement[i].extend.length; j += 1) {
-                            links.push({
-                                src: nodeId,
-                                dst: sysmlData.packagedElement[i].extend[j]['@extendedCase'],
-                                type: 'Extend'
-                            });
-                        }
-                    } else {
-                        links.push({
-                            src: nodeId,
-                            dst: sysmlData.packagedElement[i].extend['@extendedCase'],
-                            type: 'Extend'
-                        });
-                    }
-                }
-                // Gather the outgoing include links from the current use case and store the info.
-                if (sysmlData.packagedElement[i].include) {
-                    if (sysmlData.packagedElement[i].include.length) {
-
-                        for (j = 0; j < sysmlData.packagedElement[i].include.length; j += 1) {
-                            links.push({
-                                src: nodeId,
-                                dst: sysmlData.packagedElement[i].include[j]['@addition'],
-                                type: 'Include'
-                            });
-                        }
-                    } else {
-                        links.push({
-                            src: nodeId,
-                            dst: sysmlData.packagedElement[i].include['@addition'],
-                            type: 'Include'
-                        });
-                    }
-                }
+                _buildDiagram(notationObj);
             }
-            }
-
-        // With all links created, we will now create the connections between the nodes.
-        for (i = 0; i < links.length; i += 1) {
-            linkNode = self.core.createNode({
-                parent: smNode,
-                base: self.META[links[i].type]
-            });
-
-            self.core.setPointer(linkNode, 'src', idToNode[links[i].src]);
-            self.core.setPointer(linkNode, 'dst', idToNode[links[i].dst]);
         }
 
-        callback(null);
+    };
+
+    SysMLImporter.prototype.buildDiagram = function (sysmlData, modelNotation) {
+
+    };
+
+    SysMLImporter.prototype.getSysMLData = function(filehash, callback) {
+        var self = this,
+            blobGetMetadataCallback;
+
+        blobGetMetadataCallback = function ( getMetadataErr, metadata ) {
+            if ( getMetadataErr ) {
+                callback( getMetadataErr );
+                return;
+            }
+
+            var content = metadata[ 'content' ],
+                contentName = metadata[ 'name' ],
+                contentType = metadata[ 'contentType' ],
+                single = false,
+                multi = false,
+                hashTosysmlJsonMap = {},
+                blobGetObjectCallback;
+
+            if ( contentType === 'complex' ) {
+                multi = true;
+            } else if ( contentType === 'object' && contentName.indexOf( '.zip' ) > -1 ) {
+                single = true;
+            } else {
+                var msg = 'Uploaded file "' + contentName + '" must be a .zip';
+                self.createMessage( self.activeNode, msg, 'error' );
+                self.logger.error( msg );
+                callback( msg );
+                return;
+            }
+
+            blobGetObjectCallback = function ( getObjectErr, uploadedObjContent ) {
+                if ( getObjectErr ) {
+                    callback( getObjectErr );
+                    return;
+                }
+
+                var zipFile = new JSZip( uploadedObjContent ),
+                    sysmlObjects,
+                    sysmlObject,
+                    sysmlContent,
+                    sysmlZipFileName,
+                    sysmlHash,
+                    sysmlZipFile,
+                    numbersysmlFiles,
+                    sysmlJson;
+
+                if (zipFile.file( /\.zip$/).length === 0 && zipFile.file( /\.uml/).length) {
+                    single = true; // support complex blobs with sysml files
+                }
+
+                if ( single ) {
+                    sysmlJson = self.getsysmlJsonFromZip( zipFile, contentName );
+
+                    if ( sysmlJson != null ) {
+                        hashTosysmlJsonMap[ filehash ] = sysmlJson;
+                    }
+
+
+                } else if ( multi ) {
+
+                    sysmlObjects = zipFile.file( /\.zip$/ );
+                    numbersysmlFiles = sysmlObjects.length;
+
+                    for ( var i = 0; i < numbersysmlFiles; i += 1 ) {
+                        sysmlObject = sysmlObjects[ i ];
+                        sysmlZipFileName = sysmlObject.name;
+                        sysmlContent = sysmlObject.asArrayBuffer();
+                        sysmlZipFile = new JSZip( sysmlContent );
+                        sysmlHash = content[ sysmlZipFileName ].content; // blob 'soft-link' hash
+
+                        sysmlJson = self.getsysmlJsonFromZip( sysmlZipFile, sysmlZipFileName );
+
+                        if ( sysmlJson != null ) {
+                            hashTosysmlJsonMap[ sysmlHash ] = sysmlJson;
+                        }
+                    }
+
+                }
+
+                callback( null, hashTosysmlJsonMap );
+            };
+
+            self.blobClient.getObject( filehash, blobGetObjectCallback );
+        };
+
+        self.blobClient.getMetadata( filehash, blobGetMetadataCallback );
+    };
+
+    SysMLImporter.prototype.getsysmlJsonFromZip = function ( sysmlZip, sysmlZipName ) {
+        var self = this,
+            converterResult,
+            notationConverted,
+            sysmlName = sysmlZipName.split( '.' )[ 0 ],
+            sysmlXml = sysmlZip.file( /\.uml/ ),
+            sysmlNotation = sysmlZip.file(/\.notation/),
+            projectFile = sysmlZip.file(/\.project/),
+            modelFile = sysmlZip.file('model.di'),
+            msg;
+
+        if ( sysmlXml.length === 1 ) {
+            converterResult = {modelUml : self.convertXmlString2Json( sysmlXml[ 0 ].asText() )};
+
+            if (sysmlNotation.length === 1) {
+                converterResult.notation = self.convertXmlString2Json(sysmlNotation[0].asText());
+            }
+
+            if ( converterResult instanceof Error ) {
+                msg = '.uml file in "' + sysmlZipName + '" is not a valid xml.';
+                self.logger.error( msg );
+                self.createMessage( null, msg, 'error' );
+                self.cleanImport = false;
+                return null;
+            } else {
+                return converterResult;
+            }
+        } else if ( sysmlXml.length === 0 ) {
+            msg = 'No .uml file found inside ' + sysmlZipName + '.';
+            self.logger.error( msg );
+            self.createMessage( null, msg, 'error' );
+            self.cleanImport = false;
+            return null;
+        } else {
+            msg = 'Found multiple .uml files in ' + sysmlZipName + '. Only one was expected.';
+            self.logger.error( msg );
+            self.createMessage( null, msg, 'error' );
+            converterResult = self.convertXmlString2Json( sysmlXml[ 0 ].asText() );
+
+            if ( converterResult instanceof Error ) {
+                msg = '.uml file in ' + sysmlZipName + ' is not a valid xml.';
+                self.logger.error( msg );
+                self.createMessage( null, msg, 'error' );
+                self.cleanImport = false;
+                return null;
+            } else {
+                return converterResult;
+            }
+        }
+    };
+
+    SysMLImporter.prototype.convertXmlString2Json = function ( acmXmlString ) {
+        var converter = new Converter.Xml2json( {
+                skipWSText: true
+            } );
+
+        return converter.convertFromString( acmXmlString );
     };
 
     return SysMLImporter;
 });
+
+
