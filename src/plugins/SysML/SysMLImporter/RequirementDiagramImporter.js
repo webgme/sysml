@@ -24,6 +24,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             i,
             idToNode = {},
             connectionIdToType = self._getConnectionIdTypes(sysmlData),
+            nodeDataById = self._processModelNotation(modelNotation),
             node,
             linkNode,
             nodeId,
@@ -33,7 +34,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
 
         sysmlData = sysmlData['http://www.eclipse.org/uml2/5.0.0/UML:Model'];
         // Create the requirement diagram
-        smNode = self._constructNode(self.activeNode, self.META.RequirementDiagram, sysmlData['@name'], {x: 200, y: 200});
+        smNode = self._constructNode(self.activeNode, self.META.RequirementDiagram, modelNotation['@name'], {x: 200, y: 200});
 
         // get all Requirement nodes
         if (!sysmlData.packagedElement.length) {
@@ -65,8 +66,8 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 });
 
             } else if (!idToNode[nodeId]) {
-                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement[i]['@name'],
-                    {x: 50 + (100 * i), y: 200});   // This could be more fancy.
+                var position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
+                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement[i]['@name'], position);
 
                 if (nodeType === 'Requirement' && sysmlData.packagedElement[i].nestedClassifier) {
                     self._constructReqtNodeRec(sysmlData.packagedElement[i], smNode, i, idToNode, links);
@@ -160,6 +161,31 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         return connectionIdToType;
     };
 
+
+    RequirementDiagramImporter.prototype._processModelNotation = function (modelNotation) {
+        var nodeDataById = {},
+            ID_PREFIX = 'model.uml#',
+            i,
+            child;
+
+        if (!modelNotation.children) {
+            return null;
+        }
+        for (i = 0; i < modelNotation.children.length; ++i) {
+            child = modelNotation.children[i];
+            if (child.element['@href']) {
+                nodeDataById[child.element['@href'].replace(ID_PREFIX, '')] =
+                {
+                    position:
+                    {
+                        x: parseInt(child.layoutConstraint['@x']),
+                        y: parseInt(child.layoutConstraint['@y'])
+                    }
+                };
+            }
+        }
+        return nodeDataById;
+    };
 
     return RequirementDiagramImporter;
 });

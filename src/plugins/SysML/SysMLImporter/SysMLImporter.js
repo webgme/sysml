@@ -119,7 +119,7 @@ define([
                 numCreated = 0;
 
             if ( err ) {
-                mainCallback( err, self.result );
+                callback( err, self.result );
                 return;
             }
 
@@ -172,6 +172,7 @@ define([
 
     SysMLImporter.prototype.buildUpSysMLModel = function(dataModel, notationData) {
         var self = this,
+            //projectName = projectData ? projectData.projectDescription.name : null,
             sysmlData = dataModel['http://www.eclipse.org/uml2/5.0.0/UML:Model']
                 || dataModel['http://www.omg.org/spec/XMI/20131001:XMI']['http://www.eclipse.org/uml2/5.0.0/UML:Model'],
             notationObj = notationData['http://www.eclipse.org/gmf/runtime/1.0.2/notation:Diagram']
@@ -301,8 +302,6 @@ define([
     SysMLImporter.prototype.getsysmlJsonFromZip = function ( sysmlZip, sysmlZipName ) {
         var self = this,
             converterResult,
-            notationConverted,
-            sysmlName = sysmlZipName.split( '.' )[ 0 ],
             sysmlXml = sysmlZip.file( /\.uml/ ),
             sysmlNotation = sysmlZip.file(/\.notation/),
             projectFile = sysmlZip.file(/\.project/),
@@ -316,6 +315,10 @@ define([
                 converterResult.notation = self.convertXmlString2Json(sysmlNotation[0].asText());
             }
 
+            if (projectFile.length === 1) {
+                converterResult.project = self.convertXmlString2Json(projectFile[0].asText());
+            }
+
             if ( converterResult instanceof Error ) {
                 msg = '.uml file in "' + sysmlZipName + '" is not a valid xml.';
                 self.logger.error( msg );
@@ -325,8 +328,8 @@ define([
             } else {
                 return converterResult;
             }
-        } else if ( sysmlXml.length === 0 ) {
-            msg = 'No .uml file found inside ' + sysmlZipName + '.';
+        } else if ( sysmlXml.length === 0 || sysmlNotation.length === 0) {
+            msg = 'Missing model uml and notation files inside ' + sysmlZipName + '.';
             self.logger.error( msg );
             self.createMessage( null, msg, 'error' );
             self.cleanImport = false;

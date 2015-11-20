@@ -23,17 +23,21 @@ define([], function () {
             PREFIX ='@http://www.omg.org/spec/XMI/20131001:',
             i, j,
             idToNode = {},
+            nodeDataById,
             node,
             linkNode,
             nodeId,
             nodeType,
+            position,
             links = [],
             smNode;
 
-        if (!sysmlData) {
+        if (!sysmlData || !modelNotation) {
             //callback('!!Oops something went wrong with the model format!!');
             return;
         }
+
+        nodeDataById = self._processModelNotation(modelNotation);
 
         // Create the use case diagram
         smNode = self.core.createNode({
@@ -41,8 +45,8 @@ define([], function () {
             base: self.META.UseCaseDiagram
         });
 
-        self.core.setAttribute(smNode, 'name', sysmlData['@name']);
-        self.core.setRegistry(smNode, 'position', {x: 200, y: 200});
+        self.core.setAttribute(smNode, 'name', modelNotation['@name']);
+        self.core.setRegistry(smNode, 'position', {x: 200, y: 200});    // todo: update position
 
         // Create the states and gather data about the actor and use case
         for (i = 0; i < sysmlData.packagedElement.length; i += 1) {
@@ -65,7 +69,11 @@ define([], function () {
                 });
 
                 self.core.setAttribute(node, 'name', sysmlData.packagedElement[i]['@name']);
-                self.core.setRegistry(node, 'position', {x: 50 + (100 * i), y: 200}); // This could be more fancy.
+
+                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position
+                    : {x: 50 + (100 * i), y: 200};
+
+                self.core.setRegistry(node, 'position', position);
 
                 // Add the node with its old id to the map (will be used when creating the transitions)
                 idToNode[nodeId] = node;
@@ -124,6 +132,28 @@ define([], function () {
 
     };
 
+    UseCaseDiagramImporter.prototype._processModelNotation = function (modelNotation) {
+        var nodeDataById = {},
+            ID_PREFIX = 'model.uml#',
+            i,
+            child;
+
+        if (!modelNotation.children) {
+            return null;
+        }
+        for (i = 0; i < modelNotation.children.length; ++i) {
+            child = modelNotation.children[i];
+            nodeDataById[child.element['@href'].replace(ID_PREFIX, '')] =
+            {
+                position:
+                {
+                    x: parseInt(child.layoutConstraint['@x']),
+                    y: parseInt(child.layoutConstraint['@y'])
+                }
+            };
+        }
+        return nodeDataById;
+    };
 
 
     return UseCaseDiagramImporter;
