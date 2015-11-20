@@ -30,6 +30,11 @@ define([], function () {
             links = [],
             smNode;
 
+        if (!sysmlData) {
+            //callback('!!Oops something went wrong with the model format!!');
+            return;
+        }
+
         // Create the use case diagram
         smNode = self.core.createNode({
             parent: self.activeNode,

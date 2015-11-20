@@ -182,6 +182,7 @@ define([
         _buildDiagram = function(notation) {
             switch (notation['@type']) {
                 case 'RequirementDiagram':
+                    sysmlData = dataModel['http://www.omg.org/spec/XMI/20131001:XMI'];
                     _.extend(self, new RequirementDiagramImporter());
                     break;
                 case 'UseCase':
@@ -191,10 +192,6 @@ define([
             self.buildDiagram(sysmlData, notation);
         };
 
-        if (!sysmlData) {
-            //callback('!!Oops something went wrong with the model format!!');
-            return;
-        }
 
         if (notationObj) {
             if (notationObj.length) {
