@@ -29,6 +29,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             linkNode,
             nodeId,
             nodeType,
+            position,
             links = [],
             smNode;
 
@@ -41,11 +42,11 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             nodeId = sysmlData.packagedElement[PREFIX + 'id'];
             nodeType = CONSTANTS.SYSML_TO_META_TYPES[sysmlData.packagedElement[PREFIX + 'type'].replace('uml:', '')];
             if (!idToNode[nodeId]) {
-                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement['@name'],
-                    {x: 100, y: 200});   // This could be more fancy.
+                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
+                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement['@name'], position);
 
                 if (nodeType === 'Requirement' && sysmlData.packagedElement.nestedClassifier) {
-                    self._constructReqtNodeRec(sysmlData.packagedElement, smNode, 1, idToNode, links);
+                    self._constructReqtNodeRec(sysmlData.packagedElement, smNode, 1, idToNode, nodeDataById, links);
                 }
                 idToNode[nodeId] = node;
             }
@@ -66,11 +67,11 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 });
 
             } else if (!idToNode[nodeId]) {
-                var position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
+                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
                 node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement[i]['@name'], position);
 
                 if (nodeType === 'Requirement' && sysmlData.packagedElement[i].nestedClassifier) {
-                    self._constructReqtNodeRec(sysmlData.packagedElement[i], smNode, i, idToNode, links);
+                    self._constructReqtNodeRec(sysmlData.packagedElement[i], smNode, i, idToNode, nodeDataById, links);
                 }
 
                 // Add the node with its old id to the map (will be used when creating the connections)
@@ -107,7 +108,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         return smNode;
     };
 
-    RequirementDiagramImporter.prototype._constructReqtNodeRec = function (rqmtElm, node, inc, idToNode, links) {
+    RequirementDiagramImporter.prototype._constructReqtNodeRec = function (rqmtElm, node, inc, idToNode, nodeDataById, links) {
         var self = this,
             PREFIX ='@http://www.omg.org/spec/XMI/20131001:',
             nestedElms = rqmtElm['nestedClassifier'],
@@ -115,16 +116,19 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             _construct;
 
         _construct = function (elm) {
-            idToNode[elm[PREFIX + 'id']] = self._constructNode(node, self.META.Requirement, elm['@name'],
-                {x: 50 + (100 * inc), y: 300});
+
+            var nodeId = elm[PREFIX + 'id'],
+                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position : {x: 50 + (100 * i), y: 200};
+
+            idToNode[nodeId] = self._constructNode(node, self.META.Requirement, elm['@name'], position);
 
             links.push({
                 src: rqmtElm[PREFIX + 'id'],
-                dst: elm[PREFIX + 'id'],
+                dst: nodeId,
                 type: 'Decompose'
             });
             if (elm.nestedClassifier) {
-                self._constructReqtNodeRec(elm, node, inc + 1, idToNode, links);
+                self._constructReqtNodeRec(elm, node, inc + 1, idToNode, nodeDataById, links);
             }
         };
 
