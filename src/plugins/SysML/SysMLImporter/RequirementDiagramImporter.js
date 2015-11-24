@@ -5,11 +5,6 @@
 /*globals define*/
 /*jshint node:true, browser:true*/
 
-/**
- * Author: Dana Zhang
- * Created on: October 31, 2015
- */
-
 define(['./SysMLImporterConstants'], function (CONSTANTS) {
 
     'use strict';
@@ -23,63 +18,90 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             PREFIX ='@http://www.omg.org/spec/XMI/20131001:',
             i,
             idToNode = {},
-            connectionIdToType = self._getConnectionIdTypes(sysmlData),
+            connectionCommentIdToType = self._getConnectionCommentIdTypes(sysmlData),
             nodeDataById = self._processModelNotation(modelNotation),
             node,
             linkNode,
             nodeId,
             nodeType,
-            position,
             links = [],
-            smNode;
+            smNode,
+            _addRqmtNode,
+            _addCommentNode;
+
+        _addRqmtNode = function (id, elm, count) {
+            var position = nodeDataById && nodeDataById[id] ? nodeDataById[id].position: {x: 50 + (100 * count), y: 200};
+            node = self._constructNode(smNode, self.META[nodeType], elm['@name'], position);
+
+            if (nodeType === 'Requirement' && elm.nestedClassifier) {
+                self._constructReqtNodeRec(elm, smNode, count, idToNode, nodeDataById, links);
+            }
+            idToNode[id] = node;
+        };
+
+        _addCommentNode = function (id, elm, count) {
+            var position = nodeDataById && nodeDataById[id] ? nodeDataById[id].position: {x: 50 + (100 * count), y: 200},
+                dsts = [];
+            node = self._constructNode(smNode, self.META[nodeType], nodeType, position);
+            idToNode[id] = node;
+            if (elm['@annotatedElements']) {
+                elm['@annotatedElements'].split(' ').forEach(function (dst) {
+                    links.push({
+                        src: id,
+                        dst: parseInt(dst),
+                        type: 'CommentLink'
+                    })
+                });
+            }
+        };
 
         sysmlData = sysmlData['http://www.eclipse.org/uml2/5.0.0/UML:Model'];
         // Create the requirement diagram
         smNode = self._constructNode(self.activeNode, self.META.RequirementDiagram, modelNotation['@name'], {x: 200, y: 200});
 
-        // get all Requirement nodes
-        if (!sysmlData.packagedElement.length) {
-            nodeId = sysmlData.packagedElement[PREFIX + 'id'];
-            nodeType = CONSTANTS.SYSML_TO_META_TYPES[sysmlData.packagedElement[PREFIX + 'type'].replace('uml:', '')];
-            if (!idToNode[nodeId]) {
-                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
-                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement['@name'], position);
+        if (sysmlData.packagedElement) {
 
-                if (nodeType === 'Requirement' && sysmlData.packagedElement.nestedClassifier) {
-                    self._constructReqtNodeRec(sysmlData.packagedElement, smNode, 1, idToNode, nodeDataById, links);
+            // get all Requirement nodes
+            if (!sysmlData.packagedElement.length) {
+                nodeId = sysmlData.packagedElement[PREFIX + 'id'];
+                nodeType = CONSTANTS.SYSML_TO_META_TYPES[sysmlData.packagedElement[PREFIX + 'type'].replace('uml:', '')];
+                if (!idToNode[nodeId]) {
+                    _addRqmtNode(nodeId, sysmlData.packagedElement, 0);
                 }
-                idToNode[nodeId] = node;
+            }
+
+            for (i = 0; i < sysmlData.packagedElement.length; i += 1) {
+                nodeId = sysmlData.packagedElement[i][PREFIX + 'id'];
+                nodeType = CONSTANTS.SYSML_TO_META_TYPES[sysmlData.packagedElement[i][PREFIX + 'type'].replace('uml:', '')];
+
+                // get requirement connections
+                if (nodeType === 'Abstraction') {
+
+                    links.push({
+                        src: sysmlData.packagedElement[i]['@client'],
+                        dst: sysmlData.packagedElement[i]['@supplier'],
+                        type: connectionCommentIdToType[nodeId]
+                    });
+
+                } else if (!idToNode[nodeId]) {
+                    _addRqmtNode(nodeId, sysmlData.packagedElement[i], i);
+                }
             }
         }
 
-        for (i = 0; i < sysmlData.packagedElement.length; i += 1) {
-            nodeId = sysmlData.packagedElement[i][PREFIX + 'id'];
-            nodeType = CONSTANTS.SYSML_TO_META_TYPES[sysmlData.packagedElement[i][PREFIX + 'type'].replace('uml:', '')];
-
-
-            // get requirement connections
-            if (nodeType === 'Abstraction') {
-
-                links.push({
-                    src: sysmlData.packagedElement[i]['@client'],
-                    dst: sysmlData.packagedElement[i]['@supplier'],
-                    type: connectionIdToType[sysmlData.packagedElement[i][PREFIX + 'id']]
-                });
-
-            } else if (!idToNode[nodeId]) {
-                position = nodeDataById && nodeDataById[nodeId] ? nodeDataById[nodeId].position: {x: 50 + (100 * i), y: 200};
-                node = self._constructNode(smNode, self.META[nodeType], sysmlData.packagedElement[i]['@name'], position);
-
-                if (nodeType === 'Requirement' && sysmlData.packagedElement[i].nestedClassifier) {
-                    self._constructReqtNodeRec(sysmlData.packagedElement[i], smNode, i, idToNode, nodeDataById, links);
+        if (sysmlData.ownedComment) {
+            if (!sysmlData.ownedComment.length) {
+                nodeId = sysmlData.ownedComment[PREFIX + 'id'];
+                nodeType = connectionCommentIdToType[nodeId];
+                _addCommentNode(nodeId, sysmlData.ownedComment, 0);
+            } else {
+                for (i = 0; i < sysmlData.ownedComment.length; ++i) {
+                    nodeId = sysmlData.ownedComment[i][PREFIX + 'id'];
+                    nodeType = connectionCommentIdToType[nodeId] || 'Comment';
+                    _addCommentNode(nodeId, sysmlData.ownedComment[i], i);
                 }
-
-                // Add the node with its old id to the map (will be used when creating the connections)
-                idToNode[nodeId] = node;
             }
         }
-
-
 
         // With all links created, we will now create the connections between the nodes.
         for (i = 0; i < links.length; i += 1) {
@@ -141,28 +163,37 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         }
     };
 
-    RequirementDiagramImporter.prototype._getConnectionIdTypes = function (connElms) {
+    RequirementDiagramImporter.prototype._getConnectionCommentIdTypes = function (connElms) {
         var CONN_PREFIX = 'http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements:',
+            COMMENT_PREFIX = 'http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements:',
             connection,
             i,
-            connectionIdToType = {};
+            connectionCommentIdToType = {};
 
         for (connection in connElms) {
             if (connElms.hasOwnProperty(connection)) {
                 if (connection.indexOf(CONN_PREFIX) > -1 && connection !== CONN_PREFIX + 'Requirement' ) {
                     if (connElms[connection].length) {
                         for (i = 0; i < connElms[connection].length; ++i) {
-                            connectionIdToType[connElms[connection][i]['@base_Abstraction']] = connection.replace(CONN_PREFIX, '');
+                            connectionCommentIdToType[connElms[connection][i]['@base_Abstraction']] = connection.replace(CONN_PREFIX, '');
                         }
 
                     } else {
-                        connectionIdToType[connElms[connection]['@base_Abstraction']] = connection.replace(CONN_PREFIX, '');
+                        connectionCommentIdToType[connElms[connection]['@base_Abstraction']] = connection.replace(CONN_PREFIX, '');
+                    }
+                } else if (connection.indexOf(COMMENT_PREFIX) > -1) {
+                    if (connElms[connection].length) {
+                        for (i = 0; i < connElms[connection].length; ++i) {
+                            connectionCommentIdToType[connElms[connection][i]['@base_Comment']] = connection.replace(COMMENT_PREFIX, '');
+                        }
+                    } else {
+                        connectionCommentIdToType[connElms[connection]['@base_Comment']] = connection.replace(COMMENT_PREFIX, '');
                     }
                 }
             }
         }
 
-        return connectionIdToType;
+        return connectionCommentIdToType;
     };
 
 

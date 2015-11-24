@@ -24,7 +24,7 @@ config.requirejsPaths = {
 	jszip: './node_modules/webgme/node_modules/jszip/dist/jszip'
 };
 config.visualization.decoratorPaths.push('./src/decorators');
-config.client.usedDecorators.push('SysMLDecorator');
+config.visualization.decoratorsToPreload = null;
 
 config.mongo.uri = 'mongodb://127.0.0.1:27017/webgme_sysml';
 

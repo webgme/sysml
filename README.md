@@ -68,3 +68,7 @@ unless you install the legacy package.
 ```bash
 sudo apt-get install nodejs-legacy
 ```
+
+## Troubleshoot
+If plugins are not run because of "jszip" error, [download](http://stuk.github.io/jszip/) jszip source
+and include the file `dist/jszip.js` in this directory: `./node_modules/webgme/node_modules/jszip/`
