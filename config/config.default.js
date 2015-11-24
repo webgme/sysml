@@ -20,8 +20,7 @@ config.seedProjects.basePaths.push('./seeds');
 
 config.requirejsPaths = {
 	ejs: "./node_modules/webgme/src/common/util/ejs",
-	xmljsonconverter: "./node_modules/webgme/src/common/util/xmljsonconverter",
-	jszip: './node_modules/webgme/node_modules/jszip/dist/jszip'
+	xmljsonconverter: "./node_modules/webgme/src/common/util/xmljsonconverter"
 };
 config.visualization.decoratorPaths.push('./src/decorators');
 config.visualization.decoratorsToPreload = null;
