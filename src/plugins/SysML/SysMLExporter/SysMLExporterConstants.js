@@ -37,9 +37,11 @@ define([], function () {
         templates: {
             Decompose: 'decompose.ejs',
             Satisfy: 'abstraction.ejs',
-            DeriveReqt: 'abstraction.ejs',
+            Derive: 'abstraction.ejs',
             RequirementUml: 'requirement.uml.ejs',
-            DefaultEdges: 'edges.ejs'
+            DefaultEdges: 'edges.ejs',
+            Comment: 'Comment.ejs',
+            CommentLink: 'CommentLink.ejs'
         }
     };
 });

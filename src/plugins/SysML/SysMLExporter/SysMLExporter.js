@@ -135,6 +135,7 @@ define(['plugin/PluginConfig',
             isRqtParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.RequirementDiagram),
             isRqtDiagram = isRqtParent && (isRequirement),
             isReq2Req = self.isMetaTypeOf(baseClass, self.META.Req2Req),
+            isCommentLink = self.isMetaTypeOf(baseClass, self.META.CommentLink),
             afterConnAdded;
 
 
@@ -160,7 +161,7 @@ define(['plugin/PluginConfig',
             }
         } else if (isRqtDiagram) {
             _.extend(self, new RequirementExporter());
-            if (isReq2Req) {
+            if (isReq2Req || isCommentLink) {
                 self.addConnection(node, afterConnAdded);
             } else {
                 // if key not exist already, add key; otherwise ignore

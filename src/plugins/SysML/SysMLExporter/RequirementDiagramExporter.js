@@ -30,11 +30,9 @@ define(['ejs',
             parentPath = core.getPath(core.getParent(nodeObj)),
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
 
+        self.idLUT[gmeID] = {id: self.modelID};
+        self.reverseIdLUT[self.modelID] = gmeID;
         if (self.isMetaTypeOf(baseClass, self.META.Requirement)) {
-
-            self.idLUT[gmeID] = {id: self.modelID};
-            self.reverseIdLUT[self.modelID] = gmeID;
-
             element = {
                 name: name,
                 id: self.modelID,
@@ -50,8 +48,24 @@ define(['ejs',
                 self.requirementDiagrams[diagramKey].elements = [];
             }
             self.requirementDiagrams[diagramKey].elements.push(element);
-            self.modelID += 1;
+        } else {
+            element = {
+                name: name,
+                id: self.modelID,
+                x: xPos,
+                y: yPos,
+                type: type
+            };
+
+            if (!self.requirementDiagrams.hasOwnProperty(diagramKey)) {
+                self.requirementDiagrams[diagramKey] = {};
+            }
+            if (!self.requirementDiagrams[diagramKey].hasOwnProperty('comments')) {
+                self.requirementDiagrams[diagramKey].comments = [];
+            }
+            self.requirementDiagrams[diagramKey].comments.push(element);
         }
+        self.modelID += 1;
     };
 
     RequirementDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
@@ -206,10 +220,20 @@ define(['ejs',
                     reqElms = [];
 
 
-                for (i = 0; i < self.requirementDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.requirementDiagrams[diagramPath].elements[i];
-                    self._saveComponent(childElement, modelNotationElms, modelElms, reqElms);
+                if (self.requirementDiagrams[diagramPath].elements) {
 
+                    for (i = 0; i < self.requirementDiagrams[diagramPath].elements.length; ++i) {
+                        var childElement = self.requirementDiagrams[diagramPath].elements[i];
+                        self._saveComponent(childElement, modelNotationElms, modelElms, reqElms);
+                    }
+                }
+
+                if (self.requirementDiagrams[diagramPath].comments) {
+
+                    for (i = 0; i <self.requirementDiagrams[diagramPath].comments.length; ++i) {
+                        var comment = self.requirementDiagrams[diagramPath].comments[i];
+                        self._saveComment(comment, modelNotationElms, modelElms, reqElms);
+                    }
                 }
 
                 if (self.requirementDiagrams[diagramPath].links) {
@@ -236,24 +260,26 @@ define(['ejs',
 
                         modelNotationElms.push(edge);
 
-                        edge = json2XML.convertToString({
-                            'packagedElement': {
-                                '@xmi:type': 'uml:Abstraction',
-                                '@xmi:id': link.id,
-                                '@name': link.name,
-                                '@client': link.src,
-                                '@supplier': link.dst
-                            }
-                        });
-                        modelElms.push(edge);
-                        edge = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
-                            {
-                                id: link.id,
-                                className: link.type,
-                                baseName: 'Abstraction'
-                            }
-                        );
-                        reqElms.push(edge);
+                        if (link.type !== 'CommentLink') {
+                            edge = json2XML.convertToString({
+                                'packagedElement': {
+                                    '@xmi:type': 'uml:Abstraction',
+                                    '@xmi:id': link.id,
+                                    '@name': link.name,
+                                    '@client': link.src,
+                                    '@supplier': link.dst
+                                }
+                            });
+                            modelElms.push(edge);
+                            edge = ejs.render(TEMPLATES[CONSTANTS.templates.RequirementUml],
+                                {
+                                    id: link.id,
+                                    className: link.type,
+                                    baseName: 'Abstraction'
+                                }
+                            );
+                            reqElms.push(edge);
+                        }
                     }
                 }
 
@@ -319,8 +345,6 @@ define(['ejs',
     };
 
     RequirementDiagramExporter.prototype._saveComponent = function (childElement, modelNotationElms, modelElms, reqElms) {
-
-        // TODO: this is implemented assuming Requirement is the only type
 
         var self = this,
             elm,
@@ -420,6 +444,53 @@ define(['ejs',
 
     };
 
+    RequirementDiagramExporter.prototype._saveComment = function (comment, modelNotationElms, modelElms, reqElms) {
+        var self = this,
+            elm,
+            j,
+            umlObject,
+            key,
+            annotatedElements = [],
+            json2XML = new Converter.Json2xml({xmlDeclaration: ' '});
+
+
+        umlObject = {
+            'ownedComment': {
+                '@xmi:type': 'uml:Comment',
+                '@xmi:id': comment.id
+            }
+        };
+        if (self.idLUT[self.reverseIdLUT[comment.id]].dst) {
+            self.idLUT[self.reverseIdLUT[comment.id]].dst.forEach(function (c) {
+                annotatedElements.push(c.dstId);
+            });
+            umlObject.ownedComment['@annotatedElements'] = annotatedElements.join(' ');
+        }
+
+        elm = json2XML.convertToString(umlObject);
+        modelElms.push(elm);
+
+
+        if (comment.type !== 'Comment') {
+            key = 'ModelElements:' + comment.type;
+            umlObject = {};
+            umlObject[key] = {
+                '@xmi:id': 'rand' + comment.id,
+                '@base_Comment': comment.id
+            };
+            elm = json2XML.convertToString(umlObject);
+            reqElms.push(elm);
+        }
+
+        // for each node, create notation elements
+        elm = ejs.render(TEMPLATES[CONSTANTS.templates.Comment],
+            {
+                id: comment.id,
+                x: comment.x,
+                y: comment.y
+            });
+        modelNotationElms.push(elm);
+    };
 
 
     return RequirementDiagramExporter;

@@ -14,7 +14,7 @@ define(['underscore'], function (_underscore) {
             'ConstraintBlock': 'ConstraintBlock',
             'ConstraintParameter': 'ConstraintParameter',
             'Diagram': 'Diagram',
-            'Document': 'Document',
+            'Problem': 'Problem',
             'FCO': 'FCO',
             'Package': 'Package',
             'Parameter': 'Parameter',
@@ -82,8 +82,8 @@ define(['underscore'], function (_underscore) {
     var _isDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
     };
-    var _isDocument = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Document]);
+    var _isProblem = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Problem]);
     };
     var _isFCO = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FCO]);
@@ -140,7 +140,7 @@ define(['underscore'], function (_underscore) {
             isConstraintBlock: _isConstraintBlock,
             isConstraintParameter: _isConstraintParameter,
             isDiagram: _isDiagram,
-            isDocument: _isDocument,
+            isProblem: _isProblem,
             isFCO: _isFCO,
             isPackage: _isPackage,
             isParameter: _isParameter,
