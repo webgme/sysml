@@ -43,13 +43,13 @@ define(['ejs',
             };
             //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
 
-            if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                self.usecaseDiagrams[diagramKey] = {};
+            if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
+                self.blockdefinitionDiagrams[diagramKey] = {};
             }
-            if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.usecaseDiagrams[diagramKey].elements = [];
+            if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('elements')) {
+                self.blockdefinitionDiagrams[diagramKey].elements = [];
             }
-            self.usecaseDiagrams[diagramKey].elements.push(element);
+            self.blockdefinitionDiagrams[diagramKey].elements.push(element);
             self.modelID += 1;
         }
     };
@@ -112,13 +112,13 @@ define(['ejs',
                         }
                     };
 
-                    if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                        self.usecaseDiagrams[diagramKey] = {};
+                    if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
+                        self.blockdefinitionDiagrams[diagramKey] = {};
                     }
-                    if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.usecaseDiagrams[diagramKey].links = [];
+                    if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('links')) {
+                        self.blockdefinitionDiagrams[diagramKey].links = [];
                     }
-                    self.usecaseDiagrams[diagramKey].links.push(link);
+                    self.blockdefinitionDiagrams[diagramKey].links.push(link);
                     if (type === "Extend" || type === "Include") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
@@ -191,8 +191,8 @@ define(['ejs',
             output,
             artifact = self.blobClient.createArtifact('SysMLExporterOutput');
 
-        for (diagramPath in self.usecaseDiagrams) {
-            if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
+        for (diagramPath in self.blockdefinitionDiagrams) {
+            if (self.blockdefinitionDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
                     notationFile,
                     modelFile,
@@ -200,8 +200,8 @@ define(['ejs',
                     modelNotationElms = [],
                     modelElms = [];
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.usecaseDiagrams[diagramPath].elements[i],
+                for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].elements.length; ++i) {
+                    var childElement = self.blockdefinitionDiagrams[diagramPath].elements[i],
                         elm,
                         j;
 
@@ -269,8 +269,8 @@ define(['ejs',
                     modelElms.push(elm);
                 }
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.usecaseDiagrams[diagramPath].links[i],
+                for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].links.length; ++i) {
+                    var link = self.blockdefinitionDiagrams[diagramPath].links[i],
                         edge;
 
                         obj = CONSTANTS[link.type];

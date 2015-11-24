@@ -26,6 +26,7 @@ define(['plugin/PluginConfig',
         this.error = '';
         this.requirementDiagrams = {};
         this.usecaseDiagrams = {};
+		this.blockdefinitionDiagrams = {};
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -71,7 +72,7 @@ define(['plugin/PluginConfig',
             itrCallback = function (err) {
                 error = err ? error += err : error;
                 counter.visits -= 1;
-				self.logger.error('remains: ' + counter.visits);  // V change
+				//self.logger.error('remains: ' + counter.visits);  // V change
                 if (counter.visits <= 0) {
                     callback(error);
                 }
@@ -138,11 +139,13 @@ define(['plugin/PluginConfig',
             isRqtDiagram = isRqtParent && (isRequirement),
             isReq2Req = self.isMetaTypeOf(baseClass, self.META.Req2Req),
             afterConnAdded,
-			
+			/** Block Definition Diagram **/
+			isBlock = self.isMetaTypeOf(baseClass, self.META.Block),
 			isBDDReq = self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
 			isBDDParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
-			isBDDDiagram = isBDDParent && (isBDDReq),
-			isBlock = self.isMetaTypeOf(baseClass, self.META.Block);
+			isBlockAssociations = self.isMetaTypeOf(baseClass, self.META.Associations),
+			isBDDDiagram = isBDDParent && (isBDDReq || isBlockAssociations);
+			
 			
 			
 
@@ -181,18 +184,15 @@ define(['plugin/PluginConfig',
             // todo: add object
         } else if (isBDDDiagram) {
             _.extend(self, new BlockDiagramExporter());
-            if (isBlock) {
-                
-             
+            if (isBlockAssociations) {
+				self.addConnection(node, afterConnAdded)
                 // if key not exist already, add key; otherwise ignore
-                if (!self.idLUT.hasOwnProperty(gmeID)) {
+			} else {
+				if (!self.idLUT.hasOwnProperty(gmeID)) {
                     self.addComponent(node);
                 }
                 callback(null, node);
-            } else {
-				self.logger.error('here');   // V change
-				callback(null, node);  // V change
-			}
+            } 
             // todo: add object
         } else {
             callback(null, node);
