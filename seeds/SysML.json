@@ -106,6 +106,7 @@
         "3d33b1e4-ec7f-7854-38a9-6c53e7d9f393": "847545060",
         "3d3d4599-90d3-2650-3a2a-a3d74d5237ae": "789707678",
         "3daa947e-46ef-52f6-bcfd-ddfec3efc474": "1766518339",
+        "3e896fb7-1bd6-98b0-c348-c2f1df479023": "1597757152",
         "3ea84338-c30f-4c25-497c-96ef14c3045c": "585298734",
         "3eaa8c6c-efa5-3d87-9bf0-b20d3a7c3a44": "1487380332",
         "3fe754de-cbef-a638-bc14-fdecdedcbc28": "1353048733",
@@ -154,6 +155,7 @@
         "61040153-a080-50de-62de-1eaadffb83a7": "954017702",
         "610f26e9-7859-5392-49e0-352db5a6ecb9": "434075647",
         "619ef11c-3ad3-122d-6e74-0b05aeb14b23": "788292343",
+        "61e90bd3-e19a-0f6c-6679-223c39f90869": "831040450",
         "62b62505-856b-44dd-87f0-2523ed2a8d44": "1383213118",
         "62d33a9b-248c-a020-f49d-f673062f0c89": "1158283343",
         "6496e715-7e00-fe6e-0ccf-8a6011f21147": "552872289",
@@ -241,6 +243,7 @@
         "9b0959dc-3b96-46e4-2901-e425c073102f": "809249897",
         "9b81bb4b-efc6-f83e-8458-d28f9615ebaa": "1302425093",
         "9c71d9bd-173b-6711-caeb-2cc760fb6897": "1319167648",
+        "9d8d811a-c084-f43c-8ebe-8cd5e8cbaff8": "1447921400",
         "9d9295f8-801c-af69-3bc3-5dc162e4f3e9": "196676986",
         "9e31c93f-3334-36df-7be9-d8869bea19bd": "187313271",
         "a0742f90-224d-6770-4b00-87d72e605840": "513235179",
@@ -437,6 +440,11 @@
                         "5daa78fe-bfac-59f7-98db-fa06b2bec834": {},
                         "cd96a5ef-601e-e018-dc55-8871d90108df": {}
                     }
+                }
+            },
+            "3e896fb7-1bd6-98b0-c348-c2f1df479023": {
+                "9d8d811a-c084-f43c-8ebe-8cd5e8cbaff8": {
+                    "61e90bd3-e19a-0f6c-6679-223c39f90869": {}
                 }
             },
             "43a9b61e-663b-4c22-6363-32bdc053f298": {
@@ -3723,10 +3731,16 @@
         },
         "24712c4c-e6f5-822e-55d3-2e3f16cd8b92": {
             "attributes": {
+                "Equation": "",
                 "name": "Block"
             },
             "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
             "meta": {
+                "attributes": {
+                    "Equation": {
+                        "type": "string"
+                    }
+                },
                 "children": {
                     "items": [
                         "1a4d8833-c7a8-64a1-ffac-b03a23432286",
@@ -4756,6 +4770,23 @@
             "sets": {},
             "constraints": {}
         },
+        "3e896fb7-1bd6-98b0-c348-c2f1df479023": {
+            "attributes": {},
+            "base": "a1d2b0c7-5985-ffaf-8344-e00eebe7b1ff",
+            "meta": {},
+            "parent": "20ff5b6f-7742-9780-08c0-bafe4eae4611",
+            "pointers": {
+                "base": "a1d2b0c7-5985-ffaf-8344-e00eebe7b1ff"
+            },
+            "registry": {
+                "position": {
+                    "x": 548,
+                    "y": 209
+                }
+            },
+            "sets": {},
+            "constraints": {}
+        },
         "3ea84338-c30f-4c25-497c-96ef14c3045c": {
             "attributes": {},
             "base": "8d587851-f281-6848-3fe9-c177b9a02024",
@@ -5709,6 +5740,23 @@
                 "position": {
                     "x": 100,
                     "y": 100
+                }
+            },
+            "sets": {},
+            "constraints": {}
+        },
+        "61e90bd3-e19a-0f6c-6679-223c39f90869": {
+            "attributes": {},
+            "base": "f6a4035f-b0ad-3943-1d65-4f27b4d8da96",
+            "meta": {},
+            "parent": "9d8d811a-c084-f43c-8ebe-8cd5e8cbaff8",
+            "pointers": {
+                "base": "f6a4035f-b0ad-3943-1d65-4f27b4d8da96"
+            },
+            "registry": {
+                "position": {
+                    "x": 183,
+                    "y": 289
                 }
             },
             "sets": {},
@@ -7502,6 +7550,23 @@
             "sets": {},
             "constraints": {}
         },
+        "9d8d811a-c084-f43c-8ebe-8cd5e8cbaff8": {
+            "attributes": {},
+            "base": "1a4d8833-c7a8-64a1-ffac-b03a23432286",
+            "meta": {},
+            "parent": "3e896fb7-1bd6-98b0-c348-c2f1df479023",
+            "pointers": {
+                "base": "1a4d8833-c7a8-64a1-ffac-b03a23432286"
+            },
+            "registry": {
+                "position": {
+                    "x": 165,
+                    "y": 284
+                }
+            },
+            "sets": {},
+            "constraints": {}
+        },
         "9d9295f8-801c-af69-3bc3-5dc162e4f3e9": {
             "attributes": {},
             "base": "2e62ae91-b192-8b04-4d56-0a59cf87d791",
@@ -8919,11 +8984,6 @@
             },
             "base": "24712c4c-e6f5-822e-55d3-2e3f16cd8b92",
             "meta": {
-                "attributes": {
-                    "Equation": {
-                        "type": "string"
-                    }
-                },
                 "children": {
                     "items": [
                         "6b06606a-0c01-ee43-dfbb-e5495e0aa7b8",
