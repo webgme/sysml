@@ -34,6 +34,15 @@ define([], function () {
             y2: -20,
             connType: "Include"
         },
+		DirectedComposition: {
+			type0: 4007,
+            type1: 6005,
+            type2: 6029,
+            y1: 20,
+            y2: -20,
+            connType: "DirectedComposition"
+			
+		},
         templates: {
             Decompose: 'decompose.ejs',
             Satisfy: 'abstraction.ejs',

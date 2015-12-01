@@ -7,3 +7,4 @@ blob-local-storage
 *.log
 
 *.DS_Store
+src/plugins/SysML/SysMLExporter/BlockDefinitionDiagramExporter.js

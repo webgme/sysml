@@ -119,7 +119,7 @@ define(['ejs',
                         self.blockdefinitionDiagrams[diagramKey].links = [];
                     }
                     self.blockdefinitionDiagrams[diagramKey].links.push(link);
-                    if (type === "Extend" || type === "Include") {
+                    if (type === "Composition" || type === "DirectedComposition") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
                             self.idLUT[src].dst = [];
@@ -226,7 +226,7 @@ define(['ejs',
                     };
 
 
-                    if (childElement.type === 'UseCase') {
+                    if (childElement.type === 'Block') {
                         var connType,
                             connId,
                             srcId,

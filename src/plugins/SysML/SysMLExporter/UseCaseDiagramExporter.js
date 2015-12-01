@@ -233,6 +233,7 @@ define(['ejs',
                             dstId;
 
                         if (self.idLUT[self.reverseIdLUT[childElement.id]].src) {
+							console.log(self.reverseIdLUT[childElement.id])
 
                             for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].src.length; ++j) {
                                 connType = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].type;
