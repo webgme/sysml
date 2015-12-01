@@ -14,6 +14,10 @@ define(['ejs',
 
     var BlockDefinitionDiagramExporter = function () {
     };
+	
+	var webgmeEclipseMapping ={
+		'Block' : 'Class'
+	};
 
     BlockDefinitionDiagramExporter.prototype.addComponent = function (nodeObj) {
 
@@ -39,7 +43,7 @@ define(['ejs',
                 id: self.modelID,
                 x: xPos,
                 y: yPos,
-                type: type
+                type: webgmeEclipseMapping[type]
             };
             //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
 
@@ -226,7 +230,7 @@ define(['ejs',
                     };
 
 
-                    if (childElement.type === 'Block') {
+                    if (childElement.type === webgmeEclipseMapping['Block']) {
                         var connType,
                             connId,
                             srcId,
@@ -301,7 +305,7 @@ define(['ejs',
 
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
-                            diagramType: 'UseCase',      //does not work if replaced with block or block definition diagram, need to figure out the right diagram type to be put here
+                            diagramType: 'BlockDefinition',      //does not work if replaced with block or block definition diagram, need to figure out the right string
                             diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
                             diagramId: '_D' + diagramId
