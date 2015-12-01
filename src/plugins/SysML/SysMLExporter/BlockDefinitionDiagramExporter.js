@@ -2,7 +2,7 @@
 /*jshint node:true, browser:true*/
 
 /**
- * Author: Dana Zhang
+ * Author: Vishwesh Nath
  * Created on: November 31, 2015
  */
 
@@ -285,7 +285,7 @@ define(['ejs',
                         edge = ejs.render(TEMPLATES['edges.ejs'], obj);
                         modelNotationElms.push(edge);
 
-                        if (link.type === "CommunicationPath") {
+                        if (link.type === "DirectedComposition") {
 
                             edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
                                 {
@@ -301,7 +301,7 @@ define(['ejs',
 
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
-                            diagramType: 'UseCase',
+                            diagramType: 'UseCase',      //does not work if replaced with block or block definition diagram, need to figure out the right diagram type to be put here
                             diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
                             diagramId: '_D' + diagramId
