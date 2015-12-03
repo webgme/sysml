@@ -18,6 +18,10 @@ define(['ejs',
 	var webgmeEclipseMapping ={
 		'Block' : 'Class'
 	};
+	
+	var templateMapping = {
+		'Class' : 'Block.ejs'
+	};
 
     BlockDefinitionDiagramExporter.prototype.addComponent = function (nodeObj) {
 
@@ -209,7 +213,7 @@ define(['ejs',
                         elm,
                         j;
 
-                    template = TEMPLATES[childElement.type + '.ejs'];
+                    template = TEMPLATES[templateMapping[childElement.type]];
 
                     if (template) {
                         elm = ejs.render(template,
@@ -272,6 +276,7 @@ define(['ejs',
 
                     modelElms.push(elm);
                 }
+				if (self.blockdefinitionDiagrams[diagramPath].links != null){
 
                 for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].links.length; ++i) {
                     var link = self.blockdefinitionDiagrams[diagramPath].links[i],
@@ -302,6 +307,7 @@ define(['ejs',
                             modelElms.push(edge);
                         }
                     }
+				}
 
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
