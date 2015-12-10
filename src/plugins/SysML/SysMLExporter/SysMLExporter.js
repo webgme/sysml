@@ -9,8 +9,9 @@
 define(['plugin/PluginConfig',
     'plugin/PluginBase',
     './UseCaseDiagramExporter',
-    './RequirementDiagramExporter'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter) {
+    './RequirementDiagramExporter',
+    './InternalBlockDiagramExporter'
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, InternalBlockDiagramExporter) {
 
     'use strict';
 
@@ -25,6 +26,7 @@ define(['plugin/PluginConfig',
         this.error = '';
         this.requirementDiagrams = {};
         this.usecaseDiagrams = {};
+        this.internalBlockDiagrams = {};
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -136,6 +138,15 @@ define(['plugin/PluginConfig',
             isRqtDiagram = isRqtParent && (isRequirement),
             isReq2Req = self.isMetaTypeOf(baseClass, self.META.Req2Req),
             isCommentLink = self.isMetaTypeOf(baseClass, self.META.CommentLink),
+
+            /** internal block diagram **/
+            isIBDParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.Block)
+                || self.isMetaTypeOf(parentBaseClass, self.META.InternalBlockDiagram),
+            //isBlock = self.isMetaTypeOf(baseClass, self.META.Block),
+            //isFlowPort = self.isMetaTypeOf(baseClass, self.META.FlowPort),
+            isIBDConnection = self.isMetaTypeOf(baseClass, self.META.Edges),
+            isIBDiagram = isIBDParent && (self.isMetaTypeOf(baseClass, self.META.Block) ||
+                self.isMetaTypeOf(baseClass, self.META.Property) || self.isMetaTypeOf(baseClass, self.META.FlowPort)),
             afterConnAdded;
 
 
@@ -171,6 +182,16 @@ define(['plugin/PluginConfig',
                 callback(null, node);
             }
             // todo: add object
+        } else if (isIBDiagram) {
+            _.extend(self, new InternalBlockDiagramExporter());
+            if (isIBDConnection) {
+                self.addConnection(node, afterConnAdded);
+            } else {
+                if (!self.idLUT.hasOwnProperty(gmeID)) {
+                    self.addComponent(node);
+                }
+                callback(null, node);
+            }
         } else {
             callback(null, node);
         }
