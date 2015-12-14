@@ -10,6 +10,8 @@ define([], function () {
     "use strict";
 
     return {
+        BLOCK_WIDTH: 200,
+        BLOCK_HEIGHT: 100,
         CommunicationPath: {
             type0: 4011,
             type1: 6008,

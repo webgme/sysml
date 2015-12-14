@@ -15,28 +15,6 @@ define(['ejs',
     var IBDExporter = function () {
     };
 
-    // main block
-    //  <packagedElement xmi:type="uml:Class" xmi:id="<%=diagramBlockId%>" name="<%= parentName %>"/>
-    //       <ownedAttribute xmi:type="uml:Property" xmi:id="<%= propId %>" name="<%= propName %>"
-    // type="<%= newBlockId %>" aggregation="composite" association="<%= associationId %>"/>
-    // outside uml:Model
-
-    // propId is id in Block.ejs file
-
-    // newBlockId is created from propId
-
-    // packagedElement block element for Part
-    //<packagedElement xmi:type="uml:Association" xmi:id="<%= associationId %>" name="Association1" memberEnd="<%= propId %> <%= mainBlockId %>">
-    //    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AgAuQZyTEeW8sf1tOYG01w" source="org.eclipse.papyrus">
-    //    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AgAuQpyTEeW8sf1tOYG01w" key="nature" value="SysML_Nature"/>
-    //    </eAnnotations>
-    //    <ownedEnd xmi:type="uml:Property" xmi:id="<%= mainBlockId %>" name="<%= mainBlockName %>"
-    // type="<%= mainBlockId %>" association="<%= associationId %>"/>
-    //</packagedElement>
-
-    //  <Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="<%= mainBlockId %>"/>
-
-
     IBDExporter.prototype.addComponent = function (nodeObj) {
 
         var self = this,
@@ -133,8 +111,6 @@ define(['ejs',
                     link = {
                         id: self.modelID,
                         src: self.idLUT[src].id,
-                        srcName: srcName,
-                        dstName: dstName,
                         dst: self.idLUT[dst].id,
                         type: type,
                         points: {
@@ -156,24 +132,6 @@ define(['ejs',
                         self.internalBlockDiagrams[diagramKey].links = [];
                     }
                     self.internalBlockDiagrams[diagramKey].links.push(link);
-                    if (type === "Extend" || type === "Include") {
-
-                        if (!self.idLUT[src].hasOwnProperty('dst')) {
-                            self.idLUT[src].dst = [];
-                        }
-                        self.idLUT[src].dst.push({
-                            type: type,
-                            dstId: link.dst,
-                            connId: link.id
-                        });
-                        if (!self.idLUT[dst].hasOwnProperty('src')) {
-                            self.idLUT[dst].src = [];
-                        }
-                        self.idLUT[dst].src.push({
-                            type: type,
-                            srcId: link.src
-                        });
-                    }
                 }
                 self.modelID += 1;
                 callback(null);
@@ -181,13 +139,18 @@ define(['ejs',
         };
 
         afterSrcLoaded = function (err, nodeObj) {
+            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.InternalBlockDiagram);
             if (err) {
                 pushUseCaseLink(err, false);
                 return;
             }
             if (!self.idLUT.hasOwnProperty(src)) {
                 srcMetaType = core.getAttribute(self.getMetaType(nodeObj), 'name');
-                self.addComponent(nodeObj, srcMetaType);
+                if (isParentIBD) {
+                    self.addComponent(nodeObj, srcMetaType);
+                } else {
+                    self.addFlowPort(nodeObj);
+                }
                 self.modelID += 1;
             }
             srcX = core.getRegistry(nodeObj, 'position').x;
@@ -199,13 +162,18 @@ define(['ejs',
         core.loadByPath(self.rootNode, src, afterSrcLoaded);
 
         afterDstLoaded = function (err, nodeObj) {
+            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.InternalBlockDiagram);
             if (err) {
                 pushUseCaseLink(err, false);
                 return;
             }
             if (!self.idLUT.hasOwnProperty(dst)) {
                 srcMetaType = core.getAttribute(self.getMetaType(nodeObj), 'name');
-                self.addComponent(nodeObj, dstMetaType);
+                if (isParentIBD) {
+                    self.addComponent(nodeObj, dstMetaType);
+                } else {
+                    self.addFlowPort(nodeObj);
+                }
                 self.modelID += 1;
             }
             dstX = core.getRegistry(nodeObj, 'position').x;
@@ -215,7 +183,6 @@ define(['ejs',
             pushUseCaseLink(null, true);
         };
         core.loadByPath(self.rootNode, dst, afterDstLoaded);
-
     };
 
     IBDExporter.prototype.saveResults = function (callback) {
@@ -242,7 +209,9 @@ define(['ejs',
                     mainDiagramInfo,
                     mainDiagramId = 'main_' + diagramPath,
                     mainDiagramName = self.internalBlockDiagrams[diagramPath].mainBlockName,
-                    mainDiagramRelations = [];
+                    mainDiagramRelations = [],
+                    diagramWidth = self.diagramDimension ? Math.max(self.diagramDimension.width, 500) : 500,
+                    diagramHeight = self.diagramDimension ? Math.max(self.diagramDimension.height, 300) : 300;
 
                 mainDiagramInfo = {
                     type: 'Class',
@@ -253,12 +222,27 @@ define(['ejs',
 
                 for (i = 0; i < self.internalBlockDiagrams[diagramPath].elements.length; ++i) {
                     var childElement = self.internalBlockDiagrams[diagramPath].elements[i],
-                        elm,
-                        j;
+                        elm;
 
                     template = TEMPLATES[childElement.type + '.ejs'];
 
-                    if (template) {
+                    if (childElement.type === 'Block') {
+                        elm = self._createBlockNotation(childElement, portElms2);
+                        modelNotationElms.push(elm);
+
+                    } else if (childElement.type.indexOf('FlowPort') === 0) {
+                        template = TEMPLATES['FlowPort.ejs'];
+                        var portPos = self._getPortPosition(diagramWidth, diagramHeight, childElement.x, childElement.y);
+                        elm = ejs.render(template, {
+                            id: childElement.id,
+                            x: portPos.x,
+                            y: portPos.y
+                        });
+                        portElms1.push(elm);
+                        template = TEMPLATES['FlowPort2.ejs'];
+                        elm = ejs.render(template, {id: childElement.id});
+                        portElms2.push(elm);
+                    } else if (template) {
                         elm = ejs.render(template,
                             {
                                 id: childElement.id,
@@ -266,23 +250,14 @@ define(['ejs',
                                 y: childElement.y
                             });
                         modelNotationElms.push(elm);
-                    } else if (childElement.type.indexOf('FlowPort') === 0) {
-                        template = TEMPLATES['FlowPort.ejs'];
-                        elm = ejs.render(template, {
-                            id: childElement.id,
-                            x: childElement.x,
-                            y: childElement.y
-                        });
-                        portElms1.push(elm);
-                        template = TEMPLATES['FlowPort2.ejs'];
-                        elm = ejs.render(template, {id: childElement.id});
-                        portElms2.push(elm);
                     }
 
-                    template = TEMPLATES[childElement.type + '.uml.ejs'];
+                    if (childElement.type === 'Block') {
+                        template = TEMPLATES[childElement.type + '.uml.ejs'];
+                        var portElms = self._getPorts(childElement.id, blockElms);
 
-                    if (template) {
                         obj = {
+                            childElements: portElms.join('\n'),
                             blockId: 'block_' + childElement.id,
                             blockName: childElement.name,
                             associationId: 'assoc_' + childElement.id,
@@ -298,9 +273,8 @@ define(['ejs',
                             .replace(/&quot;/g, '"');
 
                         modelElms.push(elm);
-                    }
 
-                    if (childElement.type === 'Block') {
+
                         elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + 'block_' + childElement.id + '"/>';
                         blockElms.push(elm);
 
@@ -319,22 +293,11 @@ define(['ejs',
                     } else if (childElement.type === 'Property') {
                         elm = '<ownedAttribute xmi:type="uml:Property" xmi:id="' + childElement.id + '" name="' + childElement.name + '"/>';
                     } else if (childElement.type.indexOf('FlowPort') > -1 ) {
-                        elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + childElement.id + '" direction="'
-                            + childElement.type.replace('FlowPort', '').toLowerCase() + '"/>';
-                        blockElms.push(elm);
-                        elm = '<ownedAttribute xmi:type="uml:Port" xmi:id="' + childElement.id + '" name="' + childElement.name + '" aggregation="composite"/>';
+                        elm = self._getFlowPortUml(childElement, blockElms);
                     }
 
                     mainDiagramRelations.push(elm);
                 }
-
-                mainDiagramInfo.relations = mainDiagramRelations.join('\n');
-                elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'], mainDiagramInfo)
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&quot;/g, '"');
-                modelElms.push(elm);
 
                 elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + mainDiagramId + '"/>';
                 blockElms.push(elm);
@@ -344,7 +307,7 @@ define(['ejs',
                         var link = self.internalBlockDiagrams[diagramPath].links[i],
                             edge;
 
-                        obj = CONSTANTS[link.type];
+                        obj = {};
                         obj.srcId = link.src;
                         obj.dstId = link.dst;
                         obj.id = link.id;
@@ -353,23 +316,54 @@ define(['ejs',
                         obj.dstX = link.points.dst.x;
                         obj.dstY = link.points.dst.y;
 
-                        edge = ejs.render(TEMPLATES['edges.ejs'], obj);
-                        modelNotationElms.push(edge);
+                        if (link.type === 'Connector') {
 
-                        if (link.type === "CommunicationPath") {
+                            var srcParent = self.reversePortLUT[self.reverseIdLUT[link.src]]
+                                    ? 'partWithPort="' + self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.src]]].id + '"'
+                                    : ''
+                                    .replace(/&lt;/g, '<')
+                                    .replace(/&gt;/g, '>')
+                                    .replace(/&#39;/g, "'")
+                                    .replace(/&quot;/g, '"'),
+                                dstParent = self.reversePortLUT[self.reverseIdLUT[link.dst]]
+                                    ? 'partWithPort="' + self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.dst]]].id + '"'
+                                    : ''
+                                    .replace(/&lt;/g, '<')
+                                    .replace(/&gt;/g, '>')
+                                    .replace(/&#39;/g, "'")
+                                    .replace(/&quot;/g, '"');
 
-                            edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
+
+                            edge = ejs.render(TEMPLATES[link.type + '.ejs'], obj);
+                            portElms2.push(edge);
+
+                            edge = ejs.render(TEMPLATES[link.type + '.uml.ejs'],
                                 {
-                                    connId: link.id,
+                                    id: link.id,
+                                    name: link.name,
                                     srcId: link.src,
                                     dstId: link.dst,
-                                    srcName: link.srcName,
-                                    dstName: link.dstName
+                                    srcParent: srcParent,
+                                    dstParent: dstParent
                                 });
-                            modelElms.push(edge);
+                            mainDiagramRelations.push(edge);
                         }
                     }
                 }
+
+                mainDiagramInfo.relations = mainDiagramRelations.join('\n')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&quot;/g, '"');
+
+                elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'], mainDiagramInfo)
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&quot;/g, '"');
+
+                modelElms.push(elm);
 
                     notationFile = ejs.render(TEMPLATES['InternalBlockDiagram.notation.ejs'],
                         {
@@ -379,8 +373,8 @@ define(['ejs',
                             portElements1: portElms1.join('\n'),
                             portElements2: portElms2.join('\n'),
                             diagramId: '_D' + diagramId,
-                            diagramWidth: self.diagramDimension ? Math.max(self.diagramDimension.width, 500) : 500,
-                            diagramHeight: self.diagramDimension ? Math.max(self.diagramDimension.height, 300) : 300
+                            diagramWidth: diagramWidth,
+                            diagramHeight: diagramHeight
                         })
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')
@@ -437,5 +431,104 @@ define(['ejs',
         });
     };
 
+    IBDExporter.prototype._getPortPosition = function (diagramWidth, diagramHeight, x, y) {
+        var pos = {};
+        if (x < y) {
+            pos.y = Math.min(y, diagramHeight - 20);
+            if (x < diagramWidth / 2) {
+                pos.x = -10;
+            } else {
+                pos.x = diagramWidth - 10;
+            }
+        } else {
+            pos.x =  Math.min(x, diagramWidth - 20);
+            if (y < diagramHeight / 2) {
+                pos.y = -10;
+            } else {
+                pos.y = diagramHeight - 10;
+            }
+        }
+        return pos;
+    };
+
+
+    IBDExporter.prototype._getFlowPortUml = function (port, elementGroup) {
+        var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
+            + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
+        elementGroup.push(elm);
+        return '<ownedAttribute xmi:type="uml:Port" xmi:id="' + port.id + '" name="' + port.name + '" aggregation="composite"/>';
+    };
+
+    IBDExporter.prototype._getPorts = function(blockId, elementGroup) {
+        var self = this,
+            ports = self.portLUT[self.reverseIdLUT[blockId]] ? self.portLUT[self.reverseIdLUT[blockId]].ports : [],
+            i,
+            portElms = [];
+
+        for (i = 0; i < ports.length; ++i) {
+            portElms.push(self._getFlowPortUml(ports[i], elementGroup));
+        }
+        return portElms;
+
+    };
+
+    IBDExporter.prototype._createBlockNotation = function (blockObj, notationGroup) {
+        var self = this,
+            ports = self.portLUT[self.reverseIdLUT[blockObj.id]] ? self.portLUT[self.reverseIdLUT[blockObj.id]].ports : [],
+            i,
+            portElms1 = [],
+            portElms2 = [],
+            elm,
+            pos;
+
+        for (i = 0; i < ports.length; ++i) {
+            pos = self._getPortPosition(CONSTANTS.BLOCK_WIDTH, CONSTANTS.BLOCK_HEIGHT, ports[i].x, ports[i].y);
+            elm = ejs.render(TEMPLATES['ChildFlowPort1.ejs'], {
+                id: ports[i].id,
+                x: pos.x,
+                y: pos.y
+            })
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&#39;/g, "'")
+                .replace(/&quot;/g, '"');
+
+            portElms1.push(elm);
+
+            elm = ejs.render(TEMPLATES['ChildFlowPort2.ejs'], {
+                id: ports[i].id
+            })
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&#39;/g, "'")
+                .replace(/&quot;/g, '"');
+            portElms2.push(elm);
+
+            elm = ejs.render(TEMPLATES['ChildFlowPort3.ejs'], {
+                id: ports[i].id
+            })
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&#39;/g, "'")
+                .replace(/&quot;/g, '"');
+            notationGroup.push(elm);
+        }
+
+        elm = ejs.render(TEMPLATES[blockObj.type + '.ejs'],
+            {
+                id: blockObj.id,
+                x: blockObj.x,
+                y: blockObj.y,
+                portNotation1: portElms1.join('\n'),
+                portNotation2: portElms2.join('\n')
+            })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&#39;/g, "'")
+            .replace(/&quot;/g, '"');
+        return elm;
+    };
+
     return IBDExporter;
 });
+

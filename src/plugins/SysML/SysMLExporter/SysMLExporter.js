@@ -22,6 +22,8 @@ define(['plugin/PluginConfig',
         this.diagram = {};
         this.outputFiles = {};
         this.idLUT = {};
+        this.portLUT = {};
+        this.reversePortLUT = {};
         this.reverseIdLUT = {};
         this.error = '';
         this.requirementDiagrams = {};
@@ -140,13 +142,11 @@ define(['plugin/PluginConfig',
             isCommentLink = self.isMetaTypeOf(baseClass, self.META.CommentLink),
 
             /** internal block diagram **/
-            isIBDParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.Block)
-                || self.isMetaTypeOf(parentBaseClass, self.META.InternalBlockDiagram),
-            //isBlock = self.isMetaTypeOf(baseClass, self.META.Block),
-            //isFlowPort = self.isMetaTypeOf(baseClass, self.META.FlowPort),
-            isIBDConnection = self.isMetaTypeOf(baseClass, self.META.Edges),
+            isIBDParent = self.isMetaTypeOf(parentBaseClass, self.META.InternalBlockDiagram),
+            isFlowPort = self.isMetaTypeOf(baseClass, self.META.FlowPort),
+            isIBDConnection = self.isMetaTypeOf(baseClass, self.META.Connector), // edges
             isIBDiagram = isIBDParent && (self.isMetaTypeOf(baseClass, self.META.Block) ||
-                self.isMetaTypeOf(baseClass, self.META.Property) || self.isMetaTypeOf(baseClass, self.META.FlowPort)),
+                self.isMetaTypeOf(baseClass, self.META.Property) || isFlowPort) || isIBDConnection,
             afterConnAdded;
 
 
@@ -192,6 +192,11 @@ define(['plugin/PluginConfig',
                 }
                 callback(null, node);
             }
+        } else if (isFlowPort) {
+            if (!self.idLUT.hasOwnProperty(gmeID)) {
+                self.addFlowPort(node);
+            }
+            callback(null, node);
         } else {
             callback(null, node);
         }
@@ -206,6 +211,41 @@ define(['plugin/PluginConfig',
     };
 
     SysMLExporterPlugin.prototype.addConnection = function (nodeObj, callback) {
+
+    };
+
+    SysMLExporterPlugin.prototype.addFlowPort = function (nodeObj) {
+        var self = this,
+            core = self.core,
+            parentBaseClass = self.getMetaType(nodeObj.parent),
+            isParentBlock = self.isMetaTypeOf(parentBaseClass, self.META.Block);
+
+        if (isParentBlock) {
+            var parentPath = core.getPath(nodeObj.parent),
+                port,
+                portGmeId = core.getPath(nodeObj);
+
+            if (!self.portLUT.hasOwnProperty(parentPath)) {
+                self.portLUT[parentPath] = {ports: []};
+            }
+            port = {
+                id: self.modelID,
+                name: core.getAttribute(nodeObj, 'name'),
+                type: core.getAttribute(self.getMetaType(nodeObj), 'name'),
+                x: core.getRegistry(nodeObj, 'position').x,
+                y: core.getRegistry(nodeObj, 'position').y
+            };
+            self.idLUT[portGmeId] = {id: self.modelID};
+            self.reverseIdLUT[self.modelID] = portGmeId;
+            self.modelID += 1;
+
+            self.portLUT[parentPath].ports.push(port);
+
+            if (!self.reversePortLUT.hasOwnProperty(portGmeId)) {
+                self.reversePortLUT[portGmeId] = parentPath;
+            }
+
+        }
 
     };
 
