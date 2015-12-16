@@ -10,6 +10,7 @@ define([
     'plugin/PluginBase',
     './RequirementDiagramImporter',
     './UseCaseDiagramImporter',
+    './BlockDefinitionDiagramImporter',
     'jszip',
     'xmljsonconverter'
 ], function (
@@ -17,6 +18,7 @@ define([
     PluginBase,
     RequirementDiagramImporter,
     UseCaseDiagramImporter,
+    BlockDefinitionDiagramImporter,
     JSZip,
     Converter) {
     'use strict';
@@ -171,12 +173,15 @@ define([
     };
 
     SysMLImporter.prototype.buildUpSysMLModel = function(dataModel, notationData) {
+
         var self = this,
             //projectName = projectData ? projectData.projectDescription.name : null,
             sysmlData = dataModel['http://www.eclipse.org/uml2/5.0.0/UML:Model']
                 || dataModel['http://www.omg.org/spec/XMI/20131001:XMI']['http://www.eclipse.org/uml2/5.0.0/UML:Model'],
             notationObj = notationData['http://www.eclipse.org/gmf/runtime/1.0.2/notation:Diagram']
                 || notationData['http://www.omg.org/XMI:XMI']['http://www.eclipse.org/gmf/runtime/1.0.2/notation:Diagram'],
+            portAndFlows = dataModel['http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows:FlowPort']
+            || dataModel['http://www.omg.org/spec/XMI/20131001:XMI']['http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows:FlowPort'],
             _buildDiagram,
             i;
 
@@ -185,12 +190,14 @@ define([
                 case 'RequirementDiagram':
                     sysmlData = dataModel['http://www.omg.org/spec/XMI/20131001:XMI'];
                     _.extend(self, new RequirementDiagramImporter());
-                    break;
+                        break;
                 case 'UseCase':
                     _.extend(self, new UseCaseDiagramImporter());
                     break;
+                case 'BlockDefinition':
+                    _.extend(self, new BlockDefinitionDiagramImporter());
             }
-            self.buildDiagram(sysmlData, notation);
+            self.buildDiagram(sysmlData, notation, portAndFlows);
         };
 
 
@@ -207,7 +214,7 @@ define([
 
     };
 
-    SysMLImporter.prototype.buildDiagram = function (sysmlData, modelNotation) {
+    SysMLImporter.prototype.buildDiagram = function (sysmlData, modelNotation, portsAndFlows) {
 
     };
 
