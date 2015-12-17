@@ -11,6 +11,7 @@ define([
     './RequirementDiagramImporter',
     './UseCaseDiagramImporter',
     './InternalBlockDiagramImporter',
+    './ParametricDiagramImporter',
     'jszip',
     'xmljsonconverter'
 ], function (
@@ -19,6 +20,7 @@ define([
     RequirementDiagramImporter,
     UseCaseDiagramImporter,
     InternalBlockDiagramImporter,
+    ParametricDiagramImporter,
     JSZip,
     Converter) {
     'use strict';
@@ -194,6 +196,11 @@ define([
                 case 'InternalBlock':
                     sysmlData = dataModel['http://www.omg.org/spec/XMI/20131001:XMI'];
                     _.extend(self, new InternalBlockDiagramImporter());
+                    break;
+                case 'Parametric':
+                    sysmlData = dataModel['http://www.omg.org/spec/XMI/20131001:XMI'];
+                    _.extend(self, new ParametricDiagramImporter());
+                    break;
 
             }
             self.buildDiagram(sysmlData, notation);

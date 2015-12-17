@@ -1,5 +1,5 @@
 /**
- * Created by Dana Zhang on 12/10/15.
+ * Created by Dana Zhang on 12/15/15.
  */
 
 /*globals define*/
@@ -9,15 +9,13 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
 
     'use strict';
 
-    var IBDImporter = function () {
+    var PDImporter = function () {
 
     };
 
-    IBDImporter.prototype.buildDiagram = function (sysmlData, modelNotation) {
+    PDImporter.prototype.buildDiagram = function (sysmlData, modelNotation) {
         var self = this,
             sysmlElms = sysmlData['http://www.eclipse.org/uml2/5.0.0/UML:Model'],
-            blocks = sysmlData['http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks:Block'],
-            ports = sysmlData['http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows:FlowPort'],
             PREFIX ='@http://www.omg.org/spec/XMI/20131001:',
             rootBlockId = modelNotation.element['@href'].substring(modelNotation.element['@href'].indexOf('#') + 1),
             i, j,
@@ -26,6 +24,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             components = [],
             idToChildren = {},
             idToTypes = {},
+            xmiIdToId = {},
             nodeDataById,
             node,
             position,
@@ -42,39 +41,14 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         // Create the internal block diagram
         smNode = self.core.createNode({
             parent: self.activeNode,
-            base: self.META.InternalBlockDiagram
+            base: self.META.ParametricDiagram
         });
 
         self.core.setAttribute(smNode, 'name', modelNotation['@name']);
         self.core.setRegistry(smNode, 'position', {x: 200, y: 200});    // todo: update position
 
-        // get block objects idToTypes {id: type}  (id ==> meta_type)
-        if (blocks) {
-            if (blocks.length) {
-                for (i = 0; i < blocks.length; ++i) {
-                    if (blocks[i]['@base_Class'] !== rootBlockId) {
-                        idToTypes[blocks[i]['@base_Class']] = 'Block';
-                    }
-                }
-            } else {
-                if (blocks['@base_Class'] !== rootBlockId) {
-                    idToTypes[blocks['@base_Class']] = 'Block';
-                }
-            }
-        }
-
-        // get port objects idToTypes {id: type}
-        if (ports) {
-            if (ports.length) {
-                for (i = 0; i < ports.length; ++i) {
-                    idToTypes[ports[i]['@base_Port']] = 'FlowPort'
-                        + CONSTANTS.FLOW_PORTS[ports[i]['@direction']];
-                }
-            } else {
-                idToTypes[ports['@base_Port']] = 'FlowPort'
-                    + CONSTANTS.FLOW_PORTS[ports['@direction']];
-            }
-        }
+        // save components info
+        self._saveSysmlData(sysmlData, idToTypes, rootBlockId);
 
         // Gather component info
         for (i = 0; i < sysmlElms.packagedElement.length; i += 1) {
@@ -100,10 +74,10 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
 
                 if (elm.ownedAttribute.length) {
                     for (j = 0; j < elm.ownedAttribute.length; ++j) {
-                        self._processComponents(elm.ownedAttribute[j], components, parentId, idToChildren, nodeDataById, idToTypes);
+                        self._processComponents(elm.ownedAttribute[j], components, parentId, idToChildren, nodeDataById, idToTypes, xmiIdToId);
                     }
                 } else {
-                    self._processComponents(elm.ownedAttribute, components, parentId, idToChildren, nodeDataById, idToTypes);
+                    self._processComponents(elm.ownedAttribute, components, parentId, idToChildren, nodeDataById, idToTypes, xmiIdToId);
                 }
             }
         }
@@ -139,17 +113,17 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             if (elm.ownedConnector) {
                 if (elm.ownedConnector.length) {
                     for (j = 0; j < elm.ownedConnector.length; ++j) {
-                        self._processConnections(elm.ownedConnector[j], smNode, idToNode);
+                        self._processConnections(elm.ownedConnector[j], smNode, idToNode, xmiIdToId);
                     }
                 } else {
-                    self._processConnections(elm.ownedConnector, smNode, idToNode);
+                    self._processConnections(elm.ownedConnector, smNode, idToNode, xmiIdToId);
                 }
             }
         }
 
     };
 
-    IBDImporter.prototype._processModelNotation = function (modelNotation, rootBlockId) {
+    PDImporter.prototype._processModelNotation = function (modelNotation, rootBlockId) {
         var nodeDataById = {},
             idPrefix,
             TYPE_KEY = '@http://www.omg.org/XMI:type',
@@ -165,14 +139,17 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
 
                 var id = c.element['@href'].replace(idPrefix, '');
                 if (id !== rootBlockId) {
-                    nodeDataById[id] =
-                    {
-                        position:
+                    if (c.layoutConstraint) {
+
+                        nodeDataById[id] =
                         {
-                            x: Math.abs(parseInt(c.layoutConstraint['@x'])),
-                            y: Math.abs(parseInt(c.layoutConstraint['@y']))
-                        }
-                    };
+                            position:
+                            {
+                                x: Math.abs(parseInt(c.layoutConstraint['@x'])),
+                                y: Math.abs(parseInt(c.layoutConstraint['@y']))
+                            }
+                        };
+                    }
                 }
             }
 
@@ -196,10 +173,17 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         return nodeDataById;
     };
 
-    IBDImporter.prototype._processComponents = function (component, components, parentId, idToChildren, nodeDataById, idToTypes) {
+    PDImporter.prototype._processComponents = function (component, components, parentId, idToChildren, nodeDataById, idToTypes, xmiIdToId) {
         var xmiId = component['@http://www.omg.org/spec/XMI/20131001:id'],
             id = component['@type'],
-            name = component['@name'];
+            name = component['@name'],
+            type = component['@http://www.omg.org/spec/XMI/20131001:type'].replace('uml:', '');
+
+        if (!name) return;
+
+        if (id) {
+            xmiIdToId[xmiId] = id;
+        }
 
         // if component is child element, save it to idToChildren list
         if (idToChildren[parentId]) {
@@ -207,7 +191,7 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 id: xmiId,
                 name: name,
                 position: nodeDataById[xmiId].position,
-                type: idToTypes[xmiId]
+                type: idToTypes[xmiId] || type
             };
             idToChildren[parentId].children.push(childObj);
         } else {
@@ -218,13 +202,12 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 position: nodeDataById[xmiId].position
             };
             // if component is Block, it has an id, get its type from idToTypes
-            compObj.type = idToTypes[id] || idToTypes[xmiId]
-                || component['@http://www.omg.org/spec/XMI/20131001:type'].replace('uml:', '');
+            compObj.type = idToTypes[id] || idToTypes[xmiId] || type;
             components.push(compObj);
         }
     };
 
-    IBDImporter.prototype._processConnections = function (connection, parentNode, idToNode) {
+    PDImporter.prototype._processConnections = function (connection, parentNode, idToNode, xmiIdToId) {
         var self = this,
             name = connection['@name'],
             src = connection.end[0]['@role'],
@@ -234,11 +217,60 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 base: self.META['Connector']
             });
 
-        self.core.setPointer(linkNode, 'src', idToNode[src]);
-        self.core.setPointer(linkNode, 'dst', idToNode[dst]);
+        self.core.setPointer(linkNode, 'src', idToNode[src] || idToNode[xmiIdToId[src]]);
+        self.core.setPointer(linkNode, 'dst', idToNode[dst] || idToNode[xmiIdToId[dst]]);
 
     };
 
+    PDImporter.prototype._saveSysmlData = function (sysmlData, idToTypes, rootBlockId) {
+        var blocks = sysmlData['http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks:Block'],
+            constraintBlocks = sysmlData['http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints:ConstraintBlock'],
+            constraintParams = sysmlData['http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints:ConstraintProperty'],
+            i;
 
-    return IBDImporter;
+        // get block objects idToTypes {id: type}  (id ==> meta_type)
+        if (blocks) {
+            if (blocks.length) {
+                for (i = 0; i < blocks.length; ++i) {
+                    if (blocks[i]['@base_Class'] !== rootBlockId) {
+                        idToTypes[blocks[i]['@base_Class']] = 'Block';
+                    }
+                }
+            } else {
+                if (blocks['@base_Class'] !== rootBlockId) {
+                    idToTypes[blocks['@base_Class']] = 'Block';
+                }
+            }
+        }
+
+        if (constraintBlocks) {
+            if (constraintBlocks.length) {
+                for (i = 0; i < constraintBlocks.length; ++i) {
+                    if (constraintBlocks[i]['@base_Class'] !== rootBlockId) {
+                        idToTypes[constraintBlocks[i]['@base_Class']] = 'ConstraintBlock';
+                    }
+                }
+            } else {
+                if (constraintBlocks['@base_Class'] !== rootBlockId) {
+                    idToTypes[constraintBlocks['@base_Class']] = 'ConstraintBlock';
+                }
+            }
+        }
+        if (constraintParams) {
+            if (constraintParams.length) {
+                for (i = 0; i < constraintParams.length; ++i) {
+                    if (constraintParams[i]['@base_Property'] !== rootBlockId) {
+                        idToTypes[constraintParams[i]['@base_Property']] = 'ConstraintParameter';
+                    }
+                }
+            } else {
+                if (constraintParams['@base_Property'] !== rootBlockId) {
+                    idToTypes[constraintParams['@base_Property']] = 'ConstraintParameter';
+                }
+            }
+        }
+    };
+
+
+    return PDImporter;
 });
