@@ -28,19 +28,13 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             i, j,
             elm,
             idToNode = {},
-            components = {},
-            notationIdToUmlId = {},
+            components = [],
+            idToChildren = {},
             idToTypes = {},
-            elmId,
             nodeDataById,
             node,
-            linkNode,
-            nodeId,
-            nodeType,
             position,
-            links = [],
             smNode;
-
 
 
         if (!sysmlElms || !modelNotation) {
@@ -59,48 +53,22 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         self.core.setAttribute(smNode, 'name', modelNotation['@name']);
         self.core.setRegistry(smNode, 'position', {x: 200, y: 200});    // todo: update position
 
-        // Gather component info
-        for (i = 0; i < sysmlElms.packagedElement.length; i += 1) {
-            elm = sysmlElms.packagedElement[i];
-            var parentId;
-            nodeId = elm[PREFIX + 'id'];
-            nodeType = elm[PREFIX + 'type'].replace('uml:', '');
-
-            if (nodeId !== rootBlockId) {
-
-                if (nodeDataById[nodeId]) {
-                    nodeDataById[nodeId].type = 'Block';
-                } else if (notationIdToUmlId[nodeId]) {
-                    nodeDataById[notationIdToUmlId[nodeId]].type = 'Block';
-                }
-                parentId = notationIdToUmlId[nodeId] || nodeId;
-            }
-
-            if (elm.ownedAttribute) {
-                if (elm.ownedAttribute.length) {
-                    for (j = 0; j < elm.ownedAttribute.length; ++j) {
-                        self._processComponents(elm.ownedAttribute[j], nodeDataById, components, parentId, notationIdToUmlId);
-                    }
-                } else {
-                    self._processComponents(elm.ownedAttribute, nodeDataById, components, parentId, notationIdToUmlId);
-                }
-            }
-        }
-
+        // get block objects idToTypes {id: type}  (id ==> meta_type)
         if (blocks) {
             if (blocks.length) {
                 for (i = 0; i < blocks.length; ++i) {
                     if (blocks[i]['@base_Class'] !== rootBlockId) {
-                        idToTypes[notationIdToUmlId[blocks[i]['@base_Class']]] = 'Block';
+                        idToTypes[blocks[i]['@base_Class']] = 'Block';
                     }
                 }
             } else {
                 if (blocks['@base_Class'] !== rootBlockId) {
-                    idToTypes[notationIdToUmlId[blocks['@base_Class']]] = 'Block';
+                    idToTypes[blocks['@base_Class']] = 'Block';
                 }
             }
         }
 
+        // get port objects idToTypes {id: type}
         if (ports) {
             if (ports.length) {
                 for (i = 0; i < ports.length; ++i) {
@@ -113,28 +81,60 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
             }
         }
 
-        for (i in components) {
-            if (components.hasOwnProperty(i)) {
-                node = self.core.createNode({
-                    parent: smNode,
-                    base: self.META[idToTypes[i] || components[i].type]
-                });
+        // Gather component info
+        for (i = 0; i < sysmlElms.packagedElement.length; i += 1) {
+            elm = sysmlElms.packagedElement[i];
+            var parentId = null,
+                xmiId = elm[PREFIX + 'id'],
+                nodeMetaType = elm[PREFIX + 'type'].replace('uml:', '');
 
-                self.core.setAttribute(node, 'name', components[i].name);
-                self.core.setRegistry(node, 'position', components[i].position);
+            // skip Association between rootBlock and other elements
+            if (nodeMetaType === 'Association') continue;
 
-                idToNode[i] = node;
-                if (components[i].children) {
-                    for (j = 0; j < components[i].children.length; ++j) {
-                        var child = components[i].children[j],
-                            childNode = self.core.createNode({
-                                parent: node,
-                                base: self.META[idToTypes[child.id]]
-                            });
-                        self.core.setAttribute(childNode, 'name', components[i].name);
-                        self.core.setRegistry(childNode, 'position', child.position);
-                        idToNode[child.id] = childNode;
+            // save packaged element type as Block if not root block
+            //if (xmiId !== rootBlockId) {
+            //    // todo: save what block is typed as, currently not supported by webgme-sysml
+            //}
+
+            // process child elements in packagedElement
+            if (elm.ownedAttribute) {
+                if (xmiId !== rootBlockId) {
+                    parentId = xmiId;
+                    idToChildren[parentId] = {children: []};
+                }
+
+                if (elm.ownedAttribute.length) {
+                    for (j = 0; j < elm.ownedAttribute.length; ++j) {
+                        self._processComponents(elm.ownedAttribute[j], components, parentId, idToChildren, nodeDataById, idToTypes);
                     }
+                } else {
+                    self._processComponents(elm.ownedAttribute, components, parentId, idToChildren, nodeDataById, idToTypes);
+                }
+            }
+        }
+
+        for (i = 0; i < components.length; ++i) {
+
+            // create the webgme node for component
+            node = self.core.createNode({
+                parent: smNode,
+                base: self.META[components[i].type]
+            });
+            self.core.setAttribute(node, 'name', components[i].name);
+            self.core.setRegistry(node, 'position', components[i].position);
+            idToNode[components[i].id] = node;
+
+            // if component has children, then create children nodes
+            if (idToChildren[components[i].id]) {
+                for (j = 0; j < idToChildren[components[i].id].children.length; ++j) {
+                    var child = idToChildren[components[i].id].children[j],
+                        childNode = self.core.createNode({
+                            parent: node,
+                            base: self.META[child.type]
+                        });
+                    self.core.setAttribute(childNode, 'name', child.name);
+                    self.core.setRegistry(childNode, 'position', child.position);
+                    idToNode[child.id] = childNode;
                 }
             }
         }
@@ -151,7 +151,6 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 }
             }
         }
-
 
     };
 
@@ -173,7 +172,6 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
                 if (id !== rootBlockId) {
                     nodeDataById[id] =
                     {
-                        type: c.element[TYPE_KEY].replace('uml:', ''),
                         position:
                         {
                             x: Math.abs(parseInt(c.layoutConstraint['@x'])),
@@ -203,32 +201,31 @@ define(['./SysMLImporterConstants'], function (CONSTANTS) {
         return nodeDataById;
     };
 
-
-
-
-    IBDImporter.prototype._processComponents = function (component, nodeDataById, componentList, parentId, notationIdToUmlId) {
-        var id = component['@type'],
-            notationId = component['@http://www.omg.org/spec/XMI/20131001:id'],
+    IBDImporter.prototype._processComponents = function (component, components, parentId, idToChildren, nodeDataById, idToTypes) {
+        var xmiId = component['@http://www.omg.org/spec/XMI/20131001:id'],
+            id = component['@type'],
             name = component['@name'];
 
-        if (id) {
-            notationIdToUmlId[id] = notationId;
-        }
-
-        if (nodeDataById[notationId]) {
-            nodeDataById[notationId].name = name;
-        }
-
-        if (parentId) {
-            if (!componentList[parentId]) {
-                componentList[parentId] = {};
-            }
-            componentList[parentId].children = componentList[parentId].children || [];
-            var childObj = nodeDataById[notationId];
-            childObj.id = notationId;
-            componentList[parentId].children.push(childObj);
+        // if component is child element, save it to idToChildren list
+        if (idToChildren[parentId]) {
+            var childObj = {
+                id: xmiId,
+                name: name,
+                position: nodeDataById[xmiId].position,
+                type: idToTypes[xmiId]
+            };
+            idToChildren[parentId].children.push(childObj);
         } else {
-            componentList[notationId] = nodeDataById[notationId];
+            // if component is diagram component, save it to components list
+            var compObj = {
+                id: id || xmiId,
+                name: name,
+                position: nodeDataById[xmiId].position
+            };
+            // if component is Block, it has an id, get its type from idToTypes
+            compObj.type = idToTypes[id] || idToTypes[xmiId]
+                || component['@http://www.omg.org/spec/XMI/20131001:type'].replace('uml:', '');
+            components.push(compObj);
         }
     };
 
