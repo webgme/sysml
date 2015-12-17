@@ -10,6 +10,7 @@ define([
     'plugin/PluginBase',
     './RequirementDiagramImporter',
     './UseCaseDiagramImporter',
+    './InternalBlockDiagramImporter',
     'jszip',
     'xmljsonconverter'
 ], function (
@@ -17,6 +18,7 @@ define([
     PluginBase,
     RequirementDiagramImporter,
     UseCaseDiagramImporter,
+    InternalBlockDiagramImporter,
     JSZip,
     Converter) {
     'use strict';
@@ -189,6 +191,10 @@ define([
                 case 'UseCase':
                     _.extend(self, new UseCaseDiagramImporter());
                     break;
+                case 'InternalBlock':
+                    sysmlData = dataModel['http://www.omg.org/spec/XMI/20131001:XMI'];
+                    _.extend(self, new InternalBlockDiagramImporter());
+
             }
             self.buildDiagram(sysmlData, notation);
         };

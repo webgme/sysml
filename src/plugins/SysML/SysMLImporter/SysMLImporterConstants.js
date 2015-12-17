@@ -13,6 +13,11 @@ define([], function () {
         SYSML_TO_META_TYPES: {
             Class: 'Requirement',
             Abstraction: 'Abstraction'
+        },
+        FLOW_PORTS: {
+            in: 'In',
+            out: 'Out',
+            inout: 'InOut'
         }
     };
 });
