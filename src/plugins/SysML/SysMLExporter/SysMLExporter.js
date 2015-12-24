@@ -10,8 +10,10 @@ define(['plugin/PluginConfig',
     'plugin/PluginBase',
     './UseCaseDiagramExporter',
     './RequirementDiagramExporter',
-    './InternalBlockDiagramExporter'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, InternalBlockDiagramExporter) {
+    './InternalBlockDiagramExporter',
+    './SequenceDiagramExporter',
+    './ParametricDiagramExporter'
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter) {
 
     'use strict';
 
@@ -29,6 +31,8 @@ define(['plugin/PluginConfig',
         this.requirementDiagrams = {};
         this.usecaseDiagrams = {};
         this.internalBlockDiagrams = {};
+        this.sequenceDiagrams = {};
+        this.parametricDiagrams = {};
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -144,9 +148,28 @@ define(['plugin/PluginConfig',
             /** internal block diagram **/
             isIBDParent = self.isMetaTypeOf(parentBaseClass, self.META.InternalBlockDiagram),
             isFlowPort = self.isMetaTypeOf(baseClass, self.META.FlowPort),
-            isIBDConnection = self.isMetaTypeOf(baseClass, self.META.Connector), // edges
+            isIBDConnection = isIBDParent && self.isMetaTypeOf(baseClass, self.META.Connector), // edges
             isIBDiagram = isIBDParent && (self.isMetaTypeOf(baseClass, self.META.Block) ||
                 self.isMetaTypeOf(baseClass, self.META.Property) || isFlowPort) || isIBDConnection,
+            isFlowPortParent = self.isMetaTypeOf(parentBaseClass, self.META.Block),
+
+            /** sequence diagram **/
+            isExecSpecParent = self.isMetaTypeOf(parentBaseClass, self.META.LifeLine),
+            isSequenceDiagram = self.isMetaTypeOf(parentBaseClass, self.META.SequenceDiagram) || isExecSpecParent,
+            isLifeLine = self.isMetaTypeOf(baseClass, self.META.LifeLine),
+            isLostMessage = self.isMetaTypeOf(baseClass, self.META.LostMessage),
+            isExecutionSpecification = self.isMetaTypeOf(baseClass, self.META.ExecutionSpecification),
+            isMessage = self.isMetaTypeOf(baseClass, self.META.Message),
+
+
+            // Parametric Diagram
+            isParametricParent = self.isMetaTypeOf(parentBaseClass, self.META.ParametricDiagram),
+            isValue = self.isMetaTypeOf(baseClass, self.META.Value),
+            isConstraintParam = self.isMetaTypeOf(baseClass, self.META.ConstraintParameter),
+            isConstraintBlock = self.isMetaTypeOf(baseClass, self.META.ConstraintBlock),
+            isConnector = isParametricParent && self.isMetaTypeOf(baseClass, self.META.Connector),
+            isPrmDiagram = isParametricParent && (isValue || isConstraintBlock || isConnector),
+
             afterConnAdded;
 
 
@@ -181,7 +204,6 @@ define(['plugin/PluginConfig',
                 }
                 callback(null, node);
             }
-            // todo: add object
         } else if (isIBDiagram) {
             _.extend(self, new InternalBlockDiagramExporter());
             if (isIBDConnection) {
@@ -192,9 +214,34 @@ define(['plugin/PluginConfig',
                 }
                 callback(null, node);
             }
+        } else if (isSequenceDiagram) {
+            _.extend(self, new SequenceDiagramExporter());
+            if (isMessage) {
+                self.addConnection(node, afterConnAdded);
+            } else {
+                if (!self.idLUT.hasOwnProperty(gmeID)) {
+                    self.addComponent(node);
+                }
+                callback(null, node);
+            }
+        } else if (isPrmDiagram){
+            _.extend(self, new ParametricExporter());
+            if (isConnector) {
+                self.addConnection(node, afterConnAdded);
+            } else {
+                if (!self.idLUT.hasOwnProperty(gmeID)) {
+                    self.addComponent(node);
+                }
+                callback(null, node);
+            }
         } else if (isFlowPort) {
             if (!self.idLUT.hasOwnProperty(gmeID)) {
-                self.addFlowPort(node);
+                self.addChildPort(node, isFlowPortParent);
+            }
+            callback(null, node);
+        } else if (isConstraintParam) {
+            if (!self.idLUT.hasOwnProperty(gmeID)) {
+                self.addChildPort(node, true);
             }
             callback(null, node);
         } else {
@@ -214,13 +261,11 @@ define(['plugin/PluginConfig',
 
     };
 
-    SysMLExporterPlugin.prototype.addFlowPort = function (nodeObj) {
+    SysMLExporterPlugin.prototype.addChildPort = function (nodeObj, isValidParent) {
         var self = this,
-            core = self.core,
-            parentBaseClass = self.getMetaType(nodeObj.parent),
-            isParentBlock = self.isMetaTypeOf(parentBaseClass, self.META.Block);
+            core = self.core;
 
-        if (isParentBlock) {
+        if (isValidParent) {
             var parentPath = core.getPath(nodeObj.parent),
                 port,
                 portGmeId = core.getPath(nodeObj);

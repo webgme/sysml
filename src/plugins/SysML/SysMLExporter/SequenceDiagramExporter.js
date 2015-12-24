@@ -12,10 +12,10 @@ define(['ejs',
 
     'use strict';
 
-    var UseCaseDiagramExporter = function () {
+    var SequenceDiagramExporter = function () {
     };
 
-    UseCaseDiagramExporter.prototype.addComponent = function (nodeObj) {
+    SequenceDiagramExporter.prototype.addComponent = function (nodeObj) {
 
         var self = this,
             core = self.core,
@@ -29,32 +29,32 @@ define(['ejs',
             parentPath = core.getPath(core.getParent(nodeObj)),
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
 
-        if (self.isMetaTypeOf(baseClass, self.META.Actor) || self.isMetaTypeOf(baseClass, self.META.UseCase)) {
+        self.idLUT[gmeID] = {id: self.modelID};
+        self.reverseIdLUT[self.modelID] = gmeID;
 
-            self.idLUT[gmeID] = {id: self.modelID};
-            self.reverseIdLUT[self.modelID] = gmeID;
+        element = {
+            name: name,
+            id: self.modelID,
+            x: xPos,
+            y: yPos,
+            type: type
+        };
 
-            element = {
-                name: name,
-                id: self.modelID,
-                x: xPos,
-                y: yPos,
-                type: type
-            };
-            //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
-
-            if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                self.usecaseDiagrams[diagramKey] = {};
+        if (self.isMetaTypeOf(baseClass, self.META.LifeLine) || self.isMetaTypeOf(baseClass, self.META.LostMessage)) {
+            if (!self.sequenceDiagrams.hasOwnProperty(diagramKey)) {
+                self.sequenceDiagrams[diagramKey] = {};
             }
-            if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.usecaseDiagrams[diagramKey].elements = [];
+            if (!self.sequenceDiagrams[diagramKey].hasOwnProperty('elements')) {
+                self.sequenceDiagrams[diagramKey].elements = [];
             }
-            self.usecaseDiagrams[diagramKey].elements.push(element);
+            self.sequenceDiagrams[diagramKey].elements.push(element);
             self.modelID += 1;
+        } else if (self.isMetaTypeOf(baseClass, self.META.ExecutionSpecification)) {
+
         }
     };
 
-    UseCaseDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
+    SequenceDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
 
         var self = this,
             core = self.core,
@@ -112,13 +112,13 @@ define(['ejs',
                         }
                     };
 
-                    if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                        self.usecaseDiagrams[diagramKey] = {};
+                    if (!self.sequenceDiagrams.hasOwnProperty(diagramKey)) {
+                        self.sequenceDiagrams[diagramKey] = {};
                     }
-                    if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.usecaseDiagrams[diagramKey].links = [];
+                    if (!self.sequenceDiagrams[diagramKey].hasOwnProperty('links')) {
+                        self.sequenceDiagrams[diagramKey].links = [];
                     }
-                    self.usecaseDiagrams[diagramKey].links.push(link);
+                    self.sequenceDiagrams[diagramKey].links.push(link);
                     if (type === "Extend" || type === "Include") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
@@ -181,7 +181,7 @@ define(['ejs',
 
     };
 
-    UseCaseDiagramExporter.prototype.saveResults = function (callback) {
+    SequenceDiagramExporter.prototype.saveResults = function (callback) {
         var self = this,
             diagramPath,
             i,
@@ -191,8 +191,8 @@ define(['ejs',
             output,
             artifact = self.blobClient.createArtifact('SysMLExporterOutput');
 
-        for (diagramPath in self.usecaseDiagrams) {
-            if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
+        for (diagramPath in self.sequenceDiagrams) {
+            if (self.sequenceDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
                     notationFile,
                     modelFile,
@@ -200,8 +200,8 @@ define(['ejs',
                     modelNotationElms = [],
                     modelElms = [];
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.usecaseDiagrams[diagramPath].elements[i],
+                for (i = 0; i < self.sequenceDiagrams[diagramPath].elements.length; ++i) {
+                    var childElement = self.sequenceDiagrams[diagramPath].elements[i],
                         elm,
                         j;
 
@@ -269,8 +269,8 @@ define(['ejs',
                     modelElms.push(elm);
                 }
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.usecaseDiagrams[diagramPath].links[i],
+                for (i = 0; i < self.sequenceDiagrams[diagramPath].links.length; ++i) {
+                    var link = self.sequenceDiagrams[diagramPath].links[i],
                         edge;
 
                         obj = CONSTANTS[link.type];
@@ -328,8 +328,8 @@ define(['ejs',
                             name: diagramPath.split('+')[1]
                         });
 
-                    //self.diagram.usecasediagram.subject = self.usecaseDiagrams[diagramPath].subjects;
-                    //self.diagram.usecasediagram.link = self.usecaseDiagrams[diagramPath].links;
+                    //self.diagram.usecasediagram.subject = self.sequenceDiagrams[diagramPath].subjects;
+                    //self.diagram.usecasediagram.link = self.sequenceDiagrams[diagramPath].links;
                     output = {
                         project: projectFile,
                         modelDi: TEMPLATES['model.di.ejs'],
@@ -363,5 +363,5 @@ define(['ejs',
         });
     };
 
-    return UseCaseDiagramExporter;
+    return SequenceDiagramExporter;
 });

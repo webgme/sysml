@@ -151,7 +151,7 @@ define(['ejs',
                 if (isParentIBD) {
                     self.addComponent(nodeObj, srcMetaType);
                 } else {
-                    self.addFlowPort(nodeObj);
+                    self.addChildPort(nodeObj, true);
                 }
                 self.modelID += 1;
             }
@@ -174,7 +174,7 @@ define(['ejs',
                 if (isParentIBD) {
                     self.addComponent(nodeObj, dstMetaType);
                 } else {
-                    self.addFlowPort(nodeObj);
+                    self.addChildPort(nodeObj, true);
                 }
                 self.modelID += 1;
             }

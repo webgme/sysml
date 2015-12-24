@@ -54,7 +54,8 @@ define(['js/NodePropertyNames',
             rightPorts = [],
             SVGWidth = parseInt(this.skinParts.$svg.attr('width')),
             TOPOFFSET = parseInt(this.skinParts.$svg.find('line')[0].getAttribute('y1')),
-            SVGHeight = parseInt(this.skinParts.$svg.attr('height')) - TOPOFFSET,
+            //SVGHeight = parseInt(this.skinParts.$svg.attr('height')) - TOPOFFSET,
+            SVGHeight = parseInt(this.skinParts.$svg.find('line')[1].getAttribute('y1')) - TOPOFFSET,
             svgIcon = this.skinParts.$svg;
 
 
@@ -137,8 +138,6 @@ define(['js/NodePropertyNames',
                     }
                 }
             }
-
-
         }
 
 
@@ -148,8 +147,6 @@ define(['js/NodePropertyNames',
         // align left then right ports
         renderPorts(leftPorts, true);
         renderPorts(rightPorts, false);
-
-
     };
 
 
