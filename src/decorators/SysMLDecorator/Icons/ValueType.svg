@@ -1,0 +1,20 @@
+
+<svg width="150" height="190" xmlns="http://www.w3.org/2000/svg">
+ 
+ <g>
+   <g id="svg_1" stroke="null">
+   <g id="svg_2" stroke="null">
+   </g>
+  <rect stroke="#050505" id="valsvg_1" height="183.000004" width="140" y="3.5" x="2.5" stroke-width="1.5" fill="#f8f8f8"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="38.5" x2="142.5" y1="38.5" x1="2.5" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="valsvg_3" y2="110.75" x2="142.5" y1="110.75" x1="2.5" stroke-width="1.5" stroke="#000" fill="none"/>
+  <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="svg_4" y="16" x="36.434" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">&lt;&lt;ValueType&gt;&gt;</text>
+  <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="svg_6" y="52" x="46.657" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">properties</text>
+  <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="valsvg_8" y="123" x="45.56" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">operations</text>
+ <g class="property-name" >
+</g>
+<g class="operator-name" >
+</g>
+ </g>
+ </g>
+</svg>

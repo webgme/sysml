@@ -1,0 +1,13 @@
+<packagedElement xmi:type="uml:Class" xmi:id="<%=id%>" name="<%=name%>">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_ZqTpEKmwEeW8sf1tOYG01w" name="<%=name%>Specification">
+        <specification xmi:type="uml:LiteralString" xmi:id="_ZqTpEamwEeW8sf1tOYG01w" name="constraintSpec"/>
+    </ownedRule>
+    <%= childElements %>
+    <%=links%>
+</packagedElement>
+<packagedElement xmi:type="uml:Association" xmi:id="<%=assocId%>" name="Association<%=id%>" memberEnd="<%=propId%> _ZqUQI6mwEeW8sf1tOYG01w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZqUQIamwEeW8sf1tOYG01w" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZqUQIqmwEeW8sf1tOYG01w" key="nature" value="SysML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ZqUQI6mwEeW8sf1tOYG01w" name="<%=diagramName%>" type="<%=diagramId%>" association="<%=assocId%>"/>
+</packagedElement>

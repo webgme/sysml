@@ -1,0 +1,13 @@
+
+<svg width="150" height="100" xmlns="http://www.w3.org/2000/svg">
+  <g>
+  <title>Layer 1</title>
+  <rect stroke="#050505" id="enumsvg_1" height="96.000008" width="146" y="2.5" x="2.5" stroke-width="1.5" fill="#f8f8f8"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_2" y2="36.5" x2="147.999" y1="36.5" x1="2.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="svg_3" y="14" x="33" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">&lt;&lt;Enumeration&gt;&gt;</text>
+  <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="svg_4" y="48" x="58" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">literals</text>
+ </g>
+  <g class="property-name" >
+	
+</g>
+</svg>
