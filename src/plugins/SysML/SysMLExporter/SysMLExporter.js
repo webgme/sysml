@@ -12,8 +12,10 @@ define(['plugin/PluginConfig',
     './RequirementDiagramExporter',
     './InternalBlockDiagramExporter',
     './SequenceDiagramExporter',
-    './ParametricDiagramExporter'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter, InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter) {
+    './ParametricDiagramExporter',
+    './BlockDefinitionDiagramExporter'
+    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter,
+                 InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter, BlockDefinitionDiagramExporter) {
 
     'use strict';
 
@@ -33,6 +35,7 @@ define(['plugin/PluginConfig',
         this.internalBlockDiagrams = {};
         this.sequenceDiagrams = {};
         this.parametricDiagrams = {};
+        this.blockdefinitionDiagrams = {};
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -170,6 +173,13 @@ define(['plugin/PluginConfig',
             isConnector = isParametricParent && self.isMetaTypeOf(baseClass, self.META.Connector),
             isPrmDiagram = isParametricParent && (isValue || isConstraintBlock || isConnector),
 
+            /** Block Definition Diagram **/
+            isBlock = self.isMetaTypeOf(baseClass, self.META.Block),
+            isBDDReq = self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
+            isBDDParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
+            isBlockAssociations = self.isMetaTypeOf(baseClass, self.META.Associations),
+            isBDDDiagram = isBDDParent && (isBDDReq || isBlockAssociations),
+
             afterConnAdded;
 
 
@@ -244,6 +254,18 @@ define(['plugin/PluginConfig',
                 self.addChildPort(node, true);
             }
             callback(null, node);
+        } else if (isBDDDiagram) {
+            _.extend(self, new BlockDefinitionDiagramExporter());
+            if (isBlockAssociations) {
+                self.addConnection(node, afterConnAdded)
+                // if key not exist already, add key; otherwise ignore
+            } else {
+                if (!self.idLUT.hasOwnProperty(gmeID)) {
+                    self.addComponent(node);
+                }
+                callback(null, node);
+            }
+            // todo: add object
         } else {
             callback(null, node);
         }
