@@ -12,7 +12,9 @@ define([], function () {
     return {
         SYSML_TO_META_TYPES: {
             Class: 'Requirement',
-            Abstraction: 'Abstraction'
+            Abstraction: 'Abstraction',
+            composite: 'Composition',
+            shared: 'Aggregation'
         },
         FLOW_PORTS: {
             in: 'In',
