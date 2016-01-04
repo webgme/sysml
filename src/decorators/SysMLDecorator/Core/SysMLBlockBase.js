@@ -124,6 +124,9 @@ define(['js/NodePropertyNames',
                         'left': self._portCoordinates[portId].x
                     });
 
+                    var portName = self._control._client.getNode(portId).getAttribute('name');
+                    connectorE.attr('title', portName);
+
                     if (self._displayConnectors) {
 
                         // register connectors for creating connections

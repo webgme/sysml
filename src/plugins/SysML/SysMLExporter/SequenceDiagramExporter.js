@@ -194,10 +194,7 @@ define(['ejs',
         for (diagramPath in self.sequenceDiagrams) {
             if (self.sequenceDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
-                    notationFile,
                     modelFile,
-                    projectFile,
-                    modelNotationElms = [],
                     modelElms = [];
 
                 for (i = 0; i < self.sequenceDiagrams[diagramPath].elements.length; ++i) {
@@ -205,16 +202,11 @@ define(['ejs',
                         elm,
                         j;
 
-                    template = TEMPLATES[childElement.type + '.ejs'];
 
-                    if (template) {
-                        elm = ejs.render(template,
-                            {
-                                id: childElement.id,
-                                x: childElement.x,
-                                y: childElement.y
-                            });
-                        modelNotationElms.push(elm);
+                    if (childElement.type === 'LifeLine') {
+                        elm = '<lifeline xmi:type="uml:Lifeline" xmi:id="' + childElement.id + '" name="' +
+                            + childElement.name + '"/>';
+                        modelElms.push(elm);
                     }
 
                     template = TEMPLATES['packagedElement.uml.ejs'];
@@ -273,75 +265,64 @@ define(['ejs',
                     var link = self.sequenceDiagrams[diagramPath].links[i],
                         edge;
 
-                        obj = CONSTANTS[link.type];
-                        obj.srcId = link.src;
-                        obj.dstId = link.dst;
-                        obj.id = link.id;
-                        obj.srcX = link.points.src.x;
-                        obj.srcY = link.points.src.y;
-                        obj.dstX = link.points.dst.x;
-                        obj.dstY = link.points.dst.y;
+                    obj = CONSTANTS[link.type];
+                    obj.srcId = link.src;
+                    obj.dstId = link.dst;
+                    obj.id = link.id;
+                    obj.srcX = link.points.src.x;
+                    obj.srcY = link.points.src.y;
+                    obj.dstX = link.points.dst.x;
+                    obj.dstY = link.points.dst.y;
 
-                        edge = ejs.render(TEMPLATES['edges.ejs'], obj);
-                        modelNotationElms.push(edge);
+                    edge = ejs.render(TEMPLATES['edges.ejs'], obj);
+                    modelNotationElms.push(edge);
 
-                        if (link.type === "CommunicationPath") {
+                    if (link.type === "CommunicationPath") {
 
-                            edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
-                                {
-                                    connId: link.id,
-                                    srcId: link.src,
-                                    dstId: link.dst,
-                                    srcName: link.srcName,
-                                    dstName: link.dstName
-                                });
-                            modelElms.push(edge);
-                        }
+                        edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
+                            {
+                                connId: link.id,
+                                srcId: link.src,
+                                dstId: link.dst,
+                                srcName: link.srcName,
+                                dstName: link.dstName
+                            });
+                        modelElms.push(edge);
                     }
-
-                    notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
-                        {
-                            diagramType: 'UseCase',
-                            diagramName: diagramPath.split('+')[1],
-                            childrenElements: modelNotationElms.join('\n'),
-                            diagramId: '_D' + diagramId
-                        })
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-
-                    modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
-                        {
-                            diagramId: '_D' + diagramId++,
-                            id: h,
-                            childElements: modelElms.join('\n'),
-                            xmiElements: ''
-                        })
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-
-                    projectFile = ejs.render(TEMPLATES['.project.ejs'],
-                        {
-                            name: diagramPath.split('+')[1]
-                        });
-
-                    //self.diagram.usecasediagram.subject = self.sequenceDiagrams[diagramPath].subjects;
-                    //self.diagram.usecasediagram.link = self.sequenceDiagrams[diagramPath].links;
-                    output = {
-                        project: projectFile,
-                        modelDi: TEMPLATES['model.di.ejs'],
-                        notation: notationFile,
-                        modelUml: modelFile
-                    };
-                    self.outputFiles['.project'] = output.project;
-                    self.outputFiles['model.di'] = output.modelDi;
-                    self.outputFiles['model.notation'] = output.notation;
-                    self.outputFiles['model.uml'] = output.modelUml;
                 }
-                ++h;
+
+                // save data into the only one packageElement
+                elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'], {
+                    type: 'Interaction',
+                    id: 'D' + diagramId,
+                    name: diagramPath.split('+')[1],
+                    relations: modelElms.join('\n')
+                })
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&quot;/g, '"');
+
+
+                modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
+                    {
+                        diagramId: '_D' + diagramId++,
+                        id: h,
+                        childElements: elm,
+                        xmiElements: ''
+                    })
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&quot;/g, '"');
+
+
+                output = {
+                    modelUml: modelFile
+                };
+                self.outputFiles['model.uml'] = output.modelUml;
+            }
+            ++h;
 
         }
 

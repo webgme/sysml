@@ -17,6 +17,7 @@
         "06f8053e-368f-8ce3-aa8c-b6eac377b974": "1322203088",
         "08bc3f2a-a273-50ca-1f7d-cbf049c9e279": "1025846646",
         "08cfef28-b89c-79ca-5f03-f7186295f25a": "1925920416",
+        "0a089246-00d6-0832-31b7-68e331374c7d": "211838244",
         "0ae2d16f-2717-6b1c-6482-411f61c5c0cd": "33003823",
         "0bc11451-e40a-bde2-a1d8-cf0db21c68fe": "1628590150",
         "0bc8fe6e-ecf6-4a26-e478-ee2477579b5d": "1698808490",
@@ -869,6 +870,7 @@
         "22666200-2b97-808a-0671-eba8e473b647": {
             "00dae0fd-6b19-c234-1f90-1bb602c3289d": {},
             "02bbebe8-bbaa-8330-3983-443729e010e5": {},
+            "0a089246-00d6-0832-31b7-68e331374c7d": {},
             "0ce6f356-112e-8847-58b1-d81066ca34c8": {},
             "12f9557e-5c08-2ede-6dc7-d678aa13f1ff": {},
             "175005c6-2086-7e62-1a33-359042def70d": {},
@@ -1127,6 +1129,16 @@
                             "position": {
                                 "x": 275,
                                 "y": 293
+                            }
+                        }
+                    },
+                    {
+                        "attributes": {},
+                        "guid": "0a089246-00d6-0832-31b7-68e331374c7d",
+                        "registry": {
+                            "position": {
+                                "x": 836,
+                                "y": 309
                             }
                         }
                     },
@@ -2676,6 +2688,16 @@
                     },
                     {
                         "attributes": {},
+                        "guid": "0a089246-00d6-0832-31b7-68e331374c7d",
+                        "registry": {
+                            "position": {
+                                "x": 836,
+                                "y": 309
+                            }
+                        }
+                    },
+                    {
+                        "attributes": {},
                         "guid": "0ce6f356-112e-8847-58b1-d81066ca34c8",
                         "registry": {
                             "position": {
@@ -2966,6 +2988,56 @@
                 "position": {
                     "x": 258,
                     "y": 452
+                }
+            },
+            "sets": {},
+            "constraints": {}
+        },
+        "0a089246-00d6-0832-31b7-68e331374c7d": {
+            "attributes": {
+                "name": "Inheritance"
+            },
+            "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
+            "meta": {
+                "pointers": {
+                    "src": {
+                        "items": [
+                            "24712c4c-e6f5-822e-55d3-2e3f16cd8b92"
+                        ],
+                        "min": 1,
+                        "max": 1,
+                        "minItems": [
+                            -1
+                        ],
+                        "maxItems": [
+                            1
+                        ]
+                    },
+                    "dst": {
+                        "items": [
+                            "24712c4c-e6f5-822e-55d3-2e3f16cd8b92"
+                        ],
+                        "min": 1,
+                        "max": 1,
+                        "minItems": [
+                            -1
+                        ],
+                        "maxItems": [
+                            1
+                        ]
+                    }
+                }
+            },
+            "parent": "22666200-2b97-808a-0671-eba8e473b647",
+            "pointers": {
+                "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
+                "dst": null,
+                "src": null
+            },
+            "registry": {
+                "position": {
+                    "x": 414,
+                    "y": 609
                 }
             },
             "sets": {},
