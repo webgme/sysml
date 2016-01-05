@@ -228,6 +228,22 @@ define(['js/Constants',
         //figure out the necessary SVG based on children type
         this.skinParts.$svg = this.getSVGByMetaType(gmeID);
 
+
+        // remove extra compartments when Block or ConstraintBlock is inside IBD or PD
+        if (isTypeWithPorts) {
+            nodeObj = client.getNode(gmeID);
+            parentID = nodeObj ? nodeObj.getParentId() : '';
+            var alterDecorator = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID)
+                        || SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID): false;
+
+            if (alterDecorator) {
+                this.skinParts.$svg.find('.extra').remove();
+                this.skinParts.$svg.attr('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT);
+                this.skinParts.$svg.find('rect')[0].setAttribute('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT - 10);
+            }
+        }
+
+
         if (this.skinParts.$svg) {
 
             //this.skinParts.$svg.append(this._SysMLDecoratorCore.getPortSVG());
@@ -293,7 +309,6 @@ define(['js/Constants',
             if (isParentBlockDiagram){
                 _.extend(this,new SysMLBase());
             }
-
         }
 
         // call the type specific renderer
@@ -437,7 +452,9 @@ define(['js/Constants',
             var nodeObj = control._client.getNode(gmeID),
                 parentID = nodeObj ? nodeObj.getParentId() : '';
             var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
-            texts[4].textContent = eq ? '{' + eq + '}' : '';
+            if (texts[4]) {
+                texts[4].textContent = eq ? '{' + eq + '}' : '';
+            }
 
         }
         if (this.skinParts.$svg && (isTypeBlock)) {
@@ -445,7 +462,9 @@ define(['js/Constants',
             var nodeObj = control._client.getNode(gmeID),
                 parentID = nodeObj ? nodeObj.getParentId() : '';
             var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
-            texts[4].textContent = eq ? '{' + eq + '}' : '';
+            if (texts[4]) {
+                texts[4].textContent = eq ? '{' + eq + '}' : '';
+            }
 
         }
 
@@ -698,9 +717,10 @@ define(['js/Constants',
 
 
 
+        var isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false;
         //if(isParentInternalBlockDiagram)
         //{
-        if(isTypeBlock)
+        if(isTypeBlock && isParentBlockDiagram)
         {
             var len = childrenIDs.length,
                 self = this ,

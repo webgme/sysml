@@ -4,7 +4,7 @@ SysML implementation using WebGME as a library
 ## Installation
 
 ### Clone the repository
-
+Install all dependency modules
 ``` bash
 npm install
 ```
@@ -54,9 +54,9 @@ env NODE_ENV=app && npm run app
 npm run test
 ```
 
-## Environment Special Notes
+### Environment Special Notes
 
-### Ubuntu
+#### Ubuntu
 
 The node.js package dependencies can be installed with apt-get.
 ```bash
@@ -69,6 +69,14 @@ unless you install the legacy package.
 sudo apt-get install nodejs-legacy
 ```
 
-## Troubleshoot
-If plugins are not run because of "jszip" error, [download](http://stuk.github.io/jszip/) jszip source
-and include the file `dist/jszip.js` in this directory: `./node_modules/webgme/node_modules/jszip/`
+## Current Features
+### SysML modeling (under OMG specification v1.3+)
+#### Diagrams supported: 
+* Block Definition Diagram
+* Internal Block Diagram
+* Package Diagram (WebGME-flavored)
+* Parametric Diagram
+* Requirement Diagram
+* Use Case Diagram
+* Sequence Diagram
+

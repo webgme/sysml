@@ -8,13 +8,14 @@
   </g>
   <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="34.369568" x2="146.673917" y1="34.369568" x1="1.869565" stroke-width="2" fill="none"/>
    <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="48.403178" y="15.560661" id="svg_7" font-size="11" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000">&lt;&lt;Block&gt;&gt;</text>
-   
+  <g class="extra">
   <line stroke-linecap="null" stroke-linejoin="null" id="blksvg_7" y2="91.246378" x2="146.673917" y1="91.246378" x1="2.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.403178" y="45.560661" id="blksvg_8" font-size="11" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000">properties</text>
     <line stroke-linecap="null" stroke-linejoin="null" id="blksvg_9" y2="148.123188" x2="146.673917" y1="148.123188" x1="2.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
 	<text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.403178" y="101.560661" id="blksvg_10" font-size="11" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000">operations</text>
  <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.403178" y="159.560661" id="blksvg_11" font-size="11" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000">constraints</text>
  <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="6.983763" y="167.23337" id="blksvg_12" font-size="10" font-family="'Trebuchet MS', Gadget, sans-serif" text-anchor="left" xml:space="preserve" stroke="#000"/>
+ </g>
  </g>
  </g>
  <g class="property-name" >

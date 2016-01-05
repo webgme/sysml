@@ -11,13 +11,17 @@ define(['js/NodePropertyNames',
         './SysML.META',
         'js/Widgets/DiagramDesigner/DiagramDesignerWidget.Constants',
         'js/Constants',
-        'text!../Icons/Port.svg'], function (nodePropertyNames,
+        'text!../Icons/Port.svg',
+        'text!../Icons/PortInOut.svg',
+        'text!../Icons/PortRight.svg'], function (nodePropertyNames,
                                              REGISTRY_KEYS,
                                              SysMLDecoratorConstants,
                                              SysMLMETA,
                                              DiagramDesignerWidgetConstants,
                                              CONSTANTS,
-                                             PortSvg) {
+                                             PortSvg,
+                                             FlowPortInOutSvg,
+                                             FlowPortRightSvg) {
 
     /**
      * A module representing SysMLBlockBase decorator functionality for the SysMLModelingLanguage.
@@ -25,7 +29,9 @@ define(['js/NodePropertyNames',
      * @version 1.0
      */
     var SysMLBlockBase,
-        PortBase = $(PortSvg).find("g.port");
+        PortBase = $(PortSvg).find("g.port"),
+        FPInOutBase = $(FlowPortInOutSvg).find("g.port"),
+        FPRightBase = $(FlowPortRightSvg).find("g.port");
 
     /**
      * Initializes a new instance of SysMLBlockBase.
@@ -39,8 +45,16 @@ define(['js/NodePropertyNames',
      * Gets a clone of a port svg icon.
      * @returns {*|jQuery|HTMLElement} Port svg icon.
      */
-    SysMLBlockBase.prototype.getPortSVG = function () {
+    SysMLBlockBase.prototype.getPortSVG = function (portType) {
 
+        switch (portType) {
+            case 'in':
+                return FPRightBase.clone();
+            case 'out':
+                return FPRightBase.clone();
+            case 'inout':
+                return FPInOutBase.clone();
+        }
         return PortBase.clone();
     };
 
@@ -54,8 +68,8 @@ define(['js/NodePropertyNames',
             rightPorts = [],
             SVGWidth = parseInt(this.skinParts.$svg.attr('width')),
             TOPOFFSET = parseInt(this.skinParts.$svg.find('line')[0].getAttribute('y1')),
-            //SVGHeight = parseInt(this.skinParts.$svg.attr('height')) - TOPOFFSET,
-            SVGHeight = parseInt(this.skinParts.$svg.find('line')[1].getAttribute('y1')) - TOPOFFSET,
+            SVGHeight = parseInt(this.skinParts.$svg.attr('height')) - TOPOFFSET,
+            //SVGHeight = parseInt(this.skinParts.$svg.find('line')[1].getAttribute('y1')) - TOPOFFSET,
             svgIcon = this.skinParts.$svg;
 
 
@@ -72,14 +86,22 @@ define(['js/NodePropertyNames',
                 if (!self.isPort(childrenIDs[i])) {
                     continue;
                 }
-                var portNode = client.getNode(childrenIDs[i]),
-                    portPosition = portNode ? portNode.getRegistry(REGISTRY_KEYS.POSITION) : {x: 0, y: 0};
+                var portNode = client.getNode(childrenIDs[i]);
+                if (!portNode) continue;
 
+                var portPosition = portNode.getRegistry(REGISTRY_KEYS.POSITION),
+                    isInport = SysMLMETA.TYPE_INFO.isFlowPortIn(childrenIDs[i]),
+                    isOutport = SysMLMETA.TYPE_INFO.isFlowPortOut(childrenIDs[i]),
+                    isFlowPortInOut = SysMLMETA.TYPE_INFO.isFlowPortInOut(childrenIDs[i]);
 
-                if (portPosition.x > SysMLDecoratorConstants.PORT_POSITION_DIVIDER_POINT) {
-                    rightPorts.push({id: childrenIDs[i], y: portPosition.y});
+                if (isInport) {
+                    leftPorts.push({id: childrenIDs[i], y: portPosition.y, type: 'in'});
+                } else if (isOutport) {
+                    rightPorts.push({id: childrenIDs[i], y: portPosition.y, type: 'out'})
+                } else if (portPosition.x > SysMLDecoratorConstants.PORT_POSITION_DIVIDER_POINT) {
+                    rightPorts.push({id: childrenIDs[i], y: portPosition.y, type: isFlowPortInOut ? 'inout' : null});
                 } else {
-                    leftPorts.push({id: childrenIDs[i], y: portPosition.y});
+                    leftPorts.push({id: childrenIDs[i], y: portPosition.y, type: isFlowPortInOut ? 'inout' : null});
                 }
             }
             leftPorts.sort(compare);
@@ -94,6 +116,7 @@ define(['js/NodePropertyNames',
                 portVerticalOffset = SVGHeight / (length + 1),
                 portNum,
                 portId,
+                portType,
                 leftOff = left ? 0 : SVGWidth - 1.5 * SysMLDecoratorConstants.PORT_WIDTH,
                 topOff,
                 portSVG,
@@ -101,6 +124,7 @@ define(['js/NodePropertyNames',
 
             for (portNum = 0; portNum < length; ++portNum) {
                 portId = ports[portNum].id;
+                portType = ports[portNum].type;
                 topOff = portVerticalOffset * (portNum + 1) - SysMLDecoratorConstants.PORT_WIDTH + TOPOFFSET;
                 self._portCoordinates[portId] = {
                     'x': leftOff,
@@ -109,7 +133,7 @@ define(['js/NodePropertyNames',
                     'h': SysMLDecoratorConstants.PORT_WIDTH,
                     'angle': left ? 180 : 0
                 };
-                portSVG = self.getPortSVG();
+                portSVG = self.getPortSVG(portType);
                 portSVG.attr("transform", "translate(" + leftOff + "," + topOff + ")");
                 portContainer = $(svgIcon[0]).find('.ports');
 

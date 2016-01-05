@@ -1,0 +1,8 @@
+<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+ <g class="port">
+  <rect id="svg_1" height="9.187491" width="9.062491" y="0.406254" x="0.468754" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="5.03125" x2="8.5" y1="4.96875" x1="1.5" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="4.84375" x2="7.968746" y1="1.718753" x1="4.968749" stroke-width="1.5" fill="none"/>
+  <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="5.21875" x2="7.968746" y1="8.406247" x1="4.781249" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+ </g>
+</svg>

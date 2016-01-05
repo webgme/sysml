@@ -3878,7 +3878,9 @@
             "constraints": {}
         },
         "232cafa8-3076-47b0-0733-f35063515c88": {
-            "attributes": {},
+            "attributes": {
+                "name": "Request"
+            },
             "base": "702ce421-b6c7-b202-33b8-d25ab885080b",
             "meta": {},
             "parent": "ca9b02e1-b6bf-382c-afa0-fb49a6a0c8b0",
@@ -4453,10 +4455,10 @@
             },
             "registry": {
                 "DisplayFormat": "in:$name",
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 884,
-                    "y": 292
+                    "x": 869,
+                    "y": 290
                 }
             },
             "sets": {},
@@ -5795,8 +5797,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 278,
-                    "y": 261
+                    "x": 281,
+                    "y": 373
                 }
             },
             "sets": {},
@@ -6323,9 +6325,10 @@
             },
             "registry": {
                 "DisplayFormat": "inout:$name",
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 1034,
-                    "y": 292
+                    "x": 1025,
+                    "y": 240
                 }
             },
             "sets": {},
@@ -6619,7 +6622,7 @@
                 "src": null
             },
             "registry": {
-                "DisplayFormat": "",
+                "DisplayFormat": "$name",
                 "isAbstract": false,
                 "position": {
                     "x": 700,
@@ -7094,7 +7097,7 @@
                 "base": "cb11e99d-481b-105e-59b9-52a94a0dc0f9"
             },
             "registry": {
-                "decorator": "ModelDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
                     "x": 476,
                     "y": 128
@@ -7299,10 +7302,10 @@
             },
             "registry": {
                 "DisplayFormat": "out:$name",
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
-                    "x": 954,
-                    "y": 292
+                    "x": 1022,
+                    "y": 289
                 }
             },
             "sets": {},
@@ -7525,7 +7528,7 @@
                 "base": "d204ba31-5e1f-76a9-ef47-7bfc2133dbe5"
             },
             "registry": {
-                "decorator": "ModelDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
                     "x": 133,
                     "y": 200
@@ -8372,7 +8375,9 @@
             "constraints": {}
         },
         "a5f4c40c-cad1-06da-4727-c8b0ee86c2ba": {
-            "attributes": {},
+            "attributes": {
+                "name": "DoorLock"
+            },
             "base": "702ce421-b6c7-b202-33b8-d25ab885080b",
             "meta": {},
             "parent": "ca9b02e1-b6bf-382c-afa0-fb49a6a0c8b0",
@@ -8529,11 +8534,11 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "isPort": true,
                 "position": {
-                    "x": 954,
-                    "y": 242
+                    "x": 866,
+                    "y": 238
                 }
             },
             "sets": {},
@@ -8652,11 +8657,11 @@
                 "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
             },
             "registry": {
-                "decorator": "DefaultDecorator",
+                "decorator": "SysMLDecorator",
                 "isPort": true,
                 "position": {
-                    "x": 884,
-                    "y": 242
+                    "x": 1071,
+                    "y": 117
                 }
             },
             "sets": {},
@@ -9102,7 +9107,7 @@
                 "base": "d204ba31-5e1f-76a9-ef47-7bfc2133dbe5"
             },
             "registry": {
-                "decorator": "ModelDecorator",
+                "decorator": "SysMLDecorator",
                 "position": {
                     "x": 137,
                     "y": 291
@@ -9878,8 +9883,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1155,
-                    "y": 218
+                    "x": 1181,
+                    "y": 224
                 }
             },
             "sets": {},
@@ -10687,7 +10692,9 @@
             "constraints": {}
         },
         "e72c0562-7897-93b7-daf6-5a6580527646": {
-            "attributes": {},
+            "attributes": {
+                "name": "MotionCommand"
+            },
             "base": "702ce421-b6c7-b202-33b8-d25ab885080b",
             "meta": {},
             "parent": "ca9b02e1-b6bf-382c-afa0-fb49a6a0c8b0",
@@ -10885,7 +10892,9 @@
             "constraints": {}
         },
         "f02db3c6-4afd-c6fd-a5c5-aa208458bcc7": {
-            "attributes": {},
+            "attributes": {
+                "name": "Speed"
+            },
             "base": "702ce421-b6c7-b202-33b8-d25ab885080b",
             "meta": {},
             "parent": "ca9b02e1-b6bf-382c-afa0-fb49a6a0c8b0",
@@ -11014,8 +11023,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 497,
-                    "y": 110
+                    "x": 529,
+                    "y": 117
                 }
             },
             "sets": {},
@@ -11363,8 +11372,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 200,
-                    "y": 200
+                    "x": 194,
+                    "y": 374
                 }
             },
             "sets": {},

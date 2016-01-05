@@ -1,0 +1,18 @@
+<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" class="port" id="svg_1">
+   <rect stroke="#000" id="svg_4" height="9" width="8.875" y="0.5" x="0.5625" stroke-width="1.5" fill="#fff"/>
+   <line stroke="#000" fill="none" stroke-width="1.5" stroke-opacity="null" fill-opacity="null" x1="1.538836" y1="5" x2="8.461164" y2="5" id="svg_8" stroke-linejoin="undefined" stroke-linecap="undefined"/>
+   <line transform="rotate(4.891993522644043 2.812499523162847,3.718750715255734) " stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="4.84375" x2="2.21875" y1="2.593751" x1="3.40625" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+   <line stroke="#000" transform="rotate(3.569091320037842 2.96874952316286,6.218749999999999) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_5" y2="7.167685" x2="3.903814" y1="5.269816" x1="2.033685" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+   <line stroke="#000" transform="rotate(-64.41243743896484 7.156249046325685,3.7500002384185787) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_6" y2="4.892332" x2="6.466667" y1="2.607669" x1="7.845831" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+   <line stroke="#000" transform="rotate(-95.95527648925781 7.062499523162842,6.218749999999999) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_7" y2="7.118692" x2="7.996711" y1="5.318808" x1="6.128288" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+  </g>
+ </g>
+</svg>
