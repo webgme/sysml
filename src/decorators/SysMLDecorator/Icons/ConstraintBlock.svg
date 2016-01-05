@@ -11,9 +11,10 @@
   <text stroke="#000" transform="matrix(11.17241382598877,0,0,-0.0694103923946372,-2282.9191689465806,119.58449413581963) " xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="15" id="svg_5" y="103.91305" x="233.043482" fill-opacity="null" stroke-opacity="null" stroke-width="17" fill="#000000"/>
   
   <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="svg_7" y="15" x="23.76789" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">&lt;&lt;ConstraintBlock&gt;&gt;</text>
-  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="consvg_8" y2="100.565221" x2="146.673917" y1="100.565221" x1="1.73915" fill-opacity="null" stroke-opacity="null" stroke-width="2" stroke="#000" fill="none"/>
 
   <g class="extra">
+  <line stroke-linecap="undefined" stroke-linejoin="undefined" id="consvg_8" y2="100.565221" x2="146.673917" y1="100.565221" x1="1.73915" fill-opacity="null" stroke-opacity="null" stroke-width="2" stroke="#000" fill="none"/>
+
   <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="consvg_10" y="47" x="45" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">parameters</text>
   
   <text xml:space="preserve" text-anchor="left" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="11" id="consvg_11" y="116" x="45.869565" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">constraints</text>

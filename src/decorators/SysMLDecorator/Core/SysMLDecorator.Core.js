@@ -468,7 +468,7 @@ define(['js/Constants',
 
         }
 
-        if(isTypeConstraintBlock)
+        if(isTypeConstraintBlock && isParentBlockDiagram)
         {
             var len = childrenIDs.length,
                 self = this ,
