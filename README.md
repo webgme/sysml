@@ -70,7 +70,9 @@ sudo apt-get install nodejs-legacy
 ```
 
 ## Current Features
-### SysML modeling (under OMG specification v1.3+)
+### WebGME-SysML language definition
+### WebGME-SysML language and models are provided with domain-specific visualizations (decorator)
+### SysML modeling with WebGME-SysML language (under OMG specification v1.3+)
 #### Diagrams supported: 
 * Block Definition Diagram
 * Internal Block Diagram
@@ -79,4 +81,33 @@ sudo apt-get install nodejs-legacy
 * Requirement Diagram
 * Use Case Diagram
 * Sequence Diagram
+(Check out [WebGME-Domain-Tools](https://github.com/webgme/webgme-domain-tools) for Activity Diagram and State Machine Diagram)
+
+### SysML diagrams exportable to Eclipse Papyrus:
+* Internal Block Diagram
+* Requirement Diagram
+* Use Case Diagram
+
+### SysML diagrams importable from Eclipse Papyrus:
+* Block Definition Diagram
+* Internal Block Diagram
+* Parametric Diagram
+* Requirement Diagram
+* Use Case Diagram
+
+### SysML diagram elements exportable to SysML specs (see Eclipse Papyrus uml file in project for schema)
+* Block Definition Diagram
+* Internal Block Diagram
+* Parametric Diagram
+* Requirement Diagram
+* Use Case Diagram
+* Elements from above diagrams within hierarchical packages are exportable
+
+## Limitations/TODOs
+* Not all components in the OMG specs are modeled in WebGME-SysML. Please create an [issue](https://github.com/webgme/webgme-sysml/issues) to recommend or report needed elements
+* Only a set of elements from diagrams mentioned above are exportable to Eclipse
+* Information regarding connections is exportable to Eclipse, but users will have to manually display the connections onto the diagrams
+* WebGME-flavored Package Diagram can be created by adding and organizing different "Package" elements
+* Sequence Diagram visualization is still in need of a different visualizer so that it should resemble more of a traditional Sequence Diagram; in current Sequence Diagram, in order to create events in different times, display the "ExecutionSpecification" in vertical order
+* Current WebGME-SysML models are not exportable to other existing SysML editors
 
