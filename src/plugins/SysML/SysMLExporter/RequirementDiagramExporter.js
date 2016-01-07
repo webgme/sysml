@@ -199,7 +199,7 @@ define(['ejs',
 
     };
 
-    RequirementDiagramExporter.prototype.saveResults = function (callback) {
+    RequirementDiagramExporter.prototype.processRequirementData = function (callback) {
         var self = this,
             diagramPath,
             i,
@@ -207,7 +207,6 @@ define(['ejs',
             obj = {},
             diagramId = 1,
             output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput'),
             json2XML = new Converter.Json2xml({xmlDeclaration: ' '});
 
         for (diagramPath in self.requirementDiagrams) {
@@ -230,7 +229,7 @@ define(['ejs',
 
                 if (self.requirementDiagrams[diagramPath].comments) {
 
-                    for (i = 0; i <self.requirementDiagrams[diagramPath].comments.length; ++i) {
+                    for (i = 0; i < self.requirementDiagrams[diagramPath].comments.length; ++i) {
                         var comment = self.requirementDiagrams[diagramPath].comments[i];
                         self._saveComment(comment, modelNotationElms, modelElms, reqElms);
                     }
@@ -283,65 +282,53 @@ define(['ejs',
                     }
                 }
 
-                notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
-                    {
-                        diagramType: 'RequirementDiagram',
-                        diagramName: diagramPath.split('+')[1],
-                        childrenElements: modelNotationElms.join('\n'),
-                        diagramId: '_D' + diagramId
-                    })
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&quot;/g, '"');
+                if (this.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += reqElms.join('\n');
+                } else {
+                    notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
+                        {
+                            diagramType: 'RequirementDiagram',
+                            diagramName: diagramPath.split('+')[1],
+                            childrenElements: modelNotationElms.join('\n'),
+                            diagramId: '_D' + diagramId
+                        })
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&quot;/g, '"');
 
-                modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
-                    {
-                        diagramId: '_D' + diagramId++,
-                        id: h,
-                        childElements: modelElms.join('\n'),
-                        xmiElements: reqElms.join('\n')
-                    })
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&quot;/g, '"');
+                    modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
+                        {
+                            diagramId: '_D' + diagramId++,
+                            id: h,
+                            childElements: modelElms.join('\n'),
+                            xmiElements: reqElms.join('\n')
+                        })
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&quot;/g, '"');
 
-                projectFile = ejs.render(TEMPLATES['.project.ejs'],
-                    {
-                        name: diagramPath.split('+')[1]
-                    });
+                    projectFile = ejs.render(TEMPLATES['.project.ejs'],
+                        {
+                            name: diagramPath.split('+')[1]
+                        });
 
-                output = {
-                    project: projectFile,
-                    modelDi: TEMPLATES['model.di.ejs'],
-                    notation: notationFile,
-                    modelUml: modelFile
-                };
-                self.outputFiles['.project'] = output.project;
-                self.outputFiles['model.di'] = output.modelDi;
-                self.outputFiles['model.notation'] = output.notation;
-                self.outputFiles['model.uml'] = output.modelUml;
+                    output = {
+                        project: projectFile,
+                        modelDi: TEMPLATES['model.di.ejs'],
+                        notation: notationFile,
+                        modelUml: modelFile
+                    };
+                    self.outputFiles['.project'] = output.project;
+                    self.outputFiles['model.di'] = output.modelDi;
+                    self.outputFiles['model.notation'] = output.notation;
+                    self.outputFiles['model.uml'] = output.modelUml;
+                }
             }
             ++h;
         }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
     RequirementDiagramExporter.prototype._saveComponent = function (childElement, modelNotationElms, modelElms, reqElms) {

@@ -376,7 +376,6 @@ define(['js/Constants',
             }
         }
 
-        // todo: multi-line
         /*************************** update requirement compartment ******************************/
         if (isTypeRequirement) {
             texts = this.skinParts.$svg.find('text');

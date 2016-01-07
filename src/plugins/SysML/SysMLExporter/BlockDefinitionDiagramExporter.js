@@ -189,15 +189,14 @@ define(['ejs',
 
     };
 
-    BlockDefinitionDiagramExporter.prototype.saveResults = function (callback) {
+    BlockDefinitionDiagramExporter.prototype.processBDDData = function () {
         var self = this,
             diagramPath,
             i,
             h = 0,
             obj,
             diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            output;
 
         for (diagramPath in self.blockdefinitionDiagrams) {
             if (self.blockdefinitionDiagrams.hasOwnProperty(diagramPath)) {
@@ -276,11 +275,11 @@ define(['ejs',
 
                     modelElms.push(elm);
                 }
-				if (self.blockdefinitionDiagrams[diagramPath].links != null){
+                if (self.blockdefinitionDiagrams[diagramPath].links != null) {
 
-                for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.blockdefinitionDiagrams[diagramPath].links[i],
-                        edge;
+                    for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.blockdefinitionDiagrams[diagramPath].links[i],
+                            edge;
 
                         obj = CONSTANTS[link.type];
                         obj.srcId = link.src;
@@ -294,8 +293,8 @@ define(['ejs',
                         edge = ejs.render(TEMPLATES['edges.ejs'], obj);
                         modelNotationElms.push(edge);
 
-                        if (link.type === "DirectedComposition" || link.type === "DirectedAggregation" || link.type === "DirectedAssociation"  
-                            || link.type === "Composition"  || link.type === "Aggregation" || link.type === "Association") {
+                        if (link.type === "DirectedComposition" || link.type === "DirectedAggregation" || link.type === "DirectedAssociation"
+                            || link.type === "Composition" || link.type === "Aggregation" || link.type === "Association") {
 
                             edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
                                 {
@@ -308,11 +307,15 @@ define(['ejs',
                             modelElms.push(edge);
                         }
                     }
-				}
+                }
 
+                if (this.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += '';
+                } else {
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
-                            diagramType: 'BlockDefinition',      //does not work if replaced with block or block definition diagram, need to figure out the right string
+                            diagramType: 'BlockDefinition',
                             diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
                             diagramId: '_D' + diagramId
@@ -345,31 +348,15 @@ define(['ejs',
                         notation: notationFile,
                         modelUml: modelFile
                     };
+                    self.outputFiles['model.uml'] = output.modelUml;
                     self.outputFiles['.project'] = output.project;
                     self.outputFiles['model.di'] = output.modelDi;
                     self.outputFiles['model.notation'] = output.notation;
-                    self.outputFiles['model.uml'] = output.modelUml;
                 }
-                ++h;
+            }
+            ++h;
 
         }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
     return BlockDefinitionDiagramExporter;

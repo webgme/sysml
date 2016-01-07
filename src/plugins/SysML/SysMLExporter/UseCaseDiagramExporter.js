@@ -181,15 +181,14 @@ define(['ejs',
 
     };
 
-    UseCaseDiagramExporter.prototype.saveResults = function (callback) {
+    UseCaseDiagramExporter.prototype.processUseCaseData = function (callback) {
         var self = this,
             diagramPath,
             i,
             h = 0,
             obj,
             diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            output;
 
         for (diagramPath in self.usecaseDiagrams) {
             if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
@@ -269,9 +268,10 @@ define(['ejs',
                     modelElms.push(elm);
                 }
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.usecaseDiagrams[diagramPath].links[i],
-                        edge;
+                if (self.usecaseDiagrams[diagramPath].links) {
+                    for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.usecaseDiagrams[diagramPath].links[i],
+                            edge;
 
                         obj = CONSTANTS[link.type];
                         obj.srcId = link.src;
@@ -298,7 +298,13 @@ define(['ejs',
                             modelElms.push(edge);
                         }
                     }
+                }
 
+
+                if (self.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += '';
+                } else {
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
                             diagramType: 'UseCase',
@@ -328,8 +334,6 @@ define(['ejs',
                             name: diagramPath.split('+')[1]
                         });
 
-                    //self.diagram.usecasediagram.subject = self.usecaseDiagrams[diagramPath].subjects;
-                    //self.diagram.usecasediagram.link = self.usecaseDiagrams[diagramPath].links;
                     output = {
                         project: projectFile,
                         modelDi: TEMPLATES['model.di.ejs'],
@@ -341,26 +345,9 @@ define(['ejs',
                     self.outputFiles['model.notation'] = output.notation;
                     self.outputFiles['model.uml'] = output.modelUml;
                 }
-                ++h;
-
-        }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
             }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
+            ++h;
+        }
     };
 
     return UseCaseDiagramExporter;

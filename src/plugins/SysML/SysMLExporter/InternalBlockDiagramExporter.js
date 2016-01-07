@@ -187,15 +187,14 @@ define(['ejs',
         core.loadByPath(self.rootNode, dst, afterDstLoaded);
     };
 
-    IBDExporter.prototype.saveResults = function (callback) {
+    IBDExporter.prototype.processIBDData = function (callback) {
         var self = this,
             diagramPath,
             i,
             h = 0,
             obj,
             diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            output;
 
         for (diagramPath in self.internalBlockDiagrams) {
             if (self.internalBlockDiagrams.hasOwnProperty(diagramPath)) {
@@ -294,7 +293,7 @@ define(['ejs',
                             .replace(/&quot;/g, '"');
                     } else if (childElement.type === 'Property') {
                         elm = '<ownedAttribute xmi:type="uml:Property" xmi:id="' + childElement.id + '" name="' + childElement.name + '"/>';
-                    } else if (childElement.type.indexOf('FlowPort') > -1 ) {
+                    } else if (childElement.type.indexOf('FlowPort') > -1) {
                         elm = self._getFlowPortUml(childElement, blockElms);
                     }
 
@@ -367,6 +366,10 @@ define(['ejs',
 
                 modelElms.push(elm);
 
+                if (this.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += blockElms.join('\n');
+                } else {
                     notationFile = ejs.render(TEMPLATES['InternalBlockDiagram.notation.ejs'],
                         {
                             diagramBlockId: 'main_' + diagramPath,
@@ -411,26 +414,10 @@ define(['ejs',
                     self.outputFiles['model.notation'] = output.notation;
                     self.outputFiles['model.uml'] = output.modelUml;
                 }
-                ++h;
+            }
+            ++h;
 
         }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
     IBDExporter.prototype._getPortPosition = function (diagramWidth, diagramHeight, x, y) {

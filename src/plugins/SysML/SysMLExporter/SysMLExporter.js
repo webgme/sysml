@@ -13,9 +13,12 @@ define(['plugin/PluginConfig',
     './InternalBlockDiagramExporter',
     './SequenceDiagramExporter',
     './ParametricDiagramExporter',
-    './BlockDefinitionDiagramExporter'
+    './BlockDefinitionDiagramExporter',
+    'ejs',
+    'plugin/SysMLExporter/SysMLExporter/Templates/Templates'
     ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter,
-                 InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter, BlockDefinitionDiagramExporter) {
+                 InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter,
+                 BlockDefinitionDiagramExporter, ejs, TEMPLATES) {
 
     'use strict';
 
@@ -36,6 +39,9 @@ define(['plugin/PluginConfig',
         this.sequenceDiagrams = {};
         this.parametricDiagrams = {};
         this.blockdefinitionDiagrams = {};
+        this.visitMultiDiagrams = false;
+        this.xml1 = '';
+        this.xml2 = '';
     };
 
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
@@ -192,6 +198,11 @@ define(['plugin/PluginConfig',
             callback(null, node);
         };
 
+        if (isPackage) {
+            this.visitMultiDiagrams = true;
+        }
+
+
         if (isUseCaseDiagram) {
             _.extend(self, new UseCaseExporter());
             if (isUseCaseLink) {
@@ -257,7 +268,7 @@ define(['plugin/PluginConfig',
         } else if (isBDDDiagram) {
             _.extend(self, new BlockDefinitionDiagramExporter());
             if (isBlockAssociations) {
-                self.addConnection(node, afterConnAdded)
+                self.addConnection(node, afterConnAdded);
                 // if key not exist already, add key; otherwise ignore
             } else {
                 if (!self.idLUT.hasOwnProperty(gmeID)) {
@@ -272,7 +283,61 @@ define(['plugin/PluginConfig',
     };
 
     SysMLExporterPlugin.prototype.saveResults = function (callback) {
+        var self = this,
+            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
 
+        self.outputFiles['model.uml'] = '';
+
+        if (self.processParametricData) {
+            self.processParametricData();
+        }
+
+        if (self.processUseCaseData) {
+            self.processUseCaseData();
+        }
+
+        if (self.processBDDData) {
+            self.processBDDData();
+        }
+
+        if (self.processIBDData) {
+            self.processIBDData();
+        }
+
+        if (self.processRequirementData) {
+            self.processRequirementData();
+        }
+
+        if (self.visitMultiDiagrams) {
+            self.outputFiles['model.uml'] = ejs.render(TEMPLATES['model.uml.ejs'],
+                {
+                    diagramId: '_D',
+                    id: 1,
+                    childElements: self.xml1,
+                    xmiElements: self.xml2
+                })
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&#39;/g, "'")
+                .replace(/&quot;/g, '"');
+        }
+
+        artifact.addFiles(self.outputFiles, function (err, hashes) {
+            if (err) {
+                callback(err, self.result);
+                return;
+            }
+            self.logger.warn(hashes.toString());
+            artifact.save(function (err, hash) {
+                if (err) {
+                    callback(err, self.result);
+                    return;
+                }
+                self.result.addArtifact(hash);
+                self.result.setSuccess(true);
+                callback(null, self.result);
+            });
+        });
     };
 
     SysMLExporterPlugin.prototype.addComponent = function (nodeObj) {

@@ -187,15 +187,14 @@ define(['ejs',
         core.loadByPath(self.rootNode, dst, afterDstLoaded);
     };
 
-    ParametricDiagramExporter.prototype.saveResults = function (callback) {
+    ParametricDiagramExporter.prototype.processParametricData = function () {
         var self = this,
             diagramPath,
             i,
             h = 0,
             obj,
             diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            output;
 
         for (diagramPath in self.parametricDiagrams) {
             if (self.parametricDiagrams.hasOwnProperty(diagramPath)) {
@@ -226,35 +225,6 @@ define(['ejs',
                     for (i = 0; i < self.parametricDiagrams[diagramPath].elements.length; ++i) {
                         var childElement = self.parametricDiagrams[diagramPath].elements[i],
                             elm;
-
-                        //template = TEMPLATES[childElement.type + '.ejs'];
-                        //
-                        //if (childElement.type === 'ConstraintBlock') {
-                        //    elm = self._createBlockNotation(childElement, portElms2);
-                        //    modelNotationElms.push(elm);
-                        //
-                        //} else if (childElement.type.indexOf('FlowPort') === 0) {
-                        //    template = TEMPLATES['FlowPort.ejs'];
-                        //    var portPos = self._getPortPosition(diagramWidth, diagramHeight, childElement.x, childElement.y);
-                        //    elm = ejs.render(template, {
-                        //        id: childElement.id,
-                        //        x: portPos.x,
-                        //        y: portPos.y
-                        //    });
-                        //    portElms1.push(elm);
-                        //    template = TEMPLATES['FlowPort2.ejs'];
-                        //    elm = ejs.render(template, {id: childElement.id});
-                        //    portElms2.push(elm);
-                        //} else if (template) {
-                        //    elm = ejs.render(template,
-                        //        {
-                        //            id: childElement.id,
-                        //            x: childElement.x,
-                        //            y: childElement.y
-                        //        });
-                        //    modelNotationElms.push(elm);
-                        //}
-
 
                         if (childElement.type === 'ConstraintBlock') {
                             template = TEMPLATES[childElement.type + '.uml.ejs'];
@@ -377,22 +347,10 @@ define(['ejs',
 
                 modelElms.push(elm);
 
-                    //notationFile = ejs.render(TEMPLATES['ParametericDiagram.notation.ejs'],
-                    //    {
-                    //        diagramBlockId: 'main_' + diagramPath,
-                    //        diagramName: diagramPath.split('+')[1],
-                    //        childrenElements: modelNotationElms.join('\n'),
-                    //        portElements1: portElms1.join('\n'),
-                    //        portElements2: portElms2.join('\n'),
-                    //        diagramId: '_D' + diagramId,
-                    //        diagramWidth: diagramWidth,
-                    //        diagramHeight: diagramHeight
-                    //    })
-                    //    .replace(/&lt;/g, '<')
-                    //    .replace(/&gt;/g, '>')
-                    //    .replace(/&#39;/g, "'")
-                    //    .replace(/&quot;/g, '"');
-
+                if (this.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += blockElms.join('\n');
+                } else {
                     modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
                         {
                             diagramId: '_D' + diagramId++,
@@ -421,26 +379,11 @@ define(['ejs',
                     self.outputFiles['model.notation'] = output.notation;
                     self.outputFiles['model.uml'] = output.modelUml;
                 }
-                ++h;
+            }
+            ++h;
 
         }
 
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
     ParametricDiagramExporter.prototype._getPortPosition = function (diagramWidth, diagramHeight, x, y) {
