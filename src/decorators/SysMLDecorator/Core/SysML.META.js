@@ -12,6 +12,7 @@ define(['underscore'], function (_underscore) {
             'Block': 'Block',
             'BlockDefinitionDiagram': 'BlockDefinitionDiagram',
             'Comment': 'Comment',
+            'Constraint': 'Constraint',
             'ConstraintBlock': 'ConstraintBlock',
             'ConstraintParameter': 'ConstraintParameter',
             'DataType': 'DataType',
@@ -91,6 +92,9 @@ define(['underscore'], function (_underscore) {
     };
     var _isComment = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Comment]);
+    };
+    var _isConstraint = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Constraint]);
     };
     var _isConstraintBlock = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintBlock]);
@@ -202,6 +206,7 @@ define(['underscore'], function (_underscore) {
             isBlock: _isBlock,
             isBlockDefinitionDiagram: _isBlockDefinitionDiagram,
             isComment: _isComment,
+            isConstraint: _isConstraint,
             isConstraintBlock: _isConstraintBlock,
             isConstraintParameter: _isConstraintParameter,
             isDataType: _isDataType,

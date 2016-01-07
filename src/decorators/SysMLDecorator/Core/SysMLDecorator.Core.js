@@ -86,7 +86,6 @@ define(['js/Constants',
     SysMLDecoratorCore.prototype._initializeDecorator = function (params) {
         this.portIDs = [];
         this.$name = undefined;
-        this.portIDs = [];
         this.ports = {};
 
         this._displayConnectors = false;
@@ -199,10 +198,11 @@ define(['js/Constants',
      * @private
      */
     SysMLDecoratorCore.prototype._renderContent = function () {
-
         // gme id of the rendered object
         var gmeID = this._metaInfo[CONSTANTS.GME_ID],
             client = this._control._client,
+            nodeObj = client.getNode(gmeID),
+            parentID = nodeObj ? nodeObj.getParentId() : '',
             isDiagram = SysMLMETA.TYPE_INFO.isDiagram(gmeID),
             isMetaLanguage = SysMLMETA.TYPE_INFO.isSysMLMetaLanguage(gmeID),
             isPackage = SysMLMETA.TYPE_INFO.isPackage(gmeID),
@@ -213,7 +213,6 @@ define(['js/Constants',
         this._metaType = SysMLMETA.getMetaTypesOf(gmeID)[0];
 
         if (DEBUG) {
-
             //render GME-ID in the DOM, for debugging
             this.$el.attr({"data-id": gmeID});
         }
@@ -221,32 +220,18 @@ define(['js/Constants',
         // setting the name of component
         this.skinParts.$name = this.$el.find('.name');
 
-
         //empty out SVG container
         this.$el.find('.svg-container').empty();
 
         //figure out the necessary SVG based on children type
         this.skinParts.$svg = this.getSVGByMetaType(gmeID);
 
-
         // remove extra compartments when Block or ConstraintBlock is inside IBD or PD
         if (isTypeWithPorts) {
-            nodeObj = client.getNode(gmeID);
-            parentID = nodeObj ? nodeObj.getParentId() : '';
-            var alterDecorator = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID)
-                        || SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID): false;
-
-            if (alterDecorator) {
-                this.skinParts.$svg.find('.extra').remove();
-                this.skinParts.$svg.attr('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT);
-                this.skinParts.$svg.find('rect')[0].setAttribute('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT - 10);
-            }
+            this._updateSVG(parentID);
         }
 
-
         if (this.skinParts.$svg) {
-
-            //this.skinParts.$svg.append(this._SysMLDecoratorCore.getPortSVG());
             this.$el.find('.svg-container').append(this.skinParts.$svg);
 
             //render the connectors
@@ -254,15 +239,14 @@ define(['js/Constants',
             this.skinParts.$connectorContainer.empty();
 
         } else {
-
             // append error svg if the svg does not exist for this element
             this.$el.find('.svg-container').append(this.getErrorSVG());
         }
 
-        var nodeObj,
-            parentID;
+        // domain-specific component rendering
+
+        /** Use case diagram special type: Subject, which can contain UseCase **/
         if (isTypeSubject) {
-            nodeObj = client.getNode(gmeID);
             parentID = nodeObj ? nodeObj.getParentId() : '';
             var isParentUseCaseDiagram = parentID ? SysMLMETA.TYPE_INFO.isUseCaseDiagram(parentID) : false;
 
@@ -277,37 +261,13 @@ define(['js/Constants',
             }
         }
 
+        // only Block and ConstraintBlock in PD and IBD need to be extended from BlockBase
         if (!isMetaLanguage && !isDiagram && !isPackage) {
-            var isParentParametricDiagram;
-            if (isTypeWithPorts) {
-                nodeObj = client.getNode(gmeID);
-                parentID = nodeObj ? nodeObj.getParentId() : '';
-                isParentParametricDiagram = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID) : false;
-
-            }
-
-            if (isParentParametricDiagram) {
+            if (isTypeWithPorts && (SysMLMETA.TYPE_INFO.isParametricDiagram(parentID)
+                    || SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID))) {
                 _.extend(this, new SysMLBlockBase());
-            }
-            else {
+            } else {
                 _.extend(this, new SysMLBase());
-            }
-        }
-
-        if(!isMetaLanguage && !isDiagram && !isPackage){
-            var isParentBlockDiagram;
-            var isParentInternalBlockDiagram;
-            if (isTypeWithPorts){
-                nodeObj = client.getNode(gmeID);
-                parentID = nodeObj ? nodeObj.getParentId() : '';
-                isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false;
-                isParentInternalBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID): false;
-            }
-            if (isParentInternalBlockDiagram){
-                _.extend(this,new SysMLBlockBase());
-            }
-            if (isParentBlockDiagram){
-                _.extend(this,new SysMLBase());
             }
         }
 
@@ -316,6 +276,17 @@ define(['js/Constants',
 
         // update the rendered object
         this.update();
+    };
+
+    SysMLDecoratorCore.prototype._updateSVG = function (parentID) {
+        var alterDecorator = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID)
+                    || SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID): false;
+
+        if (alterDecorator) {
+            this.skinParts.$svg.find('.extra').remove();
+            this.skinParts.$svg.attr('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT);
+            this.skinParts.$svg.find('rect')[0].setAttribute('height', SysMLDecoratorConstants.DEFAULT_BLOCK_HEIGHT - 10);
+        }
     };
 
 
@@ -354,63 +325,15 @@ define(['js/Constants',
         // initialize local variables
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            name = (control._client.getNode(gmeID)).getAttribute(nodePropertyNames.Attributes.name),
+            nodeObj =control._client.getNode(gmeID),
+            name = nodeObj.getAttribute(nodePropertyNames.Attributes.name),
+            parentID = nodeObj ? nodeObj.getParentId() : '',
+            childrenIDs = nodeObj ? nodeObj.getChildrenIds() : [],
             isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID),
             isTypeConstraintBlock = SysMLMETA.TYPE_INFO.isConstraintBlock(gmeID),
             isTypeValue = SysMLMETA.TYPE_INFO.isValue(gmeID),
             isTypeProperty = SysMLMETA.TYPE_INFO.isProperty(gmeID),
-            isTypeParameter = SysMLMETA.TYPE_INFO.isParameter(gmeID),
-
-
             isTypeConstraintParameter = SysMLMETA.TYPE_INFO.isConstraintParameter(gmeID),
-            isSpecialBlock = isTypeRequirement || isTypeValue || isTypeProperty
-                || isTypeParameter || isTypeConstraintParameter|| isTypeConstraintBlock;
-
-        /************************************ Requirement & Parametric Diagram **************************************/
-        if (this.skinParts.$name) {
-            this.skinParts.$name.text(name);
-            // from displayConnectors value, we can distinguish part browser from diagram widget
-            if (isSpecialBlock) {
-                if (this._displayConnectors) {
-
-                    // is type requirement or constraint block, move up name div
-                    this.skinParts.$name.css('position', 'absolute');
-                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
-                } else {
-                    var SvgHeight = parseInt(this.skinParts.$svg.attr('height'));
-                    this.skinParts.$name.css('position', 'relative');
-                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP - SvgHeight);
-
-                }
-            }
-        }
-
-        if (this.skinParts.$svg && (isTypeRequirement )) {
-            var texts = this.skinParts.$svg.find('text');
-
-            if (isTypeRequirement) {
-                var id = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
-                    text = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
-
-                texts[1].textContent = id ? 'id: ' + id : '';
-                texts[2].textContent = text ? 'text: ' + text : '';
-            } else {
-                var nodeObj = control._client.getNode(gmeID),
-                    parentID = nodeObj ? nodeObj.getParentId() : '',
-                    isParentParametricDiagram = parentID ? SysMLMETA.TYPE_INFO.isParametricDiagram(parentID) : false;
-                if (isParentParametricDiagram) {
-                    var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
-                    texts[1].textContent = eq ? '{' + eq + '}' : '';
-                }
-            }
-        }
-        /************************************ Requirement & Parametric Diagram **************************************/
-
-        var client = this._control._client,
-            nodeObj = client.getNode(gmeID),
-            childrenIDs = nodeObj ? nodeObj.getChildrenIds() : [],
-            SVGWidth = parseInt(this.skinParts.$svg.attr('width')),
-            SVGHeight = parseInt(this.skinParts.$svg.attr('height')),
             isTypeBlock = SysMLMETA.TYPE_INFO.isBlock(gmeID),
             isTypeUnit = SysMLMETA.TYPE_INFO.isUnit(gmeID),
             isTypeOperation = SysMLMETA.TYPE_INFO.isOperation(gmeID),
@@ -425,650 +348,274 @@ define(['js/Constants',
             isTypeFlowOut = SysMLMETA.TYPE_INFO.isFlowPortOut(gmeID),
             isTypeFlowInOut = SysMLMETA.TYPE_INFO.isFlowPortInOut(gmeID),
             isTypeEnumeration = SysMLMETA.TYPE_INFO.isEnumeration(gmeID),
+            isSpecialBlock = isTypeRequirement || isTypeValue || isTypeProperty
+                || isTypeConstraintParameter|| isTypeConstraintBlock
+                || isTypeBlock || isTypeOperation || isTypeValueType || isTypeUnit || isTypeSignal
+                || isTypeEnumerationLiteral || isTypeDimension || isTypePrimitive || isTypeData
+                || isTypeEnumeration ||isTypeFlow || isTypeFlowOut || isTypeFlowIn || isTypeFlowInOut,
 
-            isTypeSpBlock = isTypeBlock || isTypeOperation || isTypeValueType || isTypeUnit
-                || isTypeSignal || isTypeEnumerationLiteral || isTypeDimension || isTypePrimitive || isTypeData || isTypeEnumeration ||isTypeFlow || isTypeFlowOut
-                || isTypeFlowIn || isTypeFlowInOut;
+            isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false,
+            SvgHeight,
+            texts;
 
+        if (!this.skinParts.$svg) return;
+
+        /************************************ update svg's name section **************************************/
         if (this.skinParts.$name) {
             this.skinParts.$name.text(name);
             // from displayConnectors value, we can distinguish part browser from diagram widget
-            if (isTypeSpBlock) {
+            if (isSpecialBlock) {
                 if (this._displayConnectors) {
-
                     // is type requirement or constraint block, move up name div
                     this.skinParts.$name.css('position', 'absolute');
-                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOPS);
+                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
                 } else {
-                    var SvgHeight = parseInt(this.skinParts.$svg.attr('height'));
+                    SvgHeight = parseInt(this.skinParts.$svg.attr('height'));
                     this.skinParts.$name.css('position', 'relative');
-                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOPS - SvgHeight);
-
+                    this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP - SvgHeight);
                 }
             }
         }
-        if (this.skinParts.$svg && (isTypeConstraintBlock)) {
-            var texts = this.skinParts.$svg.find('text');
-            var nodeObj = control._client.getNode(gmeID),
-                parentID = nodeObj ? nodeObj.getParentId() : '';
-            var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
-            if (texts[4]) {
-                texts[4].textContent = eq ? '{' + eq + '}' : '';
-            }
 
-        }
-        if (this.skinParts.$svg && (isTypeBlock)) {
-            var texts = this.skinParts.$svg.find('text');
-            var nodeObj = control._client.getNode(gmeID),
-                parentID = nodeObj ? nodeObj.getParentId() : '';
-            var eq = control._client.getNode(gmeID).getAttribute(SysMLDecoratorConstants.PAR_ATTRIBUTE_EQUATION);
-            if (texts[4]) {
-                texts[4].textContent = eq ? '{' + eq + '}' : '';
-            }
+        // todo: multi-line
+        /*************************** update requirement compartment ******************************/
+        if (isTypeRequirement) {
+            texts = this.skinParts.$svg.find('text');
+            var id = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
+                text = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
 
+            texts[1].textContent = id ? 'id: ' + id : '';
+            texts[2].textContent = text ? 'text: ' + text : '';
+        } else if (isParentBlockDiagram) {
+            this._updateSVGCompartments(gmeID, childrenIDs)
         }
 
-        if(isTypeConstraintBlock && isParentBlockDiagram)
-        {
-            var len = childrenIDs.length,
-                self = this ,
-                ChId,
-                svgIcon = this.skinParts.$svg;
-            var propertynum = 0,
-                operationnum = 0,
-                constraintnum = 0,
-                parameternum = 0,
-                isAProperty = false,
-                isAConstrain =false,
-                isAParameter =false,
-                isAOpreation =false;
+    };
 
-            var Textbase = this.skinParts.$svg.find("#consvg_16");
+    SysMLDecoratorCore.prototype._createNewTextElement = function (newtextheight, x, name) {
+        var newtext = document.createElementNS("http://www.w3.org/2000/svg","text");
+
+        newtext.setAttributeNS(null,"x",x);
+        newtext.setAttributeNS(null,"y",newtextheight);
+        newtext.setAttributeNS(null,"font-size",9);
+        newtext.textContent = name || '';
+        newtext.setAttributeNS(null,"font-family",'Trebuchet MS');
+        return newtext;
+    };
 
 
-            if(childrenIDs && len)
-            {
-                for(var i = 0; i< childrenIDs.length; i++)
-                {
-                    var j = 1;
-                    j= j+i;
-                    var abcd =(control._client.getNode(childrenIDs[i])).getAttribute(nodePropertyNames.Attributes.name);
+    SysMLDecoratorCore.prototype._updateSVGCompartments = function (gmeID, childrenIDs) {
+        var self = this,
+            client = self._control._client,
+            ChId,
+            i,
+            name,
+            svgIcon = this.skinParts.$svg,
+            isTypeValueType = SysMLMETA.TYPE_INFO.isValueType(gmeID),
+            isTypeBlock = SysMLMETA.TYPE_INFO.isBlock(gmeID),
+            isTypeConstraintBlock = SysMLMETA.TYPE_INFO.isConstraintBlock(gmeID),
+            isTypeData = SysMLMETA.TYPE_INFO.isDataType(gmeID),
+            isTypeEnumeration = SysMLMETA.TYPE_INFO.isEnumeration(gmeID),
+            isTypeWithCompartments = isTypeBlock || isTypeConstraintBlock || isTypeValueType || isTypeData || isTypeEnumeration,
+            propertynum = 0,
+            operationnum = 0,
+            constraintnum = 0,
+            props = [],
+            ops = [],
+            constraints = [],
+            isAProperty,
+            isAOpreation,
+            isEnumerationLiteral,
+            isATypeFlow,
+            isATypeFlowIn,
+            isATypeFlowOut,
+            isaTypeFlowInOut,
+            isConstraintParam,
+            isAPropertyType,
+            isAConstraint,
+            textheight,
+            newtextheight,
+            x,
+            newText,
+            BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT,
+            MIN_BLOCK_HEIGHT,
+            MIN_SVG_HEIGHT,
+            high,
+            highsvg,
+            linehigh,
+            linehigh2,
+            text,
+            b;
 
-                    //Textbase[0].textContent = abcd ? abcd:'';
-                    //var texts= svg.createText();
+        if (!isTypeWithCompartments) return;
 
-                    var textheight = 60.23337;
-                    var newtextheight= textheight + (j - 1) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtext = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtext.setAttributeNS(null,"x",12.983763);
-                    newtext.setAttributeNS(null,"y",newtextheight);
-                    newtext.setAttributeNS(null,"font-size",9);
-                    newtext.textContent= abcd ? abcd:'';
-                    newtext.setAttributeNS(null,"font-family",'Trebuchet MS');
+        // add texts to compartments
+        for (i = 0; i < childrenIDs.length; i++) {
+            ChId = childrenIDs[i];
+            name = client.getNode(ChId).getAttribute(nodePropertyNames.Attributes.name);
+            isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
+            isEnumerationLiteral = SysMLMETA.TYPE_INFO.isEnumerationLiteral(ChId);
+            isATypeFlow = SysMLMETA.TYPE_INFO.isFlowPort(ChId);
+            isATypeFlowIn = SysMLMETA.TYPE_INFO.isFlowPortIn(ChId);
+            isATypeFlowOut = SysMLMETA.TYPE_INFO.isFlowPortOut(ChId);
+            isaTypeFlowInOut = SysMLMETA.TYPE_INFO.isFlowPortInOut(ChId);
+            isConstraintParam = SysMLMETA.TYPE_INFO.isConstraintParameter(ChId);
+            isAOpreation = SysMLMETA.TYPE_INFO.isOperation(ChId);
+            isAConstraint = SysMLMETA.TYPE_INFO.isConstraint(ChId);
+            isAPropertyType = isAProperty || isATypeFlow || isATypeFlowOut || isATypeFlowIn
+                || isaTypeFlowInOut || isEnumerationLiteral || isConstraintParam;
 
-                    $(svgIcon[0]).find('.property-name')[0].appendChild(newtext);
-                    //this.skinParts.$svg.appendChild(newtext);
-                }
-
-
+            if (isAPropertyType) {
+                propertynum += 1;
+                props.push(name);
+            } else if (isAOpreation) {
+                operationnum += 1;
+                ops.push(name);
+            } else if (isAConstraint) {
+                constraintnum += 1;
+                constraints.push(name);
             }
-
-
-
-            while(len--){
-                ChId = childrenIDs[len];
-
-                var childnode = control._client.getNode();
-                isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-                isAConstrain = SysMLMETA.TYPE_INFO.isConstraintParameter(ChId);
-                isAParameter = SysMLMETA.TYPE_INFO.isParameter(ChId);
-                isAOpreation = SysMLMETA.TYPE_INFO.isOperation(ChId);
-                if(isAProperty)
-                {
-                    propertynum += 1;
-
-                }
-                if (isAConstrain)
-                {
-                    constraintnum += 1;
-
-                }
-                if (isAParameter)
-                {
-                    parameternum += 1;
-                }
-                if (isAOpreation)
-                {
-                    operationnum += 1;
-                }
-
-
-            }
-
-
-
-
-
-            var MIN_BLOCK_HEIGHT = 166;
-            //var MIN_SVG_HEIGHT = 170;
-            var MIN_SVG_HEIGHT =parseInt(this.skinParts.$svg.attr('height'))
-            var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-            var high = MIN_BLOCK_HEIGHT;
-            var highsvg = MIN_SVG_HEIGHT;
-            var linehigh2 = 100.565221;
-            var linehigh1 = 100.565221;
-            var abc = linehigh2;
-            var bb = linehigh1;
-            var a = 116;
-            var h = 126.23337;
-
-            if(constraintnum + parameternum > 2){
-                high = MIN_BLOCK_HEIGHT + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg = MIN_SVG_HEIGHT + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-                abc = linehigh2 + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-                bb = linehigh1 + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-                var b = a + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-                var m = h + (constraintnum + parameternum - 1) * BLOCK_HEIGHT_INCREASE;
-            }
-            $(svgIcon.find("#consvg_8")[0]).attr({y2: abc ,y1: bb});
-            $(svgIcon.find("#consvg_11")[0]).attr({y:  b});
-            $(svgIcon.find("#consvg_3")[0]).attr({height: high});
-            $(svgIcon.find("#consvg_15")[0]).attr({y: m});
-            this.skinParts.$svg.attr('height',highsvg);
-
         }
-        // Uncomment if you want to show the flow ports as property in the block definition diagram
-        //var isParentBlockDiagram;
-        //var isParentInternalBlockDiagram;
-        //nodeObj = client.getNode(gmeID);
-        //parentID = nodeObj ? nodeObj.getParentId() : '';
-        //isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false;
-        //isParentInternalBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isInternalBlockDiagram(parentID): false;
 
+        // resize SVG to fit texts
+        if (isTypeData || isTypeEnumeration) {
+            MIN_BLOCK_HEIGHT = 96.000008;
+            MIN_SVG_HEIGHT = 100;
+            high = MIN_BLOCK_HEIGHT;
+            highsvg = MIN_SVG_HEIGHT;
+            if (propertynum > 2) {
+                high = high + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = highsvg + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+            }
+            $(svgIcon.find("#datasvg_1")[0]).attr({height: high});
+            this.skinParts.$svg.attr('height', highsvg);
 
-        /*if(isParentBlockDiagram) 
-         //{
-         if(isTypeBlock)
-         {
-         var len = childrenIDs.length,
-         self = this ,
-         ChId,
-         svgIcon = this.skinParts.$svg;
-         var propertynum = 0,
-         operationnum = 0,
-         constraintnum = 0,
-         parameternum = 0,
-         isAProperty = false,
-         isAConstrain =false,
-         isAParameter =false,
-         isAOpreation =false,
-         isATypeFlow = false,
-         isATypeFlowIn = false,
-         isATypeFlowOut = false,
-         isaTypeFlowInOut = false,
-         isAProperty1 = false;
+        } else if (isTypeValueType) {
+            MIN_BLOCK_HEIGHT = 183.000004;
+            MIN_SVG_HEIGHT = 190;
+            high = MIN_BLOCK_HEIGHT;
+            highsvg = MIN_SVG_HEIGHT;
+            linehigh = 110.75;
+            text = 123;
 
-         while(len--){
-         ChId = childrenIDs[len];
-
-         isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-         isAConstrain = SysMLMETA.TYPE_INFO.isConstraintParameter(ChId);
-         isAParameter = SysMLMETA.TYPE_INFO.isParameter(ChId);
-         isAOpreation = SysMLMETA.TYPE_INFO.isOperation(ChId);
-         isATypeFlow = SysMLMETA.TYPE_INFO.isFlowPort(ChId);
-         isATypeFlowIn = SysMLMETA.TYPE_INFO.isFlowPortIn(ChId);
-         isATypeFlowOut = SysMLMETA.TYPE_INFO.isFlowPortOut(ChId);
-         isaTypeFlowInOut = SysMLMETA.TYPE_INFO.isFlowPortInOut(ChId);
-         isAProperty1 = isAProperty || isATypeFlow || isATypeFlowOut || isATypeFlowIn || isaTypeFlowInOut;
-         if(isAProperty1)
-         {
-         propertynum += 1;
-         var nnn =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-         var textheight = 60.23337;
-         var newtextheight= textheight + (propertynum- 1) * 10;
-         //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-         var newtext2 = document.createElementNS("http://www.w3.org/2000/svg","text");
-         newtext2.setAttributeNS(null,"x",12.983763);
-         newtext2.setAttributeNS(null,"y",newtextheight);
-         newtext2.setAttributeNS(null,"font-size",9);
-         newtext2.textContent= nnn ? nnn:'';
-         newtext2.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-         $(svgIcon[0]).find('.property-name')[0].appendChild(newtext2);
-         }
-         if (isAConstrain)
-         {
-         constraintnum += 1;
-         }
-         if (isAParameter)
-         {
-         parameternum += 1;
-         }
-         if (isAOpreation)
-         {
-         operationnum += 1;
-         var mmm =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-         var textheight = 126.23337;
-         var newtextheight= textheight + (propertynum + operationnum) * 5;
-         //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-         var newtext3 = document.createElementNS("http://www.w3.org/2000/svg","text");
-         newtext3.setAttributeNS(null,"x",12.983763);
-         newtext3.setAttributeNS(null,"y",newtextheight);
-         newtext3.setAttributeNS(null,"font-size",9);
-         newtext3.textContent= mmm ? mmm:'';
-         newtext3.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-         $(svgIcon[0]).find('.operator-name')[0].appendChild(newtext3);
-         }
-
-
-         }
-
-         var MIN_BLOCK_HEIGHT1 = 205;
-         //var MIN_SVG_HEIGHT2 = 208;
-         var MIN_SVG_HEIGHT2 =parseInt(this.skinParts.$svg.attr('height'))
-         var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-         var high1 = MIN_BLOCK_HEIGHT1;
-         var highsvg1 = MIN_SVG_HEIGHT2;
-         var linehigh = 91.246378;
-         var linehigh2 = 148.123188;
-         var abc = linehigh;
-         var bb = linehigh;
-         var l2y1 = linehigh2;
-         var l2y2 = linehigh2;
-         var text2 = 101.560661;
-         var text3 = 159.560661;
-         var d = 10;
-         var e = 167.23337;
-
-         if (propertynum > 2 ){
-         high1 = MIN_BLOCK_HEIGHT1 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         highsvg1 = MIN_SVG_HEIGHT2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         abc = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         bb = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         l2y2 = linehigh2 +(propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         l2y1 = linehigh2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         var b = text2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         var c = text3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         var d = 0;
-         var f = e + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-         }
-         var newl2y2 = l2y2, newl2y1= l2y1, newhigh1 = high1, newhighsvg1 = highsvg1, newf = f;
-
-
-         if(operationnum > 2){
-         high1 = newhigh1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-         highsvg1 = newhighsvg1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-         l2y2 = newl2y2 +(operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-         l2y1 = newl2y1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-         c = (text3 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE + (propertynum - 1) * BLOCK_HEIGHT_INCREASE) - d ;
-         f = newf + +(operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-         }
-         $(svgIcon.find("#blksvg_7")[0]).attr({y2: abc ,y1: bb});
-         $(svgIcon.find("#blksvg_9")[0]).attr({y2: l2y2 ,y1: l2y1});
-         $(svgIcon.find("#blksvg_10")[0]).attr({y:  b});
-         $(svgIcon.find("#blksvg_11")[0]).attr({y:  c});
-         $(svgIcon.find("#blksvg_12")[0]).attr({y:  f});
-         $(svgIcon.find("#blksvg_3")[0]).attr({height: high1});
-         this.skinParts.$svg.attr('height',highsvg1);
-         }
-         //}*/
-
-
-
-        var isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false;
-        //if(isParentInternalBlockDiagram)
-        //{
-        if(isTypeBlock && isParentBlockDiagram)
-        {
-            var len = childrenIDs.length,
-                self = this ,
-                ChId,
-                svgIcon = this.skinParts.$svg;
-            var propertynum = 0,
-                operationnum = 0,
-                constraintnum = 0,
-                parameternum = 0,
-                isAProperty = false,
-                isAConstrain =false,
-                isAParameter =false,
-                isAOpreation =false;
-
-            while(len--){
-                ChId = childrenIDs[len];
-
-                isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-                isAConstrain = SysMLMETA.TYPE_INFO.isConstraintParameter(ChId);
-                isAParameter = SysMLMETA.TYPE_INFO.isParameter(ChId);
-                isAOpreation = SysMLMETA.TYPE_INFO.isOperation(ChId);
-                if(isAProperty)
-                {
-                    propertynum += 1;
-                    var nnn =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-                    var textheight = 60.23337;
-                    var newtextheight= textheight + (propertynum- 1) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtext2 = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtext2.setAttributeNS(null,"x",12.983763);
-                    newtext2.setAttributeNS(null,"y",newtextheight);
-                    newtext2.setAttributeNS(null,"font-size",9);
-                    newtext2.textContent= nnn ? nnn:'';
-                    newtext2.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-                    $(svgIcon[0]).find('.property-name')[0].appendChild(newtext2);
-                }
-                if (isAConstrain)
-                {
-                    constraintnum += 1;
-                }
-                if (isAParameter)
-                {
-                    parameternum += 1;
-                }
-                if (isAOpreation)
-                {
-                    operationnum += 1;
-                    var mmm =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-                    var textheight = 126.23337;
-                    var newtextheight= textheight + (propertynum + operationnum ) * 5;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtext3 = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtext3.setAttributeNS(null,"x",12.983763);
-                    newtext3.setAttributeNS(null,"y",newtextheight);
-                    newtext3.setAttributeNS(null,"font-size",9);
-                    newtext3.textContent= mmm ? mmm:'';
-                    newtext3.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-                    $(svgIcon[0]).find('.operator-name')[0].appendChild(newtext3);
-                }
-
-
+            if (propertynum > 2) {
+                high = MIN_BLOCK_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = MIN_SVG_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                b = text + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
             }
 
-            var MIN_BLOCK_HEIGHT1 = 205;
-            //var MIN_SVG_HEIGHT2 = 208;
-            var MIN_SVG_HEIGHT2 =parseInt(this.skinParts.$svg.attr('height'))
-            var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-            var high1 = MIN_BLOCK_HEIGHT1;
-            var highsvg1 = MIN_SVG_HEIGHT2;
-            var linehigh = 91.246378;
-            var linehigh2 = 148.123188;
-            var abc = linehigh;
-            var bb = linehigh;
-            var l2y1 = linehigh2;
-            var l2y2 = linehigh2;
+            if (operationnum > 2) {
+                high = high + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = highsvg + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
+            }
+            $(svgIcon.find("#valsvg_3")[0]).attr({y2: linehigh, y1: linehigh});
+            $(svgIcon.find("#valsvg_8")[0]).attr({y: b});
+            $(svgIcon.find("#valsvg_1")[0]).attr({height: high});
+            this.skinParts.$svg.attr('height', highsvg);
+        } else if (isTypeBlock) {
+            MIN_BLOCK_HEIGHT = 205;
+            MIN_SVG_HEIGHT = parseInt(this.skinParts.$svg.attr('height'));
+            high = MIN_BLOCK_HEIGHT;
+            highsvg = MIN_SVG_HEIGHT;
+            linehigh = 91.246378;
+            linehigh2 = 148.123188;
             var text2 = 101.560661;
             var text3 = 159.560661;
-            var d = 10;
             var e = 167.23337;
+            d = 10;
 
-            if (propertynum > 2 ){
-                high1 = MIN_BLOCK_HEIGHT1 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg1 = MIN_SVG_HEIGHT2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                abc = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                bb = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                l2y2 = linehigh2 +(propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                l2y1 = linehigh2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                var b = text2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+            if (propertynum > 2) {
+                high = MIN_BLOCK_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = MIN_SVG_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh2 = linehigh2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                b = text2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
                 var c = text3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
                 var d = 0;
                 var f = e + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
             }
-            var newl2y2 = l2y2, newl2y1= l2y1, newhigh1 = high1, newhighsvg1 = highsvg1, newf = f;
 
-
-            if(operationnum > 2){
-                high1 = newhigh1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg1 = newhighsvg1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-                l2y2 = newl2y2 +(operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-                l2y1 = newl2y1 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-                c = (text3 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE + (propertynum - 1) * BLOCK_HEIGHT_INCREASE) - d ;
-                f = newf + +(operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-            }
-            $(svgIcon.find("#blksvg_7")[0]).attr({y2: abc ,y1: bb});
-            $(svgIcon.find("#blksvg_9")[0]).attr({y2: l2y2 ,y1: l2y1});
-            $(svgIcon.find("#blksvg_10")[0]).attr({y:  b});
-            $(svgIcon.find("#blksvg_11")[0]).attr({y:  c});
-            $(svgIcon.find("#blksvg_12")[0]).attr({y:  f});
-            $(svgIcon.find("#blksvg_3")[0]).attr({height: high1});
-            this.skinParts.$svg.attr('height',highsvg1);
-        }
-        //}
-
-        if(isTypeValueType)
-        {
-            var len = childrenIDs.length,
-                self = this ,
-                ChId,
-                svgIcon = this.skinParts.$svg;
-            var propertynum = 0,
-                operationnum = 0,
-                constraintnum = 0,
-                parameternum = 0,
-                isAProperty = false,
-                isAConstrain =false,
-                isAParameter =false,
-                isAOpreation =false;
-
-
-            while(len--){
-                ChId = childrenIDs[len];
-
-                isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-                isAConstrain = SysMLMETA.TYPE_INFO.isConstraintParameter(ChId);
-                isAParameter = SysMLMETA.TYPE_INFO.isParameter(ChId);
-                isAOpreation = SysMLMETA.TYPE_INFO.isOperation(ChId);
-
-                if(isAProperty)
-                {
-                    propertynum += 1;
-
-
-                    var abcd =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-
-                    var textheight = 60.23337;
-                    var newtextheight= textheight + (propertynum- 1) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtext = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtext.setAttributeNS(null,"x",6.983763);
-                    newtext.setAttributeNS(null,"y",newtextheight);
-                    newtext.setAttributeNS(null,"font-size",9);
-                    newtext.textContent= abcd ? abcd:'';
-                    newtext.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-                    $(svgIcon[0]).find('.property-name')[0].appendChild(newtext);
-                }
-
-                if (isAOpreation)
-                {
-                    operationnum += 1;
-                    var rrr =(control._client.getNode(childrenIDs[len])).getAttribute(nodePropertyNames.Attributes.name);
-
-                    var textheight1 = 120.23337;
-                    var newtextheight1= textheight1 + (propertynum + operationnum ) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtext1 = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtext1.setAttributeNS(null,"x",6.983763);
-                    newtext1.setAttributeNS(null,"y",newtextheight1);
-                    newtext1.setAttributeNS(null,"font-size",9);
-                    newtext1.textContent= rrr ? rrr:'';
-                    newtext1.setAttributeNS(null,"font-family",'Trebuchet MS');
-                    $(svgIcon[0]).find('.operator-name')[0].appendChild(newtext1);
-
-                }
-
-
+            if (operationnum > 2) {
+                high = high + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = highsvg + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh2 = linehigh2 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
+                c = text3 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE + (propertynum - 1) * BLOCK_HEIGHT_INCREASE - d;
+                f = f + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
             }
 
-
-
-
-            /*if(childrenIDs && len )
-             {
-
-
-             for(var i = 0; i< childrenIDs.length; i++)
-             {
-             var j = 1;
-             j= j+i;
-             ChId = childrenIDs[len];
-             isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-             if(isAProperty)
-             var abcd =(control._client.getNode(childrenIDs[i])).getAttribute(nodePropertyNames.Attributes.name);
-
-             //Textbase[0].textContent = abcd ? abcd:'';
-             //var texts= svg.createText();
-
-             var textheight = 60.23337;
-             var newtextheight= textheight + (j - 1) * 10;
-             //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-             var newtext = document.createElementNS("http://www.w3.org/2000/svg","text");
-             newtext.setAttributeNS(null,"x",6.983763);
-             newtext.setAttributeNS(null,"y",newtextheight);
-             newtext.setAttributeNS(null,"font-size",9);
-             newtext.textContent= abcd ? abcd:'';
-             newtext.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-             $(svgIcon[0]).find('.property-name')[0].appendChild(newtext);
-             //this.skinParts.$svg.appendChild(newtext);
-
-
-             }
-             } */
-
-
-
-            var MIN_BLOCK_HEIGHT3 = 183.000004;
-            var MIN_SVG_HEIGHT3 = 190;
-            var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-            var high2 = MIN_BLOCK_HEIGHT3;
-            var highsvg2 = MIN_SVG_HEIGHT3;
-            var linehigh3 = 110.75
-            var abc = linehigh;
-            var bb = linehigh;
-            var text2 = 123;
-            var d = 10;
-
-            if (propertynum > 2 ){
-                high2 = MIN_BLOCK_HEIGHT3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg2 = MIN_SVG_HEIGHT3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                abc = linehigh3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                bb = linehigh3 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                var b = text2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
-                var d = 0;
+            if (constraintnum > 2) {
+                high = high + (constraintnum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = highsvg + (constraintnum - 1) * BLOCK_HEIGHT_INCREASE;
             }
-            var  newhigh2 = high2, newhighsvg2 = highsvg2;
 
+            $(svgIcon.find("#blksvg_7")[0]).attr({y2: linehigh, y1: linehigh});
+            $(svgIcon.find("#blksvg_9")[0]).attr({y2: linehigh2, y1: linehigh2});
+            $(svgIcon.find("#blksvg_10")[0]).attr({y: b});
+            $(svgIcon.find("#blksvg_11")[0]).attr({y: c});
+            $(svgIcon.find("#blksvg_12")[0]).attr({y: f});
+            $(svgIcon.find("#blksvg_3")[0]).attr({height: high});
+            this.skinParts.$svg.attr('height', highsvg);
+        } else if (isTypeConstraintBlock) {
+            MIN_BLOCK_HEIGHT = 166;
+            MIN_SVG_HEIGHT = parseInt(this.skinParts.$svg.attr('height'));
+            high = MIN_BLOCK_HEIGHT;
+            highsvg = MIN_SVG_HEIGHT;
+            linehigh = 100.565221;
+            linehigh2 = 116;
+            var h = 126.23337;
 
-            if(operationnum > 2){
-                high2 = newhigh2 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg2 = newhighsvg2 + (operationnum - 1) * BLOCK_HEIGHT_INCREASE;
-
-
+            if (propertynum > 2) {
+                high = MIN_BLOCK_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = MIN_SVG_HEIGHT + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh = linehigh + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                linehigh2 = linehigh2 + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
+                var m = h + (propertynum - 1) * BLOCK_HEIGHT_INCREASE;
             }
-            $(svgIcon.find("#valsvg_3")[0]).attr({y2: abc ,y1: bb});
-            $(svgIcon.find("#valsvg_8")[0]).attr({y:  b});
-            $(svgIcon.find("#valsvg_1")[0]).attr({height: high2});
-            this.skinParts.$svg.attr('height',highsvg2);
 
+            if (constraintnum > 2) {
+                high = high + (constraintnum - 1) * BLOCK_HEIGHT_INCREASE;
+                highsvg = highsvg + (constraintnum - 1) * BLOCK_HEIGHT_INCREASE;
+            }
+            $(svgIcon.find("#consvg_8")[0]).attr({y2: linehigh, y1: linehigh});
+            $(svgIcon.find("#consvg_11")[0]).attr({y: linehigh2});
+            $(svgIcon.find("#consvg_3")[0]).attr({height: high});
+            $(svgIcon.find("#consvg_15")[0]).attr({y: m});
+            this.skinParts.$svg.attr('height', highsvg);
         }
 
-        if(isTypeEnumeration)
-        {
-            var len = childrenIDs.length,
-                self = this ,
-                ChId,
-                svgIcon = this.skinParts.$svg;
-            var literalnum = 0,
-                m = 0,
-
-                isAliteral = false;
-            while(len--){
-                ChId = childrenIDs[len];
-
-                isAliteral = SysMLMETA.TYPE_INFO.isEnumerationLiteral(ChId);
-                if(isAliteral)
-                {
-                    literalnum  += 1;
-
-                    var gfh =(control._client.getNode(childrenIDs[m])).getAttribute(nodePropertyNames.Attributes.name);
-                    m = m+1;
-                    var textheight = 60.23337;
-                    var newtextheight= textheight + (literalnum - 1) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtxt = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtxt.setAttributeNS(null,"x",12.983763);
-                    newtxt.setAttributeNS(null,"y",newtextheight);
-                    newtxt.setAttributeNS(null,"font-size",9);
-                    newtxt.textContent= gfh ? gfh:'';
-                    newtxt.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-                    $(svgIcon[0]).find('.property-name')[0].appendChild(newtxt);
-                }
-            }
-            var MIN_BLOCK_HEIGHT4 = 96.000008 ;
-            var MIN_SVG_HEIGHT4 = 100;
-            var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-            var high3 = MIN_BLOCK_HEIGHT4;
-            var highsvg3 = MIN_SVG_HEIGHT4;
-            if(literalnum > 2){
-                high3 = high3 + (literalnum - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg3 = highsvg3 + (literalnum - 1) * BLOCK_HEIGHT_INCREASE;
-
-
-
-            }
-            $(svgIcon.find("#enumsvg_1")[0]).attr({height: high3});
-            this.skinParts.$svg.attr('height',highsvg3);
-
-        }
-        if(isTypeData)
-        {
-            var len = childrenIDs.length,
-                self = this ,
-                ChId,
-                svgIcon = this.skinParts.$svg;
-            var propertynumb = 0,
-                n=0,
-                isAProperty = false;
-            while(len--){
-                ChId = childrenIDs[len];
-
-                isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
-                if(isAProperty)
-                {
-                    propertynumb  += 1;
-                    var def =(control._client.getNode(childrenIDs[n])).getAttribute(nodePropertyNames.Attributes.name);
-                    n = n+1;
-                    var textheight = 60.23337;
-                    var newtextheight= textheight + (propertynumb - 1) * 10;
-                    //$(svgIcon.find("#consvg_16")[0]).attr({y: newtextheight});
-                    var newtxt1 = document.createElementNS("http://www.w3.org/2000/svg","text");
-                    newtxt1.setAttributeNS(null,"x",12.983763);
-                    newtxt1.setAttributeNS(null,"y",newtextheight);
-                    newtxt1.setAttributeNS(null,"font-size",9);
-                    newtxt1.textContent= def ? def:'';
-                    newtxt1.setAttributeNS(null,"font-family",'Trebuchet MS');
-
-                    $(svgIcon[0]).find('.property-name')[0].appendChild(newtxt1);
-                }
-            }
-            var MIN_BLOCK_HEIGHT5 = 96.000008 ;
-            var MIN_SVG_HEIGHT5 = 100;
-            var BLOCK_HEIGHT_INCREASE = SysMLDecoratorConstants.CHANGE_HEIGHT;
-            var high4 = MIN_BLOCK_HEIGHT5;
-            var highsvg4 = MIN_SVG_HEIGHT5;
-            if(propertynumb > 2){
-                high4 = high4 + (propertynumb - 1) * BLOCK_HEIGHT_INCREASE;
-                highsvg4 = highsvg4 + (propertynumb - 1) * BLOCK_HEIGHT_INCREASE;
-
-
-            }
-            $(svgIcon.find("#datasvg_1")[0]).attr({height: high4});
-            this.skinParts.$svg.attr('height',highsvg4);
+        // add props
+        for (i = 0; i < props.length; ++i) {
+            textheight = 60.23337;
+            newtextheight = textheight + i * 10;
+            x = isTypeValueType ? 6.983763 : 12.983763;
+            newText = this._createNewTextElement(newtextheight, x, props[i]);
+            $(svgIcon[0]).find('.property-name')[0].appendChild(newText);
         }
 
+        // add ops
+        textheight = (isTypeValueType ? parseInt($(svgIcon.find("#valsvg_8")[0]).attr('y'))
+                                      : parseInt($(svgIcon.find("#blksvg_10")[0]).attr('y')))
+                    + BLOCK_HEIGHT_INCREASE;
+        x = isTypeValueType ? 6.983763 : 12.983763;
+
+        for (i = 0; i < ops.length; ++i) {
+            newText = this._createNewTextElement(textheight, x, ops[i]);
+            $(svgIcon[0]).find('.operator-name')[0].appendChild(newText);
+            textheight += BLOCK_HEIGHT_INCREASE;
+        }
+
+        // add constraints
+        textheight = (isTypeBlock ? parseInt($(svgIcon.find('#blksvg_11')[0]).attr('y'))
+                                  : parseInt($(svgIcon.find('#consvg_11')[0]).attr('y')))
+                + SysMLDecoratorConstants.CHANGE_HEIGHT;
+        x = 12.983763;
+
+        for (i = 0; i < constraints.length; ++i) {
+            newText = this._createNewTextElement(textheight, x, constraints[i]);
+            $(svgIcon[0]).find('.constraint-name')[0].appendChild(newText);
+            textheight += SysMLDecoratorConstants.CHANGE_HEIGHT;
+        }
     };
 
     /* TO BE OVERRIDDEN IN META TYPE SPECIFIC CODE */

@@ -18,7 +18,7 @@ define([], function () {
         MIN_WIDTH: 80,
         DEFAULT_NAME_WIDTH: 150,
         HEIGHT: 22,
-        CHANGE_HEIGHT: 5,
+        CHANGE_HEIGHT: 10,
         NAME_DIV_FIXTURE: 6,
         NAME_DIV_TOP: 13,
         NAME_DIV_TOPS: 15,
