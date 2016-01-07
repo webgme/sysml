@@ -28,6 +28,7 @@ $selected-background-color: rgba(219, 234, 252, 0.5);
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
       height: 22px;
       width: 150px;
     }

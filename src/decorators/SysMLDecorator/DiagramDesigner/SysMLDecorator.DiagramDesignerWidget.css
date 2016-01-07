@@ -15,6 +15,7 @@
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     height: 22px;
     width: 150px; }
   .SysML-decorator .connector {

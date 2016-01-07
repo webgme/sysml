@@ -28,6 +28,7 @@ define([], function () {
         PAR_ATTRIBUTE_EQUATION: "Equation",
         PORT_POSITION_DIVIDER_POINT: 300,
         BAR_WIDTH: "Width",
-        DEFAULT_BLOCK_HEIGHT: 125
+        DEFAULT_BLOCK_HEIGHT: 125,
+        CHAR_PER_LINE: 32
     };
 });

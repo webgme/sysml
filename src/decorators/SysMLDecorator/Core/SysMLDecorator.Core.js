@@ -355,7 +355,7 @@ define(['js/Constants',
                 || isTypeEnumeration ||isTypeFlow || isTypeFlowOut || isTypeFlowIn || isTypeFlowInOut,
 
             isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false,
-            SvgHeight,
+            SvgHeight = parseInt(this.skinParts.$svg.attr('height')),
             texts;
 
         if (!this.skinParts.$svg) return;
@@ -370,7 +370,6 @@ define(['js/Constants',
                     this.skinParts.$name.css('position', 'absolute');
                     this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP);
                 } else {
-                    SvgHeight = parseInt(this.skinParts.$svg.attr('height'));
                     this.skinParts.$name.css('position', 'relative');
                     this.skinParts.$name.css('top', SysMLDecoratorConstants.NAME_DIV_TOP - SvgHeight);
                 }
@@ -382,14 +381,38 @@ define(['js/Constants',
         if (isTypeRequirement) {
             texts = this.skinParts.$svg.find('text');
             var id = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
-                text = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT);
+                text = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT),
+                textContent = text ? 'text: ' + text : '',
+                textheight = parseInt($(this.skinParts.$svg.find("#svg_11")[0]).attr('y')) + SysMLDecoratorConstants.CHANGE_HEIGHT,
+                t,
+                endIndex,
+                x = 6.983763,
+                newText,
+                charPerLine = SysMLDecoratorConstants.CHAR_PER_LINE;
 
             texts[1].textContent = id ? 'id: ' + id : '';
-            texts[2].textContent = text ? 'text: ' + text : '';
+
+            for (var i = 0; i < textContent.length / charPerLine; ++i) {
+                endIndex = (i + 1) * charPerLine > textContent.length ? textContent.length : (i + 1) * charPerLine;
+                t = textContent.substring(i * charPerLine, endIndex);
+
+                if (endIndex < textContent.length) {
+                    if (/[^0-9a-bA-B]/gi.test(textContent[endIndex])) {
+                        t += '-';
+                    }
+                }
+
+                newText = this._createNewTextElement(textheight, x, t);
+                $(this.skinParts.$svg[0]).find('.text')[0].appendChild(newText);
+                textheight += SysMLDecoratorConstants.CHANGE_HEIGHT;
+            }
+            if (textheight > SvgHeight) {
+                this.skinParts.$svg.attr({height: textheight + SysMLDecoratorConstants.CHANGE_HEIGHT});
+                $(this.skinParts.$svg.find('#svg_3')[0]).attr({height: textheight + SysMLDecoratorConstants.CHANGE_HEIGHT - 2});
+            }
         } else if (isParentBlockDiagram) {
             this._updateSVGCompartments(gmeID, childrenIDs)
         }
-
     };
 
     SysMLDecoratorCore.prototype._createNewTextElement = function (newtextheight, x, name) {

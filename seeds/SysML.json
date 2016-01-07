@@ -190,7 +190,6 @@
         "6a078e7e-cb4f-1d25-dbd5-bb8a8dc642ac": "1786037657",
         "6a4d77a3-8e5d-b44b-d964-9abffe04b979": "749451425",
         "6ac68292-1517-831f-4da0-ee2f5e73f0fc": "652773145",
-        "6b06606a-0c01-ee43-dfbb-e5495e0aa7b8": "1467512839",
         "6e24bf02-0c77-ef59-6332-b6ae95967ac5": "682445233",
         "6ea08068-9e40-da0d-660c-3b5800ccf1d8": "1166554717",
         "6eb3b14f-36cc-88bc-0283-6ec30d96deb8": "935365139",
@@ -244,6 +243,7 @@
         "8c9e24a5-ccba-32b1-8526-0b883ba835df": "697344612",
         "8d582390-90f9-0743-7dcf-16751869650c": "1378701654",
         "8d587851-f281-6848-3fe9-c177b9a02024": "585298734",
+        "8dc6191f-6c53-4493-c6f7-1aff8a4f0f5f": "1567598322",
         "8ead17bb-02a3-3b61-677d-f1ebf3e53038": "144485265",
         "8ecd7ef0-a15d-023d-4cbf-f44fe03113d6": "789707678",
         "8f6c4a2f-e1a7-b42a-2420-775174be3e77": "1084242483",
@@ -484,6 +484,7 @@
                     },
                     "f814c42f-a3fa-ae6d-8005-1587bcd9c339": {
                         "5daa78fe-bfac-59f7-98db-fa06b2bec834": {},
+                        "8dc6191f-6c53-4493-c6f7-1aff8a4f0f5f": {},
                         "cd96a5ef-601e-e018-dc55-8871d90108df": {}
                     }
                 }
@@ -897,7 +898,6 @@
             "66848fd2-d927-40e0-f16c-800252123a83": {},
             "6a078e7e-cb4f-1d25-dbd5-bb8a8dc642ac": {},
             "6ac68292-1517-831f-4da0-ee2f5e73f0fc": {},
-            "6b06606a-0c01-ee43-dfbb-e5495e0aa7b8": {},
             "6efe80b8-ecaa-f64d-f029-a335cd0bebac": {},
             "702ce421-b6c7-b202-33b8-d25ab885080b": {},
             "74db370f-e298-fc75-b69c-647c478534cb": {},
@@ -3228,7 +3228,12 @@
             "meta": {},
             "parent": "f47d5cb1-7a3c-0e94-b429-a699c134cf27",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": 521,
+                    "y": 295
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -3539,8 +3544,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 502,
-                    "y": 419
+                    "x": 377,
+                    "y": 349
                 }
             },
             "sets": {},
@@ -4965,8 +4970,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 1062,
-                    "y": 478
+                    "x": 1070,
+                    "y": 485
                 }
             },
             "sets": {},
@@ -5007,7 +5012,12 @@
             "meta": {},
             "parent": "f47d5cb1-7a3c-0e94-b429-a699c134cf27",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": 76,
+                    "y": 284
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -6130,7 +6140,12 @@
             "meta": {},
             "parent": "f47d5cb1-7a3c-0e94-b429-a699c134cf27",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": 92,
+                    "y": 399
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -6425,27 +6440,6 @@
             "sets": {},
             "constraints": {}
         },
-        "6b06606a-0c01-ee43-dfbb-e5495e0aa7b8": {
-            "attributes": {
-                "name": "Parameter"
-            },
-            "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045",
-            "meta": {},
-            "parent": "22666200-2b97-808a-0671-eba8e473b647",
-            "pointers": {
-                "base": "cd891e7b-e2ea-e929-f6cd-9faf4f1fc045"
-            },
-            "registry": {
-                "isAbstract": false,
-                "isPort": true,
-                "position": {
-                    "x": 268,
-                    "y": 895
-                }
-            },
-            "sets": {},
-            "constraints": {}
-        },
         "6e24bf02-0c77-ef59-6332-b6ae95967ac5": {
             "attributes": {
                 "name": "MotorController"
@@ -6458,8 +6452,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 406,
-                    "y": 305
+                    "x": 262,
+                    "y": 463
                 }
             },
             "sets": {},
@@ -6701,8 +6695,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 163,
-                    "y": 154
+                    "x": 122,
+                    "y": 110
                 }
             },
             "sets": {},
@@ -6867,7 +6861,12 @@
             "meta": {},
             "parent": "f47d5cb1-7a3c-0e94-b429-a699c134cf27",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": 518,
+                    "y": 194
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -7582,6 +7581,23 @@
             "parent": "f773d91b-0539-0622-c257-c5acd05b6698",
             "pointers": {},
             "registry": {},
+            "sets": {},
+            "constraints": {}
+        },
+        "8dc6191f-6c53-4493-c6f7-1aff8a4f0f5f": {
+            "attributes": {},
+            "base": "b8b8d83d-cb07-627f-446d-4fefc5855323",
+            "meta": {},
+            "parent": "f814c42f-a3fa-ae6d-8005-1587bcd9c339",
+            "pointers": {
+                "base": "b8b8d83d-cb07-627f-446d-4fefc5855323"
+            },
+            "registry": {
+                "position": {
+                    "x": 516,
+                    "y": 450
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -9814,7 +9830,12 @@
             "meta": {},
             "parent": "f814c42f-a3fa-ae6d-8005-1587bcd9c339",
             "pointers": {},
-            "registry": {},
+            "registry": {
+                "position": {
+                    "x": 821,
+                    "y": 272
+                }
+            },
             "sets": {},
             "constraints": {}
         },
@@ -9851,8 +9872,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 686,
-                    "y": 305
+                    "x": 742,
+                    "y": 351
                 }
             },
             "sets": {},
@@ -10146,8 +10167,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 220,
-                    "y": 448
+                    "x": 232,
+                    "y": 490
                 }
             },
             "sets": {},
@@ -11023,8 +11044,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 529,
-                    "y": 117
+                    "x": 393,
+                    "y": 158
                 }
             },
             "sets": {},
@@ -11204,8 +11225,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 213,
-                    "y": 177
+                    "x": 173,
+                    "y": 148
                 }
             },
             "sets": {},
@@ -11259,8 +11280,8 @@
             },
             "registry": {
                 "position": {
-                    "x": 550,
-                    "y": 302
+                    "x": 513,
+                    "y": 521
                 }
             },
             "sets": {},
