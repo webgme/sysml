@@ -224,6 +224,16 @@ define(['ejs',
                             id: childElement.id,
                             relations: portElms.join('\n')
                         };
+                    } else if (childElement.type === 'Unit' || childElement.type === 'Dimension') {
+                        elm = '<Blocks:' + childElement.type + ' xmi:id="_wz5" base_InstanceSpecification="' + childElement.name + '"/>';
+                        blockElms.push(elm);
+
+                        obj = {
+                            type: 'InstanceSpecification',
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: ''
+                        };
                     } else {
                         obj = {
                             type: childElement.type,
