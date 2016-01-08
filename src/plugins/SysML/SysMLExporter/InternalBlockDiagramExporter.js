@@ -293,8 +293,8 @@ define(['ejs',
                             .replace(/&quot;/g, '"');
                     } else if (childElement.type === 'Property') {
                         elm = '<ownedAttribute xmi:type="uml:Property" xmi:id="' + childElement.id + '" name="' + childElement.name + '"/>';
-                    } else if (childElement.type.indexOf('FlowPort') > -1) {
-                        elm = self._getFlowPortUml(childElement, blockElms);
+                    } else if (childElement.type.indexOf('Port') > -1) {
+                        elm = self._getPortUml(childElement, blockElms);
                     }
 
                     mainDiagramRelations.push(elm);
@@ -441,10 +441,12 @@ define(['ejs',
     };
 
 
-    IBDExporter.prototype._getFlowPortUml = function (port, elementGroup) {
-        var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
-            + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
-        elementGroup.push(elm);
+    IBDExporter.prototype._getPortUml = function (port, elementGroup) {
+        if (port.type.indexOf('FlowPort') > -1) {
+            var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
+                + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
+            elementGroup.push(elm);
+        }
         return '<ownedAttribute xmi:type="uml:Port" xmi:id="' + port.id + '" name="' + port.name + '" aggregation="composite"/>';
     };
 
@@ -455,7 +457,7 @@ define(['ejs',
             portElms = [];
 
         for (i = 0; i < ports.length; ++i) {
-            portElms.push(self._getFlowPortUml(ports[i], elementGroup));
+            portElms.push(self._getPortUml(ports[i], elementGroup));
         }
         return portElms;
 

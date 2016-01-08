@@ -157,6 +157,7 @@ define(['plugin/PluginConfig',
             /** internal block diagram **/
             isIBDParent = self.isMetaTypeOf(parentBaseClass, self.META.InternalBlockDiagram),
             isFlowPort = self.isMetaTypeOf(baseClass, self.META.FlowPort),
+            isPort = self.isMetaTypeOf(baseClass, self.META.Port),
             isIBDConnection = isIBDParent && self.isMetaTypeOf(baseClass, self.META.Connector), // edges
             isIBDiagram = isIBDParent && (self.isMetaTypeOf(baseClass, self.META.Block) ||
                 self.isMetaTypeOf(baseClass, self.META.Property) || isFlowPort) || isIBDConnection,
@@ -183,8 +184,15 @@ define(['plugin/PluginConfig',
             isBlock = self.isMetaTypeOf(baseClass, self.META.Block),
             isBDDReq = self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
             isBDDParent = isPackage || self.isMetaTypeOf(parentBaseClass, self.META.BlockDefinitionDiagram),
+            isProperty  = self.isMetaTypeOf(baseClass, self.META.Property),
+            isOperation = self.isMetaTypeOf(baseClass, self.META.Operation),
+            isSignal = self.isMetaTypeOf(baseClass, self.META.Signal),
+            isDataTypes = self.isMetaTypeOf(baseClass, self.META.DataTypes),
             isBlockAssociations = self.isMetaTypeOf(baseClass, self.META.Associations),
-            isBDDDiagram = isBDDParent && (isBDDReq || isBlockAssociations),
+            isBDDDiagram = isBDDParent && (isBlock || isDataTypes || isBlockAssociations || isProperty || isOperation || isSignal),
+            grandParentBaseClass = node.parent.parent ? self.getMetaType(node.parent.parent) : false,
+            isBlockChild = self.isMetaTypeOf(grandParentBaseClass, self.META.BlockDefinitionDiagram)
+                && self.isMetaTypeOf(parentBaseClass, self.META.Block) && (isProperty || isOperation || isFlowPort || isPort),
 
             afterConnAdded;
 
@@ -255,7 +263,7 @@ define(['plugin/PluginConfig',
                 }
                 callback(null, node);
             }
-        } else if (isFlowPort) {
+        } else if (isFlowPort || isPort) {
             if (!self.idLUT.hasOwnProperty(gmeID)) {
                 self.addChildPort(node, isFlowPortParent);
             }
@@ -277,6 +285,11 @@ define(['plugin/PluginConfig',
                 callback(null, node);
             }
             // todo: add object
+        } else if (isBlockChild) {
+            if (!self.idLUT.hasOwnProperty(gmeID)) {
+                self.addChildPort(node, true);
+            }
+            callback(null, node);
         } else {
             callback(null, node);
         }

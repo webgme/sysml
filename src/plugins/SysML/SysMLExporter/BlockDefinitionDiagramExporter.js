@@ -37,28 +37,26 @@ define(['ejs',
             parentPath = core.getPath(core.getParent(nodeObj)),
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
 
-        if (self.isMetaTypeOf(baseClass, self.META.Block)) {
+        self.idLUT[gmeID] = {id: self.modelID};
+        self.reverseIdLUT[self.modelID] = gmeID;
 
-            self.idLUT[gmeID] = {id: self.modelID};
-            self.reverseIdLUT[self.modelID] = gmeID;
+        element = {
+            name: name,
+            id: self.modelID,
+            x: xPos,
+            y: yPos,
+            type: webgmeEclipseMapping[type] || type
+        };
 
-            element = {
-                name: name,
-                id: self.modelID,
-                x: xPos,
-                y: yPos,
-                type: webgmeEclipseMapping[type]
-            };
-
-            if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
-                self.blockdefinitionDiagrams[diagramKey] = {};
-            }
-            if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.blockdefinitionDiagrams[diagramKey].elements = [];
-            }
-            self.blockdefinitionDiagrams[diagramKey].elements.push(element);
-            self.modelID += 1;
+        if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
+            self.blockdefinitionDiagrams[diagramKey] = {};
         }
+        if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('elements')) {
+            self.blockdefinitionDiagrams[diagramKey].elements = [];
+        }
+        self.blockdefinitionDiagrams[diagramKey].elements.push(element);
+        self.modelID += 1;
+
     };
 
     BlockDefinitionDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
@@ -205,6 +203,7 @@ define(['ejs',
                     modelFile,
                     projectFile,
                     modelNotationElms = [],
+                    blockElms = [],
                     modelElms = [];
 
                 for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].elements.length; ++i) {
@@ -212,59 +211,26 @@ define(['ejs',
                         elm,
                         j;
 
-                    template = TEMPLATES[templateMapping[childElement.type]];
-
-                    if (template) {
-                        elm = ejs.render(template,
-                            {
-                                id: childElement.id,
-                                x: childElement.x,
-                                y: childElement.y
-                            });
-                        modelNotationElms.push(elm);
-                    }
-
                     template = TEMPLATES['packagedElement.uml.ejs'];
-                    obj = {
-                        type: childElement.type,
-                        name: childElement.name,
-                        id: childElement.id,
-                        relations: ''
-                    };
 
+                    if (childElement.type === 'Class') {
+                        elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + 'block_' + childElement.id + '"/>';
+                        blockElms.push(elm);
+                        var portElms = self._getPorts(childElement.id, blockElms);
 
-                    if (childElement.type === webgmeEclipseMapping['Block']) {
-                        var connType,
-                            connId,
-                            srcId,
-                            dstId;
-
-                        if (self.idLUT[self.reverseIdLUT[childElement.id]].src) {
-
-                            for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].src.length; ++j) {
-                                connType = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].type;
-                                srcId = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].srcId;
-                                if (connType == "Extend") {
-                                    obj.relations += '\n<extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="ext_' + srcId
-                                        + '" name="ExtensionPoint' + j + '"/>'
-                                }
-                            }
-                        }
-                        if (self.idLUT[self.reverseIdLUT[childElement.id]].dst) {
-
-                            for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].dst.length; ++j) {
-                                connType = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].type;
-                                dstId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].dstId;
-                                connId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].connId;
-                                if (connType == "Include") {
-                                    obj.relations += '\n<include xmi:type="uml:Include" xmi:id="' + connId
-                                        + '" addition="' + dstId + '"/>';
-                                } else if (connType == "Extend") {
-                                    obj.relations += '\n<extend xmi:type="uml:Extend" xmi:id="' + connId
-                                        + '" extendedCase="' + dstId + '" extensionLocation="ext_' + obj.id + '"/>'
-                                }
-                            }
-                        }
+                        obj = {
+                            type: 'Class',
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: portElms.join('\n')
+                        };
+                    } else {
+                        obj = {
+                            type: childElement.type,
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: ''
+                        };
                     }
 
                     elm = ejs.render(template, obj)
@@ -311,7 +277,7 @@ define(['ejs',
 
                 if (this.visitMultiDiagrams) {
                     self.xml1 += modelElms.join('\n');
-                    self.xml2 += '';
+                    self.xml2 += blockElms.join('\n');
                 } else {
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
@@ -330,7 +296,7 @@ define(['ejs',
                             diagramId: '_D' + diagramId++,
                             id: h,
                             childElements: modelElms.join('\n'),
-                            xmiElements: ''
+                            xmiElements: blockElms.join('\n')
                         })
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')
@@ -356,6 +322,35 @@ define(['ejs',
             }
             ++h;
 
+        }
+    };
+
+    BlockDefinitionDiagramExporter.prototype._getPorts = function(blockId, elementGroup) {
+        var self = this,
+            ports = self.portLUT[self.reverseIdLUT[blockId]] ? self.portLUT[self.reverseIdLUT[blockId]].ports : [],
+            i,
+            portElms = [];
+
+        for (i = 0; i < ports.length; ++i) {
+            portElms.push(self._getPortUml(ports[i], elementGroup));
+        }
+        return portElms;
+
+    };
+
+    BlockDefinitionDiagramExporter.prototype._getPortUml = function (port, elementGroup) {
+        if (port.type.indexOf('FlowPort') > -1) {
+            var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
+                + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
+            elementGroup.push(elm);
+        }
+
+        if (port.type.indexOf('Port') > -1) {
+            return '<ownedAttribute xmi:type="uml:Port" xmi:id="' + port.id + '" name="' + port.name + '" aggregation="composite"/>';
+        } else if (port.type === 'Operation') {
+            return '<ownedOperation xmi:type="uml:Operation" xmi:id="' + port.id + '" name="' + port.name + '"/>';
+        } else {
+            return '<ownedAttribute xmi:type="uml:Property" xmi:id="' + port.id + '" name="' + port.name + '"/>';
         }
     };
 

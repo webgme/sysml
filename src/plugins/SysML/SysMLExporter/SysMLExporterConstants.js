@@ -45,6 +45,15 @@ define([], function () {
             connType: "DirectedComposition"
 
         },
+        Composition: {
+            type0: 4007,
+            type1: 6005,
+            type2: 6029,
+            y1: 20,
+            y2: -20,
+            connType: "DirectedComposition"
+
+        },
         DirectedAssociation: {
             type0: 4006,
             type1: 6004,
@@ -54,7 +63,25 @@ define([], function () {
             connType: "DirectedAssociation"
 
         },
+        Association: {
+            type0: 4006,
+            type1: 6004,
+            type2: 6028,
+            y1: 20,
+            y2: -20,
+            connType: "DirectedAssociation"
+
+        },
         DirectedAggregation: {
+            type0: 4005,
+            type1: 6003,
+            type2: 6027,
+            y1: 20,
+            y2: -20,
+            connType: "DirectedAggregation"
+
+        },
+        Aggregation: {
             type0: 4005,
             type1: 6003,
             type2: 6027,

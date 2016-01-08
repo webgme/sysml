@@ -343,16 +343,14 @@ define(['js/Constants',
             isTypeDimension = SysMLMETA.TYPE_INFO.isDimension(gmeID),
             isTypePrimitive = SysMLMETA.TYPE_INFO.isPrimitiveType(gmeID),
             isTypeData = SysMLMETA.TYPE_INFO.isDataType(gmeID),
+            isTypePort = SysMLMETA.TYPE_INFO.isPort(gmeID),
             isTypeFlow = SysMLMETA.TYPE_INFO.isFlowPort(gmeID),
-            isTypeFlowIn = SysMLMETA.TYPE_INFO.isFlowPortIn(gmeID),
-            isTypeFlowOut = SysMLMETA.TYPE_INFO.isFlowPortOut(gmeID),
-            isTypeFlowInOut = SysMLMETA.TYPE_INFO.isFlowPortInOut(gmeID),
             isTypeEnumeration = SysMLMETA.TYPE_INFO.isEnumeration(gmeID),
             isSpecialBlock = isTypeRequirement || isTypeValue || isTypeProperty
                 || isTypeConstraintParameter|| isTypeConstraintBlock
                 || isTypeBlock || isTypeOperation || isTypeValueType || isTypeUnit || isTypeSignal
                 || isTypeEnumerationLiteral || isTypeDimension || isTypePrimitive || isTypeData
-                || isTypeEnumeration ||isTypeFlow || isTypeFlowOut || isTypeFlowIn || isTypeFlowInOut,
+                || isTypeEnumeration ||isTypeFlow || isTypePort,
 
             isParentBlockDiagram = parentID ? SysMLMETA.TYPE_INFO.isBlockDefinitionDiagram(parentID): false,
             SvgHeight = parseInt(this.skinParts.$svg.attr('height')),

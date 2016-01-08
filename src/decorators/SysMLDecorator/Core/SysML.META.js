@@ -16,6 +16,7 @@ define(['underscore'], function (_underscore) {
             'ConstraintBlock': 'ConstraintBlock',
             'ConstraintParameter': 'ConstraintParameter',
             'DataType': 'DataType',
+            'DataTypes': 'DataTypes',
             'Diagram': 'Diagram',
             'Dimension': 'Dimension',
             'Document': 'Document',
@@ -32,6 +33,7 @@ define(['underscore'], function (_underscore) {
             'Package': 'Package',
             'Parameter': 'Parameter',
             'ParametricDiagram': 'ParametricDiagram',
+            'Port': 'Port',
             'PrimitiveType': 'PrimitiveType',
             'Property': 'Property',
             'Rationale': 'Rationale',
@@ -105,6 +107,9 @@ define(['underscore'], function (_underscore) {
     var _isDataType = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.DataType]);
     };
+    var _isDataTypes = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.DataTypes]);
+    };
     var _isDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
     };
@@ -149,6 +154,9 @@ define(['underscore'], function (_underscore) {
     };
     var _isParametricDiagram = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ParametricDiagram]);
+    };
+    var _isPort = function (objID) {
+        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Port]);
     };
     var _isProblem = function (objID) {
         return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Problem]);
@@ -210,6 +218,7 @@ define(['underscore'], function (_underscore) {
             isConstraintBlock: _isConstraintBlock,
             isConstraintParameter: _isConstraintParameter,
             isDataType: _isDataType,
+            isDataTypes: _isDataTypes,
             isDiagram: _isDiagram,
             isDimension: _isDimension,
             isDocument: _isDocument,
@@ -225,6 +234,7 @@ define(['underscore'], function (_underscore) {
             isPackage: _isPackage,
             isParameter: _isParameter,
             isParametricDiagram: _isParametricDiagram,
+            isPort: _isPort,
             isPrimitiveType: _isPrimitiveType,
             isProblem: _isProblem,
             isProperty: _isProperty,
