@@ -13,8 +13,8 @@ define([
     './InternalBlockDiagramImporter',
     './ParametricDiagramImporter',
     './BlockDefinitionDiagramImporter',
-    'jszip',
-    'xmljsonconverter'
+    'common/util/jszip',
+    'common/util/xmljsonconverter'
 ], function (
     PluginConfig,
     PluginBase,

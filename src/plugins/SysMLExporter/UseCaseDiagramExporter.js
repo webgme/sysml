@@ -6,16 +6,16 @@
  * Created on: October 31, 2015
  */
 
-define(['ejs',
+define(['common/util/ejs',
         'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
         './SysMLExporterConstants'], function (ejs, TEMPLATES, CONSTANTS) {
 
     'use strict';
 
-    var SequenceDiagramExporter = function () {
+    var UseCaseDiagramExporter = function () {
     };
 
-    SequenceDiagramExporter.prototype.addComponent = function (nodeObj) {
+    UseCaseDiagramExporter.prototype.addComponent = function (nodeObj) {
 
         var self = this,
             core = self.core,
@@ -29,32 +29,32 @@ define(['ejs',
             parentPath = core.getPath(core.getParent(nodeObj)),
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
 
-        self.idLUT[gmeID] = {id: self.modelID};
-        self.reverseIdLUT[self.modelID] = gmeID;
+        if (self.isMetaTypeOf(baseClass, self.META.Actor) || self.isMetaTypeOf(baseClass, self.META.UseCase)) {
 
-        element = {
-            name: name,
-            id: self.modelID,
-            x: xPos,
-            y: yPos,
-            type: type
-        };
+            self.idLUT[gmeID] = {id: self.modelID};
+            self.reverseIdLUT[self.modelID] = gmeID;
 
-        if (self.isMetaTypeOf(baseClass, self.META.LifeLine) || self.isMetaTypeOf(baseClass, self.META.LostMessage)) {
-            if (!self.sequenceDiagrams.hasOwnProperty(diagramKey)) {
-                self.sequenceDiagrams[diagramKey] = {};
+            element = {
+                name: name,
+                id: self.modelID,
+                x: xPos,
+                y: yPos,
+                type: type
+            };
+            //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
+
+            if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
+                self.usecaseDiagrams[diagramKey] = {};
             }
-            if (!self.sequenceDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.sequenceDiagrams[diagramKey].elements = [];
+            if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('elements')) {
+                self.usecaseDiagrams[diagramKey].elements = [];
             }
-            self.sequenceDiagrams[diagramKey].elements.push(element);
+            self.usecaseDiagrams[diagramKey].elements.push(element);
             self.modelID += 1;
-        } else if (self.isMetaTypeOf(baseClass, self.META.ExecutionSpecification)) {
-
         }
     };
 
-    SequenceDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
+    UseCaseDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
 
         var self = this,
             core = self.core,
@@ -112,13 +112,13 @@ define(['ejs',
                         }
                     };
 
-                    if (!self.sequenceDiagrams.hasOwnProperty(diagramKey)) {
-                        self.sequenceDiagrams[diagramKey] = {};
+                    if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
+                        self.usecaseDiagrams[diagramKey] = {};
                     }
-                    if (!self.sequenceDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.sequenceDiagrams[diagramKey].links = [];
+                    if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('links')) {
+                        self.usecaseDiagrams[diagramKey].links = [];
                     }
-                    self.sequenceDiagrams[diagramKey].links.push(link);
+                    self.usecaseDiagrams[diagramKey].links.push(link);
                     if (type === "Extend" || type === "Include") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
@@ -181,32 +181,39 @@ define(['ejs',
 
     };
 
-    SequenceDiagramExporter.prototype.saveResults = function (callback) {
+    UseCaseDiagramExporter.prototype.processUseCaseData = function (callback) {
         var self = this,
             diagramPath,
             i,
             h = 0,
             obj,
             diagramId = 1,
-            output,
-            artifact = self.blobClient.createArtifact('SysMLExporterOutput');
+            output;
 
-        for (diagramPath in self.sequenceDiagrams) {
-            if (self.sequenceDiagrams.hasOwnProperty(diagramPath)) {
+        for (diagramPath in self.usecaseDiagrams) {
+            if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
+                    notationFile,
                     modelFile,
+                    projectFile,
+                    modelNotationElms = [],
                     modelElms = [];
 
-                for (i = 0; i < self.sequenceDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.sequenceDiagrams[diagramPath].elements[i],
+                for (i = 0; i < self.usecaseDiagrams[diagramPath].elements.length; ++i) {
+                    var childElement = self.usecaseDiagrams[diagramPath].elements[i],
                         elm,
                         j;
 
+                    template = TEMPLATES[childElement.type + '.ejs'];
 
-                    if (childElement.type === 'LifeLine') {
-                        elm = '<lifeline xmi:type="uml:Lifeline" xmi:id="' + childElement.id + '" name="' +
-                            + childElement.name + '"/>';
-                        modelElms.push(elm);
+                    if (template) {
+                        elm = ejs.render(template,
+                            {
+                                id: childElement.id,
+                                x: childElement.x,
+                                y: childElement.y
+                            });
+                        modelNotationElms.push(elm);
                     }
 
                     template = TEMPLATES['packagedElement.uml.ejs'];
@@ -261,88 +268,87 @@ define(['ejs',
                     modelElms.push(elm);
                 }
 
-                for (i = 0; i < self.sequenceDiagrams[diagramPath].links.length; ++i) {
-                    var link = self.sequenceDiagrams[diagramPath].links[i],
-                        edge;
+                if (self.usecaseDiagrams[diagramPath].links) {
+                    for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.usecaseDiagrams[diagramPath].links[i],
+                            edge;
 
-                    obj = CONSTANTS[link.type];
-                    obj.srcId = link.src;
-                    obj.dstId = link.dst;
-                    obj.id = link.id;
-                    obj.srcX = link.points.src.x;
-                    obj.srcY = link.points.src.y;
-                    obj.dstX = link.points.dst.x;
-                    obj.dstY = link.points.dst.y;
+                        obj = CONSTANTS[link.type];
+                        obj.srcId = link.src;
+                        obj.dstId = link.dst;
+                        obj.id = link.id;
+                        obj.srcX = link.points.src.x;
+                        obj.srcY = link.points.src.y;
+                        obj.dstX = link.points.dst.x;
+                        obj.dstY = link.points.dst.y;
 
-                    edge = ejs.render(TEMPLATES['edges.ejs'], obj);
-                    modelNotationElms.push(edge);
+                        edge = ejs.render(TEMPLATES['edges.ejs'], obj);
+                        modelNotationElms.push(edge);
 
-                    if (link.type === "CommunicationPath") {
+                        if (link.type === "CommunicationPath") {
 
-                        edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
-                            {
-                                connId: link.id,
-                                srcId: link.src,
-                                dstId: link.dst,
-                                srcName: link.srcName,
-                                dstName: link.dstName
-                            });
-                        modelElms.push(edge);
+                            edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
+                                {
+                                    connId: link.id,
+                                    srcId: link.src,
+                                    dstId: link.dst,
+                                    srcName: link.srcName,
+                                    dstName: link.dstName
+                                });
+                            modelElms.push(edge);
+                        }
                     }
                 }
 
-                // save data into the only one packageElement
-                elm = ejs.render(TEMPLATES['packagedElement.uml.ejs'], {
-                    type: 'Interaction',
-                    id: 'D' + diagramId,
-                    name: diagramPath.split('+')[1],
-                    relations: modelElms.join('\n')
-                })
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&quot;/g, '"');
 
+                if (self.visitMultiDiagrams) {
+                    self.xml1 += modelElms.join('\n');
+                    self.xml2 += '';
+                } else {
+                    notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
+                        {
+                            diagramType: 'UseCase',
+                            diagramName: diagramPath.split('+')[1],
+                            childrenElements: modelNotationElms.join('\n'),
+                            diagramId: '_D' + diagramId
+                        })
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&quot;/g, '"');
 
-                modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
-                    {
-                        diagramId: '_D' + diagramId++,
-                        id: h,
-                        childElements: elm,
-                        xmiElements: ''
-                    })
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&quot;/g, '"');
+                    modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
+                        {
+                            diagramId: '_D' + diagramId++,
+                            id: h,
+                            childElements: modelElms.join('\n'),
+                            xmiElements: ''
+                        })
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&quot;/g, '"');
 
+                    projectFile = ejs.render(TEMPLATES['.project.ejs'],
+                        {
+                            name: diagramPath.split('+')[1]
+                        });
 
-                output = {
-                    modelUml: modelFile
-                };
-                self.outputFiles['model.uml'] = output.modelUml;
+                    output = {
+                        project: projectFile,
+                        modelDi: TEMPLATES['model.di.ejs'],
+                        notation: notationFile,
+                        modelUml: modelFile
+                    };
+                    self.outputFiles['.project'] = output.project;
+                    self.outputFiles['model.di'] = output.modelDi;
+                    self.outputFiles['model.notation'] = output.notation;
+                    self.outputFiles['model.uml'] = output.modelUml;
+                }
             }
             ++h;
-
         }
-
-        artifact.addFiles(self.outputFiles, function (err, hashes) {
-            if (err) {
-                callback(err, self.result);
-                return;
-            }
-            self.logger.warn(hashes.toString());
-            artifact.save(function (err, hash) {
-                if (err) {
-                    callback(err, self.result);
-                    return;
-                }
-                self.result.addArtifact(hash);
-                self.result.setSuccess(true);
-                callback(null, self.result);
-            });
-        });
     };
 
-    return SequenceDiagramExporter;
+    return UseCaseDiagramExporter;
 });

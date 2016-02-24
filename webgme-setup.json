@@ -1,0 +1,33 @@
+{
+  "components": {
+    "plugins": {
+      "SysMLExporter": {
+        "src": "src/plugins/SysMLExporter",
+        "test": "test/plugins/SysMLExporter"
+      },
+      "SysMLImporter": {
+        "src": "src/plugins/SysMLImporter",
+        "test": "test/plugins/SysMLImporter"
+      },
+      "LayoutExporter": {
+        "src": "src/plugins/LayoutExporter",
+        "test": "test/plugins/LayoutExporter"
+      }
+    },
+    "decorators": {
+      "SysMLDecorator": {
+        "src": "src/decorators/SysMLDecorator"
+      }
+    },
+    "seeds": {
+      "SysML": {
+        "src": "src/seeds/SysML"
+      }
+    }
+  },
+  "dependencies": {
+    "plugins": {},
+    "decorators": {},
+    "seeds": {}
+  }
+}

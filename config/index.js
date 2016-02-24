@@ -4,6 +4,8 @@
  * @author pmeijer / https://github.com/pmeijer
  */
 
+'use strict';
+
 var env = process.env.NODE_ENV || 'default',
     configFilename = __dirname + '/config.' + env + '.js',
     config = require(configFilename),

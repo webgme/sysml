@@ -6,16 +6,16 @@
  * Created on: December 3, 2015
  */
 
-define(['ejs',
+define(['common/util/ejs',
         'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
         './SysMLExporterConstants'], function (ejs, TEMPLATES, CONSTANTS) {
 
     'use strict';
 
-    var IBDExporter = function () {
+    var ParametricDiagramExporter = function () {
     };
 
-    IBDExporter.prototype.addComponent = function (nodeObj) {
+    ParametricDiagramExporter.prototype.addComponent = function (nodeObj) {
 
         var self = this,
             core = self.core,
@@ -43,12 +43,12 @@ define(['ejs',
                 // subType: datatype // value only
             };
 
-            if (!self.internalBlockDiagrams.hasOwnProperty(diagramKey)) {
-                self.internalBlockDiagrams[diagramKey] = {};
+            if (!self.parametricDiagrams.hasOwnProperty(diagramKey)) {
+                self.parametricDiagrams[diagramKey] = {};
             }
-            if (!self.internalBlockDiagrams[diagramKey].hasOwnProperty('mainBlockName')) {
+            if (!self.parametricDiagrams[diagramKey].hasOwnProperty('mainBlockName')) {
                 var mainBlockNode = core.getParent(core.getParent(nodeObj));
-                self.internalBlockDiagrams[diagramKey].mainBlockName = mainBlockNode ? core.getAttribute(mainBlockNode, 'name') : 'mainBlock';
+                self.parametricDiagrams[diagramKey].mainBlockName = mainBlockNode ? core.getAttribute(mainBlockNode, 'name') : 'mainBlock';
             }
 
             if (!self.diagramDimension) {
@@ -61,15 +61,15 @@ define(['ejs',
                 self.diagramDimension.width = Math.max(self.diagramDimension.width + 200, xPos);
             }
 
-            if (!self.internalBlockDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.internalBlockDiagrams[diagramKey].elements = [];
+            if (!self.parametricDiagrams[diagramKey].hasOwnProperty('elements')) {
+                self.parametricDiagrams[diagramKey].elements = [];
             }
-            self.internalBlockDiagrams[diagramKey].elements.push(element);
+            self.parametricDiagrams[diagramKey].elements.push(element);
             self.modelID += 1;
         //}
     };
 
-    IBDExporter.prototype.addConnection = function (nodeObj, callback) {
+    ParametricDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
 
         var self = this,
             core = self.core,
@@ -127,13 +127,13 @@ define(['ejs',
                         }
                     };
 
-                    if (!self.internalBlockDiagrams.hasOwnProperty(diagramKey)) {
-                        self.internalBlockDiagrams[diagramKey] = {};
+                    if (!self.parametricDiagrams.hasOwnProperty(diagramKey)) {
+                        self.parametricDiagrams[diagramKey] = {};
                     }
-                    if (!self.internalBlockDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.internalBlockDiagrams[diagramKey].links = [];
+                    if (!self.parametricDiagrams[diagramKey].hasOwnProperty('links')) {
+                        self.parametricDiagrams[diagramKey].links = [];
                     }
-                    self.internalBlockDiagrams[diagramKey].links.push(link);
+                    self.parametricDiagrams[diagramKey].links.push(link);
                 }
                 self.modelID += 1;
                 callback(null);
@@ -141,7 +141,7 @@ define(['ejs',
         };
 
         afterSrcLoaded = function (err, nodeObj) {
-            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.InternalBlockDiagram);
+            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.ParametricDiagram);
             if (err) {
                 pushUseCaseLink(err, false);
                 return;
@@ -164,7 +164,7 @@ define(['ejs',
         core.loadByPath(self.rootNode, src, afterSrcLoaded);
 
         afterDstLoaded = function (err, nodeObj) {
-            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.InternalBlockDiagram);
+            var isParentIBD = self.isMetaTypeOf(self.getMetaType(nodeObj.parent), self.META.ParametricDiagram);
             if (err) {
                 pushUseCaseLink(err, false);
                 return;
@@ -187,7 +187,7 @@ define(['ejs',
         core.loadByPath(self.rootNode, dst, afterDstLoaded);
     };
 
-    IBDExporter.prototype.processIBDData = function (callback) {
+    ParametricDiagramExporter.prototype.processParametricData = function () {
         var self = this,
             diagramPath,
             i,
@@ -196,8 +196,8 @@ define(['ejs',
             diagramId = 1,
             output;
 
-        for (diagramPath in self.internalBlockDiagrams) {
-            if (self.internalBlockDiagrams.hasOwnProperty(diagramPath)) {
+        for (diagramPath in self.parametricDiagrams) {
+            if (self.parametricDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
                     notationFile,
                     modelFile,
@@ -209,7 +209,7 @@ define(['ejs',
                     portElms2 = [],
                     mainDiagramInfo,
                     mainDiagramId = 'main_' + diagramPath,
-                    mainDiagramName = self.internalBlockDiagrams[diagramPath].mainBlockName,
+                    mainDiagramName = self.parametricDiagrams[diagramPath].mainBlockName,
                     mainDiagramRelations = [],
                     diagramWidth = self.diagramDimension ? Math.max(self.diagramDimension.width, 500) : 500,
                     diagramHeight = self.diagramDimension ? Math.max(self.diagramDimension.height, 300) : 300;
@@ -221,91 +221,80 @@ define(['ejs',
                 };
 
 
-                for (i = 0; i < self.internalBlockDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.internalBlockDiagrams[diagramPath].elements[i],
-                        elm;
+                if (self.parametricDiagrams[diagramPath].elements) {
+                    for (i = 0; i < self.parametricDiagrams[diagramPath].elements.length; ++i) {
+                        var childElement = self.parametricDiagrams[diagramPath].elements[i],
+                            elm;
 
-                    template = TEMPLATES[childElement.type + '.ejs'];
+                        if (childElement.type === 'ConstraintBlock') {
+                            template = TEMPLATES[childElement.type + '.uml.ejs'];
 
-                    if (childElement.type === 'Block') {
-                        elm = self._createBlockNotation(childElement, portElms2);
-                        modelNotationElms.push(elm);
+                            var portElms = self._getPorts(childElement.id, blockElms);
 
-                    } else if (childElement.type.indexOf('FlowPort') === 0) {
-                        template = TEMPLATES['FlowPort.ejs'];
-                        var portPos = self._getPortPosition(diagramWidth, diagramHeight, childElement.x, childElement.y);
-                        elm = ejs.render(template, {
-                            id: childElement.id,
-                            x: portPos.x,
-                            y: portPos.y
-                        });
-                        portElms1.push(elm);
-                        template = TEMPLATES['FlowPort2.ejs'];
-                        elm = ejs.render(template, {id: childElement.id});
-                        portElms2.push(elm);
-                    } else if (template) {
-                        elm = ejs.render(template,
-                            {
+                            // packaged element
+                            obj = {
+                                childElements: portElms.join('\n'),
+                                links: '',
                                 id: childElement.id,
-                                x: childElement.x,
-                                y: childElement.y
-                            });
-                        modelNotationElms.push(elm);
+                                assocId: 'assoc_' + childElement.id,
+                                propId: 'prop_' + childElement.id,
+                                name: childElement.name,
+                                diagramId: mainDiagramId,
+                                diagramName: mainDiagramName
+                            };
+
+                            elm = ejs.render(template, obj)
+                                .replace(/&lt;/g, '<')
+                                .replace(/&gt;/g, '>')
+                                .replace(/&#39;/g, "'")
+                                .replace(/&quot;/g, '"');
+
+                            modelElms.push(elm);
+
+                            // block elements
+                            elm = '<Constraints:ConstraintProperty xmi:id="_ZqTCAKmwEeW8sf1tOYG01w" base_Property="prop_' + childElement.id + '"/>\n' +
+                                '<Constraints:ConstraintBlock xmi:id="_ZqTCAqmwEeW8sf1tOYG01w" base_Class="' + childElement.id + '"/>';
+
+                            blockElms.push(elm);
+
+                            // nested inside root block element
+
+                            obj = {
+                                propId: 'prop_' + childElement.id,
+                                propName: childElement.name,
+                                blockId: childElement.id,
+                                associationId: 'assoc_' + childElement.id
+                            };
+
+                            elm = ejs.render(TEMPLATES['ownedAttribute.uml.ejs'], obj)
+                                .replace(/&lt;/g, '<')
+                                .replace(/&gt;/g, '>')
+                                .replace(/&#39;/g, "'")
+                                .replace(/&quot;/g, '"');
+                        } else if (childElement.type === 'Value') {
+                            template = TEMPLATES['packagedElement.uml.ejs'];
+                            obj = {
+                                type: 'DataType',
+                                id: childElement.id,
+                                name: childElement.name,
+                                relations: ''
+                            };
+                            elm = ejs.render(template, obj);
+                            modelElms.push(elm);
+                            elm = '<ownedAttribute xmi:type="uml:Property" xmi:id="_84rS8Km-EeW8sf1tOYG01w" name="'
+                                + childElement.name + '" type="' + childElement.id + '" aggregation="composite"/>';
+                        }
+
+                        mainDiagramRelations.push(elm);
                     }
-
-                    if (childElement.type === 'Block') {
-                        template = TEMPLATES[childElement.type + '.uml.ejs'];
-                        var portElms = self._getPorts(childElement.id, blockElms);
-
-                        obj = {
-                            childElements: portElms.join('\n'),
-                            blockId: 'block_' + childElement.id,
-                            blockName: childElement.name,
-                            associationId: 'assoc_' + childElement.id,
-                            propId: childElement.id,
-                            mainBlockId: mainDiagramId,
-                            mainBlockName: mainDiagramName
-                        };
-
-                        elm = ejs.render(template, obj)
-                            .replace(/&lt;/g, '<')
-                            .replace(/&gt;/g, '>')
-                            .replace(/&#39;/g, "'")
-                            .replace(/&quot;/g, '"');
-
-                        modelElms.push(elm);
-
-
-                        elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + 'block_' + childElement.id + '"/>';
-                        blockElms.push(elm);
-
-                        obj = {
-                            propId: childElement.id,
-                            propName: childElement.name,
-                            blockId: 'block_' + childElement.id,
-                            associationId: 'assoc_' + childElement.id
-                        };
-
-                        elm = ejs.render(TEMPLATES['ownedAttribute.uml.ejs'], obj)
-                            .replace(/&lt;/g, '<')
-                            .replace(/&gt;/g, '>')
-                            .replace(/&#39;/g, "'")
-                            .replace(/&quot;/g, '"');
-                    } else if (childElement.type === 'Property') {
-                        elm = '<ownedAttribute xmi:type="uml:Property" xmi:id="' + childElement.id + '" name="' + childElement.name + '"/>';
-                    } else if (childElement.type.indexOf('Port') > -1) {
-                        elm = self._getPortUml(childElement, blockElms);
-                    }
-
-                    mainDiagramRelations.push(elm);
                 }
 
                 elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + mainDiagramId + '"/>';
                 blockElms.push(elm);
 
-                if (self.internalBlockDiagrams[diagramPath].links) {
-                    for (i = 0; i < self.internalBlockDiagrams[diagramPath].links.length; ++i) {
-                        var link = self.internalBlockDiagrams[diagramPath].links[i],
+                if (self.parametricDiagrams[diagramPath].links) {
+                    for (i = 0; i < self.parametricDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.parametricDiagrams[diagramPath].links[i],
                             edge;
 
                         obj = {};
@@ -319,35 +308,27 @@ define(['ejs',
 
                         if (link.type === 'Connector') {
 
+                            //edge = ejs.render(TEMPLATES[link.type + '.ejs'], obj);
+                            //portElms2.push(edge);
                             var srcParent = self.reversePortLUT[self.reverseIdLUT[link.src]]
-                                    ? 'partWithPort="' + self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.src]]].id + '"'
-                                    : ''
-                                    .replace(/&lt;/g, '<')
-                                    .replace(/&gt;/g, '>')
-                                    .replace(/&#39;/g, "'")
-                                    .replace(/&quot;/g, '"'),
+                                    ? self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.src]]].id : null,
                                 dstParent = self.reversePortLUT[self.reverseIdLUT[link.dst]]
-                                    ? 'partWithPort="' + self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.dst]]].id + '"'
-                                    : ''
-                                    .replace(/&lt;/g, '<')
-                                    .replace(/&gt;/g, '>')
-                                    .replace(/&#39;/g, "'")
-                                    .replace(/&quot;/g, '"');
+                                    ? self.idLUT[self.reversePortLUT[self.reverseIdLUT[link.dst]]].id : null;
 
 
-                            edge = ejs.render(TEMPLATES[link.type + '.ejs'], obj);
-                            portElms2.push(edge);
+                            obj = {
+                                id: link.id,
+                                name: link.name,
+                                srcId: link.src,
+                                dstId: link.dst,
+                                srcParent: '',
+                                dstParent: ''
+                            };
+                            edge = ejs.render(TEMPLATES[link.type + '.uml.ejs'], obj);
 
-                            edge = ejs.render(TEMPLATES[link.type + '.uml.ejs'],
-                                {
-                                    id: link.id,
-                                    name: link.name,
-                                    srcId: link.src,
-                                    dstId: link.dst,
-                                    srcParent: srcParent,
-                                    dstParent: dstParent
-                                });
                             mainDiagramRelations.push(edge);
+
+                            self._getConnectorUml(obj, srcParent, dstParent, blockElms);
                         }
                     }
                 }
@@ -370,22 +351,6 @@ define(['ejs',
                     self.xml1 += modelElms.join('\n');
                     self.xml2 += blockElms.join('\n');
                 } else {
-                    notationFile = ejs.render(TEMPLATES['InternalBlockDiagram.notation.ejs'],
-                        {
-                            diagramBlockId: 'main_' + diagramPath,
-                            diagramName: diagramPath.split('+')[1],
-                            childrenElements: modelNotationElms.join('\n'),
-                            portElements1: portElms1.join('\n'),
-                            portElements2: portElms2.join('\n'),
-                            diagramId: '_D' + diagramId,
-                            diagramWidth: diagramWidth,
-                            diagramHeight: diagramHeight
-                        })
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&quot;/g, '"');
-
                     modelFile = ejs.render(TEMPLATES['model.uml.ejs'],
                         {
                             diagramId: '_D' + diagramId++,
@@ -406,7 +371,7 @@ define(['ejs',
                     output = {
                         project: projectFile,
                         modelDi: TEMPLATES['model.di.ejs'],
-                        notation: notationFile,
+                        notation: '',
                         modelUml: modelFile
                     };
                     self.outputFiles['.project'] = output.project;
@@ -418,9 +383,10 @@ define(['ejs',
             ++h;
 
         }
+
     };
 
-    IBDExporter.prototype._getPortPosition = function (diagramWidth, diagramHeight, x, y) {
+    ParametricDiagramExporter.prototype._getPortPosition = function (diagramWidth, diagramHeight, x, y) {
         var pos = {};
         if (x < y) {
             pos.y = Math.min(y, diagramHeight - 20);
@@ -441,29 +407,29 @@ define(['ejs',
     };
 
 
-    IBDExporter.prototype._getPortUml = function (port, elementGroup) {
-        if (port.type.indexOf('FlowPort') > -1) {
-            var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
-                + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
-            elementGroup.push(elm);
-        }
-        return '<ownedAttribute xmi:type="uml:Port" xmi:id="' + port.id + '" name="' + port.name + '" aggregation="composite"/>';
+    ParametricDiagramExporter.prototype._getFlowPortUml = function (port, elementGroup) {
+        var template = TEMPLATES['ConstraintParameter.uml.ejs'],
+            elm = ejs.render(template, {
+                id: port.id,
+                name: port.name
+            });
+        return elm;
     };
 
-    IBDExporter.prototype._getPorts = function(blockId, elementGroup) {
+    ParametricDiagramExporter.prototype._getPorts = function(blockId, elementGroup) {
         var self = this,
             ports = self.portLUT[self.reverseIdLUT[blockId]] ? self.portLUT[self.reverseIdLUT[blockId]].ports : [],
             i,
             portElms = [];
 
         for (i = 0; i < ports.length; ++i) {
-            portElms.push(self._getPortUml(ports[i], elementGroup));
+            portElms.push(self._getFlowPortUml(ports[i], elementGroup));
         }
         return portElms;
 
     };
 
-    IBDExporter.prototype._createBlockNotation = function (blockObj, notationGroup) {
+    ParametricDiagramExporter.prototype._createBlockNotation = function (blockObj, notationGroup) {
         var self = this,
             ports = self.portLUT[self.reverseIdLUT[blockObj.id]] ? self.portLUT[self.reverseIdLUT[blockObj.id]].ports : [],
             i,
@@ -520,6 +486,33 @@ define(['ejs',
         return elm;
     };
 
-    return IBDExporter;
+    ParametricDiagramExporter.prototype._getConnectorUml = function (obj, srcParent, dstParent, blockElms) {
+        var elm;
+        // binding connector elements:
+        if (srcParent === dstParent) {
+            elm = '<Blocks:BindingConnector xmi:id="_V-bhUqm9E" base_Connector="' + obj.id + ' "/>';
+            blockElms.push(elm);
+        } else {
+            // src connector
+            elm = srcParent !== null
+                ? '<Blocks:NestedConnectorEnd xmi:id="_PS5oA6m" propertyPath="prop_'
+            + srcParent + '" base_ConnectorEnd="src_' + obj.srcId + '"/>'
+                : '<Blocks:BindingConnector xmi:id="_V-bhUqm9E" base_Connector="' + obj.id + '"/>';
+            blockElms.push(elm);
+
+            // dst connector
+            elm = dstParent !== null ? '<Blocks:NestedConnectorEnd xmi:id="_PS5oA6m" propertyPath="prop_'
+            + dstParent + '" base_ConnectorEnd="dst_' + obj.dstId + '"/>'
+                : '<Blocks:BindingConnector xmi:id="_V-bhUqm9E" base_Connector="' + obj.id + '"/>';
+            blockElms.push(elm);
+
+            if (srcParent !== null && dstParent !== null) {
+                elm = '<Blocks:BindingConnector xmi:id="_V-bhUqm9E" base_Connector="' + obj.id + '"/>';
+                blockElms.push(elm);
+            }
+        }
+    };
+
+    return ParametricDiagramExporter;
 });
 
