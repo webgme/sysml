@@ -14,7 +14,7 @@ define(['plugin/PluginConfig',
     './SequenceDiagramExporter',
     './ParametricDiagramExporter',
     './BlockDefinitionDiagramExporter',
-    'ejs',
+    'common/util/ejs',
     'plugin/SysMLExporter/SysMLExporter/Templates/Templates'
     ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter,
                  InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter,

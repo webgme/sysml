@@ -2,20 +2,28 @@
 /*jshint node:true, browser:true*/
 
 /**
- * Author: Dana Zhang
- * Created on: October 31, 2015
+ * Author: Vishwesh Nath
+ * Created on: November 31, 2015
  */
 
-define(['ejs',
+define(['common/util/ejs',
         'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
         './SysMLExporterConstants'], function (ejs, TEMPLATES, CONSTANTS) {
 
     'use strict';
 
-    var UseCaseDiagramExporter = function () {
+    var BlockDefinitionDiagramExporter = function () {
     };
+	
+	var webgmeEclipseMapping ={
+		'Block' : 'Class'
+	};
+	
+	var templateMapping = {
+		'Class' : 'Block1.ejs'
+	};
 
-    UseCaseDiagramExporter.prototype.addComponent = function (nodeObj) {
+    BlockDefinitionDiagramExporter.prototype.addComponent = function (nodeObj) {
 
         var self = this,
             core = self.core,
@@ -29,32 +37,29 @@ define(['ejs',
             parentPath = core.getPath(core.getParent(nodeObj)),
             diagramKey = parentPath + "+" + core.getAttribute(nodeObj.parent, 'name');
 
-        if (self.isMetaTypeOf(baseClass, self.META.Actor) || self.isMetaTypeOf(baseClass, self.META.UseCase)) {
+        self.idLUT[gmeID] = {id: self.modelID};
+        self.reverseIdLUT[self.modelID] = gmeID;
 
-            self.idLUT[gmeID] = {id: self.modelID};
-            self.reverseIdLUT[self.modelID] = gmeID;
+        element = {
+            name: name,
+            id: self.modelID,
+            x: xPos,
+            y: yPos,
+            type: webgmeEclipseMapping[type] || type
+        };
 
-            element = {
-                name: name,
-                id: self.modelID,
-                x: xPos,
-                y: yPos,
-                type: type
-            };
-            //actor = ejs.render(TEMPLATES['actor.uml.ejs'], {actorId: self.modelID, x: xPos, y: yPos});
-
-            if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                self.usecaseDiagrams[diagramKey] = {};
-            }
-            if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('elements')) {
-                self.usecaseDiagrams[diagramKey].elements = [];
-            }
-            self.usecaseDiagrams[diagramKey].elements.push(element);
-            self.modelID += 1;
+        if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
+            self.blockdefinitionDiagrams[diagramKey] = {};
         }
+        if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('elements')) {
+            self.blockdefinitionDiagrams[diagramKey].elements = [];
+        }
+        self.blockdefinitionDiagrams[diagramKey].elements.push(element);
+        self.modelID += 1;
+
     };
 
-    UseCaseDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
+    BlockDefinitionDiagramExporter.prototype.addConnection = function (nodeObj, callback) {
 
         var self = this,
             core = self.core,
@@ -112,14 +117,15 @@ define(['ejs',
                         }
                     };
 
-                    if (!self.usecaseDiagrams.hasOwnProperty(diagramKey)) {
-                        self.usecaseDiagrams[diagramKey] = {};
+                    if (!self.blockdefinitionDiagrams.hasOwnProperty(diagramKey)) {
+                        self.blockdefinitionDiagrams[diagramKey] = {};
                     }
-                    if (!self.usecaseDiagrams[diagramKey].hasOwnProperty('links')) {
-                        self.usecaseDiagrams[diagramKey].links = [];
+                    if (!self.blockdefinitionDiagrams[diagramKey].hasOwnProperty('links')) {
+                        self.blockdefinitionDiagrams[diagramKey].links = [];
                     }
-                    self.usecaseDiagrams[diagramKey].links.push(link);
-                    if (type === "Extend" || type === "Include") {
+                    self.blockdefinitionDiagrams[diagramKey].links.push(link);
+                    if (type === "Composition" || type === "DirectedComposition" || type ==="Association" || 
+                        type ==="DirectedAssociation" || type ==="Aggregation" || type==="DirectedAggregation") {
 
                         if (!self.idLUT[src].hasOwnProperty('dst')) {
                             self.idLUT[src].dst = [];
@@ -181,7 +187,7 @@ define(['ejs',
 
     };
 
-    UseCaseDiagramExporter.prototype.processUseCaseData = function (callback) {
+    BlockDefinitionDiagramExporter.prototype.processBDDData = function () {
         var self = this,
             diagramPath,
             i,
@@ -190,73 +196,51 @@ define(['ejs',
             diagramId = 1,
             output;
 
-        for (diagramPath in self.usecaseDiagrams) {
-            if (self.usecaseDiagrams.hasOwnProperty(diagramPath)) {
+        for (diagramPath in self.blockdefinitionDiagrams) {
+            if (self.blockdefinitionDiagrams.hasOwnProperty(diagramPath)) {
                 var template,
                     notationFile,
                     modelFile,
                     projectFile,
                     modelNotationElms = [],
+                    blockElms = [],
                     modelElms = [];
 
-                for (i = 0; i < self.usecaseDiagrams[diagramPath].elements.length; ++i) {
-                    var childElement = self.usecaseDiagrams[diagramPath].elements[i],
+                for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].elements.length; ++i) {
+                    var childElement = self.blockdefinitionDiagrams[diagramPath].elements[i],
                         elm,
                         j;
 
-                    template = TEMPLATES[childElement.type + '.ejs'];
-
-                    if (template) {
-                        elm = ejs.render(template,
-                            {
-                                id: childElement.id,
-                                x: childElement.x,
-                                y: childElement.y
-                            });
-                        modelNotationElms.push(elm);
-                    }
-
                     template = TEMPLATES['packagedElement.uml.ejs'];
-                    obj = {
-                        type: childElement.type,
-                        name: childElement.name,
-                        id: childElement.id,
-                        relations: ''
-                    };
 
+                    if (childElement.type === 'Class') {
+                        elm = '<Blocks:Block xmi:id="_8LNtsZyREeW8sf1tOYG01w" base_Class="' + 'block_' + childElement.id + '"/>';
+                        blockElms.push(elm);
+                        var portElms = self._getPorts(childElement.id, blockElms);
 
-                    if (childElement.type === 'UseCase') {
-                        var connType,
-                            connId,
-                            srcId,
-                            dstId;
+                        obj = {
+                            type: 'Class',
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: portElms.join('\n')
+                        };
+                    } else if (childElement.type === 'Unit' || childElement.type === 'Dimension') {
+                        elm = '<Blocks:' + childElement.type + ' xmi:id="_wz5" base_InstanceSpecification="' + childElement.name + '"/>';
+                        blockElms.push(elm);
 
-                        if (self.idLUT[self.reverseIdLUT[childElement.id]].src) {
-
-                            for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].src.length; ++j) {
-                                connType = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].type;
-                                srcId = self.idLUT[self.reverseIdLUT[childElement.id]].src[j].srcId;
-                                if (connType == "Extend") {
-                                    obj.relations += '\n<extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="ext_' + srcId
-                                        + '" name="ExtensionPoint' + j + '"/>'
-                                }
-                            }
-                        }
-                        if (self.idLUT[self.reverseIdLUT[childElement.id]].dst) {
-
-                            for (j = 0; j < self.idLUT[self.reverseIdLUT[childElement.id]].dst.length; ++j) {
-                                connType = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].type;
-                                dstId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].dstId;
-                                connId = self.idLUT[self.reverseIdLUT[childElement.id]].dst[j].connId;
-                                if (connType == "Include") {
-                                    obj.relations += '\n<include xmi:type="uml:Include" xmi:id="' + connId
-                                        + '" addition="' + dstId + '"/>';
-                                } else if (connType == "Extend") {
-                                    obj.relations += '\n<extend xmi:type="uml:Extend" xmi:id="' + connId
-                                        + '" extendedCase="' + dstId + '" extensionLocation="ext_' + obj.id + '"/>'
-                                }
-                            }
-                        }
+                        obj = {
+                            type: 'InstanceSpecification',
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: ''
+                        };
+                    } else {
+                        obj = {
+                            type: childElement.type,
+                            name: childElement.name,
+                            id: childElement.id,
+                            relations: ''
+                        };
                     }
 
                     elm = ejs.render(template, obj)
@@ -267,10 +251,10 @@ define(['ejs',
 
                     modelElms.push(elm);
                 }
+                if (self.blockdefinitionDiagrams[diagramPath].links != null) {
 
-                if (self.usecaseDiagrams[diagramPath].links) {
-                    for (i = 0; i < self.usecaseDiagrams[diagramPath].links.length; ++i) {
-                        var link = self.usecaseDiagrams[diagramPath].links[i],
+                    for (i = 0; i < self.blockdefinitionDiagrams[diagramPath].links.length; ++i) {
+                        var link = self.blockdefinitionDiagrams[diagramPath].links[i],
                             edge;
 
                         obj = CONSTANTS[link.type];
@@ -285,7 +269,8 @@ define(['ejs',
                         edge = ejs.render(TEMPLATES['edges.ejs'], obj);
                         modelNotationElms.push(edge);
 
-                        if (link.type === "CommunicationPath") {
+                        if (link.type === "DirectedComposition" || link.type === "DirectedAggregation" || link.type === "DirectedAssociation"
+                            || link.type === "Composition" || link.type === "Aggregation" || link.type === "Association") {
 
                             edge = ejs.render(TEMPLATES['edge_packagedElement.ejs'],
                                 {
@@ -300,14 +285,13 @@ define(['ejs',
                     }
                 }
 
-
-                if (self.visitMultiDiagrams) {
+                if (this.visitMultiDiagrams) {
                     self.xml1 += modelElms.join('\n');
-                    self.xml2 += '';
+                    self.xml2 += blockElms.join('\n');
                 } else {
                     notationFile = ejs.render(TEMPLATES['model.notation.ejs'],
                         {
-                            diagramType: 'UseCase',
+                            diagramType: 'BlockDefinition',
                             diagramName: diagramPath.split('+')[1],
                             childrenElements: modelNotationElms.join('\n'),
                             diagramId: '_D' + diagramId
@@ -322,7 +306,7 @@ define(['ejs',
                             diagramId: '_D' + diagramId++,
                             id: h,
                             childElements: modelElms.join('\n'),
-                            xmiElements: ''
+                            xmiElements: blockElms.join('\n')
                         })
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')
@@ -340,15 +324,45 @@ define(['ejs',
                         notation: notationFile,
                         modelUml: modelFile
                     };
+                    self.outputFiles['model.uml'] = output.modelUml;
                     self.outputFiles['.project'] = output.project;
                     self.outputFiles['model.di'] = output.modelDi;
                     self.outputFiles['model.notation'] = output.notation;
-                    self.outputFiles['model.uml'] = output.modelUml;
                 }
             }
             ++h;
+
         }
     };
 
-    return UseCaseDiagramExporter;
+    BlockDefinitionDiagramExporter.prototype._getPorts = function(blockId, elementGroup) {
+        var self = this,
+            ports = self.portLUT[self.reverseIdLUT[blockId]] ? self.portLUT[self.reverseIdLUT[blockId]].ports : [],
+            i,
+            portElms = [];
+
+        for (i = 0; i < ports.length; ++i) {
+            portElms.push(self._getPortUml(ports[i], elementGroup));
+        }
+        return portElms;
+
+    };
+
+    BlockDefinitionDiagramExporter.prototype._getPortUml = function (port, elementGroup) {
+        if (port.type.indexOf('FlowPort') > -1) {
+            var elm = '<PortAndFlows:FlowPort xmi:id="_Ydo_8J6fEeW8sf1tOYG01w" base_Port="' + port.id + '" direction="'
+                + port.type.replace('FlowPort', '').toLowerCase() + '"/>';
+            elementGroup.push(elm);
+        }
+
+        if (port.type.indexOf('Port') > -1) {
+            return '<ownedAttribute xmi:type="uml:Port" xmi:id="' + port.id + '" name="' + port.name + '" aggregation="composite"/>';
+        } else if (port.type === 'Operation') {
+            return '<ownedOperation xmi:type="uml:Operation" xmi:id="' + port.id + '" name="' + port.name + '"/>';
+        } else {
+            return '<ownedAttribute xmi:type="uml:Property" xmi:id="' + port.id + '" name="' + port.name + '"/>';
+        }
+    };
+
+    return BlockDefinitionDiagramExporter;
 });

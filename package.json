@@ -1,11 +1,10 @@
 {
-  "name": "webgme-sysml",
+  "name": "sysml",
   "version": "0.1.0",
   "description": "SysML implementation using WebGME as a library",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "app": "set NODE_ENV=app&& node app.js",
     "test": "node ./node_modules/mocha/bin/mocha --recursive test"
   },
   "repository": {
@@ -16,7 +15,9 @@
   "license": "MIT",
   "homepage": "https://github.com/webgme/webgme-sysml",
   "dependencies": {
-    "webgme": "latest"
+  },
+  "peerDependencies": {
+    "webgme": "1.x"
   },
   "devDependencies": {
     "chai": "=3.0.0",

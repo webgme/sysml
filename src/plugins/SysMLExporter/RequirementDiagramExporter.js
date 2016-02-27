@@ -6,10 +6,10 @@
  * Created on: October 31, 2015
  */
 
-define(['ejs',
+define(['common/util/ejs',
     'plugin/SysMLExporter/SysMLExporter/Templates/Templates',
     './SysMLExporterConstants',
-    'xmljsonconverter'], function (ejs, TEMPLATES, CONSTANTS, Converter) {
+    'common/util/xmljsonconverter'], function (ejs, TEMPLATES, CONSTANTS, Converter) {
 
     'use strict';
 
