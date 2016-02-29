@@ -148,7 +148,8 @@ define(['js/NodePropertyNames',
                         'left': self._portCoordinates[portId].x
                     });
 
-                    var portName = self._control._client.getNode(portId).getAttribute('name');
+                    var node = self._control._client.getNode(portId),
+                        portName = node ? node.getAttribute('name') : '';
                     connectorE.attr('title', portName);
 
                     if (self._displayConnectors) {

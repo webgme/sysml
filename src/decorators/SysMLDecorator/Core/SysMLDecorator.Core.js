@@ -94,7 +94,7 @@ define(['js/Constants',
         }
 
         if(Object.keys(svgCache || {}).length === 0){
-            var _metaAspectTypes = SysMLMETA.getMetaTypes();
+            var _metaAspectTypes = SysMLMETA.getDecoredMetaTypes();
 
             for (var m in _metaAspectTypes) {
 
@@ -325,8 +325,8 @@ define(['js/Constants',
         // initialize local variables
         var control = this._control,
             gmeID = this._metaInfo[CONSTANTS.GME_ID],
-            nodeObj =control._client.getNode(gmeID),
-            name = nodeObj.getAttribute(nodePropertyNames.Attributes.name),
+            nodeObj = control._client.getNode(gmeID),
+            name = nodeObj ? nodeObj.getAttribute(nodePropertyNames.Attributes.name) : '',
             parentID = nodeObj ? nodeObj.getParentId() : '',
             childrenIDs = nodeObj ? nodeObj.getChildrenIds() : [],
             isTypeRequirement = SysMLMETA.TYPE_INFO.isRequirement(gmeID),
@@ -377,8 +377,8 @@ define(['js/Constants',
         /*************************** update requirement compartment ******************************/
         if (isTypeRequirement) {
             texts = this.skinParts.$svg.find('text');
-            var id = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID),
-                text = nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT),
+            var id = nodeObj ? nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_ID) : '',
+                text = nodeObj ? nodeObj.getAttribute(SysMLDecoratorConstants.REQ_ATTRIBUTE_TEXT) : '',
                 textContent = text ? 'text: ' + text : '',
                 textheight = parseInt($(this.skinParts.$svg.find("#svg_11")[0]).attr('y')) + SysMLDecoratorConstants.CHANGE_HEIGHT,
                 t,
@@ -428,6 +428,7 @@ define(['js/Constants',
         var self = this,
             client = self._control._client,
             ChId,
+            chNode,
             i,
             name,
             svgIcon = this.skinParts.$svg,
@@ -472,7 +473,8 @@ define(['js/Constants',
         // add texts to compartments
         for (i = 0; i < childrenIDs.length; i++) {
             ChId = childrenIDs[i];
-            name = client.getNode(ChId).getAttribute(nodePropertyNames.Attributes.name);
+            chNode = client.getNode(ChId);
+            name = chNode ? chNode.getAttribute(nodePropertyNames.Attributes.name) : '';
             isAProperty = SysMLMETA.TYPE_INFO.isProperty(ChId);
             isEnumerationLiteral = SysMLMETA.TYPE_INFO.isEnumerationLiteral(ChId);
             isATypeFlow = SysMLMETA.TYPE_INFO.isFlowPort(ChId);
