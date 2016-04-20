@@ -8,6 +8,7 @@
 
 define(['plugin/PluginConfig',
     'plugin/PluginBase',
+    'text!./metadata.json',
     './UseCaseDiagramExporter',
     './RequirementDiagramExporter',
     './InternalBlockDiagramExporter',
@@ -16,14 +17,17 @@ define(['plugin/PluginConfig',
     './BlockDefinitionDiagramExporter',
     'common/util/ejs',
     'plugin/SysMLExporter/SysMLExporter/Templates/Templates'
-    ], function (PluginConfig, PluginBase, UseCaseExporter, RequirementExporter,
+    ], function (PluginConfig, PluginBase, pluginMetadata, UseCaseExporter, RequirementExporter,
                  InternalBlockDiagramExporter, SequenceDiagramExporter, ParametricExporter,
                  BlockDefinitionDiagramExporter, ejs, TEMPLATES) {
 
     'use strict';
 
+    pluginMetadata = JSON.parse(pluginMetadata);
+
     var SysMLExporterPlugin = function () {
         PluginBase.call(this);
+        this.pluginMetadata = pluginMetadata;
         this.modelID = 0;
         this.diagrams = [];
         this.diagram = {};
@@ -44,12 +48,11 @@ define(['plugin/PluginConfig',
         this.xml2 = '';
     };
 
+    SysMLExporterPlugin.metadata = pluginMetadata;
+
     SysMLExporterPlugin.prototype = Object.create(PluginBase.prototype);
     SysMLExporterPlugin.prototype.constructor = SysMLExporterPlugin;
 
-    SysMLExporterPlugin.prototype.getName = function () {
-        return 'SysMLExporter';
-    };
 
     SysMLExporterPlugin.prototype.main = function (callback) {
 

@@ -8,6 +8,7 @@
 define([
     'plugin/PluginConfig',
     'plugin/PluginBase',
+    'text!./metadata.json',
     './RequirementDiagramImporter',
     './UseCaseDiagramImporter',
     './InternalBlockDiagramImporter',
@@ -18,6 +19,7 @@ define([
 ], function (
     PluginConfig,
     PluginBase,
+    pluginMetadata,
     RequirementDiagramImporter,
     UseCaseDiagramImporter,
     InternalBlockDiagramImporter,
@@ -26,6 +28,8 @@ define([
     JSZip,
     Converter) {
     'use strict';
+
+    pluginMetadata = JSON.parse(pluginMetadata);
 
     /**
      * Initializes a new instance of SysMLImporter.
@@ -37,49 +41,12 @@ define([
     var SysMLImporter = function () {
         // Call base class' constructor.
         PluginBase.call(this);
+        this.pluginMetadata = pluginMetadata;
     };
 
     // Prototypal inheritance from PluginBase.
     SysMLImporter.prototype = Object.create(PluginBase.prototype);
     SysMLImporter.prototype.constructor = SysMLImporter;
-
-    /**
-     * Gets the name of the SysMLImporter.
-     * @returns {string} The name of the plugin.
-     * @public
-     */
-    SysMLImporter.prototype.getName = function () {
-        return 'SysML Importer';
-    };
-
-    /**
-     * Gets the semantic version (semver.org) of the SysMLImporter.
-     * @returns {string} The version of the plugin.
-     * @public
-     */
-    SysMLImporter.prototype.getVersion = function () {
-        return '0.1.0';
-    };
-
-    /**
-     * Gets the configuration structure for the SysMLImporter.
-     * The ConfigurationStructure defines the configuration for the plugin
-     * and will be used to populate the GUI when invoking the plugin from webGME.
-     * @returns {object} The version of the plugin.
-     * @public
-     */
-    SysMLImporter.prototype.getConfigStructure = function () {
-        return [
-            {
-                name: 'file',
-                displayName: 'SysML model',
-                description: 'Click and drag existing SysML models from Eclipse Papyrus',
-                value: '',
-                valueType: 'asset',
-                readOnly: false
-            }
-        ];
-    };
 
 
     /**

@@ -1,0 +1,14 @@
+
+{
+  "id": "SysMLExporter",
+  "name": "SysML Exporter",
+  "version": "2.0.0",
+  "description": "Generates source code in Eclipse SysML editor.",
+  "icon": {
+    "src": "",
+    "class": "fa fa-code"
+  },
+  "disableServerSideExecution": false,
+  "disableBrowserSideExecution": false,
+  "configStructure": []
+}
