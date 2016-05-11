@@ -17,7 +17,7 @@
   "dependencies": {
   },
   "peerDependencies": {
-    "webgme": "1.7"
+    "webgme": "2.x"
   },
   "devDependencies": {
     "chai": "=3.0.0",
