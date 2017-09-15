@@ -103,7 +103,7 @@ define(['underscore'], function (_underscore) {
             result = [];
 
         for (i = 0; i < orderedMetaList.length; i += 1) {
-            if (client.isTypeOf(objId, metaDictionary[orderedMetaList[i]])) {
+            if (safeTypeCheck(objId, metaDictionary[orderedMetaList[i]])) {
                 result.push(orderedMetaList[i]);
             }
         }
@@ -113,124 +113,124 @@ define(['underscore'], function (_underscore) {
 
     //META ASPECT TYPE CHECKING
     var _isActor = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Actor]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Actor]);
     };
     var _isBlock = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Block]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Block]);
     };
     var _isBlockDefinitionDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.BlockDefinitionDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.BlockDefinitionDiagram]);
     };
     var _isComment = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Comment]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Comment]);
     };
     var _isConstraint = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Constraint]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Constraint]);
     };
     var _isConstraintBlock = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintBlock]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.ConstraintBlock]);
     };
     var _isConstraintParameter = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ConstraintParameter]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.ConstraintParameter]);
     };
     var _isDataType = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.DataType]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.DataType]);
     };
     var _isDataTypes = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.DataTypes]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.DataTypes]);
     };
     var _isDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Diagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Diagram]);
     };
     var _isDimension = function (objID){
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Dimension]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Dimension]);
     };
     var _isDocument = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Document]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Document]);
     };
     var _isEnumeration = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Enumeration]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Enumeration]);
     };
     var _isEnumerationLiteral = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.EnumerationLiteral]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.EnumerationLiteral]);
     };
     var _isFCO = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FCO]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.FCO]);
     };
     var _isFlowPort = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FlowPort]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.FlowPort]);
     };
     var _isFlowPortIn = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FlowPortIn]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.FlowPortIn]);
     };
     var _isFlowPortInOut = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FlowPortInOut]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.FlowPortInOut]);
     };
     var _isFlowPortOut = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.FlowPortOut]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.FlowPortOut]);
     };
     var _isInternalBlockDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.InternalBlockDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.InternalBlockDiagram]);
     };
     var _isOperation = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Operation]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Operation]);
     };
     var _isPackage = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Package]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Package]);
     };
     var _isParameter = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Parameter]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Parameter]);
     };
     var _isParametricDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ParametricDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.ParametricDiagram]);
     };
     var _isPort = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Port]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Port]);
     };
     var _isProblem = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Problem]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Problem]);
     };
     var _isPrimitiveType = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.PrimitiveType]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.PrimitiveType]);
     };
     var _isProperty = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Property]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Property]);
     };
     var _isRationale = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Rationale]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Rationale]);
     };
     var _isRequirement = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Requirement]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Requirement]);
     };
     var _isRequirementDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.RequirementDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.RequirementDiagram]);
     };
     var _isSequenceDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.SequenceDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.SequenceDiagram]);
     };
     var _isSignal = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Signal]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Signal]);
     };
     var _isSubject = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Subject]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Subject]);
     };
     var _isSysMLMetaLanguage = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.SysMLMetaLanguage]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.SysMLMetaLanguage]);
     };
     var _isUnit = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Unit]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Unit]);
     };
     var _isUseCase = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.UseCase]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.UseCase]);
     };
     var _isUseCaseDiagram = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.UseCaseDiagram]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.UseCaseDiagram]);
     };
     var _isValue = function (objID) {
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.Value]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.Value]);
     };
     var _isValueType = function (objID){
-        return client.isTypeOf(objID, _getMetaTypes()[META_TYPES.ValueType]);
+        return safeTypeCheck(objID, _getMetaTypes()[META_TYPES.ValueType]);
     };
 
 
