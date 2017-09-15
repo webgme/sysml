@@ -88,6 +88,14 @@ define(['underscore'], function (_underscore) {
         return dictionary;
     }
 
+    function safeTypeCheck(id, metaId) {
+        if (typeof metaId === 'string') {
+            return client.isTypeOf(id, metaId);
+        } else {
+            return false;
+        }
+    }
+
     function _getMetaTypesOf(objId) {
         var orderedMetaList = Object.keys(META_TYPES).sort(),
             metaDictionary = _getMetaTypes(),
